@@ -1,0 +1,83 @@
+\documentclass[10pt]{letter}
+\pagestyle{plain}
+%\usepackage[ansinew]{inputenc} 
+
+%\addtolength{\topmargin}{-0.5in}
+
+%\sloppy
+%\nonfrenchspacing
+
+\renewcommand{\baselinestretch}{1.0}
+
+\address{
+Ian Holmes\\
+Department of Bioengineering\\
+University of California\\
+Berkeley, CA 94720\\
+}
+
+\signature{}
+\begin{document}
+\begin{letter}{}
+
+\opening{Dear Editors:}
+
+\vspace{\baselineskip}
+
+The new science of {\bf Ancestral Sequence Reconstruction} is bringing evolutionary origins within experimental reach.
+This field has come of age in the past five years.
+Many ancient protein sequences have been reconstructed and experimentally tested
+(Benner {\em et al}, Nature 2003;
+Thornton {\em et al}, Science 2007;
+Liberles (ed.), Oxford University Press 2007).
+There have also been major attempts at the
+computational reconstruction of genomes
+(Blanchette, Green, Miller \& Haussler, Genome Research 2004;
+Paten {\em et al}, Genome Research, in press).
+
+Here, we present initial steps towards a theory, tool-set and benchmark for phylogenetic reconstruction of structured RNA,
+such as ribosomal RNA.
+This year is the fortieth anniversary of the {\bf RNA world hypothesis}
+(Woese, Harper \& Row 1968).
+It's also the 40th anniversary of the all-RNA primordial ribosome
+(Crick, JMB 1968),
+a structural model of which was recently proposed
+(Smith, Gutell {\em et al}, Biology Direct, 2008).
+Yet to our knowledge, the attached manuscript represents the first broad pilot study of concrete algorithms for reconstructing RNA.
+
+Our paper describes several new software tools, all backed by simulation and/or benchmarking results.
+However, we feel that the key contribution is a complete, self-consistent theoretical framework for modeling (and reconstructing) RNA evolution on a phylogenetic tree.
+This theory is the RNA analogue of the {\bf transducer theory} for proteins and DNA
+(Bradley and Holmes, Bioinformatics 2007),
+which was recently used in the first whole-genome mammalian-ancestor reconstruction
+(Paten, Herrero, Birney, Holmes \& Flicek, Genome Research, in press).
+The theory is closely related to that of ``Statistical Alignment''
+(Wong, Suchard and Huelsenbeck, Science 2008)
+and sequence automata for reconstructing indel histories
+(L\"{o}ytynoja \& Goldman, Science 2008).
+Unlike those previous theories (which model only indels and point substitutions),
+our model includes covariant base-pair substitutions and changes in RNA structure.
+
+\newpage
+All authors have read and approved of this manuscript.
+
+%As editor, we suggest David Haussler.
+
+%We suggest the following reviewers:
+%David Haussler (if not editor),
+%Jeff Thorne,
+%Marc Suchard,
+%Jotun Hein,
+%Sean Eddy.
+%We have provided contact details for these reviewers in the online
+%submission process.
+
+\closing{Sincerely,\vskip 20pt Robert K. Bradley\\Ian Holmes}
+
+%% If you have things to enclose, specify here
+%\encl{Encl. 1}
+%\encl{Encl. 2}
+
+\end{letter}
+
+\end{document}

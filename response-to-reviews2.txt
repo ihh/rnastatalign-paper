@@ -1,0 +1,519 @@
+
+> ------------------------------------------------------------------------
+>
+> Reviewer #1 (Remarks for the Author):
+>
+> This new draft is vastly improved. (One comment I penned into the 
+> margin at the end of the introduction is "lightyears better"). The 
+> abstract and introduction now clearly state the problem and its 
+> background. The methods are now clear enough up to about page 10 of 
+> the manuscript. After that, however, the manuscript breaks down. It is 
+> still too vague for me.
+>
+> It's now much clearer that the manuscript promises two main results: a 
+> "transducer composition algorithm" for building a multisequence SCFG 
+> from pairwise transducers, given a tree; and a dynamic programming 
+> algorithm for calculating maximum likelihood parses under this 
+> grammar, given N input sequences. The results consist of implementing 
+> the DP algorithm for a particular RNA evolutionary model (called 
+> "TKFST") and trying it out on a couple of small toy examples of three 
+> short RNA sequences (nanos TCEs, and tRNAs). Though one can get the 
+> rough gist of how the authors' approach works, many important details 
+> necessary for an acceptable level of understanding and reproducibility 
+> still seem to be missing.
+>
+> The problem statement (p.5) is ok but still needs some clarification, 
+> and perhaps some discussion from the perspective of where the 
+> rate-limiting problems in "paleogenetic reconstruction" really lie. 
+> What exactly is given and what exactly is going to be inferred? Does 
+> "Given a phylogenetic tree" mean that both tree topology and its 
+> branch lengths are assumed known? (The examples in Figures 1 and 2 
+> seem to indicate so.) Are individual secondary structures assumed to 
+> be known for the observed sequences? (Again, Figures 1 and 2 suggest 
+> so.) And from this are we inferring the alignment of the observed 
+> sequences, and the alignment, secondary structure, and sequence of the 
+> unobserved ancestors? Aside from clarification, one reason that it 
+> would be good to nail this down is to bring out that the authors 
+> apparently believe that it is reasonable to consider individual 
+> secondary structures to be "known" in the input, whereas the alignment 
+> is an "unknown" that must be inferred. To my mind,
+> this would get the rate-limiting inferences backwards. If I were 
+> really trying to reconstruct the evolution of an important RNA, I 
+> would have a lovingly handcrafted multiple alignment already, much 
+> better than any automated inference program would be likely to produce 
+> (c.f. Gutell rRNA alignments, or catalytic intron alignments) as well 
+> as a highly accurate consensus secondary structure, but individual 
+> secondary structures (where they differed from consensus) would remain 
+> in doubt, and would need to be inferred. Not that structural alignment 
+> isn't of interest; just that it's not obvious that it's the most 
+> important task if paleogenetic reconstruction is the real
+> motivation.
+
+Thank you for the detailed recommendations.  We now state clearly that
+we take the phylogeny as given, although we also note in the
+Discussion that in principle we could construct a basic sampler
+over trees using our method (though we have not constructed or
+evaluated such a sampler).
+
+We have added more discussion of the potential rate-limiting steps and
+corresponding constraints to the manuscript ("Overview").  As the
+reviewer points out, perhaps the most realistic pieces of outside
+information to have are a consensus structure for sequences and/or a
+curated multiple alignment.  In principle these can all be
+incorporated into our inference algorithms with the alignment
+constraints used by e.g. QRNA and PFOLD, or the simultaneous fold and
+alignment constraints used by e.g. Stemloc and CONSAN.
+
+For this paper we used constraints on individual structures because
+these are simple to implement.  We state this clearly in the revised
+text and note that while experimentally-determined structures of
+individual RNAs are rare, curated multiple alignments are
+more-commonly available and can be used to constrain the algorithms
+which we describe.
+
+In principle we think that the reconstruction might benefit as well
+from partial alignment constraints as from partial fold constraints;
+that is, as well as being able to deviate slightly from the consensus
+fold (as the reviewer suggests), the reconstruction algorithm would
+probably need to deviate slightly from the supplied alignment as
+well. (This will be necessary because not every evolutionarily related
+basepair is likely to be perfectly aligned.) This sort of flexible
+fold and alignment constraint is, of course, implemented in CONSAN and
+Stemloc. However, we note that the Pair SCFGs used in both those
+algorithms were first implemented using much simpler constraints:
+specifically, the fold-only constraints of (Holmes 2002), and the
+alignment-only constraints of (Rivas & Eddy 2001).
+
+We do hope that the sophistication of the constraint schemes used with
+these "tree transducer" models will increase over time. Eventually we
+hope to develop alignment constraints, simultaneous alignment-and-fold
+constraints, and other constraints (and/or sampling schemes) to enable
+efficient analysis of multiple phylogenetically-related sequences. The
+present work represents a first attempt at using these sorts of models
+for more than two sequences, but we hope it will not be the last
+attempt, and we acknowledge room for improvement.
+
+> It is still not clear eenough what the authors' model is, though it is 
+> supposed to be a main result. Page 7 states "a prescriptive formalism 
+> for transducers is given in Text S1". Relegating the deliverables of a 
+> manuscript to supplementary material is not an appropriate use of 
+> supplementary material; a reader should not have to refer to a second 
+> manuscript to understand the main points. The authors need to find a 
+> way to explain their main results in the actual manuscript. There is 
+> still much vagueness and redundancy in this draft, which could be 
+> removed and replaced with more relevant explanation. For example, in 
+> this same section where results are relegated to supplementary 
+> material, there's a whole redundant paragraph (p.8) on how conditional 
+> models represent directed edges; but this concept has already been 
+> explained sufficiently. This is followed (bottom p. 8, "Consider a 
+> phylogenetic tree...") by yet another statement of the same concept of 
+> using conditional models, still in
+> terms too vague and conceptual to enable reproduction of the work.
+
+Thank you for pointing this out.  We have removed the reference to the
+supplementary material in this section and have attempted to make the
+main text a self-contained description of the composition algorithm.
+We have attempted to remove redundant text, including the two
+paragraphs which the reviewer notes.
+
+> It is still not clear enough what the authors mean by a "composition 
+> algorithm". The description of the generative model on pp 9-10 seems 
+> redundant with the "composition algorithm" on pp 11-12; pp 11-12 don't 
+> seem to add anything that I didn't already understand from pp 9-10, 
+> and is still not precise and concrete enough for me to really 
+> understand the actual model in play here. My understanding is that a 
+> "composition algorithm" is just how one chains conditional models 
+> together to calculate the desired joint probability of the observed 
+> data. Conceptually, this chaining seems obvious enough to me when a 
+> phylogenetic tree is given, and the use of so much space to describe 
+> the concept is puzzling; but perhaps I'm missing something. In any 
+> case, what the reader really wants is a precise explanation of the 
+> exact model in use here, not a lot of text about the well-understood 
+> concept of conditional likelihoods on branches of a tree.
+
+We have reorganized the presentation of the "composition algorithm" to
+attempt to clarify both what it is and why it is important.  The
+reviewer is completely correct that it is, indeed, a prescription
+for chaining together conditional models.  However, while the concept
+of so chaining together models is intuitive, in practice it can be a
+daunting task for SCFGs thanks to the presence of bifurcations.  For
+example, while both the model generating a prior distribution over ancestral 
+sequences (the "singlet transducer," with 7 states) and the model describing
+evolution along a single branch (the "branch transducer," with 21 states)
+are simple and compact, the three-taxon ensemble model has 230 states
+and 1,789 transitions.
+
+In summary, while we completely agree that the model construction procedure
+is no more than a formalization of an intuitive concept, we believe
+that it is nonetheless substantial, due to the sheer complexity
+of the ensemble models so created.  The "TKFST" model which we use
+here is relatively simple; more realistic models will give rise to even
+more complex ensemble models.
+
+> Perhaps most glaringly, the section entitled "dynamic programming 
+> inference algorithms" never actually states an algorithm! It should. 
+> The "loopy DP" algorithm is claimed in the abstract (and in the 
+> authors' response to reviews) to be a key result of the paper, but it 
+> is only referred to ("See Text S1 for more [sic] details of this 
+> algorithm"). Again this is a misuse of supplementary material. A paper 
+> is not supposed to be a mere advertisement of cool things we're 
+> working on, and cooler things we're thinking about working on. Too 
+> much of this manuscript still reads this way (though it's greatly 
+> improved from the previous version). A paper should deliver crisp, 
+> hard-nosed, reproducible results to a reader. In the case of an 
+> algorithms paper, the reader should be able to understand and 
+> implement the key ideas from a careful and complete reading of the 
+> paper. Generally speaking, the authors are still spending way too much 
+> time talking about ideas for their future, and too little
+> teaching the reader something concrete in the present. Relegating 
+> important stuff to supplementary material while spending so much room 
+> on vague conceptual stuff in the text is aggravating (I would be 
+> sympathetic if the manuscript were closely on point, and stuff was 
+> being moved to supp material solely to keep length down and maintain 
+> clarity of the essential results description). Supplementary material 
+> should be used for stuff that doesn't fit (large data sets, source 
+> code), is better distributed in electronic form (video, formatted 
+> data) or is truly parenthetical to the main results (details that the 
+> reader doesn't need to see to understand the paper). Only in a last 
+> resort (in space-limited journals, which does not include PLoS 
+> Computational Biology) should it contain any actual results of the paper.
+
+Thank you for the feedback; we have attempted to revise the paper
+accordingly such that it is completely self-contained and
+reproducible.  We have given complete specifications of the CYK,
+Inside, Outside, and CYK traceback algorithms for three sequences,
+whether completely unconstrained, or constrained by a pre-determined
+set of folds for each sequence ("fold envelopes").  They are written
+in pseudocode which corresponds closely to our actual implementation
+in the program (INDIEGRAM) which we describe.
+
+We have entirely replaced the "loopy DP" algorithm with an algorithm
+for exactly eliminating null cycles from general SCFGs.  Per the
+reviewer's recommendation, the full description of this algorithm is
+described in the main text ("Eliminating null cycles in SCFGs") of the
+revised manuscript.  This new algorithm avoids the increased time
+complexity associated with the iterative inference of "loopy DP."
+
+> It's possible that I would come to adequately understand these 
+> algorithms if I spent a lot more time thinking about them and studying 
+> the "Supplementary" material. As always when refereeing, I feel I need 
+> to allow for the possibility that I'm slower than the average reader. 
+> So I'd actually be willing to forgo much of the above criticism if I 
+> could skip ahead to the application and results and be impressed with 
+> the utility of the approach, so that I'd feel motivated to go back and 
+> work even harder to understand it. But the figures and results here 
+> really do not inspire much confidence either.
+>
+> The key results figure is Figure 2, which shows the "reconstruction" 
+> of "ancestral" sequences for three nanos TCEs and three tRNAs on star 
+> topologies. The problems I have with this figure are manyfold, including:
+>
+> - In both cases the "ancestor" is in fact related by negligible branch 
+> length to one of the observed sequences. But of course this 
+> immediately makes the inference problem trivial, completely 
+> uninteresting, and definitively *not* "ancient reconstruction". In 
+> this situation, one can simply infer that the "ancestral" sequence is 
+> identical to this closely related observed sequence. As noted in the 
+> figure legend, that's almost what happens in the tRNA example (the 
+> "ancestor" is nearly identical to AC008670.6). The figure legend fails 
+> to note it also happens with the nanos TCEs, where the "ancestor" is 
+> in fact completely identical to M72421.1. Even for a toy problem, come 
+> on; this is way too unchallenging and toylike.
+>
+> - Even so, it looks like the inference algorithm is actually screwing 
+> up the inference of the ancestor, moving in the wrong direction from 
+> simply assuming identity with the near-zero-branch-length related 
+> sequence. How does the algorithm possibly infer an ancestral G in a 
+> column where it sees two gaps and an A (3' most base of the first stem 
+> loop of tRNA)? How does it infer an ancestral gap in a column where it 
+> sees two G's and an A and no gaps (the multifurcated base between the 
+> D arm and the anticodon arm)? The authors need to explain how these 
+> could possibly be right; they seem like red flags that the algorithm 
+> isn't working properly.
+>
+> - This isn't an experiment. Showing that an algorithm produces a 
+> result without crashing doesn't say much about whether the result 
+> should be relied upon. If the purpose of these algorithms is to 
+> accurately reconstruct ancestral RNAs, the authors need to design and 
+> perform experiments to evaluate the accuracy of their reconstructions, 
+> even if (for computational complexity reasons) these experiments can 
+> only be done on a small, noncomprehensive set of anecdotes. I would 
+> even settle for the normal positive control "sanity check" experiment 
+> of simulating data under exactly their model, then verifying that 
+> their model can reconstruct the appropriate likelihoods and inferences.
+
+We agree that these reconstructions were not very informative.
+Unfortunately these were the only sequences that we could find which
+were short enough to be tractable on the hardware we had available. We
+now report simulation results instead, as suggested.
+
+We thank the reviewer for pointing out errors in the original
+figures. These arose during manual conversion of indiegram's output
+parse trees into Stockholm-format alignments, and due to a bug in
+xrate's reconstruction code. We have now automated this process
+(i.e. indiegram now outputs Stockholm format) and fixed the bug in
+xrate, verifying that this has eliminated the errors (e.g. see the
+simulation results).
+
+We removed the tRNA and nanos reconstructions and posted (corrected)
+versions online, at the following URL (which is linked from the
+indiegram webpage):
+
+http://biowiki.org/IndiegramExamples
+
+We hope that these may still be useful for illustrative purposes for
+anyone trying to use the software, but we have removed references from
+the paper (since, as the reviewer notes, the short branch lengths make
+the answers somewhat obvious).
+
+The paper still includes the (experimentally-based) runtime estimates for
+different length classes of RNA genes.
+
+
+> More minor comments follow.
+>
+> title: A paper should deliver something akin to what its title seems 
+> to promise. There is no result in this paper that bears meaningfully 
+> on "primordial ribozymes" or "ancient RNA". The main results are 
+> instead a promising but rough and very preliminary theoretical 
+> framework for modeling the evolution of structural RNAs, with some 
+> small toy examples of applications to three small RNA sequences. The 
+> grand idea of paleogenetics motivates the work, and certainly should 
+> be discussed, but it doesn't belong in the title unless you're 
+> actually doing (and testing!) paleogenetics. A less grand title, more 
+> consistent with results on toy three-sequence data sets, is appropriate.
+
+We have accordingly changed the title to "Evolutionary models of
+structured RNA".
+
+> p.3: as far as I'm aware, the Felsenstein "pruning algorithm" and 
+> "peeling algorithm" are just alternative names for the same algorithm 
+> for recursively computing the likelihood of observed sequences related 
+> by a tree, so I don't understand the distinctions being drawn in the 
+> introduction between using the "pruning algorithm" to solve the 
+> likelihood (problem "A") versus the "peeling algorithm" to sample from 
+> the posterior (problem "C"). All four problems A-D are solved by the 
+> same algorithm (or trivial postprocessing of its results) in the 
+> ungapped, substitution-only case. See for example Felsenstein's book 
+> "Inferring Phylogenies", p. 253, where he states the equivalence 
+> between his pruning algorithm and Elston and Stewart's peeling algorithm.
+
+We certainly agree that the peeling and pruning algorithms are
+equivalent for the case of reversible independent-sites models, in the
+following sense.  For a reversible model, the posterior distribution
+of the state at any ancestral node can be obtained by re-rooting the
+tree at that node and then performing the pruning algorithm,
+traversing the tree post-order (terminating at the chosen root).
+However, to then compute the posterior distribution of the state at a
+*different* ancestral node would require re-rooting the tree at that
+node and recomputing the entire DP matrix (or at least the part
+corresponding to the branches whose direction had been reversed by the
+re-rooting operation).  In contrast, the peeling algorithm yields all
+such posterior probability distributions in a single traversal, so it
+is more efficient (and distinct from pruning).
+
+More generally, the two algorithms are distinct for the case of
+irreversible models. More precisely, pruning is a restricted case of
+peeling which only gives probabilities at the root node; since
+irreversible models do not permit re-rooting of the tree, pruning
+cannot (by itself) be used to provide posterior distributions for
+internal nodes (only the root node).
+
+We drew the distinction primarily to illustrate the different
+applications for which the algorithms are frequently used (e.g., "A"
+vs. "C"), but we can certainly revise this text further if the
+reviewer feels that it is appropriate to do so.
+
+> p.6 bottom: pair HMMs are not really "standard"; they are not widely 
+> used or known. (There is still too much of a general tendency in the 
+> manuscript to use technically narrow jargon in place of actual 
+> explanation, and assume the reader will be able to fill in the gaps. 
+> Sometimes, though, the revision gets it right: for example, other than 
+> this "standard pair HMM" reference, the authors do an excellent job on 
+> pp6-7 introducing the concept and motivation of conditional 
+> probability models first, and *then* connecting to the linguistics 
+> literature and the jargon term "parse-tree transducer".)
+
+Thank you for pointing out this oversight.  We briefly describe what a
+Pair HMM is in the revised manuscript.
+
+> p.7 why is the model that generates P(X) at the root a "singlet 
+> transducer"? It's not transducing anything (it's not conditionally 
+> dependent on an input parse tree).
+
+We chose to call it a "singlet" transducer so that we used similar
+terminology for the model generating the marginal and conditional
+distributions.  A singlet transducer can be viewed as a special case
+of a transducer, where the input being transduced is empty.  Indeed,
+by "singlet transducer" we mean the same thing as is often referred to
+as a "single-sequence SCFG".  We apologize if it is poor terminology;
+we can change it if the reviewer feels that doing so would help
+clarify the methods.
+
+> p.13 The DP inference algorithm section says "the standard CYK ... 
+> algorithms fail". But then it says "Maximum likelihood inference is 
+> performed with a CYK algorithm", and even "maximum likelihood 
+> inference can therefore be performed with a standard three sequence 
+> CYK algorithm". Which is it?
+
+Thank you for pointing out this inconsistency, which we have clarified
+in the revised text.  Using the standard CYK algorithm on the composed
+model fails; however, the model can be simply modified as described in
+the revised text to permit standard CYK to work properly.
+
+> p.14 It seems possible that the problem with "null cycles" (residues 
+> in ancestors that leave no homologous residues in observed sequences) 
+> may simply go away if you view the problem as a missing data problem, 
+> and that the likelihood being inferred is the likelihood of alignment 
+> columns needed to account for the observed data (marginalized over 
+> missing columns needed to account for null cycles) rather than the 
+> joint likelihood of the "observed" columns and the "null cycle" 
+> columns. This is what dropped out of the equations in the phylogenetic 
+> inference described by Rivas and Eddy (2008) PLoS CB 4:e1000172, for 
+> example.
+
+We completely agree and have included an extended discussion of this in
+the revised text.  The primary difficulty is that while this marginalization
+is reasonably straightforward for independent-sites models and HMMs,
+the possible presence of null bifurcations complicates matters for SCFGs.
+
+> p.15-18 The whole section on "terminological asides" contributes 
+> little to the paper. It would be vastly preferable to spend this space 
+> describing what you're actually doing, as opposed to making vague 
+> conceptual connections. Save the conceptual connections for a review 
+> article someday.
+
+We have accordingly stricken this section from the paper.
+
+> p.19 bottom: "The results of these results, reported in Text S1...": 
+> again, results in the paper should not be relegated to supplementary 
+> material. A test that we use here is that you should be able to make 
+> no references at all to Supplementary Material in the text of a paper, 
+> but just list it at the end, and the reader would still be happy. Good 
+> is "oh look, the source code and computer-readable data files are 
+> available too", and bad is "dammit, you mean I have to go to another 
+> manuscript to see the result of the experiment they just described?"
+
+Thank you for this suggestion.  We have moved those results back into
+the main text of the paper and made them into a section discussing
+evaluating the TKFST model by making it part of a multiple RNA
+alignment program.
+
+> p.21 "A TKFST-based reconstruction could in principle falsify 
+> Hopfield's hypothesis": how, exactly? How could you falsify a 
+> biological hypothesis with a model whose realism and accuracy you've 
+> called into question?
+
+[we have deleted the references to Hopfield's hypothesis]
+
+> p.21 in general the whole "reconstructing RNAs with a simple model" 
+> section is too chatty and imprecise. "Both predicted ancestral 
+> structures closely match the RFAM-annotated consensus structures", for 
+> example, is not a quantitative result, and was not set up to address 
+> any particular focused question (like, for instance, does our method 
+> do better than some simpler approach of addressing the same problem?) 
+> Again too much space is devoted to vague forward-looking conceptual 
+> claims ("Though it's beyond the scope of the paper, a revised pairwise 
+> model could readily be designed...") and too little attention is given 
+> to the actual model and problems at hand.
+
+
+
+> Table 2: it's unclear why we need separate states L and I_L, or S and 
+> I_S; these nonterminals have identical production rules.
+
+[distinction between clearest representation of the grammar for didactic purposes, versus the best representation for implementation purposes; for implementation we used a Moore machine representation]
+
+> Similarly, I 
+> don't see why we need B_e; S and I_S can produce L directly; and L and 
+> I_L can produce an LS bifurcation directly, rather than invoking 
+> nonterminal B. The L and I_L productions don't appear to be correctly 
+> normalized, unless the (undefined) term p_S is 0.0.
+
+
+
+> A production I_L 
+> \rightarrow x I_L does not correspond to a pair-HMM rule, as the 
+> caption states; this is just a standard regular grammar production.
+
+Thank you for pointing this out.  We have corrected this in the 
+revised text.
+
+> Table 4: perhaps I'm slow, but this doesn't seem like the clearest 
+> explanation of a branch transducer. I'm expecting to see rules 
+> corresponding to, for example, the ancestor produced G-C from a 
+> basepair state; the branch transducer chooses a basepair->basepair 
+> substitution transduction as its state path with some probability, 
+> then eats the GC and emits an xy. The production rules in Table 4 look 
+> more like a single-sequence SCFG to me (x,y do appear in the wait 
+> state conditionals, but where are x,y coming from on the left hand 
+> side -- where are they being absorbed from?)
+
+> The productions also 
+> don't seem to correspond entirely to the state definitions in Table 5; 
+> for example, if M_S is a "match" state describing "base pair 
+> substitution" that "absorbs (x,y)" and "emits (u,v)" according to 
+> Table 5, then why does the Table 4 give no production rule for 
+> emitting (u,v) given (x,y)? Instead it's the wait state W_S in Table 4 
+> that has the expected (x,y) -> (u,v) production rule. Maybe the
+> rationale would become clear to me if I spend more time staring at 
+> this, but it seems to need more explanation and/or clarification and 
+> cleanup.
+
+We wrote the rules here in the Mealy-machine framework, where inputs
+and outputs are attached to transitions (c.f., the Moore-machine framework,
+where ouputs depend only on the current state of the machine).  The
+rule
+W_S -> u M_s v ;       alpha_2 (t) * p (u, v| x, y)
+is intended to correspond to a transition in a Mealy machine
+from state W_S to M_S, where the transition has an input of (x, y)
+and an output of (u, v).  We have attempted to clarify this in the
+revised text.
+
+We apologize for the confusion; we have attempted to follow the
+standard SCFG notation as closely as possible in an attempt to be
+clear, but we certainly welcome further suggestions to clarify
+the model.
+
+> Figure 1: 5' and 3' ends of RNA structures should be labeled.
+
+
+
+> Figure 3: It is very unclear what this figure is supposed to be 
+> representing (and I had the same problem with it when it appeared in 
+> reference [28]). It appears to simply be a representation of a parse 
+> tree of an individual RNA structure. It does not seem to show any kind 
+> of evolutionary model from one sequence/structure/parse tree to 
+> another, as the caption and text would seem to imply.
+
+[we have included stree-mutations.pdf, which was also in the cited paper, and illustrates the dynamic behavior of this model]
+
+> Figure 4 and Figure 5 seem unnecessary. Both are too schematic to 
+> convey useful information. The concept of conditional likelihood along 
+> branches of a tree is obvious and well understood to your readers in 
+> the substitution-only framework of the Felsenstein algorithm. The 
+> authors should focus these figures like this on their *particular* 
+> model for the transducers, and exactly how they accomodate insertion 
+> and deletion, rather than the obvious concept of "P(X | Y,t)".
+
+We felt that it was better to include information at the risk of
+stating the obvious, rather than risk omitting necessary
+information. The figure illustrating "P(X | Y,t)" may be obvious but
+the figure illustrating the following distribution...
+
+P(W | root_distribution) P(X | W,T_X) P(Y | W,T_Y) P(Z | W,T_Z)
+
+...is, we feel, not as obvious; and its simplicity may help clarify
+the more complicated concepts about transducer composition that appear
+in the text. Our hope is that since this is listed as a minor
+criticism, we may accept it as a stylistic difference.
+
+> The figures are referred to out of order; I try not to succumb to the 
+> hobgoblins of foolish consistencies, but it's pretty egregious here (I 
+> think Figure 1 isn't referred to until p.21; whereas I think Figure 4 
+> is mentioned first, on p.9.) Similarly, the bibliography seems 
+> excessively typo-laden. (Ref 25 lists the author as "J P". Ref 28 
+> gives no page numbers. Ref 33 shows no volume nor page numbers. And so 
+> on.)
+
+[we have corrected this..... I hope]

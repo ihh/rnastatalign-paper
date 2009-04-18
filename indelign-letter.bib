@@ -1,0 +1,89 @@
+
+@article{thorne:1991,
+   author = "Thorne, J. L. and Kishino, H. and Felsenstein, J.",
+   title = "{An} Evolutionary Model for Maximum Likelihood Alignment of {DNA} Sequences",
+   journal = "J Mol Evol",
+   year = "1991",
+   volume = "33",
+   pages = "114-124",
+   pmid = "1920447",
+   abstract = "Most algorithms for the alignment of biological sequences are not derived from an evolutionary model. Consequently, these alignment algorithms lack a strong statistical basis. A maximum likelihood method for the alignment of two DNA sequences is presented. This method is based upon a statistical model of DNA sequence evolution for which we have obtained explicit transition probabilities. The evolutionary model can also be used as the basis of procedures that estimate the evolutionary parameters relevant to a pair of unaligned DNA sequences. A parameter-estimation approach which takes into account all possible alignments between two sequences is introduced; the danger of estimating evolutionary parameters from a single alignment is discussed."
+}
+
+@article{holmes:2001,
+   author = "Holmes, I. and Bruno, W. J.",
+   title = "{Evolutionary} {HMMs:} a {Bayesian} Approach to Multiple Alignment",
+   journal = "Bioinformatics",
+   year = "2001",
+   volume = "17",
+   pages = "803-820",
+   pmid = "11590097",
+   abstract = "MOTIVATION: We review proposed syntheses of probabilistic sequence alignment, profiling and phylogeny. We develop a multiple alignment algorithm for Bayesian inference in the links model proposed by Thorne et al. (1991, J. Mol. Evol., 33, 114-124). The algorithm, described in detail in Section 3, samples from and/or maximizes the posterior distribution over multiple alignments for any number of DNA or protein sequences, conditioned on a phylogenetic tree. The individual sampling and maximization steps of the algorithm require no more computational resources than pairwise alignment. METHODS: We present a software implementation (Handel) of our algorithm and report test results on (i) simulated data sets and (ii) the structurally informed protein alignments of BAliBASE (Thompson et al., 1999, Nucleic Acids Res., 27, 2682-2690). RESULTS: We find that the mean sum-of-pairs score (a measure of residue-pair correspondence) for the BAliBASE alignments is only 13\% lower for Handelthan for CLUSTALW(Thompson et al., 1994, Nucleic Acids Res., 22, 4673-4680), despite the relative simplicity of the links model (CLUSTALW uses affine gap scores and increased penalties for indels in hydrophobic regions). With reference to these benchmarks, we discuss potential improvements to the links model and implications for Bayesian multiple alignment and phylogenetic profiling. AVAILABILITY: The source code to Handelis freely distributed on the Internet at http://www.biowiki.org/Handel under the terms of the GNU Public License (GPL, 2000, http://www.fsf.org./copyleft/gpl.html)."
+}
+
+@article{hein:2001,
+   author = "Hein, J.",
+   title = "{An} Algorithm for Statistical Alignment of Sequences Related by a Binary tree",
+   journal = "Pac Symp Biocomput",
+   year = "2001",
+   pages = "179-190",
+   pmid = "11262938",
+   abstract = "An algorithm is presented that allows the calculation of the probability of a set of sequences related by a binary tree that has evolved according to the Thorne-Kishino-Felsenstein model (1991) for a fixed set of parameters. There are two ideas underlying this algorithm. Firstly, a markov chain is defined that generates ancestral sequences and their alignment at two neighboring nodes in a tree. Secondly, a stochastic walk on the binary tree, that defines a markov chain generating ancestral sequences and their alignment at the internal nodes in the tree is described. The running time of this algorithm is O(l2 kappa), where l is the geometric average of the sequence lengths and kappa the number of sequences--leaves at the binary tree. This could be improved to O(l kappa)."
+}
+
+
+@article{knudsen:2003,
+   author = "Knudsen, Bjarne and Miyamoto, Michael M.",
+   title = "{Sequence} Alignments and pair Hidden {Markov} Models Using Evolutionary History",
+   journal = "J Mol Biol",
+   year = "2003",
+   volume = "333",
+   pages = "453-460",
+   pmid = "14529629",
+   abstract = "This work presents a novel pairwise statistical alignment method based on an explicit evolutionary model of insertions and deletions (indels). Indel events of any length are possible according to a geometric distribution. The geometric distribution parameter, the indel rate, and the evolutionary time are all maximum likelihood estimated from the sequences being aligned. Probability calculations are done using a pair hidden Markov model (HMM) with transition probabilities calculated from the indel parameters. Equations for the transition probabilities make the pair HMM closely approximate the specified indel model. The method provides an optimal alignment, its likelihood, the likelihood of all possible alignments, and the reliability of individual alignment regions. Human alpha and beta-hemoglobin sequences are aligned, as an illustration of the potential utility of this pair HMM approach."
+}
+
+@article{miklos:2004,
+   author = "Mikl{\'{o}}s, I. and Lunter, G. A. and Holmes, I.",
+   title = "{A} {"Long} {Indel"} Model for Evolutionary Sequence Alignment",
+   journal = "Mol Biol Evol",
+   year = "2004",
+   volume = "21",
+   pages = "529-540",
+   pmid = "14694074",
+   abstract = "We present a new probabilistic model of sequence evolution, allowing indels of arbitrary length, and give sequence alignment algorithms for our model. Previously implemented evolutionary models have allowed (at most) single-residue indels or have introduced artifacts such as the existence of indivisible ``fragments.'' We compare our algorithm to these previous methods by applying it to the structural homology dataset HOMSTRAD, evaluating the accuracy of (1) alignments and (2) evolutionary time estimates. With our method, it is possible (for the first time) to integrate probabilistic sequence alignment, with reliability indicators and arbitrary gap penalties, in the same framework as phylogenetic reconstruction. Our alignment algorithm requires that we evaluate the likelihood of any specific path of mutation events in a continuous-time Markov model, with the event times integrated out. To this effect, we introduce a ``trajectory likelihood'' algorithm (Appendix A). We anticipate that this algorithm will be useful in more general contexts, such as Markov Chain Monte Carlo simulations."
+}
+
+@article{holmes:2004,
+   author = "Holmes, Ian",
+   title = "{A} Probabilistic Model for the Evolution of {RNA} Structure",
+   journal = "BMC Bioinformatics",
+   year = "2004",
+   volume = "5",
+   pages = "166-166",
+   pmid = "15507142",
+   abstract = "BACKGROUND: For the purposes of finding and aligning noncoding RNA gene- and cis-regulatory elements in multiple-genome datasets, it is useful to be able to derive multi-sequence stochastic grammars (and hence multiple alignment algorithms) systematically, starting from hypotheses about the various kinds of random mutation event and their rates. RESULTS: Here, we consider a highly simplified evolutionary model for RNA, called ``The TKF91 Structure Tree'' (following Thorne, Kishino and Felsenstein's 1991 model of sequence evolution with indels), which we have implemented for pairwise alignment as proof of principle for such an approach. The model, its strengths and its weaknesses are discussed with reference to four examples of functional ncRNA sequences: a riboswitch (guanine), a zipcode (nanos), a splicing factor (U4) and a ribozyme (RNase P). As shown by our visualisations of posterior probability matrices, the selected examples illustrate three different signatures of natural selection that are highly characteristic of ncRNA: (i) co-ordinated basepair substitutions, (ii) co-ordinated basepair indels and (iii) whole-stem indels. CONCLUSIONS: Although all three types of mutation ``event'' are built into our model, events of type (i) and (ii) are found to be better modeled than events of type (iii). Nevertheless, we hypothesise from the model's performance on pairwise alignments that it would form an adequate basis for a prototype multiple alignment and genefinding tool."
+}
+
+
+@article{holmes:2003,
+   author = "Holmes, I.",
+   title = "{Using} Guide Trees to Construct Multiple-sequence Evolutionary {HMMs}",
+   journal = "Bioinformatics",
+   year = "2003",
+   volume = "19 Suppl 1",
+   pages = "i147-i157",
+   pmid = "12855451",
+   abstract = "MOTIVATION: Score-based progressive alignment algorithms do dynamic programming on successive branches of a guide tree. The analogous probabilistic construct is an Evolutionary HMM. This is a multiple-sequence hidden Markov model (HMM) made by combining transducers (conditionally normalised Pair HMMs) on the branches of a phylogenetic tree. METHODS: We present general algorithms for constructing an Evolutionary HMM from any Pair HMM and for doing dynamic programming to any Multiple-sequence HMM. RESULTS: Our prototype implementation, Handel, is based on the Thorne-Kishino-Felsenstein evolutionary model and is benchmarked using structural reference alignments."
+}
+
+@article{holmes:2002,
+   author = "Holmes, I. and Rubin, G. M.",
+   title = "{Pairwise} {RNA} Structure Comparison with Stochastic Context-free Grammars",
+   journal = "Pac Symp Biocomput",
+   year = "2002",
+   pages = "163-174",
+   pmid = "11928472",
+   abstract = "Pairwise stochastic context-free grammars ('Pair SCFGs') are powerful tools for finding conserved RNA structures, but unconstrained alignment to Pair SCFGs is prohibitively expensive. We develop versions of the Pair SCFG dynamic programming algorithms that can be conditioned on precomputed structures, significantly reducing the time complexity of alignment. We have implemented these algorithms for general Pair SCFGs in software that is freely available under the GNU Public License."
+}
+

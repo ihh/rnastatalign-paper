@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.4)
+The top-level auxiliary file: supplementary.aux
+The style file: plos.bst
+Database file #1: ../latex-inputs/alignment.bib
+Database file #2: ../latex-inputs/duplication.bib
+Database file #3: ../latex-inputs/genomics.bib
+Database file #4: ../latex-inputs/ncrna.bib
+Warning--I didn't find a database entry for "WilliamsEtAl2006"
+Warning--I didn't find a database entry for "PollockChang2007"
+Warning--I didn't find a database entry for "ChangEtAl2007"
+Warning--I didn't find a database entry for "Gaucher2007"
+`journal' is a missing field, not a string, for entry Sakakibara2003
+while executing---line 1320 of file plos.bst
+Warning--empty journal in Sakakibara2003
+You've used 49 entries,
+            2451 wiz_defined-function locations,
+            1001 strings with 14685 characters,
+and the built_in function-call counts, 38684 in all, are:
+= -- 3540
+> -- 528
+< -- 2
++ -- 262
+- -- 132
+* -- 3139
+:= -- 4526
+add.period$ -- 101
+call.type$ -- 49
+change.case$ -- 55
+chr.to.int$ -- 0
+cite$ -- 99
+duplicate$ -- 4024
+empty$ -- 4220
+format.name$ -- 172
+if$ -- 8655
+int.to.chr$ -- 0
+int.to.str$ -- 49
+missing$ -- 512
+newline$ -- 261
+num.names$ -- 53
+pop$ -- 819
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 364
+stack$ -- 0
+substring$ -- 5274
+swap$ -- 972
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 272
+width$ -- 51
+write$ -- 549
+(There was 1 error message)

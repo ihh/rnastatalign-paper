@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.4)
+The top-level auxiliary file: paper.aux
+The style file: PLoS2009.bst
+Database file #1: ../latex-inputs/alignment.bib
+Database file #2: ../latex-inputs/reconstruction.bib
+Database file #3: ../latex-inputs/duplication.bib
+Database file #4: ../latex-inputs/genomics.bib
+Database file #5: ../latex-inputs/ncrna.bib
+Database file #6: ../latex-inputs/url.bib
+Warning--empty pages in ComonEtAl2007-TreeTransducers
+Warning--empty pages in GecsegSteinby97
+Warning--empty pages in Gaucher2007b
+Warning--empty pages in LunterEtAl2004
+`journal' is a missing field, not a string, for entry Sakakibara2003
+while executing---line 2643 of file PLoS2009.bst
+Warning--empty journal in Sakakibara2003
+You've used 104 entries,
+            2441 wiz_defined-function locations,
+            1326 strings with 24064 characters,
+and the built_in function-call counts, 79764 in all, are:
+= -- 7399
+> -- 1179
+< -- 6
++ -- 587
+- -- 294
+* -- 6801
+:= -- 9573
+add.period$ -- 209
+call.type$ -- 104
+change.case$ -- 113
+chr.to.int$ -- 0
+cite$ -- 213
+duplicate$ -- 8015
+empty$ -- 8389
+format.name$ -- 372
+if$ -- 17705
+int.to.chr$ -- 0
+int.to.str$ -- 104
+missing$ -- 1022
+newline$ -- 533
+num.names$ -- 109
+pop$ -- 1177
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 628
+stack$ -- 0
+substring$ -- 11389
+swap$ -- 2004
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 575
+width$ -- 107
+write$ -- 1146
+(There was 1 error message)

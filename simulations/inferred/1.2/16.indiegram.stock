@@ -1,0 +1,16 @@
+# STOCKHOLM 1.0
+#=GR X/1-46 SS    <<....----------<<(<..-<................-<<......>>>>)>>>>
+X/1-46            gaaaag----------guuaac-gcggcuuacauugauga-guauagucaccugacuc
+#=GR Y/1-18 SS    <<....<<......>>---------------------------------------->>
+Y/1-18            cugacgacuucaaggu----------------------------------------ag
+#=GR Z/1-17 SS    <(.-..(<......>)----------------------------------------)>
+Z/1-17            cuu-uaugcaaauacg----------------------------------------gg
+#=GC ancestral_SS <<....<<......>>-<<<...-.................----------->>>->>
+#=GC PS_cons      ......................-.................-.................
+#=GC SS_cons      <<......................................................>>
+                  -252.372
+//
+[0..46,0..18,0..17] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 93 (EmitXLYL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 211 (Bifurc)
+ [6..6,6..16,5..15] 52 (Null) 129 (EmitYLRZLR) 129 (EmitYLRZLR) 43 (Null) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) -2 (End)
+ [6..44,16..16,15..15] 35 (Null) 51 (Null) 86 (EmitXLR) 82 (EmitXLR) 82 (EmitXLR) 82 (EmitXLR) 42 (Null) 69 (EmitXL) 69 (EmitXL) 8 (Null) 51 (Null) 86 (EmitXLR) 42 (Null) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 69 (EmitXL) 8 (Null) 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) -2 (End)
+

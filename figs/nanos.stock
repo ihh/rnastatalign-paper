@@ -1,0 +1,23 @@
+# STOCKHOLM 1.0
+
+#=GF NH                         (AF252722.1.810-873/1-64:0.0054939322,(U24695.1.2509-2569/1-61:0.1643350493,M72421.1.2491-2554/1-64:0.0001000010)ancestral:0.0054937377)root;
+
+#=GR U24695.1.2509-2569/1-61 SS <<--(<<(<<<<<.....>>>>>)>>).<(<(.<<<<<<...-....>>>>>>.)>....)>---->>
+U24695.1.2509-2569/1-61         UG--GAAGAAGCUCUGGCAGCUUUUUAAGCGUUUAUAUAAGA-GUUAUAUAUAUGCGCGUUC----CA
+
+#=GR M72421.1.2491-2554/1-64 SS (<<<<<<(<(<<<.....>>>)>)>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>)
+M72421.1.2491-2554/1-64         UGGAGCAGAGGCUCUGGCAGCUUUUGCAGCGUUUAUAUAACAUGAAAUAUAUAUAC----GCAUUCCG
+
+#=GR AF252722.1.810-873/1-64 SS (<<<<<<(<(<<<.....>>>)>)>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>)
+AF252722.1.810-873/1-64         NGGAGCAGAGGCUCUGGCAGCUUUUGCAGCGUUUAUAUAACAAGAAAUAUAUAUAC----GCAUUCCG
+
+#=GR ancestral SS               <<<<<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>>
+ancestral                       ********************************************************----********
+
+#=GC PS_cons                    .G..G.AGA.GCUCUGGCAGCUUUU..AGCGUUUAUAUAA.A.G..AUAUAUAU.C.....C....C.
+#=GC SS_cons                    <<..<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>....>>....>>
+
+#=GF Score                      -320.088
+
+//
+

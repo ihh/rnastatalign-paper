@@ -1,0 +1,175 @@
+\relax 
+\bibstyle{PLoS2009}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Two-sequence transducer models}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Formal Grammars}{4}}
+\newlabel{sec:grammars}{{1.1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}States, transitions and emissions}{4}}
+\citation{Holmes2003}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Multiple-sequence transducer models}{7}}
+\newlabel{sec:evolutionarymodels}{{2}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The guide tree}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}States, transitions and emissions}{7}}
+\citation{Holmes2003}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Formal grammars}{9}}
+\newlabel{sec:multigrammars}{{2.3}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Constructing the state graph}{9}}
+\newlabel{sec:stategraph}{{2.4}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Allowed transitions}{10}}
+\newlabel{sec:transitions}{{2.5}{10}}
+\newlabel{eqn:activenode}{{4}{10}}
+\newlabel{eqn:nulltransition}{{5}{10}}
+\newlabel{sec:terminalemission}{{2.5}{11}}
+\newlabel{eqn:terminalemission}{{8}{11}}
+\@writefile{toc}{\contentsline {paragraph}{Left emission.}{11}}
+\@writefile{toc}{\contentsline {paragraph}{Right emission.}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Paired emission.}{12}}
+\newlabel{eqn:nonterminalemission}{{11}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Left bifurcation.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Right bifurcation.}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Paired bifurcation}{14}}
+\newlabel{eqn:transtoend}{{14}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Inference with multi-sequence SCFGs}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  A star phylogeny with three (extant) leaf sequences. An ancestral sequence $W$ evolves into three descendant sequences $X$, $Y$ and $Z$. A singlet transducer (the horizontal gray box) emit ancestral sequence and structure and three branch transducers (the gray boxes labeled $\Delta T_X$, $\Delta T_Y$ and $\Delta T_Z$) mutate it according to the specified multi-sequence model. Gray nodes correspond to observed data and white nodes unobserved data. If the branch transducers are time-reversible, then this star phylogeny with three leaves is the neighborhood of any interior node in a (binary) phylogenetic tree, from which it follows that evaluating the likelihood function on this star phylogeny is sufficient for a sampling algorithm on an arbitrary phylogeny. }}{16}}
+\newlabel{fig:threeway}{{1}{16}}
+\citation{HolmesRubin2002a,Holmes2004}
+\citation{HolmesRubin2002a}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Notation}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Fold Envelopes}{17}}
+\newlabel{sec:foldenv}{{3.2}{17}}
+\newlabel{eqn:cabbage}{{17}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Inside}{18}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces  The constrained Inside algorithm for three sequences $x^{(1)},x^{(2)},x^{(3)}$. States $\boldsymbol  {a}$ in the iteration over states are sorted in Inside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in reverse topological order. }}{19}}
+\newlabel{alg:inside}{{1}{19}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Inside algorithm. }}{19}}
+\newlabel{alg:insidetransemit}{{2}{19}}
+\newlabel{eqn:insidetoend}{{23}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}CYK}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Outside}{20}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces  The constrained Outside algorithm for three sequences $x^{(1)},x^{(2)},x^{(3)}$. States $\boldsymbol  {a}$ in the iteration over states are sorted in Outside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in topological order. }}{21}}
+\newlabel{alg:outside}{{3}{21}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {4}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Outside algorithm. }}{22}}
+\newlabel{alg:outsidetransemit}{{4}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Loopy DP}{22}}
+\citation{Tarjan1972}
+\citation{Holmes2004}
+\citation{Holmes2004}
+\citation{Holmes2004}
+\citation{Holmes2004}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The TKF Structure Tree model as a transducer}{24}}
+\newlabel{sec:tkfst}{{4}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}The single-sequence TKFST model as a singlet transducer}{24}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces   States of the singlet transducer of the TKF Structure Tree model \cite  {Holmes2004}. Singlet transducers can only have states of type $\@mathtt {Start}$ or $\@mathtt {Insert}$. {\bf  This is the indiegram-style transducer equivalent of the SCFG in Table\nobreakspace  {}3\hbox {} ...} }}{24}}
+\newlabel{tab:tkfstsinglet}{{1}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The two-sequence TKFST model as a branch transducer}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The multi-sequence TKFST model as a composite transducer}{24}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  States of the branch transducer of the TKF Structure Tree model \cite  {Holmes2004}. States which have the same names as states of the singlet transducer in Table\nobreakspace  {}1\hbox {} are the branch equivalent of the corresponding singlet states (e.g. a $\@mathtt {Match}$ state might be the branch equivalent of an $\@mathtt {Insert}$ state). States $L_i$ and $S_i$ are the $\@mathtt {Start}$ states of a sub-model (not shown) identical in structure to the singlet transducer. They are used to insert a new stem-loop structure. {\bf  This is the indiegram-style transducer equivalent of the SCFG in Table\nobreakspace  {}6\hbox {} ...} }}{25}}
+\newlabel{tab:tkfstbranch}{{2}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  A simple example of transducer composition to build a multi-sequence model of two extant sequences. An ancestral sequence $W$ evolves into two descendant sequences $X$ and $Y$. A singlet transducer (the horizontal gray box) emit ancestral sequence and structure and two branch transducers (the gray boxes labeled $\Delta T_X$ and $\Delta T_Y$) mutate it according to the specified multi-sequence model. Gray nodes correspond to observed data and white nodes unobserved data. }}{25}}
+\newlabel{fig:parent}{{2}{25}}
+\@writefile{toc}{\contentsline {paragraph}{Stem creation.}{25}}
+\citation{Holmes2004}
+\@writefile{toc}{\contentsline {paragraph}{Stem insertion.}{26}}
+\@writefile{toc}{\contentsline {paragraph}{Stem termination.}{26}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces  Singlet rule-set for $a$.}}{28}}
+\newlabel{tab:a}{{3}{28}}
+\@writefile{toc}{\contentsline {paragraph}{Singlet rules.}{28}}
+\@writefile{toc}{\contentsline {paragraph}{Pair rules.}{28}}
+\@writefile{toc}{\contentsline {paragraph}{Triplet rules.}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces  Singlet rule-set for $b$.}}{29}}
+\newlabel{tab:b}{{4}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  Singlet rule-set for $c$.}}{29}}
+\newlabel{tab:c}{{5}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  Pair rule-set for $a \mathrel {\mathop {\to }\limits ^{t}} b$\ branch. Requires Table\nobreakspace  {}3\hbox {} and Table\nobreakspace  {}4\hbox {}.}}{30}}
+\newlabel{tab:ab}{{6}{30}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces  Pair rule-set for $b \mathrel {\mathop {\to }\limits ^{t'}} c$\ branch. Requires Table\nobreakspace  {}4\hbox {} and Table\nobreakspace  {}5\hbox {}.}}{31}}
+\newlabel{tab:bc}{{7}{31}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces  Triplet rule-set for ``$abc$'' states (post emission at $c$)\ on $a \mathrel {\mathop {\to }\limits ^{t}} b \mathrel {\mathop {\to }\limits ^{t'}} c$\ tree. Requires Tables\nobreakspace  {}3\hbox {} through\nobreakspace  {}10\hbox {}.}}{32}}
+\newlabel{tab:abc}{{8}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces  Triplet rule-set for ``$ab\ast c$'' states (post deletion on $b \mathrel {\mathop {\to }\limits ^{t'}} c$\ branch)\ on $a \mathrel {\mathop {\to }\limits ^{t}} b \mathrel {\mathop {\to }\limits ^{t'}} c$\ tree. Requires Tables\nobreakspace  {}3\hbox {} through\nobreakspace  {}10\hbox {}.}}{33}}
+\newlabel{tab:abgapc}{{9}{33}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces  Triplet rule-set for ``$a\ast bc$'' states (post deletion on $a \mathrel {\mathop {\to }\limits ^{t}} b$\ branch)\ on $a \mathrel {\mathop {\to }\limits ^{t}} b \mathrel {\mathop {\to }\limits ^{t'}} c$\ tree. Requires Tables\nobreakspace  {}3\hbox {} through\nobreakspace  {}10\hbox {}.}}{34}}
+\newlabel{tab:agapbc}{{10}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Software}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Automated grammar construction}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Reconstruction of ancestral structures}{35}}
+\citation{KlostermanEtAl2006}
+\citation{DowellEddy2006}
+\citation{WuytsEtAl2004}
+\citation{GriffithsJonesEtAl2003}
+\citation{KlostermanEtAl2006}
+\citation{KlostermanEtAl2006}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Reconstruction of covariant substitution histories}{36}}
+\citation{WilliamsEtAl2006,PollockChang2007,ChangEtAl2007}
+\citation{Gaucher2007}
+\citation{KlostermanEtAl2006}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Terminological asides}{38}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Phylogenetic grammars}{38}}
+\citation{Sakakibara2003}
+\citation{Sakakibara2004}
+\citation{MamitsukaAbe94,JoshiSchabes97,RivasEddy2000}
+\citation{MeyerMiklos2007}
+\citation{HeinEtal2000}
+\citation{Miklos2002,Metzler2003,DrummondRambaut2007,SatijaEtAl2008}
+\citation{GorodkinEtAl97,MathewsTurner02,HofackerEtAl2004}
+\citation{Miyazawa94,BucherHofmann96,Holmes98,BrayPachter2004,DoEtAl2004,Holmes2005,LoytynojaGoldman2005,SchwartzPachter2007,BradleyPachterHolmes2008}
+\citation{DoEtAl2004,SchwartzPachter2007,BradleyPachterHolmes2008}
+\citation{BrayPachter2004,Holmes2005,LoytynojaGoldman2005}
+\citation{EickmeyerEtAl2008}
+\citation{KarlinAltschul93,Mott2000,Eddy2008}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Statistical Alignment}{39}}
+\citation{Durbin98}
+\bibdata{../latex-inputs/alignment,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna}
+\bibcite{Holmes2003}{1}
+\bibcite{HolmesRubin2002a}{2}
+\bibcite{Holmes2004}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Parse trees and stacks}{40}}
+\bibcite{Tarjan1972}{4}
+\bibcite{KlostermanEtAl2006}{5}
+\bibcite{DowellEddy2006}{6}
+\bibcite{WuytsEtAl2004}{7}
+\bibcite{GriffithsJonesEtAl2003}{8}
+\bibcite{Eddy94}{9}
+\bibcite{KnudsenHein99}{10}
+\bibcite{Holmes2005}{11}
+\bibcite{PedersenEtAl2006}{12}
+\bibcite{ThorneEtal91}{13}
+\bibcite{HolmesBruno2001}{14}
+\bibcite{Sankoff85}{15}
+\bibcite{MathewsTurner02}{16}
+\bibcite{TorarinssonEtAl2007}{17}
+\bibcite{XuEtAl2007}{18}
+\bibcite{LindgreenEtAl2007}{19}
+\bibcite{KiryuEtAl2007}{20}
+\bibcite{BradleyPachterHolmes2008}{21}
+\bibcite{DeRijkEtAl2001}{22}
+\bibcite{ThompsonEtal99}{23}
+\bibcite{DowellEddy2004}{24}
+\bibcite{Sakakibara2003}{25}
+\bibcite{Sakakibara2004}{26}
+\bibcite{MamitsukaAbe94}{27}
+\bibcite{JoshiSchabes97}{28}
+\bibcite{RivasEddy2000}{29}
+\bibcite{MeyerMiklos2007}{30}
+\bibcite{HeinEtal2000}{31}
+\bibcite{Miklos2002}{32}
+\bibcite{Metzler2003}{33}
+\bibcite{DrummondRambaut2007}{34}
+\bibcite{SatijaEtAl2008}{35}
+\bibcite{GorodkinEtAl97}{36}
+\bibcite{HofackerEtAl2004}{37}
+\bibcite{Miyazawa94}{38}
+\bibcite{BucherHofmann96}{39}
+\bibcite{Holmes98}{40}
+\bibcite{BrayPachter2004}{41}
+\bibcite{DoEtAl2004}{42}
+\bibcite{LoytynojaGoldman2005}{43}
+\bibcite{SchwartzPachter2007}{44}
+\bibcite{EickmeyerEtAl2008}{45}
+\bibcite{KarlinAltschul93}{46}
+\bibcite{Mott2000}{47}
+\bibcite{Eddy2008}{48}
+\bibcite{Durbin98}{49}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces   Accuracy of confidence estimates for base-pair reconstruction in simulations (left) and cross-validations on real data (right). Reconstructions were performed using XRATE\ \cite  {KlostermanEtAl2006}, using both covariant base-pair substitution models and naive, non-covariant, single-base point-substitution models. The plots show the relationship between the posterior probability that a model-based base-pair reconstruction is correct (vertical axis), and the empirical probability that reconstructions with that posterior probability are actually correct (horizontal axis). If the model's posterior probability estimates are correct, these points should lie on a straight diagonal line. Left: simulation test on the hammerhead ribozyme phylogeny. A covariant model (estimated from rRNA alignments) was used to generate the simulated alignments on the given phylogeny; the same model was then used to reconstruct ancestral sequence and obtain confidence estimates. As expected, the model accurately estimates the probability that the reconstructed base-pair is correct. A naive, non-covariant model (the general reversible model, estimated from the same alignments) was also used for reconstruction and confidence estimates. This model {\em  under}-estimates the probability of correct reconstructions, since its equilibrium frequency has a higher entropy than the covariant model: i.e. it assigns probability more evenly across the sixteen possible base-pairs (as opposed to the covariant model, which strongly favors the six canonical base-pairs). Right: cross-validation (``hold-one-out'') test using RFAM\ alignments with published (verified) structures. Here, the covariant model slightly {\em  over}-estimates the probability of correctness. The rRNA alignments (from which the model rates were estimated) have fewer non-canonical base-pairs than the RFAM\ alignments, so that the covariant model entropy is slightly {\em  lower} than the empirical base-pair distribution; this may explain the discrepancy. The naive model's confidence estimates are correct for high-accuracy reconstructions, over-estimates for medium-accuracy reconstructions, and under-estimates for low-accuracy reconstructions. }}{45}}
+\newlabel{fig:simulation}{{3}{45}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces   Proportions of reconstructed base-pairs that are incorrect (and the subset of those that are non-canonical) in simulations (left) and cross-validations on real data (right). Base-pair reconstructions that are incorrect AND non-canonical might potentially disrupt a synthetic reconstructed structure. While the covariant model does not always get more base-pairs correct than the naive model, it predicts fewer non-canonical base-pairs. The sharpest difference between the models are in the lowest posterior-probability categories, corresponding to low-confidence predictions (e.g. sequences on deep branches, or base-pairs with few homologues). In this category, the covariant model also makes far fewer errors than the naive model. See main text and caption to Figure\nobreakspace  {}3\hbox {} for details of simulation and cross-validation procedures. RFAM\ families with verified structures tended to be less phylogenetically diverse, with roughly half the total branch length (on average), than the tree used for our simulations; this may explain the relative paucity of low posterior-probability errors in the right-hand plot, compared to the left. }}{46}}
+\newlabel{fig:histograms}{{4}{46}}

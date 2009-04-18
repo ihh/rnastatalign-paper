@@ -1,0 +1,102 @@
+;; Grammar rev
+;;
+(grammar
+ (name rev)
+ (update-rates 1)
+ (update-rules 1)
+
+ ;; Nonterminal declarations and modifiers
+
+ (nonterminal (name S))
+
+ ;; Transformation rules for grammar symbols
+
+ ;; Nonterminal S
+ ;;
+ (transform (from (S)) (to (X S*)) (gaps-ok))
+ (transform (from (S*)) (to ()) (prob 0.00528823))
+ (transform (from (S*)) (to (S)) (prob 0.99516))
+
+ ;; Observed counts and wait times for probability and rate parameters
+
+ (observed-counts
+  )  ;; end observed-counts
+
+ ;; Observed counts and wait time for Markov chain substitution models
+
+ (observed-chain-counts
+  ((terminal (X))
+   (initial (state (a)) (count 7251.56))
+   (initial (state (c)) (count 6623.45))
+   (initial (state (g)) (count 7386.29))
+   (initial (state (t)) (count 7307.03))
+   (wait (state (a)) (time 3.5453e+06))
+   (mutate (from (a)) (to (c)) (count 389341))
+   (mutate (from (a)) (to (g)) (count 768535))
+   (mutate (from (a)) (to (t)) (count 579614))
+   (wait (state (c)) (time 3.10549e+06))
+   (mutate (from (c)) (to (a)) (count 389341))
+   (mutate (from (c)) (to (g)) (count 416946))
+   (mutate (from (c)) (to (t)) (count 806905))
+   (wait (state (g)) (time 3.56306e+06))
+   (mutate (from (g)) (to (a)) (count 768535))
+   (mutate (from (g)) (to (c)) (count 416946))
+   (mutate (from (g)) (to (t)) (count 461322))
+   (wait (state (t)) (time 3.51312e+06))
+   (mutate (from (t)) (to (a)) (count 579614))
+   (mutate (from (t)) (to (c)) (count 806905))
+   (mutate (from (t)) (to (g)) (count 461322))
+  )  ;; end chain X
+ )  ;; end observed-chain-counts
+
+ ;; Markov chain substitution models
+
+ (chain
+  (update-policy rev)
+  (terminal (X))
+
+  ;; initial probability distribution
+  (initial (state (a)) (prob 0.258273))
+  (initial (state (c)) (prob 0.226233))
+  (initial (state (g)) (prob 0.259566))
+  (initial (state (t)) (prob 0.255928))
+
+  ;; mutation rates
+  (mutate (from (a)) (to (c)) (rate 0.109819))
+  (mutate (from (a)) (to (g)) (rate 0.216776))
+  (mutate (from (a)) (to (t)) (rate 0.163488))
+  (mutate (from (c)) (to (a)) (rate 0.125372))
+  (mutate (from (c)) (to (g)) (rate 0.134261))
+  (mutate (from (c)) (to (t)) (rate 0.259831))
+  (mutate (from (g)) (to (a)) (rate 0.215695))
+  (mutate (from (g)) (to (c)) (rate 0.117019))
+  (mutate (from (g)) (to (t)) (rate 0.129474))
+  (mutate (from (t)) (to (a)) (rate 0.164985))
+  (mutate (from (t)) (to (c)) (rate 0.229683))
+  (mutate (from (t)) (to (g)) (rate 0.131314))
+ )  ;; end chain X
+
+)  ;; end grammar rev
+
+;; Alphabet DNA
+;;
+(alphabet
+ (name DNA)
+ (token (a c g t))
+ (complement (t g c a))
+ (extend (to n) (from a) (from c) (from g) (from t))
+ (extend (to x) (from a) (from c) (from g) (from t))
+ (extend (to u) (from t))
+ (extend (to r) (from a) (from g))
+ (extend (to y) (from c) (from t))
+ (extend (to m) (from a) (from c))
+ (extend (to k) (from g) (from t))
+ (extend (to s) (from c) (from g))
+ (extend (to w) (from a) (from t))
+ (extend (to h) (from a) (from c) (from t))
+ (extend (to b) (from c) (from g) (from t))
+ (extend (to v) (from a) (from c) (from g))
+ (extend (to d) (from a) (from g) (from t))
+ (wildcard *)
+)  ;; end alphabet DNA
+

@@ -1,0 +1,643 @@
+\begin{thebibliography}{100}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{Crick68}
+Crick FH (1968) The origin of the genetic code.
+\newblock Journal of Molecular Biology 38: 367-379.
+\bibAnnoteFile{Crick68}
+
+\bibitem{SmithEtAl2008}
+Smith TF, Lee JC, Gutell RR, Hartman H (2008) The origin and evolution of the
+  ribosome.
+\newblock Biology Direct 3: 16.
+\bibAnnoteFile{SmithEtAl2008}
+
+\bibitem{LehmannSchmidt2003}
+Lehmann K, Schmidt U (2003) {{G}roup {I}{I} introns: structure and catalytic
+  versatility of large natural ribozymes}.
+\newblock Critical Reviews in Biochemistry and Molecular Biology 38: 249--303.
+\bibAnnoteFile{LehmannSchmidt2003}
+
+\bibitem{AntalEtAl2002}
+Antal M, Boros E, Solymosy F, Kiss T (2002) {{A}nalysis of the structure of
+  human telomerase {R}{N}{A} in vivo}.
+\newblock Nucleic Acids Research 30: 912--920.
+\bibAnnoteFile{AntalEtAl2002}
+
+\bibitem{GriffithsJonesEtAl2003}
+Griffiths-Jones S, Bateman A, Marshall M, Khanna A, Eddy SR (2003) Rfam: an
+  {RNA} family database.
+\newblock Nucleic Acids Research 31: 439-441.
+\bibAnnoteFile{GriffithsJonesEtAl2003}
+
+\bibitem{HancockTautzDover88}
+Hancock JM, Tautz D, Dover GA (1988) Evolution of the secondary structures and
+  compensatory mutations of the ribosomal {RNA}s of {D}rosophila melanogaster.
+\newblock Molecular Biology and Evolution 5: 393-414.
+\bibAnnoteFile{HancockTautzDover88}
+
+\bibitem{LeontisEtAl2002}
+Leontis NB, Stombaugh J, Westhof E (2002) Motif prediction in ribosomal {RNA}s:
+  Lessons and prospects for automated motif prediction in homologous {RNA}
+  molecules.
+\newblock Biochimie 84: 961-973.
+\bibAnnoteFile{LeontisEtAl2002}
+
+\bibitem{TakeshiTsutomu2008}
+Yokoyama T, Suzuki T (2008) Ribosomal {RNA}s are tolerant toward genetic
+  insertions: evolutionary origin of the expansion segments.
+\newblock Nucleic Acids Research 36: 3539-3551.
+\bibAnnoteFile{TakeshiTsutomu2008}
+
+\bibitem{HancockDover90}
+Hancock JM, Dover GA (1990) 'compensatory slippage' in the evolution of
+  ribosomal {RNA} genes.
+\newblock Nucleic Acids Research 18: 5949-5954.
+\bibAnnoteFile{HancockDover90}
+
+\bibitem{Eddy94}
+Eddy SR, Durbin R (1994) {RNA} sequence analysis using covariance models.
+\newblock Nucleic Acids Research 22: 2079-2088.
+\bibAnnoteFile{Eddy94}
+
+\bibitem{Durbin98}
+Durbin R, Eddy S, Krogh A, Mitchison G (1998) Biological Sequence Analysis:
+  Probabilistic Models of Proteins and Nucleic Acids.
+\newblock Cambridge, UK: Cambridge University Press.
+\bibAnnoteFile{Durbin98}
+
+\bibitem{KleinEddy2003}
+Klein R, Eddy SR (2003) Noncoding {RNA} gene detection using comparative
+  sequence analysis.
+\newblock BMC Bioinformatics 4.
+\bibAnnoteFile{KleinEddy2003}
+
+\bibitem{NawrockiEddy2007}
+Nawrocki E, Eddy S (2007) {{Q}uery-dependent banding ({Q}{D}{B}) for faster
+  {RNA} similarity searches}.
+\newblock PLoS Computational Biology 3: e56.
+\bibAnnoteFile{NawrockiEddy2007}
+
+\bibitem{RivasEddy99}
+Rivas E, Eddy SR (1999) A dynamic programming algorithm for {RNA} structure
+  prediction including pseudoknots.
+\newblock Journal of Molecular Biology 285: 2053-2068.
+\bibAnnoteFile{RivasEddy99}
+
+\bibitem{PedersenEtAl2006}
+Pedersen JS, Bejerano G, Siepel A, Rosenbloom K, Lindblad-Toh K, et~al. (2006)
+  {Identification and classification of conserved {RNA} secondary structures in
+  the human genome}.
+\newblock PLoS Computational Biology 2: e33.
+\bibAnnoteFile{PedersenEtAl2006}
+
+\bibitem{KnudsenHein2003}
+Knudsen B, Hein J (2003) {Pfold: {RNA} secondary structure prediction using
+  stochastic context-free grammars}.
+\newblock Nucleic Acids Research 31: 3423-3428.
+\bibAnnoteFile{KnudsenHein2003}
+
+\bibitem{DowellEddy2004}
+Dowell RD, Eddy SR (2004) Evaluation of several lightweight stochastic
+  context-free grammars for {RNA} secondary structure prediction.
+\newblock BMC Bioinformatics 5: 71.
+\bibAnnoteFile{DowellEddy2004}
+
+\bibitem{Holmes2005}
+Holmes I (2005) Accelerated probabilistic inference of {RNA} structure
+  evolution.
+\newblock BMC Bioinformatics 6.
+\bibAnnoteFile{Holmes2005}
+
+\bibitem{DowellEddy2006}
+Dowell RD, Eddy SR (2006) Efficient pairwise {RNA} structure prediction and
+  alignment using sequence alignment constraints.
+\newblock BMC Bioinformatics 7: 400.
+\bibAnnoteFile{DowellEddy2006}
+
+\bibitem{BradleyPachterHolmes2008}
+Bradley RK, Pachter L, Holmes I (2008) Specific alignment of structured {RNA}:
+  Stochastic grammars and sequence annealing.
+\newblock Bioinformatics .
+\bibAnnoteFile{BradleyPachterHolmes2008}
+
+\bibitem{Felsenstein2003}
+Felsenstein J (2003) Inferring Phylogenies.
+\newblock Sinauer Associates, Inc.
+\newblock ISBN 0878931775.
+\bibAnnoteFile{Felsenstein2003}
+
+\bibitem{Felsenstein81}
+Felsenstein J (1981) Evolutionary trees from {DNA} sequences: a maximum
+  likelihood approach.
+\newblock Journal of Molecular Evolution 17: 368-376.
+\bibAnnoteFile{Felsenstein81}
+
+\bibitem{ElstonStewart71}
+Elston RC, Stewart J (1971) A general model for the genetic analysis of
+  pedigree data.
+\newblock Human Heredity 21: 523-542.
+\bibAnnoteFile{ElstonStewart71}
+
+\bibitem{HolmesRubin2002b}
+Holmes I, Rubin GM (2002) An {E}xpectation {M}aximization algorithm for
+  training hidden substitution models.
+\newblock Journal of Molecular Biology 317: 757-768.
+\bibAnnoteFile{HolmesRubin2002b}
+
+\bibitem{Nielsen2001}
+Nielsen R (2001) {{M}utations as missing data: inferences on the ages and
+  distributions of nonsynonymous and synonymous mutations}.
+\newblock Genetics 159: 401--411.
+\bibAnnoteFile{Nielsen2001}
+
+\bibitem{Pearl82}
+J P (1982) {R}everend {B}ayes on inference engines: A distributed hierarchical
+  approach.
+\newblock In: Proceedings American Association of Artificial Intelligence
+  National Conference on AI. Pittsburgh, PA, pp. 133-136.
+\bibAnnoteFile{Pearl82}
+
+\bibitem{Yang94b}
+Yang Z (1994) Estimating the pattern of nucleotide substitution.
+\newblock Journal of Molecular Evolution 39: 105-111.
+\bibAnnoteFile{Yang94b}
+
+\bibitem{WhelanGoldman2001}
+Whelan S, Goldman N (2001) A general empirical model of protein evolution
+  derived from multiple protein families using a maximum-likelihood approach.
+\newblock Molecular Biology and Evolution 18: 691-699.
+\bibAnnoteFile{WhelanGoldman2001}
+
+\bibitem{Holmes2004}
+Holmes I (2004) A probabilistic model for the evolution of {RNA} structure.
+\newblock BMC Bioinformatics 5.
+\bibAnnoteFile{Holmes2004}
+
+\bibitem{HolmesBruno2001}
+Holmes I, Bruno WJ (2001) Evolutionary {HMM}s: a {B}ayesian approach to
+  multiple alignment.
+\newblock Bioinformatics 17: 803-820.
+\bibAnnoteFile{HolmesBruno2001}
+
+\bibitem{JensenHein2002}
+Jensen J, Hein J (2002) Gibbs sampler for statistical multiple alignment.
+\newblock Dept. of Theoretical Statistics, University of Aarhus, Aarhus,
+  Denmark. Technical Report No. 429.
+\bibAnnoteFile{JensenHein2002}
+
+\bibitem{RedelingsSuchard2005}
+Redelings BD, Suchard MA (2005) Joint bayesian estimation of alignment and
+  phylogeny.
+\newblock Systematic Biology 54: 401-418.
+\bibAnnoteFile{RedelingsSuchard2005}
+
+\bibitem{RivasEddy2001}
+Rivas E, Eddy SR (2001) Noncoding {RNA} gene detection using comparative
+  sequence analysis.
+\newblock BMC Bioinformatics 2.
+\bibAnnoteFile{RivasEddy2001}
+
+\bibitem{BradleyHolmes2007}
+Bradley RK, Holmes I (2007) {{T}ransducers: an emerging probabilistic framework
+  for modeling indels on trees}.
+\newblock Bioinformatics 23: 3258--3262.
+\bibAnnoteFile{BradleyHolmes2007}
+
+\bibitem{ComonEtAl2007-TreeTransducers}
+Comon H, Dauchet M, Gilleron R, L\"oding C, Jacquemard F, et~al. (2007) Tree
+  Automata Techniques and Applications, Available from: {\tt
+  http://www.grappa.univ-lille3.fr/tata}, chapter 6 (``Tree Transducers'').
+\newblock Release October, 12th 2007.
+\bibAnnoteFile{ComonEtAl2007-TreeTransducers}
+
+\bibitem{GecsegSteinby97}
+G\'{e}cseg F, Steinby M (1997) Handbook of formal languages, Volume 3: Beyond
+  Words, Springer-Verlag, chapter Tree languages.
+\bibAnnoteFile{GecsegSteinby97}
+
+\bibitem{RivasEddy2008}
+Rivas E, Eddy S (2008) {{P}robabilistic phylogenetic inference with insertions
+  and deletions}.
+\newblock PLoS Computational Biology 4: e1000172.
+\bibAnnoteFile{RivasEddy2008}
+
+\bibitem{Holmes2003}
+Holmes I (2003) Using guide trees to construct multiple-sequence evolutionary
+  {HMM}s.
+\newblock Bioinformatics 19 Suppl. 1: i147-157.
+\bibAnnoteFile{Holmes2003}
+
+\bibitem{Holmes2007}
+Holmes I (2007) {{P}hylocomposer and {P}hylodirector: {A}nalysis and
+  {V}isualization of {T}ransducer {I}ndel {M}odels}.
+\newblock Bioinformatics 23: 3263-3264.
+\bibAnnoteFile{Holmes2007}
+
+\bibitem{Lunter2007}
+Lunter G (2007) {{HMMoC}--a compiler for hidden {M}arkov models}.
+\newblock Bioinformatics 23: 2485--2487.
+\bibAnnoteFile{Lunter2007}
+
+\bibitem{hmmer}
+{HMMER}.
+\newblock \url{http://hmmer.wustl.edu/}.
+\bibAnnoteFile{hmmer}
+
+\bibitem{HolmesRubin2002a}
+Holmes I, Rubin GM (2002) Pairwise {RNA} structure comparison using stochastic
+  context-free grammars.
+\newblock Pacific Symposium on Biocomputing, 2002.
+\bibAnnoteFile{HolmesRubin2002a}
+
+\bibitem{Sankoff85}
+Sankoff D (1985) Simultaneous solution of the {RNA} folding, alignment, and
+  protosequence problems.
+\newblock SIAM Journal of Applied Mathematics 45: 810-825.
+\bibAnnoteFile{Sankoff85}
+
+\bibitem{ThorneEtal91}
+Thorne JL, Kishino H, Felsenstein J (1991) An evolutionary model for maximum
+  likelihood alignment of {DNA} sequences.
+\newblock Journal of Molecular Evolution 33: 114-124.
+\bibAnnoteFile{ThorneEtal91}
+
+\bibitem{Kendall1948}
+Kendall DG (1948) On the generalized birth-and-death process.
+\newblock Annals of Mathematical Statistics 19: 1-15.
+\bibAnnoteFile{Kendall1948}
+
+\bibitem{Feller71}
+Feller W (1971) An Introduction to Probability Theory and its Applications, Vol
+  II.
+\newblock New York: John Wiley and Sons.
+\bibAnnoteFile{Feller71}
+
+\bibitem{BradleyEtAl2008}
+Bradley RK, Uzilov AV, Skinner M, Bendana YR, Varadarajan A, et~al. (2008)
+  Non-coding {RNA} gene predictors in {D}rosophila.
+\newblock Submitted.
+\bibAnnoteFile{BradleyEtAl2008}
+
+\bibitem{SprinzlEtAl1998}
+Sprinzl M, Horn C, Brown M, Ioudovitch A, Steinberg S (1998) Compilation of
+  t{RNA} sequences and sequences of t{RNA} genes.
+\newblock Nucleic Acids Research 26: 148-53.
+\bibAnnoteFile{SprinzlEtAl1998}
+
+\bibitem{DeRijkEtAl1998}
+Rijk PD, Caers A, Peer YVd, Wachter RD (1998) Database on the structure of
+  large ribosomal subunit {RNA}.
+\newblock Nucleic Acids Research 26: 183-6.
+\bibAnnoteFile{DeRijkEtAl1998}
+
+\bibitem{Gutell93}
+Gutell RR (1993) Collection of small subunit ({16S} and {16S}-like) ribosomal
+  {RNA} structures.
+\newblock Nucleic Acids Research 21: 3051-3054.
+\bibAnnoteFile{Gutell93}
+
+\bibitem{CrucsEtAl2000}
+Crucs S, Chatterjee S, Gavis ER (2000) Overlapping but distinct {RNA} elements
+  control repression and activation of nanos translation.
+\newblock Molecular cell 5: 457-467.
+\bibAnnoteFile{CrucsEtAl2000}
+
+\bibitem{Hopfield78}
+Hopfield JJ (1978) Origin of the genetic code: a testable hypothesis based on
+  t{RNA} structure, sequence, and kinetic proofreading.
+\newblock Proceedings of the National Academy of Sciences of the United States
+  of America 75: 4334-4338.
+\bibAnnoteFile{Hopfield78}
+
+\bibitem{PaulingZuckerkandl63}
+Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
+  studies'' of extinct forms of life.
+\newblock Acta Chemica Scandinavica 17: S9-S16.
+\bibAnnoteFile{PaulingZuckerkandl63}
+
+\bibitem{MalcolmEtAl90}
+Malcolm BA, Wilson KP, Matthews BW, Kirsch JF, Wilson AC (1990) Ancestral
+  lysozymes reconstructed, neutrality tested, and thermostability linked to
+  hydrocarbon packing.
+\newblock Nature 345: 86-89.
+\bibAnnoteFile{MalcolmEtAl90}
+
+\bibitem{StackhouseEtAl90}
+Stackhouse J, Presnell SR, McGeehan GM, Nambiar KP, Benner SA (1990) The
+  ribonuclease from an extinct bovid ruminant.
+\newblock FEBS letters 262: 104-106.
+\bibAnnoteFile{StackhouseEtAl90}
+
+\bibitem{ZhangRosenberg2002}
+Zhang J, Rosenberg HF (2002) Complementary advantageous substitutions in the
+  evolution of an antiviral {RN}ase of higher primates.
+\newblock Proceedings of the National Academy of Sciences of the United States
+  of America 99: 5486-5491.
+\bibAnnoteFile{ZhangRosenberg2002}
+
+\bibitem{GaucherEtAl2003}
+Gaucher EA, Thomson JM, Burgan MF, Benner SA (2003) Inferring the
+  palaeoenvironment of ancient bacteria on the basis of resurrected proteins.
+\newblock Nature 425: 285-288.
+\bibAnnoteFile{GaucherEtAl2003}
+
+\bibitem{ThomsonEtAl2005}
+Thomson JM, Gaucher EA, Burgan MF, De~Kee DW, Li T, et~al. (2005) Resurrecting
+  ancestral alcohol dehydrogenases from yeast.
+\newblock Nature Genetics 37: 630-635.
+\bibAnnoteFile{ThomsonEtAl2005}
+
+\bibitem{ChangEtAl2002}
+Chang BSW, J\"onsson K, Kazmi MA, Donoghue MJ, Sakmar TP (2002) Recreating a
+  functional ancestral archosaur visual pigment.
+\newblock Molecular biology and evolution 19: 1483-1489.
+\bibAnnoteFile{ChangEtAl2002}
+
+\bibitem{SunEtAl2002}
+Sun H, Merugu S, Gu X, Kang YY, Dickinson DP, et~al. (2002) Identification of
+  essential amino acid changes in paired domain evolution using a novel
+  combination of evolutionary analysis and in vitro and in vivo studies.
+\newblock Molecular Biology and Evolution 19: 1490-1500.
+\bibAnnoteFile{SunEtAl2002}
+
+\bibitem{OrtlundEtAl2007}
+Ortlund EA, Bridgham JT, Redinbo MR, Thornton JW (2007) Crystal structure of an
+  ancient protein: evolution by conformational epistasis.
+\newblock Science 317: 1544-8.
+\bibAnnoteFile{OrtlundEtAl2007}
+
+\bibitem{IvicsEtAl91}
+Ivics Z, Hackett PB, Plasterk RH, Izsvak Z (1997) Molecular reconstruction of
+  {S}leeping {B}eauty, a {T}c1-like transposon from fish, and its transposition
+  in human cells.
+\newblock Cell 91: 501-10.
+\bibAnnoteFile{IvicsEtAl91}
+
+\bibitem{AdeyEtAl94}
+Adey NB, Tollefsbol TO, Sparks AB, Edgell MH, Hutchison CA (1994) Molecular
+  resurrection of an extinct ancestral promoter for mouse l1.
+\newblock Proceedings of the National Academy of Sciences of the United States
+  of America 91: 1569-1573.
+\bibAnnoteFile{AdeyEtAl94}
+
+\bibitem{BlanchetteEtAl2004}
+Blanchette M, Green ED, Miller W, Haussler D (2004) {{R}econstructing large
+  regions of an ancestral mammalian genome in silico}.
+\newblock Genome Res 14: 2412--2423.
+\bibAnnoteFile{BlanchetteEtAl2004}
+
+\bibitem{NoonanEtAl2006}
+Noonan JP, Coop G, Kudaravalli S, Smith D, Krause J, et~al. (2006) Sequencing
+  and analysis of {N}eanderthal genomic {DNA}.
+\newblock Science 314: 1113-1118.
+\bibAnnoteFile{NoonanEtAl2006}
+
+\bibitem{Gaucher2007b}
+Gaucher EA (2007) Ancestral sequence reconstruction as a tool to understand
+  natural history and guide synthetic biology: realizing and extending the
+  vision of zuckerkandl and pauling.
+\newblock In: Liberles  \cite{Liberles2007}, chapter~2.
+\bibAnnoteFile{Gaucher2007b}
+
+\bibitem{EliasTuller2007}
+Elias I, Tuller T (2007) Reconstruction of ancestral genomic sequences using
+  likelihood.
+\newblock Journal of Computational Biology 14: 216-37.
+\bibAnnoteFile{EliasTuller2007}
+
+\bibitem{PatenHolmesBirney2008}
+Paten B, Herrero J, Fitzgerald S, Flicek P, Holmes I, et~al. (2008) Genome-wide
+  nucleotide level mammalian ancestor reconstruction.
+\newblock Accepted.
+\bibAnnoteFile{PatenHolmesBirney2008}
+
+\bibitem{MarintchevWagner2004}
+Marintchev A, Wagner G (2004) Translation initiation: structures, mechanisms
+  and evolution.
+\newblock Quarterly reviews of biophysics 37: 197-284.
+\bibAnnoteFile{MarintchevWagner2004}
+
+\bibitem{Muller2005}
+Muller AWJ (2005) Thermosynthesis as energy source for the {RNA} world: a model
+  for the bioenergetics of the origin of life.
+\newblock Bio Systems 82: 93-102.
+\bibAnnoteFile{Muller2005}
+
+\bibitem{CavalierSmith2006}
+Cavalier-Smith T (2006) Rooting the tree of life by transition analyses.
+\newblock Biology Direct 1: 19.
+\bibAnnoteFile{CavalierSmith2006}
+
+\bibitem{WilliamKoonin2006}
+Martin W, Koonin EV (2006) Introns and the origin of nucleus-cytosol
+  compartmentalization.
+\newblock Nature 440: 41-45.
+\bibAnnoteFile{WilliamKoonin2006}
+
+\bibitem{Forterre2006}
+Forterre P (2006) Three {RNA} cells for ribosomal lineages and three {DNA}
+  viruses to replicate their genomes: a hypothesis for the origin of cellular
+  domain.
+\newblock Proceedings of the National Academy of Sciences of the USA 103:
+  3669-3674.
+\bibAnnoteFile{Forterre2006}
+
+\bibitem{Yakhnin2007}
+Yakhnin AV (2007) A model for the origin of protein synthesis as
+  coreplicational scanning of nascent {RNA}.
+\newblock Origins of life and evolution of the biosphere : the journal of the
+  International Society for the Study of the Origin of Life 37: 523-536.
+\bibAnnoteFile{Yakhnin2007}
+
+\bibitem{DanchinEtAl2007}
+Danchin A, Fang G, Noria S (2007) The extant core bacterial proteome is an
+  archive of the origin of life.
+\newblock Proteomics 7: 875-889.
+\bibAnnoteFile{DanchinEtAl2007}
+
+\bibitem{LeeEtAl93}
+Lee RC, Feinbaum RL, Ambros V (1993) The {C}. elegans heterochronic gene lin-4
+  encodes small {RNA}s with antisense complementarity to lin-14.
+\newblock Cell 75: 843-854.
+\bibAnnoteFile{LeeEtAl93}
+
+\bibitem{LoweEddy99}
+Lowe TM, Eddy SR (1999) A computational screen for methylation guide {snoRNAs}
+  in yeast.
+\newblock Science 283: 1168-1171.
+\bibAnnoteFile{LoweEddy99}
+
+\bibitem{Eddy01}
+Eddy SR (2001) Non-coding {RNA} genes and the modern {RNA} world.
+\newblock Nature Reviews Genetics 2: 919-929.
+\bibAnnoteFile{Eddy01}
+
+\bibitem{MandalEtAl2003}
+Mandal M, Boese B, Barrick JE, Winkler WC, Breaker RR (2003) Riboswitches
+  control fundamental biochemical pathways in {B}acillus {s}ubtilis and other
+  bacteria.
+\newblock Cell 113: 577-586.
+\bibAnnoteFile{MandalEtAl2003}
+
+\bibitem{Liberles2007}
+Liberles DA, editor (2007) Ancestral Sequence Reconstruction. Oxford University
+  Press.
+\bibAnnoteFile{Liberles2007}
+
+\bibitem{Edwards63}
+Edwards AWF, Cavalli-Sforza L (1963) The reconstruction of evolution.
+\newblock Annals of Human Genetics 27: 105.
+\bibAnnoteFile{Edwards63}
+
+\bibitem{HendyPenny82}
+D HM, D P (1982) Branch and bound algorithms to determine minimal evolutionary
+  trees.
+\newblock Mathematical Biosciences 59: 277-290.
+\bibAnnoteFile{HendyPenny82}
+
+\bibitem{HeinEtal2000}
+Hein J, Wiuf C, Knudsen B, Moller MB, Wibling G (2000) Statistical alignment:
+  computational properties, homology testing and goodness-of-fit.
+\newblock Journal of Molecular Biology 302: 265-279.
+\bibAnnoteFile{HeinEtal2000}
+
+\bibitem{Hein2001}
+Hein J (2001) An algorithm for statistical alignment of sequences related by a
+  binary tree.
+\newblock In: Altman RB, Dunker AK, Hunter L, Lauderdale K, Klein TE, editors,
+  Pacific Symposium on Biocomputing. Singapore: World Scientific, pp. 179-190.
+\bibAnnoteFile{Hein2001}
+
+\bibitem{SteelHein2001}
+Steel M, Hein J (2001) Applying the {T}horne-{K}ishino-{F}elsenstein model to
+  sequence evolution on a star-shaped tree.
+\newblock Applied Mathematics Letters 14: 679-684.
+\bibAnnoteFile{SteelHein2001}
+
+\bibitem{KnudsenMiyamoto2003}
+Knudsen B, Miyamoto M (2003) Sequence alignments and pair hidden {M}arkov
+  models using evolutionary history.
+\newblock Journal of Molecular Biology 333: 453-460.
+\bibAnnoteFile{KnudsenMiyamoto2003}
+
+\bibitem{LunterSongMiklosHein2003}
+Lunter GA, Mikl\'{o}s I, Song YS, Hein J (2003) An efficient algorithm for
+  statistical multiple alignment on arbitrary phylogenetic trees.
+\newblock Journal of Computational Biology 10: 869-889.
+\bibAnnoteFile{LunterSongMiklosHein2003}
+
+\bibitem{MiklosLunterHolmes2004}
+Mikl\'{o}s I, Lunter G, Holmes I (2004) A long indel model for evolutionary
+  sequence alignment.
+\newblock Molecular Biology and Evolution 21: 529-540.
+\bibAnnoteFile{MiklosLunterHolmes2004}
+
+\bibitem{LunterEtAl2004}
+Lunter GA, Drummond AJ, Mikl\'{o}s I, Hein J (2004) Statistical alignment:
+  Recent progress, new applications, and challenges.
+\newblock In: Nielsen R, editor, Statistical methods in Molecular Evolution,
+  Springer Verlag, Series in Statistics in Health and Medicine.
+\bibAnnoteFile{LunterEtAl2004}
+
+\bibitem{SatijaEtAl2008}
+Satija R, Pachter L, Hein J (2008) Combining statistical alignment and
+  phylogenetic footprinting to detect regulatory elements.
+\newblock Bioinformatics 24: 1236-1242.
+\bibAnnoteFile{SatijaEtAl2008}
+
+\bibitem{KimSinha2007}
+Kim J, Sinha S (2007) {{I}ndelign: a probabilistic framework for annotation of
+  insertions and deletions in a multiple alignment}.
+\newblock Bioinformatics 23: 289--297.
+\bibAnnoteFile{KimSinha2007}
+
+\bibitem{DialloEtAl2007}
+Diallo AB, Makarenkov V, Blanchette M (2007) Exact and heuristic algorithms for
+  the indel maximum likelihood problem.
+\newblock Journal of Computational Biology 14: 446-461.
+\bibAnnoteFile{DialloEtAl2007}
+
+\bibitem{MillerHausslerEtAl2006}
+Ma J, Zhang L, Suh BB, Raney BJ, Brian J, et~al. (2006) {{R}econstructing
+  contiguous regions of an ancestral genome}.
+\newblock Genome Research 16: 1557--1565.
+\bibAnnoteFile{MillerHausslerEtAl2006}
+
+\bibitem{MohriPereiraRiley2000}
+Mohri M, Pereira F, Riley M (2000) Weighted finite-state transducers in speech
+  recognition.
+\newblock ISCA ITRW Automatic Speech Recognition : 97-106.
+\bibAnnoteFile{MohriPereiraRiley2000}
+
+\bibitem{Rounds70}
+Rounds WC (1970) Mappings and grammars on trees.
+\newblock Mathematical Systems Theory 4: 257-287.
+\bibAnnoteFile{Rounds70}
+
+\bibitem{Thatcher70}
+Thatcher JW (1970) Generalized sequential machine maps.
+\newblock Journal of Computer and System Sciences 4: 339-367.
+\bibAnnoteFile{Thatcher70}
+
+\bibitem{Sakakibara94c}
+Sakakibara Y, Brown M, Hughey R, Mian IS, Sj{\"o}lander K, et~al. (1994)
+  Stochastic context-free grammars for {tRNA} modeling.
+\newblock Nucleic Acids Research 22: 5112-5120.
+\bibAnnoteFile{Sakakibara94c}
+
+\bibitem{Sakakibara2003}
+Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures} :
+  232--240.
+\bibAnnoteFile{Sakakibara2003}
+
+\bibitem{KlostermanEtAl2006}
+Klosterman PS, Uzilov AV, Bendana YR, Bradley RK, Chao S, et~al. (2006)
+  {XRate}: a fast prototyping, training and annotation tool for phylo-grammars.
+\newblock BMC Bioinformatics 7.
+\bibAnnoteFile{KlostermanEtAl2006}
+
+\bibitem{Rfam2005}
+Griffiths-Jones S, Moxon S, Marshall M, Khanna A, Eddy SR, et~al. (2005) Rfam:
+  annotating non-coding {R}{N}{A}s in complete genomes.
+\newblock Nucleic Acids Research 33: D121-4.
+\bibAnnoteFile{Rfam2005}
+
+\bibitem{GardnerEtAl2005}
+Gardner PP, Wilm A, Washietl S (2005) A benchmark of multiple sequence
+  alignment programs upon structural {RNA}s.
+\newblock Nucleic Acids Research 33: 2433-2439.
+\bibAnnoteFile{GardnerEtAl2005}
+
+\bibitem{HofackerEtAl94}
+Hofacker IL, Fontana W, Stadler PF, Bonhoeffer S, Tacker M, et~al. (1994) Fast
+  folding and comparison of {RNA} secondary structures.
+\newblock Monatshefte f\"{u}r Chemie 125: 167-188.
+\bibAnnoteFile{HofackerEtAl94}
+
+\bibitem{ThompsonEtal99}
+Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple
+  sequence alignment programs.
+\newblock Nucleic Acids Research 27: 2682-2690.
+\bibAnnoteFile{ThompsonEtal99}
+
+\bibitem{TeunissenEtAl2000}
+Teunissen S, Kruithof M, Farris A, Harley J, Venrooij W, et~al. (2000)
+  {{C}onserved features of {Y} {RNA}s: a comparison of experimentally derived
+  secondary structures}.
+\newblock Nucleic Acids Research 28: 610--619.
+\bibAnnoteFile{TeunissenEtAl2000}
+
+\end{thebibliography}

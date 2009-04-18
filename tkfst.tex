@@ -1,0 +1,346 @@
+% TKF Structure Tree: Pair SCFGs & parameterizations.
+% Summarized from rnaevol-paper/rnaevol.tex  by IH, 12/9/2008
+
+\newcommand\gap{\ast}
+
+\newcommand\ruletable[3]{
+\begin{tabular}{rcc|rrr}
+\multicolumn{6}{l}{\em #1} \\
+\multicolumn{6}{l}{\em #2}\\
+#3
+\end{tabular}
+}
+\newcommand\tkfstruletable[3]{\ruletable{TKF Structure Tree #1}{#2}{#3}}
+
+\newcommand\lhsrhs[5]{ #1 & $\to$ & #2 & #3 & #4 & #5 \\ }
+\newcommand\rhs[4]{       &   $|$ & #1 & #2 & #3 & #4 \\ }
+\newcommand\blank{ & & & & & \\ }
+
+
+\newcommand\singletgrammar[3]{
+% #1 = tree node identifier
+% #2 = 5' terminal (left)
+% #3 = 3' terminal (right)
+\tkfstruletable{singlet rules ($#1$)}
+{Sequence $#1$ terminals: $\{ #2, #3 \}$.}
+{
+\lhsrhs{ lhs }{ rhs }{ $P(#1)$ }{  }{  }
+\hline
+
+\blank
+\lhsrhs{ $L_{#1}$ }{ ${#2}\ L_{#1}$ }{ $\kappa_l \pi_l(#2)$ }{  }{  }
+\rhs{ $S_{#1}\ L_{#1}$ }{ $\kappa_l \pi_l(S)$ }{  }{  }
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{  }{  }
+
+\blank
+\lhsrhs{ $S_{#1}$ }{ ${#2}\ S_{#1}\ {#3}$ }{ $\kappa_s \pi_s(#2#3)$ }{  }{  }
+\rhs{ $L_{#1}$ }{ $1-\kappa_s$ }{  }{  }
+}
+}  % end \singletgrammar
+
+
+
+\newcommand\pairgrammar[7]{
+% #1 = ancestor
+% #2 = descendant
+% #3 = ancestral 5' terminal (left)
+% #4 = ancestral 3' terminal (right)
+% #5 = descendant 5' terminal (left)
+% #6 = descendant 3' terminal (right)
+% #7 = time suffix (empty string "", apostrophe "'", branch superscript "^{...}")
+\tkfstruletable{pair rules ($#1 \stackrel{t#7}{\to} #2$)}
+{Sequence $#1$ terminals: $\{ #3, #4 \}$. \quad  Sequence $#2$ terminals: $\{ #5, #6 \}$.}
+{
+\lhsrhs{ lhs }{ rhs }{ $P(#1)$ }{ $P(#2|#1)$ }{  }
+\hline
+
+\blank
+\lhsrhs{ $L_{#1#2}$ }{ ${#3}\ {#5}\ L_{#1#2}$ }{ $\kappa_l \pi_l(#3)$ }{ $(1-\beta#7_l) \alpha#7_l M#7_l(#3,#5)$ }{  }
+\rhs{ ${#5}\ L_{#1#2}$ }{ $1$ }{ $\beta#7_l \pi_l(#5)$ }{  }
+\rhs{ ${#3}\ L_{#1\gap #2}$ }{ $\kappa_l \pi_l(#3)$ }{ $(1-\beta#7_l) (1-\alpha#7_l)$ }{  }
+
+\blank
+\rhs{ $S_{#1#2}\ L_{#1#2}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta#7_l) \alpha#7_l$ }{  }
+\rhs{ $S_{#2}\ L_{#1#2}$ }{ $1$ }{ $\beta#7_l \pi_l(S)$ }{  }
+\rhs{ $S_{#1}\ L_{#1\gap #2}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta#7_l) (1-\alpha#7_l)$ }{  }
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{ $1-\beta#7_l$ }{  }
+
+\blank
+\lhsrhs{ $S_{#1#2}$ }{ ${#3}\ {#5}\ S_{#1#2}\ {#6}\ {#4}$ }{ $\kappa_s \pi_s(#3#4)$ }{ $(1-\beta#7_s)  \alpha#7_s M#7_s(#3#4,#5#6)$ }{  }
+\rhs{ ${#5}\ S_{#1#2}\ {#6}$ }{ $1$ }{ $\beta#7_s \pi_s(#5#6)$ }{  }
+\rhs{ ${#3}\ S_{#1\gap #2}\ {#4}$ }{ $\kappa_s \pi_s(#3#4)$ }{ $(1-\beta#7_s) (1-\alpha#7_s)$ }{  }
+\rhs{ $L_{#1#2}$ }{ $1-\kappa_s$ }{ $1-\beta#7_s$ }{  }
+
+\blank
+\lhsrhs{ $L_{#1\gap #2}$ }{ ${#3}\ {#5}\ L_{#1#2}$ }{ $\kappa_l \pi_l(#3)$ }{ $(1-\gamma#7_l) \alpha#7_l M#7_l(#3,#5)$ }{  }
+\rhs{ ${#5}\ L_{#1#2}$ }{ $1$ }{ $\gamma#7_l \pi_l(#5)$ }{  }
+\rhs{ ${#3}\ L_{#1\gap #2}$ }{ $\kappa_l \pi_l(#3)$ }{ $(1-\gamma#7_l) (1-\alpha#7_l)$ }{  }
+
+\blank
+\rhs{ $S_{#1#2}\ L_{#1#2}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\gamma#7_l) \alpha#7_l$ }{  }
+\rhs{ $S_{#2}\ L_{#1#2}$ }{ $1$ }{ $\gamma#7_l \pi_l(S)$ }{  }
+\rhs{ $S_{#1}\ L_{#1\gap #2}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\gamma#7_l) (1-\alpha#7_l)$ }{  }
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{ $1-\gamma#7_l$ }{  }
+
+\blank
+\lhsrhs{ $S_{#1\gap #2}$ }{ ${#3}\ {#5}\ S_{#1#2}\ {#6}\ {#4}$ }{ $\kappa_s \pi_s(#3#4)$ }{ $(1-\gamma#7_s) \alpha#7_s M#7_s(#3#4,#5#6)$ }{  }
+\rhs{ ${#5}\ S_{#1#2}\ {#6}$ }{ $1$ }{ $\gamma#7_s \pi_s(#5#6)$ }{  }
+\rhs{ ${#3}\ S_{#1\gap #2}\ {#4}$ }{ $\kappa_s \pi_s(#3#4)$ }{ $(1-\gamma#7_s) (1-\alpha#7_s)$ }{  }
+\rhs{ $L_{#1#2}$ }{ $1-\kappa_s$ }{ $1-\gamma#7_s$ }{  }
+}
+}  % end \pairgrammar
+
+
+
+
+\newcommand\abc{$a \stackrel{t}{\to} b \stackrel{t'}{\to} c$}
+\newcommand\ab{$a \stackrel{t}{\to} b$}
+\newcommand\bc{$b \stackrel{t'}{\to} c$}
+\newcommand\ac{$a \stackrel{t+t'}{\longrightarrow} c$}
+
+\newcommand\agapbc{a\gap bc}
+\newcommand\abgapc{ab\gap c}
+
+\newcommand\abcstates{``$abc$'' states (post emission at $c$)}
+\newcommand\abgapcstates{``$\abgapc$'' states (post deletion on \bc\ branch)}
+\newcommand\agapbcstates{``$\agapbc$'' states (post deletion on \ab\ branch)}
+
+
+
+
+\subsection*{The TKFST model on a two-branch phylogeny}
+
+While the idea of composing conditionally-normalized models on a tree
+is intuitive, the resulting models can quickly become too complex to
+deal with by hand, necessitating an algorithm for automated model
+construction.  We constructed the model corresponding to TKFST on the
+simple the two-branch phylogeny \abc.
+The results, shown below, make clear that by-hand model construction
+quickly becomes impractical as model complexity or tree size
+increases.
+
+We explicitly note cases where certain sets of grammar rules can be derived
+``automatically'' from simpler sets, motivating the development of our
+generic tree transducer composition algorithm.
+
+
+\subsubsection*{Time-dependent probabilities}
+
+Here $n \in \{ l, s \}$ denotes the type of structural element (loop or stem).
+${\bf R}^{(n)}$ is the rate matrix and $\pi_n$ the equilibrium distribution.
+$\lambda_n$ is the insertion rate and $\mu_n$ is the deletion rate.
+
+\begin{eqnarray*}
+\alpha_n(t) & = & \exp (-\mu_n t) \\
+\beta_n(t)  & = & \frac {\lambda_n (1 - \exp((\lambda_n-\mu_n)t))} {\mu_n - \lambda_n \exp((\lambda_n-\mu_n)t)} \\
+\gamma_n(t) & = & 1 - \frac {\mu_n (1 - \exp((\lambda_n-\mu_n)t))} {(1 - \exp(-\mu_n t))(\mu_n - \lambda_n \exp((\lambda_n-\mu_n)t))}\\
+\kappa_n(t) & = & \lambda_n / \mu_n \\
+M_n(i,j;t)  & = & \exp({\bf R}^{(n)} t)_{ij}
+\end{eqnarray*}
+
+Let $\alpha_n \equiv \alpha_n(t)$ and $\alpha'_n = \alpha_n(t')$; similarly $\beta'_n,\gamma'_n,M'_n$.
+
+\subsubsection*{Grammars}
+
+Note that any of the grammars can be ``downsized'' to a smaller number of sequences, simply by dropping terminals,
+yielding alternative applications for each grammar.
+
+For example, the Pair SCFG for \ab\ becomes a Single SCFG for $a$ if sequence $b$ is dropped by removing terminals $w,x$.
+Stochastic traceback then can be used to sample the descendant $b$.
+This corresponds to a forward-time simulator when we apply the Inside
+\& stochastic traceback algorithms.
+
+Similarly, \abc\ can be viewed as a pair grammar \ac\ that can be used
+to sample an unknown evolutionary intermediate $b$. Again, this
+requires only the Inside \& stochastic traceback algorithms.
+
+% singlet grammars
+\paragraph{Singlet rules.}
+
+This section contains three singlet grammars, one for each of the sequences $a$, $b$ and $c$.
+
+Note that Tables~\tabnum{b} and~\tabnum{c} may be deduced automatically from Table~\tabnum{a}
+if it is known that the underlying process is initially at equilibrium.
+
+\paragraph{Pair rules.}
+% pair grammars
+
+This section contains two pairwise rule-sets.
+
+The pair grammar for \ab\ is the union of Tables~\tabnum{a}, \tabnum{b} and~\tabnum{ab}.
+
+The pair grammar for \bc\ is the union of Tables~\tabnum{b}, \tabnum{c} and~\tabnum{bc}.
+
+
+Note that \tabref{bc} may be deduced automatically from \tabref{ab}
+if it is known that the underlying process is stationary.
+
+
+\paragraph{Triplet rules.}
+% triplet grammar
+
+Because of its length, we have split the triplet rule-set over three tables:
+\begin{description}
+\item[\tabref{abc}:] Rules for transforming $\{ L_{abc}, S_{abc}\}$ , after emissions to $c$;
+\item[\tabref{abgapc}:] Rules for transforming $\{ L_{\abgapc}, S_{\abgapc}\}$ , after deletions on \bc;
+\item[\tabref{agapbc}:] Rules for transforming $\{ L_{\agapbc}, S_{\agapbc}\}$ , after deletions on \ab.
+\end{description}
+
+The triplet grammar for \abc\ is the union of Tables~\tabnum{a} through~\tabnum{agapbc}.
+
+
+Note that Tables~\tabnum{abc} through~\tabnum{agapbc} may be deduced automatically from Tables~\tabnum{a} through~\tabnum{bc},
+{\bf regardless of the properties of the underlying process,}
+using the tree transducer composition algorithm.
+
+
+% TABLES
+
+% a
+\begin{table}
+\begin{center}
+\singletgrammar{a}{u}{v}
+\caption{\tablabel{a} Singlet rule-set for $a$.}
+\end{center}
+\end{table}
+% b
+\begin{table}
+\begin{center}
+\singletgrammar{b}{w}{x}
+\caption{\tablabel{b} Singlet rule-set for $b$.}
+\end{center}
+\end{table}
+% c
+\begin{table}
+\begin{center}
+\singletgrammar{c}{y}{z}
+\caption{\tablabel{c} Singlet rule-set for $c$.}
+\end{center}
+\end{table}
+
+%  t
+% a->b
+\begin{table}
+\begin{center}
+\pairgrammar{a}{b}{u}{v}{w}{x}{}
+\caption{\tablabel{ab} Pair rule-set for \ab\ branch. Requires \tabref{a} and \tabref{b}.}
+\end{center}
+\end{table}
+
+
+%  t'
+% b->c
+\begin{table}
+\begin{center}
+\pairgrammar{b}{c}{w}{x}{y}{z}{'}
+\caption{\tablabel{bc} Pair rule-set for \bc\ branch. Requires \tabref{b} and \tabref{c}.}
+\end{center}
+\end{table}
+
+%  t  t'
+% a->b->c
+\newcommand\termdefs{Sequence $a$ terminals: $\{ u, v \}$. \quad Sequence $b$ terminals: $\{ w, x \}$. \quad Sequence $c$ terminals: $\{ y, z \}$.}
+\newcommand\tripletheader{\lhsrhs{ lhs }{ rhs }{ $P(a)$ }{ $P(b|a)$ }{ $P(c|b)$ } \hline}
+
+\begin{table}
+\begin{center}
+\tkfstruletable{triplet rules (\abc): \abcstates}{\termdefs}{\tripletheader
+\lhsrhs{ $L_{abc}$ }{ $u\ w\ y\ L_{abc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) \alpha_l M_l(u,w)$ }{ $(1-\beta'_l) \alpha'_l M'_l(w,y)$}
+\rhs{ $ y\ L_{abc}$ }{ $1$ }{ $1$ }{ $\beta'_l \pi_l(y)$}
+\rhs{ $ w\ y\ L_{abc}$ }{ $1$ }{ $\beta_l \pi_l(w)$ }{ $(1-\beta'_l) \alpha'_l M'_l(w,y)$}
+\rhs{ $ w\ L_{\abgapc}$ }{ $1$ }{ $\beta_l \pi_l(w)$ }{ $(1-\beta'_l) (1-\alpha'_l)$}
+\rhs{ $u\ w\ L_{\abgapc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) \alpha_l M_l(u,w)$ }{ $(1-\beta'_l) (1-\alpha'_l)$}
+\rhs{ $u\ L_{\agapbc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) (1-\alpha_l)$ }{ $1-\beta'_l$}
+
+\blank
+\rhs{ $S_{abc}\ L_{abc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) \alpha_l$ }{ $(1-\beta'_l) \alpha'_l$}
+\rhs{ $S_c\ L_{abc}$ }{ $1$ }{ $1$ }{ $\beta'_l \pi_l(S)$}
+\rhs{ $S_{bc}\  L_{abc}$ }{ $1$ }{ $\beta_l \pi_l(S)$ }{ $(1-\beta'_l) \alpha'_l$}
+\rhs{ $S_b\ L_{\abgapc}$ }{ $1$ }{ $\beta_l \pi_l(S)$ }{ $(1-\beta'_l) (1-\alpha'_l)$}
+\rhs{ $S_{ab}\  L_{\abgapc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) \alpha_l$ }{ $(1-\beta'_l) (1-\alpha'_l)$}
+\rhs{ $S_a\ L_{\agapbc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) (1-\alpha_l)$ }{ $1-\beta'_l$}
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{ $1-\beta_l$ }{ $1-\beta'_l$}
+
+\blank
+\lhsrhs{ $S_{abc}$ }{ $u\ w\ y\ S_{abc}\ z\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s)  \alpha_s M_s(uv,wx)$ }{ $(1-\beta'_s)  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $y\ S_{abc}\ z$ }{ $1$ }{ $1$ }{ $\beta'_s \pi_s(yz)$}
+\rhs{ $w\ y\ S_{abc}\ z\ x$ }{ $1$ }{ $\beta_s \pi_s(wx)$ }{ $(1-\beta'_s)  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $w\ S_{\abgapc}\ x$ }{ $1$ }{ $\beta_s \pi_s(wx)$ }{ $(1-\beta'_s)  (1 - \alpha'_s) $}
+\rhs{ $u\ w\ S_{\abgapc}\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s)  \alpha_s M_s(uv,wx)$ }{ $(1-\beta'_s)  (1-\alpha'_s) $}
+\rhs{ $u\ S_{\agapbc}\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s) (1-\alpha_s) $ }{ $1-\beta'_s $}
+
+\rhs{ $L_{abc}$ }{ $1-\kappa_s$ }{ $1-\beta_s$ }{ $1-\beta'_s$}
+}
+\caption{\tablabel{abc} Triplet rule-set for \abcstates\ on \abc\ tree. Requires Tables~\tabnum{a} through~\tabnum{agapbc}.}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\tkfstruletable{triplet rules (\abc): \abgapcstates}{\termdefs}{\tripletheader
+\lhsrhs{ $L_{\abgapc}$ }{ $u\ w\ y\ L_{abc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) \alpha_l M_l(u,w)$ }{ $(1-\gamma'_l) \alpha'_l M'_l(w,y)$}
+\rhs{ $ y\ L_{abc}$ }{ $1$ }{ $1$ }{ $\gamma'_l \pi_l(y)$}
+\rhs{ $ w\ y\ L_{abc}$ }{ $1$ }{ $\beta_l \pi_l(w)$ }{ $(1-\gamma'_l) \alpha'_l M'_l(w,y)$}
+\rhs{ $ w\ L_{\abgapc}$ }{ $1$ }{ $\beta_l \pi_l(w)$ }{ $(1-\gamma'_l) (1-\alpha'_l)$}
+\rhs{ $u\ w\ L_{\abgapc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) \alpha_l M_l(u,w)$ }{ $(1-\gamma'_l) (1-\alpha'_l)$}
+\rhs{ $u\ L_{\agapbc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\beta_l) (1-\alpha_l)$ }{ $1-\gamma'_l$}
+
+\blank
+\rhs{ $S_{abc}\ L_{abc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) \alpha_l$ }{ $(1-\gamma'_l) \alpha'_l$}
+\rhs{ $S_c\ L_{abc}$ }{ $1$ }{ $1$ }{ $\gamma'_l \pi_l(S)$}
+\rhs{ $S_{bc}\  L_{abc}$ }{ $1$ }{ $\beta_l \pi_l(S)$ }{ $(1-\gamma'_l) \alpha'_l$}
+\rhs{ $S_b\ L_{\abgapc}$ }{ $1$ }{ $\beta_l \pi_l(S)$ }{ $(1-\gamma'_l) (1-\alpha'_l)$}
+\rhs{ $S_{ab}\  L_{\abgapc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) \alpha_l$ }{ $(1-\gamma'_l) (1-\alpha'_l)$}
+\rhs{ $S_a\ L_{\agapbc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\beta_l) (1-\alpha_l)$ }{ $1-\gamma'_l$}
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{ $1-\beta_l$ }{ $1-\gamma'_l$}
+
+\blank
+\lhsrhs{ $S_{\abgapc}$ }{ $u\ w\ y\ S_{abc}\ z\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s)  \alpha_s M_s(uv,wx)$ }{ $(1-\gamma'_s)  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $y\ S_{abc}\ z$ }{ $1$ }{ $1$ }{ $\gamma'_s \pi_s(yz)$}
+\rhs{ $w\ y\ S_{abc}\ z\ x$ }{ $1$ }{ $\beta_s \pi_s(wx)$ }{ $(1-\gamma'_s)  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $w\ S_{\abgapc}\ x$ }{ $1$ }{ $\beta_s \pi_s(wx)$ }{ $(1-\gamma'_s)  (1 - \alpha'_s) $}
+\rhs{ $u\ w\ S_{\abgapc}\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s)  \alpha_s M_s(uv,wx)$ }{ $(1-\gamma'_s)  (1-\alpha'_s) $}
+\rhs{ $u\ S_{\agapbc}\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\beta_s) (1-\alpha_s) $ }{ $1-\gamma'_s $}
+
+\rhs{ $L_{abc}$ }{ $1-\kappa_s$ }{ $1-\beta_s$ }{ $1-\gamma'_s$}
+}
+\caption{\tablabel{abgapc} Triplet rule-set for \abgapcstates\ on \abc\ tree.  Requires Tables~\tabnum{a} through~\tabnum{agapbc}.}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\tkfstruletable{triplet rules (\abc): \agapbcstates}{\termdefs}{\tripletheader
+\lhsrhs{ $L_{\agapbc}$ }{ $u\ w\ y\ L_{abc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\gamma_l) \alpha_l M_l(u,w)$ }{ $ \alpha'_l M'_l(w,y)$}
+\rhs{ $ w\ y\ L_{abc}$ }{ $1$ }{ $\gamma_l \pi_l(w)$ }{ $ \alpha'_l M'_l(w,y)$}
+\rhs{ $ w\ L_{\abgapc}$ }{ $1$ }{ $\gamma_l \pi_l(w)$ }{ $ 1-\alpha'_l$}
+\rhs{ $u\ w\ L_{\abgapc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\gamma_l) \alpha_l M_l(u,w)$ }{ $ 1-\alpha'_l$}
+\rhs{ $u\ L_{\agapbc}$ }{ $\kappa_l \pi_l(u)$ }{ $(1-\gamma_l) (1-\alpha_l)$ }{ $1$}
+
+\blank
+\rhs{ $S_{abc}\ L_{abc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\gamma_l) \alpha_l$ }{ $ \alpha'_l$}
+\rhs{ $S_{bc}\  L_{abc}$ }{ $1$ }{ $\gamma_l \pi_l(S)$ }{ $ \alpha'_l$}
+\rhs{ $S_b\ L_{\abgapc}$ }{ $1$ }{ $\gamma_l \pi_l(S)$ }{ $ 1-\alpha'_l$}
+\rhs{ $S_{ab}\  L_{\abgapc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\gamma_l) \alpha_l$ }{ $ 1-\alpha'_l$}
+\rhs{ $S_a\ L_{\agapbc}$ }{ $\kappa_l \pi_l(S)$ }{ $(1-\gamma_l) (1-\alpha_l)$ }{ $1$}
+
+\rhs{ $\epsilon$ }{ $1-\kappa_l$ }{ $1-\gamma_l$ }{ $1$}
+
+\blank
+\lhsrhs{ $S_{\agapbc}$ }{ $u\ w\ y\ S_{abc}\ z\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\gamma_s)  \alpha_s M_s(uv,wx)$ }{ $  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $w\ y\ S_{abc}\ z\ x$ }{ $1$ }{ $\gamma_s \pi_s(wx)$ }{ $  \alpha'_s M'_s(wx,yz)$}
+\rhs{ $w\ S_{\abgapc}\ x$ }{ $1$ }{ $\gamma_s \pi_s(wx)$ }{ $  1 - \alpha'_s $}
+\rhs{ $u\ w\ S_{\abgapc}\ x\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\gamma_s)  \alpha_s M_s(uv,wx)$ }{ $  1-\alpha'_s $}
+\rhs{ $u\ S_{\agapbc}\ v$ }{ $\kappa_s \pi_s(uv)$ }{ $(1-\gamma_s) (1-\alpha_s) $ }{ $1$ }
+
+\rhs{ $L_{abc}$ }{ $1-\kappa_s$ }{ $1-\gamma_s$ }{ $1$}
+}
+\caption{\tablabel{agapbc} Triplet rule-set for \agapbcstates\ on \abc\ tree.  Requires Tables~\tabnum{a} through~\tabnum{agapbc}.}
+\end{center}
+\end{table}
+

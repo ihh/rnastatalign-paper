@@ -1,0 +1,18 @@
+# STOCKHOLM 1.0
+#=GR X/1-27 SS    <-<-...<-(<<........>>)->...----------.>->
+X/1-27            g-g-uaag-gucaagaacgggau-caca----------ac-c
+#=GR Y/1-25 SS    <<--..-<-<<<-.......>>>->...----------.->>
+Y/1-25            ga--ca-a-guc-cgcccaggac-uagg----------g-uc
+#=GR Z/1-39 SS    <-<....<<<(<-.......>)>>>...<........>.>->
+Z/1-39            g-gguauccgug-accacgccgcgguaauauguuccuacc-c
+#=GC ancestral_SS <-<-...<-<<<-.......>>>->...----------.>->
+#=GC PS_cons      g....a...gu......c.......................c
+#=GC SS_cons      <......<.<<<........>>>.>................>
+                  -236.592
+//
+[0..27,0..25,0..39] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 117 (EmitYLR) 91 (EmitXLRZLR) 35 (Null) 145 (EmitZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) 205 (Bifurc)
+ [5..21,4..19,6..23] 48 (Null) 90 (EmitXLRYLRZLR) 156 (EmitZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 70 (EmitXL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+ [21..25,19..23,23..37] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 170 (Bifurc)
+  [24..24,22..22,26..36] 61 (Null) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
+  [24..25,22..23,36..37] 16 (Null) 95 (EmitXLYLZL) -2 (End)
+

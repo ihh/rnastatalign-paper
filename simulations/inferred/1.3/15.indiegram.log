@@ -1,0 +1,20 @@
+<log date="2009/17/04" time="22:14:47" file="igmain.cc" line=220 level=8 tags="INDIEGRAM"/>
+
+Building triplet structural alignments.
+<log date="2009/17/04" time="22:14:47" file="igmain.cc" line=242 level=7 tags="INDIEGRAM"/>
+
+Processing alignment 'Alignment1' (1 of 1): 37 columns
+<log date="2009/17/04" time="22:14:47" file="irrev_diag_matrix_factory.cc" line=96 level=10 tags="ERROR_TAG"/>
+Warning: zeroing rate eigenvalue with positive real component (was (3.48373e-17,0))
+Warning: zeroing rate eigenvalue with positive real component (was (1.21967e-16,0))
+Warning: zeroing rate eigenvalue with positive real component (was (4.68767e-16,0))
+Warning: zeroing rate eigenvalue with positive real component (was (6.10661e-16,0))
+Warning: zeroing rate eigenvalue with positive real component (was (8.52726e-16,0))
+<log date="2009/17/04" time="22:14:47" file="tkfst.cc" line=458 level=7 tags="TKFST"/>
+Initializing TKFST model.
+<log date="2009/17/04" time="22:14:47" file="statesorter.cc" line=151 level=10 tags="ERROR_TAG"/>
+Warning: found null cycle(s) during topological sort. Some parses may be missed!
+<log date="2009/17/04" time="22:14:47" file="tripletscfgdp.cc" line=282 level=7 tags="ALLOC PREALLOC"/>
+Allocating Triplet SCFG DP matrix: 133 * 133 * 133 cells by 229 states.
+<log date="2009/17/04" time="22:14:47" file="tripletscfgdp.cc" line=203 level=7 tags="ALLOC"/>
+Trying to allocate approx 229 * (133 * 133 * 133) cells * 4 bytes => 2055 Mb.

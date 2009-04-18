@@ -1,0 +1,7 @@
+# fraction of incorrect basepairs by postprob bin, covariant & noncovariant model
+0 0 6882 0 5252
+0.2 4455 3543 2 424
+0.4 3979 1334 56 267
+0.6 1998 1557 125 204
+0.8 1448 1739 64 140
+1 1609 1579 35 81

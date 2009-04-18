@@ -1,0 +1,18 @@
+
+[0..69,0..73,0..71] -1 (Start) L_L_L_L (Null) BiSL_BmSL_BmSL_BmSL (Bifurc)
+ [0..68,0..72,0..70] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) BiSL_BmSL_BmSL_BmSL (Bifurc)
+  [9..22,9..25,9..24] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) 130 (EmitYLZL) 130 (EmitYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_IL_WL (EmitYL) -2 (End)
+  [22..61,25..65,24..63] L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) BiSL_BmSL_BmSL_BmSL (Bifurc)
+   [23..40,26..43,25..42] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) -2 (End)
+   [40..61,43..65,42..63] L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_IL_WL (EmitYL) 211 (Bifurc)
+    [44..44,S_S_S_S..65,46..63] S_e_S_S (Null) IS_e_MS_MS (EmitYLRZLR) IS_e_MS_MS (EmitYLRZLR) IS_e_MS_MS (EmitYLRZLR) IS_e_MS_MS (EmitYLRZLR) IS_e_MS_MS (EmitYLRZLR) L_e_L_L (Null) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) IL_e_ML_ML (EmitYLZL) -2 (End)
+    [44..61,65..65,63..63] L_L_L_L (Null) 57 (Null) e_ISi_e_e (EmitXLR) e_ISi_e_e (EmitXLR) e_ISi_e_e (EmitXLR) e_ISi_e_e (EmitXLR) e_ISi_e_e (EmitXLR) 56 (Null) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) e_ILi_e_e (EmitXL) -2 (End)
+ [68..69,72..73,70..71] L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) -2 (End)
+
+Corresponding ancestral foldstring is:
+<<<<<<<..<<<<........>>>><<<<<.......>>>>>.....<<<<<.......>>>>>>>>>>>>
+
+Formatted for RNAplot:
+>tRNA.ancestral
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+(((((((..((((........))))(((((.......))))).....(((((.......))))))))))))

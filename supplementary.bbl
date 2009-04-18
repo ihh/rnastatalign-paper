@@ -1,0 +1,315 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{Holmes2003}
+Holmes I (2003) Using guide trees to construct multiple-sequence evolutionary
+  {HMM}s.
+\newblock Bioinformatics 19 Suppl. 1:i147--157.
+\bibAnnoteFile{Holmes2003}
+
+\bibitem{HolmesRubin2002a}
+Holmes I, Rubin GM (2002) Pairwise {RNA} structure comparison using stochastic
+  context-free grammars.
+\newblock Pacific Symposium on Biocomputing, 2002.
+\bibAnnoteFile{HolmesRubin2002a}
+
+\bibitem{Holmes2004}
+Holmes I (2004) A probabilistic model for the evolution of {RNA} structure.
+\newblock BMC Bioinformatics 5.
+\bibAnnoteFile{Holmes2004}
+
+\bibitem{Tarjan1972}
+Tarjan R (1972) Depth first search and linear graph algorithms.
+\newblock {SIAM} Journal on Computing 1:146--160.
+\bibAnnoteFile{Tarjan1972}
+
+\bibitem{KlostermanEtAl2006}
+Klosterman PS, Uzilov AV, Bendana YR, Bradley RK, Chao S, et~al. (2006)
+  {XRate}: a fast prototyping, training and annotation tool for phylo-grammars.
+\newblock BMC Bioinformatics 7.
+\bibAnnoteFile{KlostermanEtAl2006}
+
+\bibitem{DowellEddy2006}
+Dowell RD, Eddy SR (2006) Efficient pairwise {RNA} structure prediction and
+  alignment using sequence alignment constraints.
+\newblock BMC Bioinformatics 7:400.
+\bibAnnoteFile{DowellEddy2006}
+
+\bibitem{WuytsEtAl2004}
+Wuyts J, Perrière G, Van De~Peer Y (2004) {{T}he {E}uropean ribosomal {R}{N}{A}
+  database}.
+\newblock Nucleic Acids Research 32:D101--103.
+\bibAnnoteFile{WuytsEtAl2004}
+
+\bibitem{GriffithsJonesEtAl2003}
+Griffiths-Jones S, Bateman A, Marshall M, Khanna A, Eddy SR (2003) Rfam: an
+  {RNA} family database.
+\newblock Nucleic Acids Research 31:439--441.
+\bibAnnoteFile{GriffithsJonesEtAl2003}
+
+\bibitem{Eddy94}
+Eddy SR, Durbin R (1994) {RNA} sequence analysis using covariance models.
+\newblock Nucleic Acids Research 22:2079--2088.
+\bibAnnoteFile{Eddy94}
+
+\bibitem{KnudsenHein99}
+Knudsen B, Hein J (1999) {RNA} secondary structure prediction using stochastic
+  context-free grammars and evolutionary history.
+\newblock Bioinformatics 15:446--454.
+\bibAnnoteFile{KnudsenHein99}
+
+\bibitem{Holmes2005}
+Holmes I (2005) Accelerated probabilistic inference of {RNA} structure
+  evolution.
+\newblock BMC Bioinformatics 6.
+\bibAnnoteFile{Holmes2005}
+
+\bibitem{PedersenEtAl2006}
+Pedersen JS, Bejerano G, Siepel A, Rosenbloom K, Lindblad-Toh K, et~al. (2006)
+  {Identification and classification of conserved {RNA} secondary structures in
+  the human genome}.
+\newblock PLoS Computational Biology 2:e33.
+\bibAnnoteFile{PedersenEtAl2006}
+
+\bibitem{ThorneEtal91}
+Thorne JL, Kishino H, Felsenstein J (1991) An evolutionary model for maximum
+  likelihood alignment of {DNA} sequences.
+\newblock Journal of Molecular Evolution 33:114--124.
+\bibAnnoteFile{ThorneEtal91}
+
+\bibitem{HolmesBruno2001}
+Holmes I, Bruno WJ (2001) Evolutionary {HMM}s: a {B}ayesian approach to
+  multiple alignment.
+\newblock Bioinformatics 17:803--820.
+\bibAnnoteFile{HolmesBruno2001}
+
+\bibitem{Sankoff85}
+Sankoff D (1985) Simultaneous solution of the {RNA} folding, alignment, and
+  protosequence problems.
+\newblock SIAM Journal of Applied Mathematics 45:810--825.
+\bibAnnoteFile{Sankoff85}
+
+\bibitem{MathewsTurner02}
+Mathews DH, Turner DH (2002) Dynalign: an algorithm for finding the secondary
+  structure common to two {RNA} sequences.
+\newblock Journal of Molecular Biology 317:191--203.
+\bibAnnoteFile{MathewsTurner02}
+
+\bibitem{TorarinssonEtAl2007}
+Torarinsson E, Havgaard J, Gorodkin J (2007) {{M}ultiple structural alignment
+  and clustering of {R}{N}{A} sequences}.
+\newblock Bioinformatics 23:926--932.
+\bibAnnoteFile{TorarinssonEtAl2007}
+
+\bibitem{XuEtAl2007}
+Xu X, Ji Y, Stormo G (2007) {{R}{N}{A} {S}ampler: a new sampling based
+  algorithm for common {R}{N}{A} secondary structure prediction and structural
+  alignment}.
+\newblock Bioinformatics 23:1883--1891.
+\bibAnnoteFile{XuEtAl2007}
+
+\bibitem{LindgreenEtAl2007}
+Lindgreen S, Gardner P, Krogh A (2007) {{M}{A}{S}{T}{R}: multiple alignment and
+  structure prediction of non-coding {R}{N}{A}s using simulated annealing}.
+\newblock Bioinformatics 23:3304--3311.
+\bibAnnoteFile{LindgreenEtAl2007}
+
+\bibitem{KiryuEtAl2007}
+Kiryu H, Tabei Y, Kin T, Asai K (2007) {{M}urlet: a practical multiple
+  alignment tool for structural {R}{N}{A} sequences}.
+\newblock Bioinformatics 23:1588--1598.
+\bibAnnoteFile{KiryuEtAl2007}
+
+\bibitem{BradleyPachterHolmes2008}
+Bradley RK, Pachter L, Holmes I (2008) Specific alignment of structured {RNA}:
+  Stochastic grammars and sequence annealing.
+\newblock Bioinformatics .
+\bibAnnoteFile{BradleyPachterHolmes2008}
+
+\bibitem{DeRijkEtAl2001}
+Wuyts J, Rijk PD, Peer YVd, Winkelmans T, Wachter RD (2001) The {E}uropean
+  {L}arge {S}ubunit {R}ibosomal {RNA} {D}atabase.
+\newblock Nucleic Acids Research 29:175--7.
+\bibAnnoteFile{DeRijkEtAl2001}
+
+\bibitem{ThompsonEtal99}
+Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple
+  sequence alignment programs.
+\newblock Nucleic Acids Research 27:2682--2690.
+\bibAnnoteFile{ThompsonEtal99}
+
+\bibitem{DowellEddy2004}
+Dowell RD, Eddy SR (2004) Evaluation of several lightweight stochastic
+  context-free grammars for {RNA} secondary structure prediction.
+\newblock BMC Bioinformatics 5:71.
+\bibAnnoteFile{DowellEddy2004}
+
+\bibitem{Sakakibara2003}
+Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures}
+  :232--240Evaluation Studies.
+\bibAnnoteFile{Sakakibara2003}
+
+\bibitem{Sakakibara2004}
+Matsui H, Sato K, Sakakibara Y (2004) Pair stochastic tree adjoining grammars
+  for aligning and predicting pseudoknot {RNA} structures.
+\newblock Proceedings / {IEEE} Computational Systems Bioinformatics Conference,
+  {CSB} {IEEE} Computational Systems Bioinformatics Conference :290--299.
+\bibAnnoteFile{Sakakibara2004}
+
+\bibitem{MamitsukaAbe94}
+Mamitsuka H, Abe N (1994) Predicting location and structure of beta-sheet
+  regions using stochastic tree grammars.
+\newblock In: Altman R, Brutlag D, Karp P, Lathrop R, Searls D, editors,
+  Proceedings of the Second International Conference on Intelligent Systems for
+  Molecular Biology. Menlo Park, CA: AAAI Press, pp. 276--284.
+\bibAnnoteFile{MamitsukaAbe94}
+
+\bibitem{JoshiSchabes97}
+Joshi A, Schabes Y (1997).
+\newblock Tree-adjoining grammars.
+\newblock \urlprefix\url{citeseer.ist.psu.edu/joshi97treeadjoining.html}.
+\bibAnnoteFile{JoshiSchabes97}
+
+\bibitem{RivasEddy2000}
+Rivas E, Eddy SR (2000) The language of {RNA}: a formal grammar that includes
+  pseudoknots.
+\newblock Bioinformatics 16:334--340.
+\bibAnnoteFile{RivasEddy2000}
+
+\bibitem{MeyerMiklos2007}
+Meyer IM, Mikl\'os I (2007) {S}imul{F}old: simultaneously inferring rna
+  structures including pseudoknots, alignments, and trees using a {B}ayesian
+  {MCMC} framework.
+\newblock PLoS Computational Biology 3:e149.
+\bibAnnoteFile{MeyerMiklos2007}
+
+\bibitem{HeinEtal2000}
+Hein J, Wiuf C, Knudsen B, Moller MB, Wibling G (2000) Statistical alignment:
+  computational properties, homology testing and goodness-of-fit.
+\newblock Journal of Molecular Biology 302:265--279.
+\bibAnnoteFile{HeinEtal2000}
+
+\bibitem{Miklos2002}
+Mikl\'{o}s I (2002) An improved algorithm for statistical alignment of
+  sequences related by a star tree.
+\newblock Bulletin of Mathematical Biology 64:771--779.
+\bibAnnoteFile{Miklos2002}
+
+\bibitem{Metzler2003}
+Metzler D (2003) Statistical alignment based on fragment insertion and deletion
+  models.
+\newblock Bioinformatics 19:490--499.
+\bibAnnoteFile{Metzler2003}
+
+\bibitem{DrummondRambaut2007}
+Drummond AJ, Rambaut A (2007) {BEAST}: Bayesian evolutionary analysis by
+  sampling trees.
+\newblock BMC Evolutionary Biology 7.
+\bibAnnoteFile{DrummondRambaut2007}
+
+\bibitem{SatijaEtAl2008}
+Satija R, Pachter L, Hein J (2008) Combining statistical alignment and
+  phylogenetic footprinting to detect regulatory elements.
+\newblock Bioinformatics 24:1236--1242.
+\bibAnnoteFile{SatijaEtAl2008}
+
+\bibitem{GorodkinEtAl97}
+Gorodkin J, Heyer LJ, Stormo GD (1997) Finding the most significant common
+  sequence and structure motifs in a set of {RNA} sequences.
+\newblock Nucleic Acids Research 25:3724--3732.
+\bibAnnoteFile{GorodkinEtAl97}
+
+\bibitem{HofackerEtAl2004}
+Hofacker IL, Bernhart SH, Stadler PF (2004) Alignment of {RNA} base pairing
+  probability matrices.
+\newblock Bioinformatics 20:2222--2227.
+\bibAnnoteFile{HofackerEtAl2004}
+
+\bibitem{Miyazawa94}
+Miyazawa S (1994) A reliable sequence alignment method based on probabilities
+  of residue correspondence.
+\newblock Protein Engineering 8:999--1009.
+\bibAnnoteFile{Miyazawa94}
+
+\bibitem{BucherHofmann96}
+Bucher P, Hofmann K (1996) A sequence similarity search algorithm based on a
+  probabilistic interpretation of an alignment scoring system.
+\newblock In: States DJ, Agarwal P, Gaasterland T, Hunter L, Smith RF, editors,
+  Proceedings of the Fourth International Conference on Intelligent Systems for
+  Molecular Biology. Menlo Park, CA: AAAI Press, pp. 44--51.
+\bibAnnoteFile{BucherHofmann96}
+
+\bibitem{Holmes98}
+Holmes I, Durbin R (1998) Dynamic programming alignment accuracy.
+\newblock Journal of Computational Biology 5:493--504.
+\bibAnnoteFile{Holmes98}
+
+\bibitem{BrayPachter2004}
+Bray N, Pachter L (2004) {MAVID}: Constrained ancestral alignment of multiple
+  sequences.
+\newblock Genome Research 14:693--699.
+\bibAnnoteFile{BrayPachter2004}
+
+\bibitem{DoEtAl2004}
+Do CB, Brudno M, Batzoglou S (2004).
+\newblock {PROBCONS}: Probabilistic consistency-based multiple alignment of
+  amino acid sequences.
+\newblock Submitted.
+\bibAnnoteFile{DoEtAl2004}
+
+\bibitem{LoytynojaGoldman2005}
+Loytynoja A, Goldman N (2005) An algorithm for progressive multiple alignment
+  of sequences with insertions.
+\newblock Proceedings of the National Academy of Sciences of the USA
+  102:10557--62.
+\bibAnnoteFile{LoytynojaGoldman2005}
+
+\bibitem{SchwartzPachter2007}
+Schwartz AS, Pachter L (2007) Multiple alignment by sequence annealing.
+\newblock Bioinformatics 23:e24--9.
+\bibAnnoteFile{SchwartzPachter2007}
+
+\bibitem{EickmeyerEtAl2008}
+Eickmeyer K, Huggins P, Pachter L, Yoshida R (20087) On the optimality of the
+  neighbor-joining algorithm.
+\newblock Algorithms for Molecular Biology 3.
+\bibAnnoteFile{EickmeyerEtAl2008}
+
+\bibitem{KarlinAltschul93}
+Karlin S, Altschul SF (1993) Applications and statistics for multiple
+  high-scoring segments in molecular sequences.
+\newblock Proceedings of the National Academy of Sciences of the USA
+  90:5873--5877.
+\bibAnnoteFile{KarlinAltschul93}
+
+\bibitem{Mott2000}
+Mott R (2000) Accurate formula for {P}-values of gapped local sequence and
+  profile alignments.
+\newblock Journal of Molecular Biology 300:649--659.
+\bibAnnoteFile{Mott2000}
+
+\bibitem{Eddy2008}
+R ES (2008) A probabilistic model of local sequence alignment that simplifies
+  statistical significance estimation.
+\newblock PLoS Computational Biology 4.
+\bibAnnoteFile{Eddy2008}
+
+\bibitem{Durbin98}
+Durbin R, Eddy S, Krogh A, Mitchison G (1998) Biological Sequence Analysis:
+  Probabilistic Models of Proteins and Nucleic Acids.
+\newblock Cambridge, UK: Cambridge University Press.
+\bibAnnoteFile{Durbin98}
+
+\end{thebibliography}

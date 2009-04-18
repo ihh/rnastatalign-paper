@@ -1,0 +1,76 @@
+
+RFAM = ~/rfam/Training
+
+recfigs: figs/hammer_paired.pdf figs/hammer_unpaired.pdf figs/hammer_hist.pdf figs/xval_paired.pdf figs/xval_unpaired.pdf figs/xval_hist.pdf figs/pubxval_paired.pdf figs/pubxval_unpaired.pdf figs/pubxval_hist.pdf
+
+%.results: $(RFAM)/%.stock
+	./rnarectest.pl -g mix80-pfold.eg -n mix80-rev.eg -t 1000 $< >$@
+
+%.xval-results: $(RFAM)/%.stock
+	./rfamrectest.pl -g mix80-pfold.eg -n mix80-rev.eg -t 2000 $< >$@
+
+%.pubxval-results: $(RFAM)/%.stock
+	./rfamrectest.pl -g published-pfold.eg -n published-rev.eg -t 2000 $< >$@
+
+
+xvaltest: Published.xval-results
+
+POSTPROB_VS_ACTPROB := perl -e '($$mul,$$grep,$$f1,$$f2)=@ARGV;@ARGV=();while(<>){if(/$$grep.*[acgtu]{1,2}\/\S+\/\S+ /i){($$c,$$p)=(split)[$$f1,$$f2];$$bin=int($$p/$$mul+.5);++$$c{$$bin}if$$c;++$$t{$$bin}}}for$$bin(sort{$$a<=>$$b}keys%t){$$a=$$c{$$bin};$$b=$$t{$$bin}-$$c{$$bin};$$p=$$a/($$a+$$b);$$perr=sqrt($$a*$$b/(($$a+$$b)*($$a+$$b)*($$a+$$b+1)));print"$$p ",$$bin*$$mul," ",2*$$perr," ",$$mul/2,"\n"if$$perr>0}' .1
+
+figs/hammer_paired.eps figs/hammer_unpaired.eps figs/hammer_hist.eps figs/xval_paired.eps figs/xval_unpaired.eps figs/xval_hist.eps figs/pubxval_paired.eps figs/pubxval_unpaired.eps figs/pubxval_hist.eps: Hammerhead_1.gpdata Published.xval-gpdata Published.xval-histdata Hammerhead_1.histdata rectest.gnuplot
+	gnuplot rectest.gnuplot
+
+%.pdf: %.eps
+	convert $< $@ || test 1
+
+%gpdata: %results
+	echo "# basepaired columns, covariant model" >$@
+	cat $< | $(POSTPROB_VS_ACTPROB) pfoldF 4 8 >>$@
+	echo >>$@
+	echo >>$@
+	echo "# basepaired columns, non-covariant model" >>$@
+	cat $< | $(POSTPROB_VS_ACTPROB) pfoldF 4 10 >>$@
+	echo >>$@
+	echo >>$@
+	echo "# unpaired columns, covariant model" >>$@
+	cat $< | $(POSTPROB_VS_ACTPROB) pfoldU 4 8 >>$@
+	echo >>$@
+	echo >>$@
+	echo "# unpaired columns, non-covariant model" >>$@
+	cat $< | $(POSTPROB_VS_ACTPROB) pfoldU 4 10 >>$@
+
+%histdata: %bptest
+	echo "# fraction of incorrect basepairs by postprob bin, covariant & noncovariant model" >$@
+	cat $< | perl -e '$$mul=shift;while(<>){if(/g= (.) n= (.) gpostprob= (\S+) npostprob= (\S+).*trucan= (.) gcan= (.) ncan= (.)/){($$g,$$n,$$gp,$$np,$$trucan,$$gcan,$$ncan)=($$1,$$2,$$3,$$4,$$5,$$6,$$7);$$gbin=int(($$gp>1?1:$$gp)/$$mul+.5);$$nbin=int(($$np>1?1:$$np)/$$mul+.5);++$$gtot{$$gbin};++$$ntot{$$nbin};if($$g==0){++$$gbad{$$gbin};++$$gbadnc{$$gbin} if$$gcan==0}if($$n==0){++$$nbad{$$nbin};++$$nbadnc{$$nbin} if$$ncan==0}}}%hash=(%ntot,%gtot);for$$bin(sort{$$a<=>$$b}keys%hash){print$$bin*$$mul,map(" ".($$_->{$$bin}+0),\%gbad,\%nbad,\%gbadnc,\%nbadnc),"\n"}warn join(" ",%ntot);warn join(" ",%gtot);' .2 >>$@
+
+%canonical: %results
+	cat $< | perl -e 'sub iscan{my$$x=shift;return$$x=~/au|ua|gc|cg|gu|ug/i ? 1 : 0}while(<>){chomp;if(/(..)\/(..)\/(..)/){print"$$_ truseq= $$1 gseq= $$2 nseq= $$3 trucan= ",iscan($$1)," gcan= ",iscan($$2)," ncan= ",iscan($$3),"\n"}}' >$@
+
+%bptest: %canonical
+	grep pfoldF $< | perl -ne 'print if /truseq= [acgtu]{2}/i' >$@
+
+
+tkfst.stemgram:
+	evoldoer -ls nuc.hsm -ss dinuc.hsm -t 0.01 -g bin0.evol
+	evoldoer -ls nuc.hsm -ss dinuc.hsm -t 0.1 -g bin1.evol
+	evoldoer -ls nuc.hsm -ss dinuc.hsm -t 0.2 -g bin2.evol
+	evoldoer -ls nuc.hsm -ss dinuc.hsm -t 0.3 -g bin3.evol
+	evoldoer -ls nuc.hsm -ss dinuc.hsm -t 0.4 -g bin4.evol
+	cat stemloc.header >$@
+	echo "(name t=0.01)" >>$@
+	cat stemloc.pairhmm bin0.evol >>$@
+	echo ")(model-pair (name t=0.1)" >>$@
+	cat stemloc.pairhmm bin1.evol >>$@
+	echo ")(model-pair (name t=0.2)" >>$@
+	cat stemloc.pairhmm bin2.evol >>$@
+	echo ")(model-pair (name t=0.3)" >>$@
+	cat stemloc.pairhmm bin3.evol >>$@
+	echo ")(model-pair (name t=0.4)" >>$@
+	cat stemloc.pairhmm bin4.evol >>$@
+	echo "))" >>$@
+	cp $@ $@.orig
+	stemloc -log 5 -lg $@ -sg $@ -to -ps t=0.01 -ta bin0.TrustedPairs.stock
+	stemloc -log 5 -lg $@ -sg $@ -to -ps t=0.1 -ta bin1.TrustedPairs.stock
+	stemloc -log 5 -lg $@ -sg $@ -to -ps t=0.2 -ta bin2.TrustedPairs.stock
+	stemloc -log 5 -lg $@ -sg $@ -to -ps t=0.3 -ta bin3.TrustedPairs.stock
+	stemloc -log 5 -lg $@ -sg $@ -to -ps t=0.4 -ta bin4.TrustedPairs.stock

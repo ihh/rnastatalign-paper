@@ -1,0 +1,24 @@
+# STOCKHOLM 1.0
+#=GR X/1-16 SS    --------------------------(......)------------------......-..
+X/1-16            --------------------------uacaaaug------------------acaaau-ac
+#=GR Y/1-18 SS    -----------------------------------------<..-.....>-.........
+Y/1-18            -----------------------------------------gaa-aaaugc-ggaagcaag
+#=GR Z/1-57 SS    (.....<<<<.(.)<.....>...(<(-....-)>).>>>>-........-).........
+Z/1-57            gggaaaggacagaugcauagcaaagca-uaug-aguagucc-auugcauc-uagcauuuag
+#=GC ancestral_SS --------------------------<......>--------..-.....--.........
+#=GC PS_cons      .......................................................a...a.
+#=GC SS_cons      .............................................................
+                  -368.937
+//
+[0..16,0..18,0..57] -1 (Start) 35 (Null) 205 (Bifurc)
+ [0..8,0..9,0..48] 48 (Null) 163 (EmitZLR) 35 (Null) 145 (EmitZL) 145 (EmitZL) 145 (EmitZL) 145 (EmitZL) 145 (EmitZL) 181 (Bifurc)
+  [0..8,0..0,6..39] 50 (Null) 164 (EmitZLR) 164 (EmitZLR) 164 (EmitZLR) 164 (EmitZLR) 40 (Null) 146 (EmitZL) 193 (Bifurc)
+   [0..0,0..0,11..14] 61 (Null) 167 (EmitZLR) 60 (Null) 149 (EmitZL) -2 (End)
+   [0..8,0..0,14..35] 40 (Null) 193 (Bifurc)
+    [0..0,0..0,14..21] 61 (Null) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
+    [0..8,0..0,21..35] 40 (Null) 146 (EmitZL) 146 (EmitZL) 146 (EmitZL) 179 (Bifurc)
+     [0..8,0..0,24..34] 50 (Null) 164 (EmitZLR) 164 (EmitZLR) 92 (EmitXLRZLR) 40 (Null) 68 (EmitXL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 68 (EmitXL) -2 (End)
+     [8..8,0..0,34..35] 40 (Null) 146 (EmitZL) -2 (End)
+  [8..8,0..9,39..47] 35 (Null) 52 (Null) 125 (EmitYLR) 43 (Null) 131 (EmitYLZL) 131 (EmitYLZL) 142 (EmitZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) -2 (End)
+ [8..16,9..18,48..57] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 130 (EmitYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+

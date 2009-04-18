@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GF NH                                            (AC008670.6-83725_83795/1-71:0.0001000010,(AB042432.1-14140_14072/1-69:1.1786696444,Z82044.1-16031_16103/1-73:1.1786696444)ancestral:0.0001000010)root;
+#=GF SC_max_pfold                                  -382.118
+AB042432.1-14140_14072/1-69                        GUUUCUGUAG-UUGAAU--UA-CAA-CGAUGAUUUUUCAUGUCAUUGGU------------------CGCAGUUGAAUGCUGUGUAGAAAUA
+#=GR AB042432.1-14140_14072/1-69 SS                (<<<<<(..<-<<<...--..->>>->.<<<<(.......)>>>>....------------------<(<<<.......>>>)>)>>>>>).
+#=GR AB042432.1-14140_14072/1-69 ancrec_CYK_MAP    guuucuguag-uugaau--ua-caa-cgaugauuuuucaugucauuggu------------------cgcaguugaaugcuguguagaaaua
+#=GR AB042432.1-14140_14072/1-69 ancrec_CYK_MAP_PP ++++++++++-++++++--++-+++-+++++++++++++++++++++++------------------+++++++++++++++++++++++++
+Z82044.1-16031_16103/1-73                          GCGGUUGUGGCGA-AGUGGUUA-ACGCACCAGAUUGUGGCUCUGGCACUCGUGGGUUCGAUUCCCAU-----------------CAAUCGCC
+#=GR Z82044.1-16031_16103/1-73 SS                  <<<(<<<..<<<(-........-)>>>.<<<<<.......>>>>>.....(<<<<.......>>>>)----------------->>>)>>>.
+#=GR Z82044.1-16031_16103/1-73 ancrec_CYK_MAP      gcgguuguggcga-agugguua-acgcaccagauuguggcucuggcacucguggguucgauucccau-----------------caaucgcc
+#=GR Z82044.1-16031_16103/1-73 ancrec_CYK_MAP_PP   +++++++88++++-++++++++-+++++++++++++++++++++++++8++++++++++++++++++-----------------++++++++
+AC008670.6-83725_83795/1-71                        ACUUUUAAAG-GAUAACAGCC-AUC-CGUUGGUCUUAGGCCCCAAAAAU-UUUGGUGCAACUCCAAA-----------------UAAAAGUA
+#=GR AC008670.6-83725_83795/1-71 SS                <<<<<<<..<-<<<.......->>>->.<<<<(.......)>>>>....-<<<<<.......>>>>>----------------->>>>>>>.
+#=GR AC008670.6-83725_83795/1-71 ancrec_CYK_MAP    acuuuuaaag-gauaacagcc-auc-cguuggucuuaggccccaaaaau-uuuggugcaacuccaaa-----------------uaaaagua
+#=GR AC008670.6-83725_83795/1-71 ancrec_CYK_MAP_PP +++++++9++-++++++++++-+++-++++++++++++++++++++++7-+++++++++++++++++-----------------++++++++
+ancestral                                          ********************************************************************************************
+#=GR ancestral ancrec_CYK_MAP                      acuuuuaaagcgauaacagccaaucgcguuggucuuaggccccaaaaauguuuggugcaacuccaaacauaguugaauguuguuuaaaagua
+#=GR ancestral ancrec_CYK_MAP_PP                   +++++++9++5++++++++++5+++5++++++++++++++++++++++73+++++++++++++++++37+544445544344+9++++++++
+root                                               ********************************************************************************************
+#=GR root ancrec_CYK_MAP                           acuuuuaaagcgauaacagccaaucgcguuggucuuaggccccaaaaauguuuggugcaacuccaaacauaguugaauguuguuuaaaagua
+#=GR root ancrec_CYK_MAP_PP                        +++++++9++5++++++++++5+++5++++++++++++++++++++++73+++++++++++++++++37+544445544344+9++++++++
+#=GC PFOLD                                         <<<<<<<<<<<<<<........>>>>>.<<<<.........>>>>..<<<<<<<<.......>>>>>>>>............>>>>>>>>>.
+#=GC PS_cons                                       .....U...G....A...........C.......U.............U....................................A......
+#=GC SS_cons                                       <<<<<<<..<.<<..........>>.>.<<<<<.......>>>>>.......................................>>>>>>>.
+#=GC ancestral_SS                                  <<<<<<<..<-<<<.......->>>->.<<<<<.......>>>>>....-<<<<<.......>>>>>----------------->>>>>>>.
+//

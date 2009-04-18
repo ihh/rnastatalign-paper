@@ -1,0 +1,18 @@
+
+[0..61,0..64,0..64] -1 (Start) L_L_L_L (Null) S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_DS_MS_MS (EmitYLRZLR) IS_DS_MS_MS (EmitYLRZLR) L_L_L_L (Null) BiSL_BmSL_BmSL_BmSL (Bifurc)
+ [2..25,4..27,4..27] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) -2 (End)
+ [25..59,27..60,27..60] L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) BiSL_BmSL_BmSL_BmSL (Bifurc)
+  [26..59,28..58,28..58] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) BiSL_BmSL_BmSL_BmSL (Bifurc)
+   [28..53,30..56,30..56] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) BiSL_BmSL_BmSL_BmSL (Bifurc)
+    [31..50,33..53,33..53] S_S_S_S (Null) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) IS_MS_MS_MS (EmitXLRYLRZLR) L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_DL_ML_ML (EmitYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) IL_ML_ML_ML (EmitXLYLZL) -2 (End)
+    [50..51,53..54,53..54] L_L_L_L (Null) IL_ML_ML_ML (EmitXLYLZL) -2 (End)
+   [53..57,56..56,56..56] L_L_L_L (Null) L_IL_WL_WL (EmitXL) L_IL_WL_WL (EmitXL) L_IL_WL_WL (EmitXL) L_IL_WL_WL (EmitXL) -2 (End)
+  [59..59,58..60,58..60] L_L_L_L (Null) IL_DL_ML_ML (EmitYLZL) IL_DL_ML_ML (EmitYLZL) -2 (End)
+
+Corresponding ancestral foldstring is:
+<<<<<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>>>..>>>>
+
+Formatted for RNAplot:
+>nanos.ancestral
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+(((((((((((((.....))))))))).((((.((((((........)))))).))))..))))

@@ -1,0 +1,1317 @@
+% Preamble
+\documentclass[10pt,letterpaper,english]{article}
+
+\usepackage{setspace}
+\doublespacing
+
+\addtolength{\oddsidemargin}{-.5in}
+\addtolength{\evensidemargin}{-.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.25in}
+\addtolength{\textheight}{.5in}
+
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[latin1]{inputenc}
+
+\usepackage{array}
+\usepackage[pdftex]{graphicx}
+
+\usepackage{natbib}
+
+\usepackage{rotating}
+
+%\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+% Labels & references for sections, figures and tables
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+
+\newcommand{\appref}[1]{Appendix~\ref{app:#1}}
+\newcommand{\applabel}[1]{\label{app:#1}}
+
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\tablabel}[1]{\label{tab:#1}}
+
+% Frequently used proper nouns that should have consistent typeface, capitalization, etc.
+\newcommand{\pfold}{PFOLD}
+\newcommand\darturl{{\tt http://biowiki.org/dart}}
+\newcommand{\dart}{DART}
+
+\newcommand{\bralibaseII}{BRalibaseII}
+\newcommand{\balibase}{BAliBASE}
+
+\newcommand{\stemloc}{STEMLOC}
+\newcommand{\xrate}{XRATE}
+\newcommand{\evoldoer}{EVOLDOER}
+\newcommand{\indiegram}{INDIEGRAM}
+
+\newcommand{\contrafold}{CONTRAFOLD}
+\newcommand{\stemlocama}{STEMLOC-AMA}
+\newcommand{\consan}{CONSAN}
+\newcommand{\clustalw}{ClustalW}
+\newcommand{\foldalign}{Foldalign}
+\newcommand{\foldalignm}{FoldalignM}
+\newcommand{\mastr}{MASTR}
+\newcommand{\rnasampler}{RNASampler}
+\newcommand{\murlet}{Murlet}
+\newcommand{\rnaalifold}{RNAAlifold}
+\newcommand{\viennarna}{ViennaRNA}
+
+\newcommand{\RFAM}{RFAM}
+
+\newcommand{\denovo}{{\em de novo}}
+
+\newcommand{\nth}{\mathrm{n}^{\mathrm{th}}}
+\newcommand{\mth}{\mathrm{m}^{\mathrm{th}}}
+
+\newcommand{\type}[0]{\operatorname{type}}
+\newcommand{\emit}[0]{\operatorname{emit}}
+\newcommand{\absorb}[0]{\operatorname{absorb}}
+\newcommand{\argmax}[0]{\operatorname{argmax}}
+\newcommand{\argmin}[0]{\operatorname{argmin}}
+\newcommand{\parent}[0]{\operatorname{parent}}
+
+\newcommand{\weight}[0]{\operatorname{Weight}}
+\newcommand{\transweight}[3]{t\left(#2,#3|\theta^{(#1)}\right)}  % {m}{from}{to}
+\newcommand{\emissionweight}[3]{e_{#2}\left(#3|\theta^{(#1)}\right)}  % {m}{emitstate}{emission}
+\newcommand{\totalemissionweight}[2]{\mathbb{e}_{#1}(#2)}
+
+\newcommand{\inside}[7]{\alpha_{#1}(#2,#3,#4,#5,#6,#7)}
+\newcommand{\outside}[7]{\beta_{#1}(#2,#3,#4,#5,#6,#7)}
+
+\newcommand{\Tnull}{\mathrm{null}}
+\newcommand{\Tgap}{\mathrm{GAP}}
+
+\newcommand{\statetype}[1]{\mathtt{#1}}
+\newcommand{\state}[3]{{}^{#2}\mathtt{#1}^{#3}}
+% Note that this will only work for left-bifurcations!
+%\newcommand{\bifurc}[3]{{\phantom{]}}^{#2}\mathtt{B[#3\,#1]}}}
+\newcommand{\bifurc}[3]{\mathtt{#1[#2\,#3]}}
+
+% state types for branch transducers
+\newcommand{\Sstart}[0]{\statetype{Start}}
+\newcommand{\Smatch}[0]{\statetype{Match}}
+\newcommand{\Sinsert}[0]{\statetype{Insert}}
+\newcommand{\Swait}[0]{\statetype{Wait}}
+\newcommand{\Send}[0]{\statetype{End}}
+
+% state types for evolutionary model
+\newcommand{\Snull}[0]{\statetype{Null}}
+\newcommand{\Sbifurc}[0]{\statetype{Bifurcation}}
+\newcommand{\Semit}[0]{\statetype{Emit}}
+
+\newcommand{\statevec}[1]{\left(\begin{array}{c}#1_1\\\vdots\\#1_N\end{array}\right)}
+\newcommand{\fourvec}[4]{\left(\begin{array}{c}#1\\#2\\#3\\#4\end{array}\right)}
+\newcommand{\nakedfourvec}[4]{\begin{array}{c}#1\\#2\\#3\\#4\end{array}}
+\newcommand{\bvec}[1]{\boldsymbol{#1}}
+\newcommand{\activenode}[1]{n(\bvec{#1})}
+
+\newcommand{\foldenv}{\mathscr{F}}
+
+\newcommand{\mDn}[0]{m \vartriangleright n}
+\newcommand{\mNDn}[0]{m \ntriangleright n}
+\newcommand{\mDEn}[0]{m \trianglerighteq n}
+\newcommand{\mNDEn}[0]{m \ntrianglerighteq n}
+
+
+% Start of document
+\begin{document}
+
+% Title page
+
+\title{Paleogenetic Algorithms for Primordial Ribozymes: Computational Reconstruction of Ancient RNA}
+\author{Robert K. Bradley${}^{\rm a}$ and Ian Holmes${}^{\rm a,b}$\\$^{\rm a}$Biophysics Graduate Group, University of California, Berkeley, CA, USA,\\$^{\rm b}$Department of Bioengineering, University of California, Berkeley, CA, USA.}
+
+\date{}
+
+\maketitle
+
+
+
+
+\begin{abstract}
+
+\noindent
+{\bf Background:}
+The existence of an all-RNA primordial ribosome
+was proposed by Francis Crick in 1968.
+Recently, a domain-level model for the original ribosome was
+proposed by Smith {\em et al}.
+Given the abundance of ribosomal RNA sequence data
+and the many successful reconstructions of ancestral proteins,
+the reconstruction and synthesis of ancestral ribosomes (and other RNAs)
+is a feasible goal for paleogenetics.
+This will require new bioinformatics tools and methods,
+in particular a robust theoretical framework for reconstructing changes
+in RNA structure.
+
+\noindent
+{\bf Principal findings:}
+We describe algorithms and methodologies
+for statistical reconstruction of RNA structures
+which extend pairwise models of RNA structural evolution
+to models of multiple structured sequences related by a phylogenetic tree.
+This framework of {\em parse-tree transducers},
+an extension of methods for describing indels in unstructured sequences,
+draws on formal models of computational linguistics,
+as well as the 1985 ``protosequence'' algorithm of David Sankoff.
+We describe dynamic programming algorithms for performing inference on the resulting
+multiple-sequence SCFGs, which may possibly contain null cycles and empty bifurcations.
+Example applications include structural alignment
+of non-coding RNAs, propagation of structural information from 
+an experimentally-characterized sequence to its homologues,
+and inference of the ancestral structure of a set of diverged RNAs.
+
+We implemented these methodologies and inference algorithms for
+constructing a multiple-sequence model from a pairwise model
+for the case of a three-taxon phylogeny.
+Using our implementation on a simple model of pairwise RNA structural evolution,
+we infer possible ancestral structures
+for three \emph{nanos} 3' translational control elements and three tRNAs.
+We also provide estimates of the memory required for ancestral reconstruction
+of larger non-coding RNAs.
+Finally, we discuss the implications of our results
+for statistical algorithm design and phylogenetic reconstruction of RNA structure.
+
+\noindent
+{\bf Conclusions:}
+The programs described are available
+as part of the \dart\ software package for sequence analysis,
+released under the GNU Public License at
+\darturl
+%Perl code-generation packages implementing our algorithm for building evolutionary models,
+%as well as a C++ program, \indiegram, to perform Maximum-Likelihood inference on these models, 
+%are available 
+
+\noindent
+{\bf Contact:}
+indiegram@postbox.biowiki.org
+
+\end{abstract}
+
+
+\section{Introduction}
+
+% Biological motivation
+In 1968, Francis Crick hypothesized that the first ribosome consisted entirely of RNA, without any protein cofactors \citep{Crick68}.
+A domain structure for this primeval ribosome was recently proposed \citep{SmithEtAl2008}.
+To synthesize such a reconstructed ribosome, or reconstructions of other evolutionarily significant RNAs
+such as group II introns \citep{LehmannSchmidt2003} or telomerase \citep{AntalEtAl2002},
+it will be necessary to develop methods that can predict the sequences of ancient RNAs
+based on the divergent sequences of their many descendants.
+
+% SCFGs for RNA
+Inspection of RNA alignments, for example in the \RFAM\ database \citep{GriffithsJonesEtAl2003},
+suggests that an evolutionary model for RNA structure must eventually include multiple layers of detail:
+point substitutions,
+covariant substitutions of base-pairs \citep{HancockTautzDover88,LeontisEtAl2002},
+indels \citep{TakeshiTsutomu2008},
+local changes in secondary structure such as helix slippage \citep{HancockDover90},
+and changes in domain structure \citep{SmithEtAl2008}.
+Stochastic context-free grammars (SCFGs) are natural models of such phenomena
+and have been used for ncRNA
+homology detection \citep{Eddy94,Durbin98,KleinEddy2003,NawrockiEddy2007},
+gene prediction \citep{RivasEddy99,PedersenEtAl2006},
+folding \citep{KnudsenHein2003,DowellEddy2004}
+and alignment \cite{Holmes2005,DowellEddy2006}.
+
+% Two parts: pairwise & multiple
+By analogy with substitution processes, which are well-understood \citep{Felsenstein2003},
+we may split the ancestral reconstruction problem into two halves.
+The first half is the development of a {\bf pairwise model},
+describing the probability distribution $P(Y|X)$ of a descendant ($Y$) conditional on its immediate ancestor ($X$).
+In substitution processes, the pairwise model is a conditional substitution matrix.
+Often (but not always) the pairwise model is derived from an instantaneous model of change,
+i.e., a continuous-time Markov chain (parameterized by a rate matrix);
+obtaining the transition probabilities of this chain (via exponentiation of the rate matrix)
+yields a pairwise model whose parameters are smoothly-varying functions of a finite time parameter $T$.
+A pairwise model represents an individual branch of a phylogenetic tree, with $T$ representing the length of that branch.
+
+% (second part: multiple)
+The second half of the problem involves extending the model from a single branch to a complete phylogeny,
+i.e., from a pairwise model of two sequences to a {\bf multiple-sequence model} of many sequences.
+In a typical situation, the sequences at the leaves of the tree are observed, but those at internal nodes are unobserved.
+Questions of interest then include:
+\begin{enumerate}
+\item What is the likelihood of the model for the observed data?
+\item Can we sample from (or exactly compute) the posterior distribution of the unobserved sequence at the root node?
+\item Can we sample from the posterior of the unobserved sequences at the other internal nodes?
+\item Can we estimate summaries of the evolutionary history, such as
+  the number of substitution events on each branch (for a substitution
+  model), the alignment (for a model which includes indels), or
+  changes in the underlying structure (for a model of RNA structure)?
+\end{enumerate}
+
+There has been extensive work focused on answering each of these questions.
+Given a pairwise substitution model, questions 1 and 2 can be
+answered exactly by Felsenstein's pruning algorithm
+\citep{Felsenstein81}, and question 3 can be answered by the peeling
+algorithm (first presented for pedigree analysis by Elston and Stewart \citep{ElstonStewart71}).
+The alignment inference problem of question 4. has been
+addressed by exact \citep{HolmesRubin2002b} and sampling
+\citep{Nielsen2001} approaches.
+Many of these questions and answers can be unified by an
+appropriate framework;
+for example, another representation of answers 1-3
+is that the ``pruning'' \& ``peeling'' algorithms (combined) are just
+the sum-product algorithm on a directed graphical model \citep{Pearl82},
+yielding exact marginal distributions for unobserved variables.
+Graphical models also suggest general-purpose sampling approaches
+in addition to the exact sum-product algorithm.
+% For the RNA evolutionary models described in this paper,
+% questions (4-6) can also be addressed by such approaches (exact or sampling).
+
+
+% We want a multiple SCFG. Not a pairwise SCFG...
+The two halves of the reconstruction problem, creating pairwise and
+multiple-sequence models, are largely independent.
+Felsenstein's pruning algorithm, for example, is essentially blind to the parametric form of the pairwise substitution model;
+it just assumes that a substitution model is provided for every branch.
+Subsequent models developed by other researchers can be plugged into the pruning algorithm without modification \citep{Yang94b,WhelanGoldman2001}.
+
+We therefore addressed the problem of modeling the evolution of
+multiple structured RNAs in a similarly-modular fashion by separating
+the creation of pairwise and multiple-sequence models.
+In previous work, we addressed the first (pairwise) part of the RNA
+reconstruction problem by describing a simple continuous-time model of
+RNA structural evolution \citep{Holmes2004}.
+The focus of the present work is to solve the second (multiple-sequence)
+part of the RNA reconstruction problem by giving a general method for
+extending a generic pairwise model to a model of multiple RNA
+sequences related by a tree.
+
+% Benchmarking
+We show that our algorithm produces a multiple-sequence model which is
+much more compact than suggested by naive approaches to model
+construction.  We provide analyses of the asymptotic complexities of
+models constructed using our procedure and provide estimates of the
+time and memory required to reconstruct the structures of several RNA
+families for the case of a 3-taxon phylogeny, which we have
+implemented in the program \indiegram.
+While by these estimates only the smallest sequences currently fit into affordable memory,
+thereby preventing us from conducting an exhaustive and representative
+benchmark of reconstruction accuracy, we demonstrate the capability of our models to reconstruct RNA by
+estimating the ancestral structure of three \emph{nanos} 3'
+translational control elements and three tRNAs.
+
+In the Discussion section, we speculate on algorithmic extensions that may reduce memory requirements,
+inspired by related work in reconstructing DNA and protein sequences \citep{RedelingsSuchard2005}.
+
+% Furthermore, we report benchmark results for special cases that can fit into memory:
+% (1) the accuracy of reconstruction for the case where indels are prohibited and alignment is constrained, and
+% (2) the case where we build a progressive multiple sequence alignment using pairwise comparisons.
+
+%  (a
+% multi-sequence SCFG)
+% with a state space whose size ($S$) is approximately linear in the number of branches
+% and a rule-set whose size ($R$) is approximately linear in the number of states.
+% This is significantly better than the naive upper-bounds for $R$ and $S$,
+% which are exponential in the size of the phylogenetic tree.
+% However, the memory complexity of exact dynamic programming inference algorithms for this model are
+% $O(L^{2N} S)$ for $N$ observed descendants of length $L$,
+% dropping to approximately $O(L^N S)$ when the structures of the
+% descendants are known.
+
+
+
+\section{Methods}
+
+We present below a general method for constructing a multi-sequence
+stochastic grammar for alignment, folding and ancestral reconstruction of RNA,
+given a phylogenetic tree and a description of the evolutionary process acting along each branch.
+Our method is qualitatively similar to the method presented in \citep{Holmes2003}
+for HMMs, but modified to permit bifurcations and covariant substitutions as modeled by SCFGs.
+Grammars constructed by this algorithm can be used to infer probable structures of ancestral RNAs.
+
+% overview of the approach
+\subsection{Overview}
+
+
+  This continuous-time model corresponded to
+a pairwise stochastic context-free grammar ({\bf Pair SCFG}), a
+generative model of two related structured RNAs \citep{Holmes2004}.
+This model, the ``TKF Structure Tree'' (TKFST), was based on the TKF91
+model of the stochastic evolution of DNA and proteins \citep{ThorneEtal91}.
+(Here, we use ``statistical alignment'' in the very precise phylogenetic definition of \cite{HeinEtal2000}.)
+
+% Use of SCFGs in bioinformatics relies on a linguistic metaphor:
+% the grammatical concept of a {\bf parse tree} represents an RNA secondary structure.
+% The TKFST model describes the stochastic drift of such a parse tree over evolutionary time.
+
+% ...but a multiple SCFG.
+
+The central idea is to extend the idea of a Pair SCFG to a multiple-sequence SCFG.
+Whereas the Pair SCFG models evolution of RNA along a single branch, the multi-sequence SCFG models an entire tree.
+Although we use the TKFST model as an illustrative example of a Pair SCFG that can be so extended,
+that model is not fundamental to our approach, and it could be replaced by a different pairwise model.
+
+To generalize from two sequences to many sequences, we do the following.
+On every branch of a phylogenetic tree, we place a Pair SCFG
+--- or rather, a conditionally-normalized version of a Pair SCFG, which we call a {\bf parse-tree transducer}.
+The main contributions of this paper are
+(1) an algorithm that transforms this phylogenetic ensemble of two-sequence grammars into a coherent, multiple-sequence SCFG;
+(2) dynamic programming algorithms for performing inference under this multi-sequence SCFG;
+(3) freely-available software implementing algorithms (1) and (2) for the simplified case of a three-branch star-topology tree.
+As several authors have shown, an implementation of the three-branch case is sufficient to draw samples
+from the posterior distribution of ancestral sequences on more complex tree topologies \citep{HolmesBruno2001,JensenHein2002,RedelingsSuchard2005}.
+
+The distinction between a Pair SCFG and a parse-tree transducer is subtle.
+A Pair SCFG models a joint distribution $P(X,Y)$; a parse-tree transducer models a conditional distribution $P(Y|X)$.
+Other than this, they use similar formalism and notation.
+The reason for emphasizing the distinction is not simply to brand transducers as new,
+but rather because the conditional normalization is required by the core algorithm of our paper,
+which extends the pairwise model to multiple sequences.
+(In the language of graphical models, the Pair SCFG represents an {\em undirected} edge in the model,
+whereas the parse-tree transducer represents a {\em directed} edge.
+A rooted phylogeny is a directed graphical model, so we use the conditional transducer form.)
+
+
+
+
+
+\subsection{Two-sequence models} \seclabel{twoseq}
+
+A stochastic model for evolution of one sequence ($X$) into another ($Y$) over an interval of time ($T$) can be described by a joint distribution:
+$P (X, Y | T)$.
+We can consider $X$ and $Y$ to have 
+an ancestor-descendant relationship described by the (factored) distribution $P (X) \cdot P (Y | X, T)$, 
+where $P(X)$ is the marginal distribution over ancestral sequences
+and $P(Y | X, T)$ is the conditional distribution over descendant sequences given an ancestral sequence.
+In terms of phylogenetics, the conditional distribution $P(Y | X, T)$ describes the evolution $X \stackrel{T}{\to} Y$
+along a branch of length $T$.
+
+It is possible to ``multiply'' two such models together.
+More specifically, one multiplies two conditional distributions and sums out the intermediate sequence.
+Thus, successive evolution along two branches $X \stackrel{T_1}{\to} Y \stackrel{T_2}{\to} Z$
+is modeled by the distribution
+\[
+P(Y,Z|X,T_1,T_2) = P(Y | X, T_1) P(Z | Y, T_2)
+\]
+
+and we can sum sequence $Y$ out of this, obtaining the distribution
+\[
+P(Z|X,T_1+T_2) = \sum_Y P(Y | X, T_1) P(Z | Y, T_2)
+\]
+for the composite branch
+$X \stackrel{T_1 + T_2}{\longrightarrow} Z$.
+
+The above formalism will be familiar to anyone who has studied likelihood phylogenetics.
+For a single site, $P (X, Y | T)$ is the joint substitution matrix
+and $P(Y | X, T)$ is the conditional matrix.
+The latter is usually computed as the matrix exponential
+ $\left[ \exp({\bf R}T) \right]_{XY}$
+where ${\bf R}$ is a rate matrix \citep{HolmesRubin2002b}.
+Composition of two branches just amounts to a matrix multiplication.
+
+The same formalism can be used in statistical alignment, to describe the evolution of whole sequences with indels.
+Suppose that the joint distribution $P (X, Y | T)$ is the distribution modeled by a standard ``Pair HMM'' \citep{Durbin98}
+and the marginal $P(X)$ is the distribution of a single-sequence HMM.
+The conditional distribution $P(Y | X, T)$ then corresponds to a finite-state automaton
+which transforms one sequence (the input, $X$) into another (the output, $Y$).
+Following computational linguists, we call this state machine a {\bf string transducer} or simply a {\bf transducer} \citep{BradleyHolmes2007}.
+Note the contrast between this machine and the Pair HMM.
+A Pair HMM has two outputs, and is said to emit symbols to both those outputs,
+while a transducer {\em absorbs} symbols from the input and {\em emits} symbols to the output.
+
+% It is sometimes also referred to as
+% a ``conditionally-normalized Pair HMM'' in the literature.
+
+We extend this formalism to RNA as follows.
+Rather than representing whole sequences, let $X$ and $Y$ now represent alignable {\bf parse trees} for some stochastic context-free grammar.
+The distribution of this SCFG is the marginal $P(X)$
+and the joint distribution $P (X, Y | T)$ is a Pair SCFG \cite{Durbin98}.
+The stochastic machine that transforms $X$ into $Y$,
+generating the conditional distribution $P(Y | X, T)$,
+we call a {\bf parse-tree transducer}.
+Again, this follows terminology used in computational linguistics \citep{ComonEtAl2007-TreeTransducers}.
+
+%Pair SCFGs have been used successfully
+%to create accurate pairwise RNA structural alignments \citep{Holmes2005,DowellEddy2006,KiryuEtAl2007,BradleyPachterHolmes2008}.
+%They can efficiently model the long-distance correlations between base-paired nucleotides in 
+%stem sequence as well as large-scale structural changes such as stem gain and loss \citep{Holmes2004}.
+
+String transducers are special cases of parse-tree transducers, just as HMMs are special cases of SCFGs.
+Henceforth, we will drop the distinction between strings and parse trees.
+We will also refer interchangeably to ``states'' (as used in HMMs and string transducers)
+and ``nonterminals'' (as used in SCFGs and parse-tree transducers).
+
+We refer to the state machine generating the marginal $P(X)$ as a {\bf singlet transducer}
+and the state machine generating the conditional $P(Y | X, T)$ as a {\bf branch transducer}.
+%regardless of whether the joint distribution is modeled by a Pair HMM (in which case 
+%the branch transducer is a string transducer) or Pair SCFG (in which case the branch transducer
+%is a parse-tree transducer).
+Singlet transducers, which generate ancestral sequence at the root node, only emit symbols
+(and are equivalent to HMMs);
+branch transducers, in contrast, can both emit and absorb symbols.
+
+A prescriptive formalism for branch transducers is given in Text S?. % to do
+In general terms, states which emit to extant sequences are
+termed $\Smatch$ or $\Sinsert$ states, where a $\Smatch$ state absorbs a symbol emitted by an ancestral
+sequence, mutates it with some probability given by the conditional $P(Y | X, T)$, and emits the 
+(possibly) mutated symbol.
+We consider bifurcation states to be special cases of $\Smatch$ or $\Sinsert$ states
+which emit new branches of the parse tree (corresponding to structural changes in the modeled RNA).
+
+% \subsubsection*{Formal grammars and transducers}
+The natural representation of a parse-tree transducer is similar to a Pair SCFG, and can be thought of as a ``conditional Pair SCFG''.
+Like a Pair SCFG, the representation includes nonterminals, $X$-terminals, $Y$-terminals and transformation rules.
+Also like a Pair SCFG, the transformation rules are labeled with probabilities and partitioned into subsets.
+For each subset of rules, the sum of all probabilities in that subset must sum to one.
+
+The actual partitioning of rules into co-normalized subsets is, however, performed differently for transducers than for Pair SCFGs.
+In a Pair SCFG, the assignment of rules to subsets is based on the symbol on the left-hand side (LHS) of the rule.
+In a tree transducer, the assignment depends on both the LHS nonterminal {\em and} the absorbed $X$-terminals.
+
+(In the special case of bifurcations, the ``absorbed symbols'' are actually nonterminals from the singlet transducer grammar.
+This is described formally in Text S?.) % to do
+
+In practice it is often expedient to relax these normalization guidelines somewhat, while preserving the overall probabilistic normalization over parse trees.
+For example, the normalization of states $B$ and $B_p$ in \tabref{tkfstbranch} occurs on transitions into, rather than out of, those states.
+
+We use the TKF Structure Tree model to illustrate the representation outlined here.
+\tabref{tkfstsinglet} shows the singlet transducer (single-sequence SCFG) 
+which generates ancestral sequence under the Structure Tree model;
+the corresponding state types are shown in \tabref{tkfstsinglet-types}.
+\tabref{tkfstbranch} shows the branch transducer (conditionally-normalized Pair SCFG)
+which evolves a sequence and structure along a branch of the phylogenetic tree;
+the state types are shown in \tabref{tkfstbranch-types}.
+
+
+
+
+\subsubsection{The TKF Structure Tree}
+\label{sec:TKFStructureTree}
+
+We illustrate the method using a simplified model for the evolution of RNA structure that was introduced in previous work: the TKF Structure Tree.
+
+The TKF Structure Tree \citep{Holmes2004} is a simple probabilistic model
+of the evolution of RNA structure.
+It is based on the pioneering Thorne-Kishino-Felsenstein (TKF) model 
+for statistical alignment \citep{ThorneEtal91}.  
+
+In the original TKF model, sequence evolves under a time-homogeneous linear birth-death-immigration process \citep{Kendall1948}.
+Single characters are inserted with rate $\lambda$ and deleted with rate $\mu$.  
+At equilibrium sequences obey a geometric length distribution with parameter $\kappa$.
+Although this model has flaws (e.g. it lacks affine gap penalties,
+rate heterogeneity and context-dependent mutation rates),
+it plays an important didactic role in statistical alignment,
+similar to the role of the Needleman-Wunsch algorithm in bioinformatics \citep{Needleman70}.
+TKF illustrates many of the key ideas used by more sophisticated indel models,
+notably the possibility for systematic derivation of pairwise alignment automata from first principles
+via analysis of birth-death processes \citep{Feller71,ThorneEtal91}.
+
+The TKF Structure Tree (TKFST) is an extension of the TKF model to RNA structure (\figref{tkfst}).
+In this model, loop and stem regions are mutually nested.
+Both loops and stems have geometric length distributions with parameters $\kappa_1$ and $\kappa_2$.
+Single bases are inserted and deleted in loops with rates $\lambda_1$ and $\mu_1$;
+similarly, base-pairs are inserted and deleted in stems with rates $\lambda_2$ and $\mu_2$.
+Insertion of a new stem into an existing loop sequence (or deletion of an existing stem)
+can model large-scale structural changes.
+
+The TKFST model, like the original TKF model, probably needs refinements in order to be useful.
+For example, it fails to model certain phenomena observed in natural RNA structures (such as base-stacking or tetraloops)
+or, indeed, in alignments of those structures (such as helix slippage).
+However, we hope that (again like the TKF model) it will be a useful guide to developing a statistical alignment theory for RNA.
+
+In this paper, we show that the performance of TKFST at multiple alignment is actually comparable to more complex Pair SCFGs,
+even though its performance at structure prediction is relatively weak (Tables \ref{tab:bralibaseII-align} and \ref{tab:bralibaseII-struct}.
+We go on to use the model as a worked example for developing a theory of parse-tree transducers for developing multiple-sequence SCFGs.
+This parse-tree transducer theory can be used with RNA structure models other than TKFST,
+just as the established transducer theory has been used with indel models other than TKF.
+
+
+
+
+
+
+\subsection{Multiple-sequence models}
+
+We can use the concepts of factoring probability distributions introduced in the two-sequence
+framework to model the common descent of many homologous sequences.
+
+Consider a phylogenetic tree relating $n$ structured RNAs
+$\{ X_1 , ... , X_n \}$, lying on the leaves of the tree,
+and a further $m$ ancestral RNAs
+$\{ X_{n+1} , ... , X_{n+m} \}$,
+lying at the internal nodes of the tree.
+Because any node of the tree is independent of its sibling node conditioned on their common parent,
+we can factor the probability distribution $P(X_1 , ... , X_{n+m})$ into terms of the form
+$P(X_i | X_j, T)$, precisely the conditional distribution which is generated by a branch transducer.
+This has a ready biological interpretation:  A branch transducer
+evolves a sequence (and structure) along a branch of a phylogenetic tree,
+so we extend the two-sequence models just described to evolutionary models of many sequences
+by composing branch transducers on the branches of the tree.
+
+A singlet transducer (which emits, but does not absorb, symbols) lies at the root of the phylogeny and 
+serves as a generative model of the ancestral sequence.
+To represent the evolution of an ancestral sequence into many descendant sequences,
+we place a branch transducer on each branch of the phylogeny.
+A simple example of this is shown in \figref{parent}.
+
+The singlet transducer at the root emits symbols (from $\Sinsert$ states),
+which are then processed by branch transducers leading to descendant nodes.
+The symbols are either passed down the tree, or deleted (in this formalism, both types of event are handled by $\Smatch$ states).
+Extra symbols may also be inserted (by $\Sinsert$ states in the branch transducers).
+Co-ordination between parallel branches is achieved by having the branch transducers pause (in $\Swait$ states)
+while waiting to absorb the next symbol from the node above.
+
+The collective ensemble of transducers models the common descent of many sequences from a single root.
+To put this another way, the composite model assigns a probability to every possible alignment of ancestral and extant sequences.
+Since the ancestral sequences are typically not observed directly,
+one can also view this in Bayesian terms,
+as a posterior probability distribution over ancestral reconstructions.
+
+The state space of the collective ensemble is a subset of the Cartesian product of the individual transducers' state spaces.
+If the singlet transducer has $a$ states, each branch transducer has $b$ states and there are $N$ branches in the phylogeny,
+then an upper bound on the possible number of states of the ensemble model is given by $O(a \cdot b^N)$.
+However, in practice there are many fewer states than suggested by this bound; many state 
+configurations are not reachable.  For example, for the tree in \figref{parent},
+a configuration with the branch transducers above the leaf sequences $X$ and $Y$ in $\Sinsert$ states,
+which corresponds to aligning non-homologous sequence, is disallowed.
+Similarly, while an upper bound on the number of possible transitions
+in the transition matrix of the ensemble model is $O((a \cdot b^N)^2)$,
+realistic biological models never reach this bound.
+
+The total sizes of both the state space and the transition matrix are, in general, dramatically smaller than
+implied by the exponential upper bounds of $O(a \cdot b^N)$ and $O((a \cdot b^N)^2)$.  In practice, 
+we find the size of the state space is approximately linear in the number of branches, $O(a \cdot b \cdot N)$, 
+and the number of transitions is approximately linear in the number of states.
+The search algorithm given below for enumerating all allowed transitions
+of the ensemble model typically generates $O(b)$ transitions from any given state, 
+thereby creating a very sparse transition matrix of size $O(a \cdot b^2 \cdot N)$.
+
+We therefore need a way to construct the ``state graph'' of the ensemble model,
+consisting of a list of accessible states and the possible transitions between them.
+The allowed transitions of the ensemble can be categorized as follows:
+\begin{enumerate}
+\item {\bf Null Transition}:
+  A branch transducer makes a transition into a $\Swait$ state, with no terminal emission or bifurcation.
+\item {\bf Terminal Emission}:
+  A transducer makes a transition into a state of type $\Sinsert$,
+  emitting left and/or right terminal symbols (e.g. a base-pair).
+  These symbols are absorbed by the immediately-descended transducers,
+  which are pushed into states of type $\Smatch$
+  and may themselves emit terminal symbols
+  that will be absorbed by the next generation of transducers.
+  The terminal symbols are thus passed recursively down the tree,
+  propelling branch transducers into $\Smatch$ states as they go down.
+  (In the example of a base-pair, emitting $\Smatch$ states correspond
+  to covariant substitutions, whereas non-emitting $\Smatch$ states correspond
+  to deletions.)
+\item {\bf Bifurcation}:
+  A transducer makes a transition into a state of type $\Sinsert$ that spawns
+  left and/or right nonterminal states.
+  These nonterminals are passed recursively down the tree, just as in a
+  terminal emission (conceptually, a bifurcation is a ``nonterminal emission'').
+  As with terminal emissions, absorption of nonterminal emissions propel
+  descendant transducers into $\Smatch$ states,
+  making transitions which may themselves propagate nonterminals
+  further down the tree.
+  (A biological example of a bifurcation is the insertion of a stem
+  into an ancestral RNA structure,
+  which then may be conserved or deleted in the descendant structures.)
+\item {\bf End Transition}:
+  The singlet transducer at the root makes a transition to the $\Send$ state,
+  pushing all the descendant branch transducers into $\Send$ states and
+  terminating the current branch of the parse tree.
+\end{enumerate}
+A unique ordering is imposed on branch transducers, such that for any given collective state of the ensemble, only one transducer is allowed to make a spontaneous transition
+(of course, in the case of a Terminal Emission or a Bifurcation, this may then force descendant transducers into making reactive transitions).
+
+By analogy with algorithms for uninformed graph search in artificial intelligence,
+the state graph of the ensemble can be constructed by an uninformed depth-first search,
+where at each step of the search we obtain the possible child nodes 
+by changing the state of one or more of the singlet or branch transducers.
+Beginning with the entire ensemble in state $\Sstart$,
+the depth-first search of states continues until all nodes are in state $\Send$.
+
+Full details of the procedure for composing the transducer ensemble, including the state ordering and the depth-first construction, are given in Text S?. % to do
+
+%While in \secref{twoseq} we made an explicit distinction between models whose 
+%joint distributions $P(Y | X, T)$ could be generated by Pair HMMs or Pair SCFGs,
+%we purposefully ignored this distinction here.
+%Our model construction algorithm is the same irrespective of the structure
+%of the singlet and branch transducers; the only distinction is
+%that Pair HMM-based models have no Bifurcation transitions,
+%reducing the size of the state graph of the evolutionary model.
+
+
+\subsubsection*{Formal grammars and transducers}
+% Analogously to the case with two-sequence models,
+There exists an injective mapping from the evolutionary models generated by our model-construction algorithm 
+to multi-sequence SCFGs.
+In other words, given a singlet transducer, a phylogenetic tree and a mapping from tree to branch transducers,
+there exists a corresponding multi-sequence SCFG
+which generates the joint probability distribution $P(X_1 , ... , X_{n+m})$.
+
+From this it can be seen that our model includes many other models as sub-classes.
+As noted above, string transducers (which are similar to HMMs) can be viewed as special cases of parse-tree transducers.
+Furthermore, the models known as phylo-HMMs and phylo-SCFGs \citep{KlostermanEtAl2006}
+can be viewed as special cases of (respectively) string transducers and parse-tree transducers.
+(Phylo-HMMs and phylo-SCFGs typically model substitutions but not indels,
+and so can be viewed as compositions of a richly-featured singleton transducer with a restricted class of branch transducers.)
+\cite{Sakakibara2003} has described ``Pair HMMs on tree structures'' that are closely related to our parse-tree transducers
+(though without the composition algorithms for scoring multiple alignments),
+as well as pair stochastic tree-adjoining grammars, or TAGs \citep{Sakakibara2004}.
+TAGs are a formal generalization of SCFGs to
+mildly context-sensitive grammars \citep{MamitsukaAbe94,JoshiSchabes97,RivasEddy2000}.
+We speculate that the conditionally-normalized transducer analogues of such Pair-TAGs may encompass the
+phylogenetic model of covariant RNA substitutions and indels on pseudoknotted structures
+described by \cite{MeyerMiklos2007},
+just as parse-tree transducers encompass phylo-SCFGs.
+
+
+\subsection{Reduction of computational complexity} \seclabel{reduction}
+
+The evolutionary model, constructed as detailed above, can be further modified to increase
+computational efficiency without loss of model expressiveness.
+Our model construction procedure generically produces many ``windback'' null transitions to placeholder states.
+These $\Snull$ states can be pruned from the model without loss of accuracy.
+If $\Semit$ states $E_1$ and $E_2$ are connected in the state graph by $\Snull$ states $N_1$ and $N_2$,
+then the transition $E_1 \rightarrow N_1 \rightarrow N_2 \rightarrow E_2$ with 
+probability $P(E_1 \rightarrow N_1) \cdot P(N_1 \rightarrow N_2) \cdot P(N_2 \rightarrow E_2)$
+can be replaced with a transition $E_1 \rightarrow E_2$ with an identical probability.
+In practice, eliminating windback states reduces the size of the state space by $\simeq 20\%$,
+resulting in a significant reduction in memory needed.
+This gain comes at a possible slight increase in time; this is analogous to the well-known fact
+that eliminating $\Snull$ states from a HMM can reduce the state space but often increases
+the number of transitions in the model.
+
+We can further reduce computational complexity by creating effective direct
+transitions to replace empty bifurcations.  An empty bifurcation occurs when 
+a child branch of a bifurcation state transitions to the $\Send$ state without emitting
+any symbols.  For example, we can create an effective direct transition $N_1 \rightarrow N_3$ between 
+null states $N_1$ and $N_3$ in place of the empty bifurcation $N_1 \rightarrow B \rightarrow (N_2 \,\, N_3) \rightarrow (End \,\, N_3)$,
+where $B$ is a bifurcation state with children $(N_2 \,\, N_3)$.
+Bifurcation states are the most computationally-costly part of our models,
+so it is important to eliminate as many as possible without reducing model expressiveness.
+
+
+\subsection{TKF Structure Tree on a star phylogeny} \seclabel{tkfst}
+
+We used our model-construction algorithm to build the grammar corresponding
+to the TKFST model acting on a star phylogeny with three (extant) leaf sequences and a single (unobserved) ancestral sequence.
+We chose this star phylogeny for two reasons: (1) it is the simplest extension of the well-studied, standard
+two-sequence (Pair SCFG) model, and (2) algorithms on a star phylogeny with three leaves are sufficient
+for sampling-based inference over any phylogenetic tree with a time-reversible model.
+
+The reason for this (2) is simple: Consider a node in a (binary) phylogenetic tree and its immediate neighborhood,
+consisting of its parent and children.
+Evaluation of the likelihood function of a node conditioned on its neighborhood is sufficient for
+a likelihood-sampling algorithm over a tree.
+If the branch transducer of interest is time-reversible,
+then the model specified by a node and its neighborhood is precisely the star phylogeny
+with three leaves shown in \figref{threeway}.
+It follows that evaluating the likelihood of the evolutionary model illustrated in \figref{threeway}
+is sufficient for designing a sampling algorithm for any phylogenetic tree relating structured RNAs.
+
+The statistics of the TKFST model on the star phylogeny shown in \figref{threeway}
+illustrate the advantages of our procedure for model construction.
+The singlet transducer, shown in \tabref{tkfstsinglet}, has 7 total states and 2 bifurcation states;
+the branch transducer, shown in \tabref{tkfstbranch}, has 21 total states and 6 bifurcation states.
+A naive calculation therefore gives a state space of size $O(7 \cdot 21^{3}) \Rightarrow 6 \cdot 10^4$ states.
+Using our uninformed search algorithm, we determine that there are 287 accessible states
+and 686 possible transitions between these states (compare with the $287^2 \simeq 8 \cdot 10^4$ transitions
+estimated with a naive upper-bound calculation).
+We achieve further reductions in complexity by eliminating useless windback states, 
+giving a reduced state space with 230 states, albeit at the cost of introducing 
+extra transitions, bring the total to 1,789 transitions.
+Note that both before and after the reduction in complexity,
+the total number of states is less than the approximate bound of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot 3) \Rightarrow 441$ states
+and the number of transitions is less than the approximate bound of 
+$O(a \cdot b^2 \cdot N) = O(7 \cdot 21^2 \cdot 3 \Rightarrow 9,261$ transitions.
+
+\subsection{Inference with SCFGs}
+
+The model construction algorithm described above creates an evolutionary model
+which generates the joint distribution $P(X, Y, Z, W)$.
+This state machine can alternately be considered a jointly-normalized three-sequence SCFG
+(three-sequence because there are three extant sequences),
+and as such we can perform inference on the evolutionary model with the 
+Sankoff algorithms for multi-sequence SCFGs \citep{Sankoff85}.
+
+Because we explicitly model the unobserved ancestral state $W$, 
+the standard Sankoff algorithms for three sequences fail:
+states which generate ancestral sequence give rise to cycles of $\Snull$ states within
+the three-sequence SCFG.
+The presence of bifurcations with one or more possibly-empty child branches
+further complicate inference.
+
+We address these difficulties differently for maximum-likelihood and posterior-decoding inference.
+Maximum-likelihood inference is performed with the Cocke-Younger-Kasami (CYK) algorithm.
+Because a state path which includes a cycle of $\Snull$ states necessarily has lower probability than 
+an equivalent one without, we can simply ignore such $\Snull$ cycles during CYK.
+Bifurcations with empty child branches cannot be similarly ignored, but we have already implicitly
+solved this problem by creating equivalent effective direct transitions between the parents of these 
+bifurcation states and the non-empty children as detailed earlier.
+Maximum-likelihood inference can therefore be performed with a standard three-sequence CYK algorithm
+if our model construction algorithm is used.
+
+Posterior-decoding inference, which uses the Inside and Outside algorithms, required a modified 
+dynamic-programming (DP) algorithm.
+Algorithms for exact elimination of HMM null cycles by matrix inversion are well-known \citep{Holmes2003}
+ and are implemented by PhyloComposer \citep{Holmes2007} and HMMoC \citep{Lunter2007}.
+These algorithms effectively replace the HMM with an equivalent HMM that contains no null cycles
+but generates the same probability distribution over sequences.
+The concept of null cycle elimination as discussed in computational linguistics is subtly different,
+requiring only that the CYK parse is preserved \citep{GecsegSteinby97};
+but for exact statistical inference applications
+we need to preserve the entire probability distribution over parses.
+
+Exact null-cycle elimination for SCFGs is, to our knowledge, an open mathematical problem.
+Here, we present a practical alternative: an iterative 'loopy DP' algorithm
+to approximate the Inside and Outside algorithms
+for inference on SCFGs with null cycles and empty bifurcations.
+The essential idea is to replace the single pass over the set of reverse-topologically-sorted states
+in the Inside algorithm with multiple passes over each strongly-connected component of the state graph.
+The 'loopy DP' monicker refers to the 'loopy belief propagation' algorithms used in analysis of cyclic factor graphs \citep{FreyMacKay98}.
+
+While the reductions described in \secref{reduction} reduce the computation cost of inference
+by reducing the total number of states $A$,
+the asymptotic upper-bounds for the Sankoff algorithms remain unchanged,
+with a factor of $L^2$ in space and $L^3$ in time for each extant sequence of length $L$.
+The star phylogeny in \figref{threeway} therefore has complexities
+$O(A \cdot L^6)$ and $O(A \cdot L^9)$ in space and time for a model with $A$ states.
+In practice we frequently know part or all of the structures of the extant sequences,
+resulting in much more favorable complexity in practice.
+
+
+
+\section{Results}
+
+
+
+\subsection{Automated grammar construction}
+
+% to do: rewrite per rearrangement of paper
+Building on our investigations of the TKFST model in the previous section,
+and our earlier work with transducers for DNA and protein reconstruction
+\citep{BradleyHolmes2007},
+we developed a framework that extends the power of transducers to RNA.
+Our algorithm, described in the Methods and Supplementary Material,
+allows the extension of any pairwise parse-tree transducer
+to multiple sequences on a star phylogeny,
+by automatically generating the relevant multi-sequence SCFG.
+The Cocke-Younger-Kasami (CYK) and Inside-Outside algorithms for this SCFG
+are closely related to the
+``simultaneous alignment, folding and protosequence''
+algorithm of \cite{Sankoff85}.
+
+We implemented our model construction algorithm on the three-taxon phylogeny
+ (\figref{threeway}) .
+Given a singlet transducer modeling ancestral structures and
+a branch transducer modeling structural evolution,
+our Perl modules generate C++ code
+for the corresponding jointly-normalized ``Triplet SCFG''.
+Any model of structural evolution
+which can be represented in grammatical form (as a parse-tree transducer)
+is permitted as input to the packages,
+allowing for flexible, automated model design.
+
+Seasoned RNA bioinformaticians may balk at the
+computational resources demanded by a Triplet SCFG.
+Indeed, previous implementations of the Sankoff algorithm for RNA alignment
+(including our program \stemloc)
+have compared at most two sequences in any single alignment step.
+Simultaneous alignment of three or more RNA structures is highly
+demanding computationally:
+the completely-unconstrained algorithm requires time
+$O(L^6)$ and memory $O(L^9)$.
+Even constrained versions are expensive, and have generally been avoided.
+However, three-way string-transducer compositions have proven extremely useful
+for statistical alignment
+ \citep{HolmesBruno2001,JensenHein2002,RedelingsSuchard2005}
+and ancestral reconstruction of DNA \citep{PatenHolmesBirney2008}.
+In all except the work of \cite{JensenHein2002},
+these dynamic programming algorithms have been constrained such that the
+complexity is reduced to the two-sequence case,
+which is known to be practical for RNA.
+Knowledge of the three-way scoring scheme is
+a critically important step in designing such constrained dynamic programs;
+such is the nature of the Triplet SCFG construction code
+whose implementation we report here.
+
+
+\subsection{Reconstruction of ancestral structures}
+
+The program \indiegram\ can perform maximum-likelihood inference on the
+three-sequence evolutionary model of \figref{threeway}.
+In contrast to the \xrate\ reconstructions described in
+\secref{subst-reconstruction},
+which are contingent on a consensus secondary structure,
+\indiegram\ can reconstruct indels and changes in secondary structure
+(as long as those changes are modeled by the underlying transducer).
+
+This extra power comes at a computational cost.
+For tractability, \indiegram\ uses the concept of {\bf fold envelopes}
+to limit the fold space considered by the CYK algorithm
+ \citep{HolmesRubin2002a}.
+Structural information for the three extant sequences can
+(optionally) be supplied
+as input.  If no structural information is supplied, then \indiegram\
+uses a single-sequence SCFG
+to estimate a set of plausible folds \citep{Holmes2005}.
+
+We parametrized the singlet and branch transducers of the TKFST model using estimates reported by
+\pfold, a phylo-grammar for RNA secondary structure prediction \citep{KnudsenHein2003}, and
+\evoldoer, an implementation of the Structure Tree model for two sequences \citep{Holmes2004}.
+
+We aimed to reconstruct most-probable ancestral structures of 
+two families of structured RNAs, the \emph{nanos} 3' translational control element (TCE)
+and the tRNAs.
+We chose these two families because
+their sequences are short
+and their structures are experimentally determined:
+both factors that help to constrain the computationally-demanding
+three-sequence Sankoff algorithm.
+Biologically, both ancestors are interesting:
+the original {\em nanos} TCE may speak to the evolution of
+post-transcriptional regulation \citep{CrucsEtAl2000}, while
+the primal tRNA was hypothesized by \cite{Hopfield78}
+to have an alternate structure associated with the
+origin of the genetic code.
+(The TKFST model does not incorporate helix-rearrangement events
+of the type proposed by Hopfield, but a TKFST-based reconstruction
+could in principle falsify Hopfield's hypothesis; furthermore,
+it is conceptually possible to design parse-tree transducers that
+approximate limited helix rearrangement.)
+%Thus, the present examples are mostly proofs-of-principle,
+%but are ultimately directed towards real evolutionary questions.
+
+\figref{reconstructions} shows the reconstructed structures.
+The corresponding alignments are shown in \figref{alignments}.
+Both predicted ancestral structures closely match the well-known consensus structures for these families.
+However, the tRNA alignment also highlights a potential flaw in the TKFST model:
+the penalty for deleting and re-inserting a stem is too weak
+(the rates of such events are proportional to the rates for deleting and re-inserting unpaired nucleotides),
+so that TKFST prefers to do this rather than make a low-identity stem alignment.
+This flaw arises due to a technicality in the way TKFST nests stems inside loops \citep{Holmes2004}.
+This potential problem with the TKFST model
+also highlights the value of the parse-tree transducer framework.
+Though it is beyond the scope of this paper,
+a parse-tree transducer without this flaw could readily be designed,
+and all the machinery we have described (including the transducer composition algorithms and the \indiegram\ program)
+could be re-used without modification.
+
+Together these results suggest that (1) while flawed in ways that have been highlighted by our tests,
+the TKFST model is a reasonable model of some aspects of RNA structural evolution;
+and (2) parse-tree transducers form an appropriate framework in which to address the above-mentioned flaws,
+and furthermore can be effective on real biological data.
+
+\tabref{complexities} shows estimates of the memory and time required to reconstruct 
+the \emph{nanos} 3' TCE, tRNAs, Y RNAs and Group II intron.
+Reconstruction of the Y RNA and Group II intron would be particularly interesting, as
+both show significant structural divergence.
+
+
+
+
+% to do: rewrite per rna world criticisms; tone down
+
+\section{Discussion} \seclabel{discussion}
+
+Following the conception of paleo-genetics by \cite{PaulingZuckerkandl63},
+a large number of synthetic reconstructions of ancient proteins have been
+reported in the literature
+\citep{MalcolmEtAl90,StackhouseEtAl90,ZhangRosenberg2002,GaucherEtAl2003,ThomsonEtAl2005,ChangEtAl2002,SunEtAl2002,OrtlundEtAl2007}.
+There are also the beginnings of a movement to reconstruct ancient DNA
+\citep{IvicsEtAl91,AdeyEtAl94,BlanchetteEtAl2004,NoonanEtAl2006,Gaucher2007b,EliasTuller2007,PatenHolmesBirney2008}.
+Given the importance of the RNA world hypothesis to
+current discussions of the origin of life \citep{MarintchevWagner2004,Muller2005,CavalierSmith2006,WilliamKoonin2006,Forterre2006,Yakhnin2007,DanchinEtAl2007},
+the many modern-day relics of this world
+ \citep{LeeEtAl93,LoweEddy99,Eddy01,MandalEtAl2003}
+and the recent proposal of a structural model for the primordial ribosome
+ \citep{SmithEtAl2008},
+we believe that phylogenetic reconstruction of ancient RNA is a significant
+problem, deserving of strong bioinformatics support.
+
+
+% Prior art
+The work reported in this paper builds on substantial prior art in the areas of evolutionary modeling and ancestral reconstruction.
+The reconstruction of ancient sequences was first proposed by Pauling and Zuckerkandl in 1963 \citep{PaulingZuckerkandl63};
+current applications of this idea, mostly using substitution models, are surveyed by \citep{Liberles2007}.
+Many algorithms in phylogenetics implicitly reconstruct substitution histories,
+whether by parsimony \citep{Edwards63,HendyPenny82} or likelihood \citep{Felsenstein81}.
+The term {\bf statistical alignment} was coined by Hein {\em et al} to describe the simultaneous solution of the reconstruction and alignment problem \citep{HeinEtal2000},
+following the phylogenetic model of indels developed by Thorne {\em et al} \citep{ThorneEtal91};
+this is a growing area
+\citep{Hein2001,HolmesBruno2001,Holmes2003,KnudsenMiyamoto2003,LunterSongMiklosHein2003,MiklosLunterHolmes2004,LunterEtAl2004,BradleyHolmes2007,SatijaEtAl2008}
+as, more broadly, is the reconstruction of indel histories
+\citep{KimSinha2007,DialloEtAl2007}
+particularly at the genomic scale \citep{MillerHausslerEtAl2006,PatenHolmesBirney2008}.
+There is substantial prior work in computational linguistics
+on the theory of transducers for sequences \citep{MohriPereiraRiley2000}
+and parse trees \citep{Rounds70,Thatcher70,GecsegSteinby97,ComonEtAl2007-TreeTransducers}
+with which we have endeavoured to maintain terminological consistency.
+Clearly, we draw on the bioinformatics literature for SCFGs
+\citep{Eddy94,Sakakibara94c,Durbin98}
+especially Pair SCFGs \citep{RivasEddy99,Holmes2005,DowellEddy2006}
+and phylogenetic SCFGs \citep{KnudsenHein2003}.
+In particular, an early example of a pairwise conditional model $P(Y|X)$ for structure-dependent RNA evolution
+may be found in \citep{KleinEddy2003}.
+A conditional framework similar to ours in some respects is described by Sakakibara {\em et al} \citep{Sakakibara2003}.
+The statistical inference algorithms for multi-sequence SCFGs are closely related to the ``protosequence algorithm'' of Sankoff \citep{Sankoff85},
+a seminal work in both RNA structural alignment and ancestral reconstruction.
+
+In this paper we have reported innovations to two programs, \xrate\ and \stemloc,
+rendering them suitable for the challenge of reconstructing
+the ancestral RNA world from its modern descendants.
+The \xrate\ program can now reconstruct ancestral RNA substitution histories,
+while \stemloc\ can align and predict RNA structures
+using externally-supplied grammars
+(including grammars derived from evolutionary models).
+We have tested these programs using simulations, cross-validations, alignment benchmarks and structure prediction benchmarks.
+
+Building on these results, we have presented
+a general algorithm for constructing a multiple-sequence stochastic grammar
+modeling the common phylogenetic descent of a group of RNA sequences,
+along with a specific implementation of this algorithm---\indiegram---suitable
+for three-way RNA alignment and reconstruction.
+Using the TKF Structure Tree model, we demonstrated
+the capability of such composite grammars
+to infer ancestral structures of structured RNAs.
+
+While we have focused on the TKF Structure Tree model,
+our model-construction algorithm is applicable to any model of the evolution of secondary
+structure which can be expressed as a parse-tree transducer.
+Realistic structural and thermodynamic effects---such as base-stacking
+or loop length distributions---can, in principle, be incorporated.
+%Furthermore, while an evolutionary model of structural evolution
+%is necessarily complex,
+%our model-construction algorithm enforces a compact parametrization,
+%allowing fast training on structural alignments of pairs of sequences.
+
+As argued in \secref{tkfst},
+inference on models on the star phylogeny with three leaves
+is sufficient to construct an MCMC sampling algorithm
+over many sequences on an arbitrary phylogeny.
+A sketch of such a sampling algorithm is as follows:
+at each step of the sampling algorithm, we re-sample the sequence
+and structure of the ancestral node $W$ in \figref{threeway},
+conditioned on the sequences and structures of $X$, $Y$ and $Z$.
+The structural alignment of all four sequences can change at each step,
+providing for fast mixing and guaranteeing ergodicity.
+This move is similar to the sampler proposed by \cite{JensenHein2002} for 
+models with a HMM structure.
+
+With reference to the motivating problem of reconstructing ribosomal RNA,
+the sequence-level reconstructions with \xrate\ 
+(described in \secref{subst-reconstruction})
+are certainly feasible on computing resources available now or in the near future.
+However, reconstructions of structural changes
+using the three-way sampling kernel of \figref{threeway}
+would require resources far in excess of what is currently available;
+barring the availability of supercomputers with terabytes of memory,
+such algorithms will only be feasible for short RNAs (\tabref{complexities}).
+Thus, alternate strategies will have to be explored.
+One promising direction is to consider variations on the three-way sampling kernel,
+such as the importance-sampling approach described for the TKF model by \cite{RedelingsSuchard2005}.
+With reference to \figref{threeway},
+this approach first proposes an ancestor $W$ by aligning $X$ to $Y$ (ignoring $Z$); then, in a second step, the proposed $W$ is independently aligned to $Z$.
+The proposed three-way alignment and reconstruction is then randomly accepted (or rejected) using a Hastings ratio based on the three-way transducer composition.
+The complexity of this kernel is the same as the pairwise case (\figref{parent});
+with suitable constraints, this is feasible for RNA grammars on present hardware, at least for ribosomal domains
+(if not yet whole subunits---although pairwise alignment of those should also be possible soon).
+The approach of Redelings and Suchard therefore merits future consideration in the context of statistical alignment of RNA.
+
+The evolutionary models we have described form a theoretical foundation for studying
+the structural evolution of RNA gene families in detail.
+By opening the door to ancestral sequence reconstruction and paleogenomics,
+these algorithms will allow us to test our knowledge of structural evolution
+by direct experimental investigation of the RNA world.
+
+%All programs described here are released under the GNU General Public License and
+%can be download from \darturl\ as part of the \dart\ software package for sequence analysis.
+
+
+\section*{Funding}
+This work was funded by NIH/NHGRI grant 1R01GM076705.
+RKB was partially supported by a NSF Graduate Research Fellowship.
+
+\section*{Acknowledgements}
+
+We thank
+Jamie Cate,
+Jotun Hein,
+Sean Eddy,
+Jeff Thorne,
+David Haussler,
+Jennifer Doudna,
+Elena Rivas and
+Eric Westhof
+for inspirational discussions.
+
+
+% tables
+\clearpage
+
+% nanos: Counted 3672701 subseqs and 48323860 bifurcations.
+% tRNA: Counted 12573792 subseqs and 404730480 bifurcations.
+% Y: Counted 34474759 subseqs and 1429713088 bifurcations.
+% g2intron: Counted 139037184 subseqs and 1895528744 bifurcations.
+% Scaling constant is approximately
+% A * (404730480 / 48323860) = (19 / 3) => A = 0.76
+% time = A * (# bifs / # bifs for nanos) * time for nanos
+% Y time = 0.76 * (1429713088 / 48323860) * 3 min = 67 min
+% g2intron time = 0.76 * (1895528744 / 48323860) * 3 min = 89 min
+\begin{table}[p]
+  \centering
+  \begin{tabular}{lrrr} \hline
+    Family & Sequence lengths & Memory & Time \\ \hline
+    \emph{nanos} 3' TCE & 61-64 nt & 3 Gb & 3 min \\
+    tRNA & 69-73 nt & 11 Gb & 19 min \\
+    Y RNA & 47-81 nt & 33 Gb & 70 min \\
+    Group II intron & 76-91 nt & 122 Gb & 90 min \\ \hline
+  \end{tabular}
+  \caption{\tablabel{complexities}
+    Estimates of the memory and time required to reconstruct ancestral structures of three RNAs
+    from several families as reported by \indiegram.
+    The time estimates are for a 2.2GHz AMD Opteron 848 CPU.
+    The \emph{nanos} 3' TCE and tRNA sequences are those of \figref{reconstructions}.
+    The Group II intron sequences (identifiers Z00044.1-87253\_87177, X57546.1-2817\_2907 and X04465.1-2700\_2775)
+    are from BralibaseII \citep{GardnerEtAl2005}.
+    The Y RNAs are hY1, hY4, and hY5 from \cite{TeunissenEtAl2000}; sequence lengths exclude the conserved
+    stem S1.
+  }
+\end{table}
+
+% Use table to allow the table to span the width of the entire page.
+\begin{table}[p]
+  \centering
+  \begin{tabular}{rclrrclr}\hline
+    source & $\rightarrow$ & destination & probability & source & $\rightarrow$ & destination & probability \\ \hline
+    $L$ & $\rightarrow$ & $x \,\, I_L$ & $\kappa_1 \cdot p(x)$ & $S$ & $\rightarrow$ & $x \,\, I_S \,\, y$ & $\kappa_2 \cdot p(x,y)$ \\
+    & $|$ & $B$ & $\kappa_1 \cdot p_S$ & & $|$ & $B_e$ & $1-\kappa_2$ \\
+    & $|$ & $\Send$ & $1-\kappa_1$ \\n
+    $I_L$ & $\rightarrow$ & $x \, \, I_L$ & $\kappa_1 \cdot p(x)$ & $I_S$ & $\rightarrow$ & $x \,\, I_S \,\, y$ & $\kappa_2 \cdot p(x,y)$\\
+    & $|$ & $B$ & $\kappa_1 \cdot p_S$ & & $|$ & $B_e$ & $1-\kappa_2$\\
+    & $|$ & $\Send$ & $1-\kappa_1$ \\
+    \\
+    $B$ & $\rightarrow$ & $(L \,\, S)$ & 1 \\
+    $B_e$ & $\rightarrow$ & $(L \,\, \Send)$ & 1 \\ \hline
+  \end{tabular}
+  \caption{\tablabel{tkfstsinglet}Singlet transducer (single-sequence SCFG) for the TKF Structure Tree model.
+    The state types for this model are shown in \tabref{tkfstsinglet-types}.
+    The singlet transducer generates ancestral RNA sequences and structures.
+    Both loop ($L$ and $I_L$) and stem ($S$ and $I_S$) sequence evolve as TKF sequences
+    with length parameters $\kappa_1$ and $\kappa_2$.
+    $p(x)$ and $p(x,y)$ are the equilibrium distributions of unpaired nucleotides $x$ and
+    paired nucleotides $(x,y)$.
+    The bifurcation state $B_e$ is used to end stem sequences
+    (only loop sequences are allowed to transition to the empty string).
+  }
+\end{table}
+
+\begin{table}[p]
+  \centering
+  \begin{tabular}{lrrrl}
+    state & $\type$ & $\absorb$ & $\emit$ & description \\ \hline
+    $L$ & $\Sstart$ & & & Start of a loop \\
+    $I_L$ & $\Sinsert$ & & $(x,\Tnull)$ & Single-base emission \\
+    \\
+    $S$ & $\Sstart$ & & & Start of a stem \\
+    $I_S$ & $\Sinsert$ & & $(x,y)$ & Base-pair emission \\
+    \\
+    $B$ & $\Sinsert$ & & $(L\,S)$ & Bifurcation \\ \hline
+  \end{tabular}
+  \caption{\tablabel{tkfstsinglet-types}
+    State types of the singlet transducer of the TKF Structure Tree model.
+    Singlet transducers can only have states of type $\Sstart$ or $\Sinsert$.
+  }
+\end{table}
+
+
+% Use table to allow the table to span the width of the entire page.
+\begin{table}[p]
+  \begin{tabular}{rclrrclr} \hline
+    source & $\rightarrow$ & destination & probability & source & $\rightarrow$ & destination & probability \\ \hline
+    $L$ & $\rightarrow$ & $u \,\, I_L$ & $\beta_1(t) \cdot p(u)$ & $S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\beta_2(t) \cdot p(u,v)$ \\
+    & $|$ & $B_i$ & $\beta_1(t) \cdot p_S$ & & $|$ & $W_S$ & $1-\beta_2(t)$ \\
+    & $|$ & $W_L$ & $1-\beta_1(t)$ \\
+    $I_L$ & $\rightarrow$ & $u \,\, I_L$ & $\beta_1(t) \cdot p(u)$ & $I_S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\beta_2(t) \cdot p(u,v)$ \\
+    & $|$ & $B_i$ & $\beta_1(t) \cdot p_S$ & & $|$ & $W_S$ & $1-\beta_2(t)$ \\
+    & $|$ & $W_L$ & $1-\beta_1(t)$ \\
+    $M_L$ & $\rightarrow$ & $u \,\, I_L$ & $\beta_1(t) \cdot p(u)$ & $M_S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\beta_2(t) \cdot p(u,v)$ \\
+    & $|$ & $B_i$ & $\beta_1(t) \cdot p_S$ & & $|$ & $W_S$ & $1-\beta_2(t)$ \\
+    & $|$ & $W_L$ & $1-\beta_1(t)$ \\
+    $D_L$ & $\rightarrow$ & $u \,\, I_L$ & $\gamma_1(t) \cdot p(u)$ & $D_S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\gamma_2(t) \cdot p(u,v)$ \\
+    & $|$ & $B_i$ & $\gamma_1(t) \cdot p_S$ & & $|$ & $W_S$ & $1-\gamma_2(t)$ \\
+    & $|$ & $W_L$ & $1-\gamma_1(t)$ \\
+    $W_L$ & $\rightarrow$ & $u \,\, M_L$ & $\alpha_1(t) \cdot p(u|x)$ & $W_S$ & $\rightarrow$ & $u \,\, M_S \,\, v$ & $\alpha_2(t) \cdot p(u,v|x,y)$ \\
+    & $|$ & $D_L$ & $1-\alpha_1(t)$ & & $|$ & $D_S$ & $1-\alpha_2(t)$ \\
+    & $|$ & $B$ & $\alpha_1(t)$ & & $|$ & $B_e$ & $1$ \\
+    & $|$ & $B_p$ & $1-\alpha_1(t)$ \\
+    & $|$ & $\Send$ & $1$ \\
+    \\
+    $B$ & $\rightarrow$ & $L \,\, S$ & 1 & $B_p$ & $\rightarrow$ & $L \, \, \Send$ & 1 \\
+    $B_i$ & $\rightarrow$ & $L_i \,\, S_i$ & 1 & $B_e$ & $\rightarrow$ & $L \, \, \Send$ & 1 \\ \hline
+  \end{tabular}
+  \caption{\tablabel{tkfstbranch}Branch transducer (conditionally-normalized Pair SCFG) for the TKF Structure Tree model.
+    The state types for this model are shown in \tabref{tkfstbranch-types}.
+    The branch transducer evolves a sequence and structure along a branch of the phylogenetic tree.
+    States $L_i$ and $S_i$ are the $\Sstart$ states for a sub-model corresponding to an insertion of a
+    new stem in the descendant sequences; the sub-model (not shown) is identical in structure to 
+    the singlet transducer shown in \tabref{tkfstsinglet}.
+    $p(u)$ and $p(u,v)$ are the equilibrium distributions of unpaired nucleotides $u$ and
+    paired nucleotides $(u,v)$; 
+    $p(u|x)$ and $p(u,v|x,y)$ are the conditional distributions (match probabilities) of unpaired nucleotides $u$ 
+    given an ancestral nucleotide $x$ and paired nucleotides $(u,v)$ given ancestral nucleotides $(x,y)$.
+    The functions $\alpha_n(t)$, $\beta_n(t)$ and $\gamma_n(t)$ are parametrized by the insertion and deletion rates of the Structure Tree model
+    and defined in Text S?. % to do
+  }
+\end{table}
+
+
+
+\begin{table}[p]
+  \centering
+  \begin{tabular}{lrrrl}
+    state & $\type$ & $\absorb$ & $\emit$ & description \\ \hline
+    $L$ & $\Sstart$ & & & Start of a loop \\
+    $I_L$ & $\Sinsert$ & & $(u,\Tnull)$ & Single-base insertion \\
+    $M_L$ & $\Smatch$ & $(x,\Tnull)$ & $(u,\Tnull)$ & Single-base substitution \\
+    $D_L$ & $\Smatch$ & $(x,\Tnull)$ & & Single-base deletion \\
+    $W_L$ & $\Swait$ & & & Wait for next base \\
+    \\
+    $S$ & $\Sstart$ & & & Start of a stem \\
+    $I_S$ & $\Sinsert$ & & $(u,v)$ & Base-pair insertion \\
+    $M_S$ & $\Smatch$ & $(x,y)$ & $(u,v)$ & Base-pair substitution \\
+    $D_S$ & $\Smatch$ & $(x,y)$ & & Base-pair deletion \\
+    $W_S$ & $\Swait$ & & & Wait for next base-pair \\
+    \\
+    $B_i$ & $\Sinsert$ & & $(L_i\,S_i)$ & Stem insertion \\
+    $B$ & $\Smatch$ & $(L\,S)$ & $(L\,S)$ & Stem conservation \\
+    $B_p$ & $\Smatch$ & $(L\,S)$ & $(L\,\Send)$ & Stem deletion \\
+    $B_e$ & $\Smatch$ & $(L\,\Send)$ & $(L\,\Send)$ & Stem extinction \\
+  \end{tabular}
+  \caption{\tablabel{tkfstbranch-types}
+    State types of the branch transducer of the TKF Structure Tree model.
+    States which have the same names as states of the singlet transducer in \tabref{tkfstsinglet-types}
+    are the branch-transducer equivalents of the corresponding singlet-transducer states
+    (e.g. a $\Smatch$ state might be the branch equivalent of an $\Sinsert$ state).
+    States $L_i$ and $S_i$ are the $\Sstart$ states of a sub-model (not shown) identical
+    in structure to the singlet transducer.  They are used to insert a new stem-loop structure.
+  }
+\end{table}
+
+% figures
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \begin{tabular}{lr}
+     \includegraphics [scale=0.4] {figs/nanos_ancestral_ss.pdf} \hspace{1in} &
+     \includegraphics [scale=0.25] {figs/tRNA_ancestral_ss.pdf}
+  \end{tabular}
+  \caption{\figlabel{reconstructions}
+    Maximum-likelihood reconstructions of the ancestral structures of
+    selected \emph{nanos} 3' translational 
+    control elements (left) and tRNAs (right).
+    These are the most-probable ancestral structures and sequences under the TKF Structure Tree model,
+    conditional on the extant structures and sequences.
+    The \indiegram\ program was used to infer alignments and ancestral structures, then the \xrate\ program was used to infer ancestral sequence, conditional on those alignments and structures.
+    The full multiple sequence alignments of extant and ancestral sequences are shown in \figref{alignments}.
+    The three \emph{nanos} sequences are the seed sequences of the corresponding \RFAM\ family \citep{Rfam2005};
+    the three tRNA sequences (identifiers AB042432.1-14140\_14072, Z82044.1-16031\_16103 and AC008670.6-83725\_83795)
+    are from \bralibaseII\ \citep{GardnerEtAl2005}.
+    Tree branch lengths were estimated with a Jukes-Cantor model and the \xrate\ program \citep{KlostermanEtAl2006}.
+    Figures were produced with {\tt RNAplot} from the Vienna RNA package \citep{HofackerEtAl94}.
+  }
+\end{figure}
+
+\begin{sidewaysfigure}[p]
+\begin{verbatim}
+Nanos tree: (AF252722.1:0.005494,(U24695.1:0.1643,M72421.1:0.0001)Ancestor:0.005494);
+
+  U24695.1 UG--GAAGAAGCUCUGGCAGCUUUUUAAGCGUUUAUAUAAGA-GUUAUAUAUAUGCGCGUUC----CA
+           <<--<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<...-....>>>>>>.>>....>>---->>
+  M72421.1 UGGAGCAGAGGCUCUGGCAGCUUUUGCAGCGUUUAUAUAACAUGAAAUAUAUAUAC----GCAUUCCG
+           <<<<<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>>
+AF252722.1 NGGAGCAGAGGCUCUGGCAGCUUUUGCAGCGUUUAUAUAACAAGAAAUAUAUAUAC----GCAUUCCG
+           <<<<<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>>
+  Ancestor UGGAGCAGAGGCUCUGGCAGCUUUUGCAGCGUUUAUAUAACAUGAAAUAUAUAUAC----GCAUUCCG
+           <<<<<<<<<<<<<.....>>>>>>>>>.<<<<.<<<<<<........>>>>>>.>>---->>..>>>>
+
+tRNA tree: (AC008670.6:0.0001,(AB042432.1:1.1787,Z82044.1:1.1787)Ancestor:0.0001);
+
+AB042432.1 GUUUCUGUAGUUGAAU--UA-CAACGAUGAUUUUUCAUGUCAUUGGU------------------CGCAGUUGAAUGCUGUGUAGAAAUA
+           <<<<<<<..<<<<...--..->>>>.<<<<<.......>>>>>....------------------<<<<<.......>>>>>>>>>>>>.
+  Z82044.1 GCGGUUGUGGCGAAGUGGUUAACGCACCAGAUUGUGGCUCUGGCACUCGUGGGUUCGAUUCCCAU-----------------CAAUCGCC
+           <<<<<<<..<<<<........>>>>.<<<<<.......>>>>>.....<<<<<.......>>>>>----------------->>>>>>>.
+AC008670.6 ACUUUUAAAGGAUAACAGCC-AUCCGUUGGUCUUAGGCCCCAAAAAU-UUUGGUGCAACUCCAAA-----------------UAAAAGUA
+           <<<<<<<..<<<<.......->>>>.<<<<<.......>>>>>....-<<<<<.......>>>>>----------------->>>>>>>.
+  Ancestor ACUUUUAAAGGAUAACAGCCGAUCC-UUGGUCUUAGGCCCCAAAAAUCUUUGGUGCAACUCCAAA-----------------UAAAAGUA
+           <<<<<<<..<<<<........>>>>-<<<<<.......>>>>>.....<<<<<.......>>>>>----------------->>>>>>>.
+\end{verbatim}
+  \caption{\figlabel{alignments}
+    Alignments for the ancestral reconstructions of \figref{reconstructions}.
+    The structures shown were taken from \RFAM\ and \bralibaseII, but the alignments were re-computed independently
+    using \indiegram.
+    Due to a short branch length in the phylogeny of the tRNA example,
+    the reconstructed ancestor is almost (but not quite) identical to the AC008670.6 sequence.
+    One flaw of the TKF Structure Tree model is its excessive tendency to delete and re-insert a stem, instead of making
+    a poor stem alignment, as is evident in the tRNA alignment.
+    Methodology and data sources are provided in the caption of \figref{reconstructions}.
+}
+\end{sidewaysfigure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics [width=0.5\textwidth] {figs/stree.pdf}
+  \caption{\figlabel{tkfst}
+    The {\bf TKF Structure Tree} exploits the homomorphism between a foldback RNA structure and a labeled tree graph \citep{Holmes2004}.
+    The model consists of recursively nested {\bf loop sequences} (gray, horizontal) and {\bf stem sequences} (black, vertical).
+    The loops are sequences of unpaired bases; the stems, sequences of covarying base-pairs.
+    Both loop and stem sequences evolve according to the TKF model \citep{ThorneEtal91}.
+  }
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics [scale=0.4] {figs/parent.pdf}
+  \caption{\figlabel{parent}
+    A simple example of transducer composition to build an evolutionary model of two extant sequences.
+    An ancestral sequence $W$ evolves into two descendant sequences $X$ and $Y$.
+    A singlet transducer (the horizontal gray box) emit ancestral sequence and structure
+    and two branch transducers (the gray boxes labeled $T_X$ and $T_Y$)
+    mutate it according to the specified evolutionary model.
+    Gray nodes correspond to observed data and white nodes unobserved data.
+  }
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics [scale=0.4] {figs/threeway.pdf}
+  \caption{\figlabel{threeway}
+    A star phylogeny with three (extant) leaf sequences.
+    An ancestral sequence $W$ evolves into three descendant sequences $X$, $Y$ and $Z$.
+    A singlet transducer (the horizontal gray box) emit ancestral sequence and structure
+    and three branch transducers (the gray boxes labeled $T_X$, $T_Y$ and $T_Z$)
+    mutate it according to the specified evolutionary model.
+    Gray nodes correspond to observed data and white nodes unobserved data.
+    If the branch transducers are time-reversible, then this star phylogeny with three leaves is
+    the neighborhood of any interior node in a (binary) phylogenetic tree, 
+    from which it follows that evaluating the likelihood function
+    on this star phylogeny is sufficient for a sampling algorithm on an arbitrary phylogeny.
+  }
+\end{figure}
+
+
+
+
+% make sure there is NO WHITESPACE in the list of .bib files to include!
+% it will make bibtex freak out
+\clearpage
+\bibliography{../latex-inputs/alignment,../latex-inputs/reconstruction,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna,../latex-inputs/transposon,../latex-inputs/url}
+\bibliographystyle{unsrt}
+
+\end{document}

@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GR X/1-62 SS    <.<...<<<<<((<<.......>>))>..-<<-<.<...>->->>----->>>>..>-.......>......
+X/1-62            uucagugaaguggccucuagucgguuaua-gg-gaaaauu-c-cc-----cuucaug-uuaggagauaggua
+#=GR Y/1-6 SS     ------------------------------------------------------------------......
+Y/1-6             ------------------------------------------------------------------aaugcu
+#=GR Z/1-51 SS    (.<...<<<(-------------------(<<<<.-...-.>>>>)....)>>>..>........)......
+Z/1-51            gauaagcucu-------------------uggcgg-aag-ucgccgguuuggagacaguuguuaguuagucu
+#=GC ancestral_SS <.<...<<<<-----------------..<<<-<.-...-->->>>---->>>>..>-.......>......
+#=GC PS_cons      ...................................................................a....
+#=GC SS_cons      ........................................................................
+                  -347.014
+//
+[0..62,0..6,0..51] -1 (Start) 35 (Null) 181 (Bifurc)
+ [0..56,0..0,0..45] 50 (Null) 92 (EmitXLRZLR) 40 (Null) 97 (EmitXLZL) 179 (Bifurc)
+  [2..48,0..0,2..36] 50 (Null) 92 (EmitXLRZLR) 40 (Null) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 179 (Bifurc)
+   [6..45,0..0,6..33] 50 (Null) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 40 (Null) 176 (Bifurc)
+    [10..27,0..0,10..10] 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) -2 (End)
+    [27..41,0..0,10..29] 41 (Null) 68 (EmitXL) 68 (EmitXL) 179 (Bifurc)
+     [29..41,0..0,10..25] 50 (Null) 154 (EmitZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 157 (EmitZLR) 92 (EmitXLRZLR) 40 (Null) 97 (EmitXLZL) 179 (Bifurc)
+      [33..38,0..0,16..19] 50 (Null) 85 (EmitXLR) 40 (Null) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) -2 (End)
+      [38..38,0..0,19..20] 40 (Null) 146 (EmitZL) -2 (End)
+     [41..41,0..0,25..29] 40 (Null) 146 (EmitZL) 146 (EmitZL) 146 (EmitZL) 146 (EmitZL) -2 (End)
+   [45..47,0..0,33..35] 40 (Null) 97 (EmitXLZL) 97 (EmitXLZL) -2 (End)
+  [48..55,0..0,36..44] 40 (Null) 146 (EmitZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) -2 (End)
+ [56..62,0..6,45..51] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+

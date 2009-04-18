@@ -1,0 +1,188 @@
+
+\ref{tab:stemissions} and state transitions in Table \ref{tab:sttransitions}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcccc}
+state & $\type$ & $\absorb$ & $\emit$ & $e(\,\bullet\,|\mathrm{ST})$\\ \hline
+$\state{L'}{}{}$ & $\Sstart$ \\
+$\state{I'_L}{}{y}$ & $\Sinsert$ & & $(y\,\Tnull)$ & $p_L(y)$ \\
+$\state{S'}{}{}$ & $\Sstart$ \\
+$\state{I'_S}{}{xy}$ & $\Sinsert$ & & $(x,y)$ & $p_S(x,y)$ \\
+$\bifurc{B'}{S'}{L'}$ & $\Sinsert$ & & & 1 \\
+$\bifurc{B'}{\Send}{L'}$ & $\Sinsert$ & & & 1 \\
+\\
+$\state{L}{}{}$ & $\Sstart$ \\
+$\state{I_L}{}{y}$ & $\Sinsert$ & & $(y\,\Tnull)$ & $p_L(y)$ \\
+$\state{M_L}{x}{y}$ & $\Smatch$ & $(x\,\Tnull)$ & $(y\,\Tnull)$ & $e_L(y|x)$ \\
+$\state{D_L}{x}{}$ & $\Smatch$ & $(x\,\Tnull)$ &  & 1 \\
+$\state{W_L}{}{}$ & $\Swait$ \\
+$\bifurc{B}{S}{L}$ & $\Smatch$ & & & 1 \\
+$\bifurc{Bp}{\Send}{L}$ & $\Smatch$ & & & 1 \\
+$\bifurc{B'}{S'}{L}$ & $\Sinsert$ & & & 1 \\
+\\
+$\state{S}{}{}$ & $\Sstart$ \\
+$\state{I_S}{}{xy}$ & $\Sinsert$ & & $(x,y)$ & $p_S(x,y)$ \\
+$\state{M_S}{uv}{xy}$ & $\Smatch$ & $(u,v)$ & $(x,y)$ & $e_S(x,y|u,v)$ \\
+$\state{D_S}{uv}{}$ & $\Smatch$ & $(u,v)$ &  & 1 \\
+$\state{W_S}{}{}$ & $\Swait$ \\
+$\bifurc{B}{\Send}{L}$ & $\Smatch$ & & & 1 \\
+\\
+\end{tabular}
+\caption{\label{tab:stemissions}Absorptions and emissions of states of the TKF91 Structure Tree transducer.}
+\end{table}
+
+The primed states $\{L',\,I'_L,\,S',\,I'_S,\,\bifurc{L'}{}{},\,\bifurc{\Send}{}{}\}$ are those of the singlet machine 
+which lies at the highest ancestral node $\hat{n} = \argmin_m \{\type(a_m) \in \{\Sstart,\,\Sinsert\}\}$
+(as defined in \secref{transitions}).  $x,\,y,\,u,\,v$ are any terminal symbols.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rclcrclcrclc}
+& & & $t(\,\bullet\,|\mathrm{ST})$ & & & & $t(\,\bullet\,|\mathrm{ST})$ & & & & $t(\,\bullet\,|\mathrm{ST})$ \\ \cline{4-4} \cline{8-8} \cline{12-12}
+$\state{L'}{}{}$ & $\to$ & $\state{I'_L}{}{y}$ & $\kappa_L$ & $\state{I'_L}{}{y}$ & $\to$ & $\state{I'_L}{}{y}$ & $\kappa_L$ \\
+& & $\bifurc{B'}{S'}{L'}$ & 777 & & & $\bifurc{B'}{S'}{L'}$ & 777 \\
+& & $\Send{}{}$ & $(1-\kappa_L)$ & & & $\Send{}{}$ & $(1-\kappa_L)$ \\
+$\state{S'}{}{}$ & $\to$ & $\state{I'_S}{}{xy}$ & $\kappa_S$ & $\state{I'_S}{}{xy}$ & $\to$ & $\state{I'_S}{}{xy}$ & $\kappa_S$ \\
+& & $\bifurc{B'}{\Send}{L'}$ & $(1-\kappa_S)$ & & & $\bifurc{B'}{\Send}{L'}$ & $(1-\kappa_S)$ \\
+\\
+$\state{L}{}{}$ & $\to$ & $\state{I_L}{}{y}$ & $\beta_L$ & $\state{I_L}{}{y}$ & $\to$ & $\state{I_L}{}{y}$ & $\beta_L$ & $\state{W_L}{}{}$ & $\to$ & $\state{M_L}{x}{y}$ & $\alpha_L$ \\
+& & $\bifurc{B'}{S'}{L}$ & 777 & & & $\bifurc{B'}{S'}{L}$ & 777  & & & $\state{D_L}{x}{}$ & $(1-\alpha_L)$ \\
+& & $\state{W_L}{}{}$ & $(1-\beta_L)$ & & & $\state{W_L}{}{}$ & $(1-\beta_L)$  & & & $\bifurc{B}{S}{L}$ & $\alpha_L$ \\
+& & & & $\state{M_L}{x}{y}$ & $\to$ & $\state{I_L}{}{y}$ & $\beta_L$  & & & $\bifurc{Bp}{\Send}{L}$ & $(1-\alpha_L)$ \\
+& & & & & & $\bifurc{B'}{S'}{L}$ & 777 & & & $\Send$ & 1 \\
+& & & & & & $\state{W_L}{}{}$ & $(1-\beta_L)$ \\
+& & & & $\state{D_L}{x}{}$ & $\to$ & $\state{I_L}{}{y}$ & $\gamma_L$ \\
+& & & & & & $\bifurc{B'}{S'}{L}$ & 777 \\
+& & & & & & $\state{W_L}{}{}$ & $(1-\gamma_L)$ \\
+\\
+$\state{S}{}{}$ & $\to$ & $\state{I_S}{}{xy}$ & $\beta_S$ & $\state{I_S}{}{xy}$ & $\to$ & $\state{I_S}{}{xy}$ & $\beta_S$ & $\state{W_S}{}{}$ & $\to$ & $\state{M_S}{uv}{xy}$ & $\alpha_S$ \\
+& & $\state{W_S}{}{}$ & $(1-\beta_S)$ & & & $\state{W_S}{}{}$ & $(1-\beta_S)$  & & & $\state{D_S}{uv}{}$ & $(1-\alpha_S)$ \\
+& & & & $\state{M_S}{uv}{xy}$ & $\to$ & $\state{I_S}{}{xy}$ & $\beta_S$  & & & $\bifurc{B}{\Send}{L}$ & 1 \\
+& & & & & & $\state{W_S}{}{}$ & $(1-\beta_S)$ \\
+& & & & $\state{D_S}{uv}{}$ & $\to$ & $\state{I_S}{}{xy}$ & $\gamma_S$ \\
+& & & & & & $\state{W_S}{}{}$ & $(1-\gamma_S)$ \\
+\end{tabular}
+\caption{\label{tab:sttransitions}Allowed transitions between states of the TKF91 Structure Tree transducer.}
+\end{table}
+
+
+***Need to fix weights currently marked with '777'.
+
+***Add a note that this model makes it too easy to prune subtrees
+
+
+
+\section{Old Stuff}
+
+
+The inside algorithm includes a summation over the possible ``children'' of a state $\bvec{a}$.  We separate
+these states into sets
+\begin{align}
+  \mathscr{C}_{\bvec{a}}^{\mathrm{null}} &= \left\{ \bvec{b}\,|\,\exists\,\, \bvec{a} \to \bvec{b}, \type(b_{\activenode{a}}) \in \{ \Sstart,\,\Swait \} \right\} \\
+  \mathscr{C}_{\bvec{a}}^{\mathrm{emit}}(\bvec{y},\,\bvec{z}) &= \left\{ \bvec{b}\,|\,\exists\,\, \bvec{a} \to \bvec{y'}\,\bvec{b}\,\bvec{z'}, \type(b_{\activenode{a}}) \in \{\Sinsert,\,\Smatch\} \right\} \\
+  \mathscr{C}_{\bvec{a}}^{\mathrm{bifur,L}} &= \left\{ \bvec{b}\,|\,\exists\,\, \bvec{a} \to \bvec{c}\,\bvec{b}, \type\left(\emit(b_{\activenode{a}})\right) \, \mathrm{defined} \right\} \\
+  \mathscr{C}_{\bvec{a}}^{\mathrm{bifur,R}} &= \left\{ \bvec{b}\,|\,\exists\,\, \bvec{a} \to \bvec{b}\,\bvec{d}, \type\left(\emit(b_{\activenode{a}})\right) \, \mathrm{defined} \right\} ,
+\end{align}
+where the requirement ``$\type\left(\emit(b_{\activenode{a}})\right) \, \mathrm{defined}$'' is equivalent to requiring that the bifurcation state $b_{\activenode{a}}$
+emit a nonterminal (the function $\type()$ is defined only on the domain of nonterminals).
+Recall that bifurcations are considered as emissions of nonterminals, in our view.
+We use the shorthand notation
+\beqn
+\mathscr{C}_{\bvec{a}}(\bvec{y},\,\bvec{z}) = \left\{ \begin{array}{ll}\mathscr{C}_{\bvec{a}}^{\mathrm{null}} & \bvec{y} = \bvec{z} = \Tnull \\ \mathscr{C}_{\bvec{a}}^{\mathrm{emit}}(\bvec{y},\,\bvec{z}) & \bvec{y} \ne \Tnull \,\mathrm{or}\, \bvec{z} \ne \Tnull \end{array} \right.
+\eeqn
+
+Similarly, the outside algorithm includes a summation over the possible ``parents'' of a state $\bvec{b}$.  We 
+separate these states into sets
+\begin{align}
+  \mathscr{P}_{\bvec{b}}^{\mathrm{null}} &= \left\{ \bvec{a}\,|\,\exists\,\, \bvec{a} \to \bvec{b}, \type(b_{\activenode{a}}) \in \{ \Sstart,\,\Swait \} \right\} \\
+  \mathscr{P}_{\bvec{b}}^{\mathrm{emit}}(\bvec{y},\,\bvec{z}) &= \left\{ \bvec{a}\,|\,\exists\,\, \bvec{a} \to \bvec{y'}\,\bvec{b}\,\bvec{z'}, \type(b_{\activenode{a}}) \in \{\Sinsert,\,\Smatch\} \right\} \\
+  \mathscr{P}_{\bvec{b}}^{\mathrm{bifur,L}} &= \left\{ \bvec{a}\,|\,\exists\,\, \bvec{a} \to \bvec{c}\,\bvec{b}, \type\left(\emit(b_{\activenode{a}})\right) \, \mathrm{defined} \right\} \\
+  \mathscr{P}_{\bvec{b}}^{\mathrm{bifur,R}} &= \left\{ \bvec{a}\,|\,\exists\,\, \bvec{a} \to \bvec{b}\,\bvec{d}, \type\left(\emit(b_{\activenode{a}})\right) \, \mathrm{defined} \right\} ,
+\end{align}
+We use the shorthand notation
+\beqn
+\mathscr{P}_{\bvec{b}}(\bvec{y},\,\bvec{z}) = \left\{ \begin{array}{ll}\mathscr{P}_{\bvec{b}}^{\mathrm{null}} & \bvec{y} = \bvec{z} = \Tnull \\ \mathscr{P}_{\bvec{b}}^{\mathrm{emit}}(\bvec{y},\,\bvec{z}) & \bvec{y} \ne \Tnull \,\mathrm{or}\, \bvec{z} \ne \Tnull \end{array} \right.
+\eeqn
+
+The superscripts indicate the nature of the states contained in the ``parent'' or ``child'' sets.  
+For example, a transition from $\bvec{a}$ to a state in $\mathscr{C}_{\bvec{a}}^{\mathrm{null}}$
+results in no emissions or absorptions.
+
+
+(Below is from before I switched to fold-envelope index notation instead of explicit subsequence coordinate pairs.)
+
+The left- and right-bifurcation probabilities are calculated in the Inside algorithm as
+\begin{align}
+  \mathrm{calcLBifurcProb}(\bvec{a}; \cdot) &= \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \inside{\bvec{c}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{b}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \nonumber \\
+  \mathrm{calcRBifurcProb}(\bvec{a}; \cdot) &= \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \inside{\bvec{b}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{d}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \, . \nonumber
+\end{align}
+
+The left- and right-bifurcation probabilities are calculated in the Outside algorithm as
+\begin{align}
+  \mathrm{calcLBifurcProb}(\bvec{b}; \cdot) &=  \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \outside{\bvec{a}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \, \inside{\bvec{c}}{k_1}{i_1}{k_2}{i_2}{k_3}{i_3} \nonumber \\
+  \mathrm{calcRBifurcProb}(\bvec{b}; \cdot) &=  \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \outside{\bvec{a}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{d}}{j_1}{k_1}{j_2}{k_2}{j_3}{k_3} \, .\nonumber
+\end{align}
+
+
+
+\subsection{TKF91}
+We can cast the TKF91 model \citep{ThorneEtal91} as a transducer as required by our formalism for building a composed machine.
+
+The TKF91 grammar generates a regular string language and so can be described by an HMM.
+After introducing a state of type $\Swait$, the corresponding transducer has states
+$\Phi \in \{\state{S}{}{},\,\state{I}{}{y},\,\state{M}{x}{y},\,\state{D}{x}{},\,\state{W}{}{}\}$.  Terminal absorptions and emissions are
+shown in Table \ref{tab:tkf91emissions} and state transitions in Table \ref{tab:tkf91transitions}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcccc}
+state & $\type$ & $\absorb$ & $\emit$ & $e(\,\bullet\,|\mathrm{TKF91})$\\ \hline
+$\state{S'}{}{}$ & $\Sstart$ \\
+$\state{I'}{}{y}$ & $\Sinsert$ & & $(y\,\Tnull)$ & $p(y)$ \\
+\\
+$\state{S}{}{}$ & $\Sstart$ \\
+$\state{I}{}{y}$ & $\Sinsert$ & & $(y\,\Tnull)$ & $p(y)$ \\
+$\state{M}{x}{y}$ & $\Smatch$ & $(x\,\Tnull)$ & $(y\,\Tnull)$ & $e(y|x)$ \\
+$\state{D}{x}{}$ & $\Smatch$ & $(x\,\Tnull)$ &  & 1 \\
+$\state{W}{}{}$ & $\Swait$ \\
+\end{tabular}
+\caption{\label{tab:tkf91emissions}Absorptions and emissions of states of the TKF91 transducer.}
+\end{table}
+
+$x,\,y$ are any terminal symbols.  The primed states $S',\,I'$ are those of the singlet machine which lies at the root node of the guide tree.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rclcrclcrclc}
+& & & $t(\,\bullet\,|\mathrm{TKF91})$ & & & & $t(\,\bullet\,|\mathrm{TKF91})$ & & & & $t(\,\bullet\,|\mathrm{TKF91})$ \\ \cline{4-4} \cline{8-8} \cline{12-12}
+$\state{S'}{}{}$ & $\to$ & $\state{I'}{}{y}$ & $\kappa$ & $\state{I'}{}{y}$ & $\to$ & $\state{I'}{}{y}$ & $\kappa$ \\
+& & $\state{\Send}{}{}$ & $(1-\kappa)$ & & & $\state{\Send}{}{}$ & $(1-\kappa)$ \\
+\\
+$\state{S}{}{}$ & $\to$ & $\state{I}{}{y}$ & $\beta$ & $\state{I}{}{y}$ & $\to$ & $\state{I}{}{y}$ & $\beta$ & $\state{W}{}{}$ & $\to$ & $\state{M}{x}{y}$ & $\alpha$ \\
+& & $\state{W}{}{}$ & $(1-\beta)$ & & & $\state{W}{}{}$ & $(1-\beta)$ & & & $\state{D}{x}{}$ & $(1-\alpha)$ \\
+& & & & $\state{M}{x}{y}$ & $\to$ & $\state{I}{}{y}$ & $\beta$  & & & $\Send$ & 1 \\
+& & & & & & $\state{W}{}{}$ & $(1-\beta)$ \\
+& & & & $\state{D}{x}{}$ & $\to$ & $\state{I}{}{y}$ & $\gamma$ \\
+& & & & & & $\state{W}{}{}$ & $(1-\gamma)$ \\
+\end{tabular}
+\caption{\label{tab:tkf91transitions}Allowed transitions between states of the TKF91 transducer.}
+\end{table}
+
+
+
+
+
+(Below is from before I switched to fold-envelope index notation instead of explicit subsequence coordinate pairs.)
+
+The left- and right-bifurcation probabilities are calculated in the Inside algorithm as
+\begin{align}
+  \mathrm{calcLBifurcProb}(\bvec{a}; \cdot) &= \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \inside{\bvec{c}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{b}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \nonumber \\
+  \mathrm{calcRBifurcProb}(\bvec{a}; \cdot) &= \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \inside{\bvec{b}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{d}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \, . \nonumber
+\end{align}
+
+The left- and right-bifurcation probabilities are calculated in the Outside algorithm as
+\begin{align}
+  \mathrm{calcLBifurcProb}(\bvec{b}; \cdot) &=  \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \outside{\bvec{a}}{k_1}{j_1}{k_2}{j_2}{k_3}{j_3} \, \inside{\bvec{c}}{k_1}{i_1}{k_2}{i_2}{k_3}{i_3} \nonumber \\
+  \mathrm{calcRBifurcProb}(\bvec{b}; \cdot) &=  \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \outside{\bvec{a}}{i_1}{k_1}{i_2}{k_2}{i_3}{k_3} \, \inside{\bvec{d}}{j_1}{k_1}{j_2}{k_2}{j_3}{k_3} \, .\nonumber
+\end{align}

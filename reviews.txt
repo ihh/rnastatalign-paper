@@ -1,0 +1,483 @@
+------------------------------------------------------------------------
+
+Reviewer #1 (Remarks for the Author):
+
+There are very interesting and potentially quite influential ideas in
+this paper, but too many of them at once are breathlessly muddled up
+together in a fog of words, without sufficiently careful description
+and logical analysis. The paper does not convey a clear, thorough,
+reproducible piece of science to the reader. It lacks focus,
+discipline, and rigor. The authors need to choose one story they want
+to tell, then tell it completely and thoroughly.
+
+The paper opens with some grand statements about a research program to
+develop "paleogenetic" algorithms to reconstruct the RNA world. I
+think the authors are using this story to dress up what they're doing,
+rather than really taking this research program seriously and
+analyzing it logically. For starters, in order to phylogenetically
+reconstruct a "primordial ribozyme" such as the "all-RNA primordial
+ribosome" from the "RNA world" from extant sequences, the authors need
+to be able to argue that the last common ancestor of rRNAs lived in
+the RNA world, not the modern DNA/RNA/protein world. It seems clear,
+however, that the last universal common ancestor (LUCA) of all known
+extant life had a reasonably complicated and more or less standard
+DNA/RNA/protein biochemistry, because (even taking abundant lateral
+transfer into account) of how many proteins and biochemical pathways
+can be traced back to LUCA. A serious attempt to reconstruct any
+aspect of the RNA world by phylogenetic analysis must deal with the
+probability that LUCA is almost certainly a bottleneck that occurs
+after the RNA world had passed (if the RNA world existed at all). This
+is not to say that ancestral reconstruction of structural RNAs isn't
+interesting, even if they reconstruct RNAs that lived in less fabulous
+creatures than ribosaurs -- it's only to say that the authors' stated
+goals seem under-analyzed and over-grandiose, and therefore are
+offputting to the reader. Much of the introduction's verbiage about
+the RNA world could be deleted, and the aims of the paper could be
+focused more realistically, concisely, and clearly.
+
+At the same time, the introduction lacks a clear problem definition
+statement. What is the input; what is the desired output; what is the
+main idea behind the approach for transforming input to output?
+Throughout the paper, terms and programs are thrown around in a
+muddled soup, as if everything is a general purpose magic inference
+tool. _xrate_ estimates substitution rate parameters (p.2) and folds
+RNA (p.5); _evoldoer_ generates pair SCFGs (p.3) and "implements"
+TKFST (p.5), whatever "implements" may mean (any given probabilistic
+model may be used for a wide range of different simulations or
+inference problems). Do they slice and dice tomatoes too? At far too
+many points, the authors recite lists of possible applications that
+might be tackled someday, or lists of other approaches that can be
+viewed as special cases of their approach -- without ever particularly
+clearly defining what their approach is. I'm all in favor of
+generalizable approaches and powerful probabilistic models, but I want
+to see at least one specific, well-described problem solved before one
+expounds on all the other things that might possibly be done. That's
+what the Discussion is for.
+
+The authors could do a much better job of recognizing that ancestral
+sequence reconstruction has been done for decades: both parsimony
+methods and maximum likelihood methods for phylogenetic inference
+explicitly infer sequences at ancestral nodes in a tree. What's of
+interest here is whether that can be done not only for residue
+substitution events, but for insertion/deletion events as well, and
+whether the inferences are sufficiently accurate that we can take them
+seriously and actually synthesize the inferred ancestor(s) and believe
+that they tell us something about the structure and function of
+extinct biomolecules.
+
+The Methods are unnecessarily opaque and confusing, focusing too much
+on peripheral terminology and too little on an actual problem at
+hand. For example, for all this talk of "transducer theory", it is
+never clear how a "transducer" is meaningfully different from any
+other conditional probability model used in sequence analysis -- such
+as profile HMMs and profile SCFGs, which model a conditional
+distribution P(Y | X) via a model built from sequence X, P(Y | X) ~=
+P(Y | model) P(model | X) using a point estimate of an appropriate
+model derived from X, where X could be either a query
+sequence/alignment in a similarity search, or an ancestor on a tree in
+a phylogenetic inference problem. Seems to me that the critical thing,
+which the authors actually _underemphasize_, is how one makes this
+conditional probability model P(Y | X) be dependent on evolutionary
+time t, P(Y | X,t), via an underlying continuous-time Markov model of
+evolution in terms of rates of individual events including
+substitutions, insertions, and deletions. This time-dependent
+evolutionary model has essentially nothing to do with (is separable
+from) "transducer theory" as far as I understand; "transducer theory"
+is just a different set of words for conditional probability models,
+with the evolutionary continuous-time Markov model providing the
+particular _parameters_ that get plugged into the conditional
+probability model. (That is, I believe that I can interchange a
+"string transducer" with an HMM and "parse tree transducer" with an
+SCFG with no loss of information. If this is true, the exact names of
+things aren't important so long as they're clearly defined and
+explained for the particular purpose at hand, and one shouldn't be
+trying so hard to brand "transducer theory" as new. If I'm wrong, I
+would like to see the authors' clear explanation.) As an example of
+what I mean by underemphasizing the evolutionary model, consider the
+very term "statistical alignment" that the authors use to describe for
+their subfield: the heart of the approach is neither statistical (a
+"statistic" being an arbitrary measure of something, as opposed to a
+probability model) nor really about "alignment" (the problem at hand
+is phylogenetic inference, not alignment; alignment is necessary, but
+only as a nuisance variable in the inferences that the authors are
+actually interested in making) -- not to mention that there is a large
+body of other work on probabilistic alignment approaches that the
+authors seem to be trying to marginalize by distinguishing only their
+particular favorite flavor as "statistical alignment".
+
+I struggled, section by section, to decipher in the Results what the
+take home message of the paper -- or even any individual section -- is
+supposed to be. Each section of Results has similar problems; I'll do
+a fairly detailed analysis of just the first results section, then
+I'll be brief with the rest.
+
+Results 2.1 attempts to describe an experiment in which the authors
+ask whether it is necessary to use "covariant" rate models, as opposed
+to point substitution rate models, to accurately reconstruct ancestral
+RNA sequences. There are immediately a number of problems just in the
+conception of this experiment, including:
+
+1. How is it relevant? The introduction claimed that "the central
+result of this paper is the development ["of a theory for statistical
+alignment and reconstruction of RNA"] building on the transducer
+framework for protein and DNA reconstruction". But rate matrices for
+single residues or even for base pairs are standard models in the
+field (incidentally, the authors cited zero prior work on using base
+pair rate matrices was cited, but a fair amount exists), and have
+nothing really to do with "transducer theory" nor with inference of
+indel structure, supposedly the main point of the paper.
+
+2. Why do the experiment at all, when the answer is already known and
+trivial? Obviously a point substitution model will not constrain
+ancestral base pairs to be valid base pairs; obviously modeling with
+base pairing correlations makes for a better model of a structural
+RNA. The reason to do a *quantitative* experiment to address a
+question whose qualitative answer is trivially obvious would be if the
+quantitative error rate was meaningful in some sense that had been set
+up in a problem definition statement. This would require deeper
+thought and discussion about how accurate an ancestral RNA
+reconstruction actually needs to be, for an intended purpose. For
+example, one might imagine a cost-benefit analysis of how many
+sequences need to be synthesized to find a functional ancestral
+sequence for a given error rate, if we're taking this research program
+seriously; then there might be a threshold prediction error rate that
+one needs to drop below, in order to make synthesis and testing of the
+predictions reasonable. But instead, the authors do go ahead and draw
+only qualitative conclusions from their results in Fig 1, that
+modeling base pairs is better than not modeling base pairs: "we
+conclude that deep phylogenetic reconstructions of ribosomes, and
+other RNAs, will require covariant substitution models that take
+account of RNA secondary structure". But this, anyone working on RNA
+already "knew". Wait, the authors might say, maybe we shouldn't trust
+our intuition? Fine -- but ironically, in the very next sentence, they
+show how willing they are to make essentially the same obvious
+qualitative leap, on the most relevant point to the theory they want
+to express, without any quantitative analysis: "We may reasonably
+deduce that indel reconstructions will similarly need to take account
+of RNA structure". This "deduction" does not follow from the residue
+substitution results in Figure 1 any more than it already followed
+from what we already knew about RNA structure and evolution.
+
+Even beyond the conception and rationale of the experiment shown in
+section 2.1, the design and execution of the experiment are
+inadequately explained. What base pair rate models did you estimate --
+a completely unconstrained 16x16 base pair model? a general-reversible
+model? or a model with more constraints? What "75-taxon phylogeny" did
+you use (Rfam does not provide phylogenies); with what branch lengths?
+When you simulate 5000 "random alignments" of descendant sequences on
+this tree, how do you choose the initial ancestral sequence for each
+simulated alignment (it must have a base-paired structure for the
+experiment to be reasonable; there's many ways you could have done
+this, but it's unclear which, if any, were used). Why did you strip
+only the ancestral (root) sequence out of the alignment? shouldn't
+_all_ internal node sequences be stripped out, if we're trying to
+simulate the ability to reconstruct ancestral seqs from extant seqs?
+
+Results 2.2 follows a similar pattern. The authors use bold face to
+"emphasize that this [TKFST] is not just a method for simultaneous
+alignment and folding of RNA" -- even before they make a concrete
+problem definition of what TKFST _is_! A reproducible description of
+TKFST isn't given here; it is "reviewed in Section 3.1". No, it isn't
+given there either; Section 3.1 meanders in an unclear fashion, still
+without problem definition, hitting a variety of topics connected to
+TKFST, while saying at various points things like "full details... are
+given in the Supplementary Material". So much for this "theory" for
+"computational reconstruction of the RNA World" being the "central
+result" of the paper! What the heck is it doing lying around in pieces
+in the Results, Methods, and Supplementary Material, as opposed to one
+clear central exposition?
+
+My comments on the rest of the paper would continue repetitively in
+the same vein but since this review is already long, I'll stop. In
+summary, I think the authors are working on very interesting issues
+that they're explaining atrociously. Writing a clear paper requires
+more discipline. The authors need to go back to the drawing board for
+this paper, pick one point they want to make, and write a clear,
+logical paper that conveys one nice story rigorously.
+
+
+some small points:
+
+- group II introns are not "76-91 nt" (Table 3 and elsewhere); they
+  are much larger than this. The authors must be using the Rfam
+  Intron_gpII alignment, which only deals with two of the six
+  consensus structural domains (domains V and VI).
+
+- it's a lot more useful to a reviewer to get a manuscript in
+  manuscript form (i.e. at least 1.5x linespaced if not doublespaced),
+  not a tightly spaced journal format, so there's ample room for
+  annotation.
+
+- the fonts in Figures 1 and 2 are too small.
+
+
+
+
+Reviewer #2 (Remarks for the Author):
+
+I. The manuscript describes an method for simultaneously inferring the
+alignment and secondary structure of three modern RNA sequences along
+with that of the internal node on a 3-taxon tree - a previously
+unsolved problem to the extent of my knowledge. The manuscript also
+assesses the TKF Structure Tree (TKFST) model of RNA structure
+evolution in terms of its ability to help reconstruct ancestral
+alignments and structures. Both of these results (new method, model
+assessment) are important steps towards the goal of reconstructing the
+sequence and structure of ancestral RNA molecules, which is a very
+interesting biological question.
+
+This topic is by nature complex and involved, and I am unfortunately
+not an expert in RNA structure. Nevertheless, I think that the authors
+display a deep and intuitive grasp of this field that is quite
+impressive, while being moderately understandable to the outsider. In
+most cases, I was able to follow the description of rather complex
+procedures on my first pass through the paper even though I was not
+previously acquainted with SCFGs in any detail. I think that the
+readability for readers that are less familiar with the background can
+be improved by adding some background in a few places, which I will
+try to indicate below.
+
+II. My major advice on improving the readability of the paper is to
+decrease or remove emphasis on the names of programs. In general, an
+inference or estimate should be described in terms of (i) the model
+used, (ii) the type of estimate (e.g. maximum likelihood estimate,
+posterior mean, etc.) and (iii) the algorithms employed. It should not
+be described in terms of the name of the program that is run to
+perform the inference. For example, in the beginning of section 2.1,
+the authors write "We first used xrate to estimate parameters..." when
+they should say something like "We used an EM algorithm to compute
+maximum likelihood estimates of parameters for the substitution
+model. We held the alignment fixed, and summed over the unknown
+secondary structure and ancestral sequences."
+
+(I recognize that the authors wish to point out their work in
+extending existing programs to provide infrastructure for estimating
+ancestral sequences.)
+
+Secondly, I think that the authors downplay the very real value of
+their analyses by focusing too heavily on the exact protocol of the
+analyses and playing down the questions and results in addition to the
+methods. For example, in Section 2.1 they write "We implemented ..." ,
+"We first used xrate ..." , "Next we used the companion program
+SIMGRAM ...", "We stripped the ancestral sequence..." It would be
+helpful if the authors began section 2.1 with a description of the
+tests that would be performed in that section, and what questions they
+answer, instead of beginning by describing xrate. Similarly, in
+section 2.2 the authors make an important point in bold font: "We
+emphasize that this is not just a method for simultaneous alignment
+and folding of RNA. Our intention here is a critical assessment of the
+realism of TKFST as an evolutionary model, not simply an
+implementation of the algorithm of Sankoff."  Nevertheless, this
+section is titled "Multiple Alignment and RNA folding". Hopefully
+these examples clarify my general point about how the authors can
+improve readability.
+
+
+III. Specific suggestions
+
+1. [ Abstract ] I presume that xrate estimates maximum likelihood
+parameters estimates using the EM algorithm. I presume that xrate sums
+over all structures when estimating parameters? When it is used to
+estimate structures, I presume that structure estimates are
+conditioned on maximum likelihood rate estimates?
+
+These points should be clarified somewhere, though perhaps not in the
+abstract.
+
+2. [Abstract] The abstract is written as if the main topic of interest
+is programs, not algorithms and biological questions. However, the
+authors underestimate the importance of their work by focusing on
+programs.
+
+3. [ pg 2. / Section 2.1 ]
+
+While implementing programs is an important part of biological
+research, I think that the authors are downplaying their true
+contribution in this section by describing the program names that were
+used instead of focusing on the methods and algorithms.
+
+[pg 2 / Section 2.1 ] "We implemented ancestral sequence
+reconstruction in xrate, including posterior probabilities that the
+reconstructions are correct."
+
+This single sentence should be expanded to at least one or two
+paragraphs describing the type of estimation that is being performed
+as well as the type of algorithm that implements this estimation. I
+presume that (i) xrate estimates parameter values of the substitution
+model using maximum likelihood.  (ii) I presume that in the definition
+of the likelihood the alignment is held constant, but the secondary
+structures and ancestral sequences are summed over (as latent
+variables).  (iii) The maximization over parameters is carried out
+using an EM approach.
+
+If this is the case, then what kind of estimates of the structure, and
+of ancestral sequences, are being performed? I presume that xrate
+conditions on the maximum likelihood estimates of substitution
+parameter values and then selects the ancestral sequence (or
+structure) that has the highest posterior probability? If so, then
+these points might be a good starting place for a description of xrate
+and the extension that you performed.
+
+4. [ pg 3 / Section 2.2 ] The authors should retitle this section to
+indicate that it is primarily about the critical assessment of the
+TKFST model, and focus less on the exact protocol. Perhaps the exact
+steps could be described in a separate "Methods" section that
+describes protocol details. These details must be provided so that the
+reader fully understands what the authors are doing, but they are not
+usually the main point.
+
+The authors explicitly say "We emphasize that this is not just a
+method for simultaneous alignment and folding of RNA. Our intention
+here is a critical assessment of the realism of the TKFST as an
+evolutionary model." This is a good point - but the title and logical
+structure of this section focuses more on the protocol details for
+running programs.
+
+5. [pg 3 / "pair SCFG" ] This has not been defined yet. Many readers
+will be unfamiliar enough with SCFGs that it is important to define
+pair-SCFG's before saying too much about them.
+
+6. [ pg. 3 ] It would be helpful to add one or two more sentences of
+explanation about sensitivity and PPV mean, and how they are applied
+to alignments and RNA structures.
+
+7. [ pg. 4 ] It is curious that the stemloc native grammar doesn't
+seem to cause much improvement in alignment sensitivity and PPV even
+though it has an affine gap penalty. Can you say why this is the case?
+What is the average gap length - is it near 1?
+
+8. It would be useful to give parameter estimates from PFOLD or the
+stemloc-native grammar to indicate what kind of properties these RNA
+molecules have, and whether or not a model like TKFST that has fewer
+parameters should be expected to do a good job modeling the evolution
+of such sequences. For example, if the average gap length is near
+zero, then that parameter is not helping the PFOLD model much, but if
+it is large, then we should expect the fewer parameters of the TKFST
+model to result in worse model fit and inferior prediction quality.
+
+9. [pg. 5 ] "To test this, we tried re-folding the multiple alignments
+with xrate..."  This sentence is unclear because it uses the program
+name xrate instead of describing the procedure that was carried out,
+and because the word "re-folding" is a bit too terse. You might say,
+"To test this, we re-estimated rate parameters and secondary structure
+using the PFOLD grammar while fixing the multiple sequence alignment
+to the value estimated in the previous step." You might then
+optionally add that this was accomplished using xrate if you wish to
+emphasize which program was used.
+
+10a. [pg. 5] "The structure prediction accuracy of the TKFST and
+stemloc-native grammars was much better when combined with xrate, and
+both grammars were comparable..."
+
+The authors should not say "when combined with xrate" but should
+indicate what they are using xrate to do.
+
+10b. When the authors re-estimate the structure using xrate, they use
+a different model (PFOLD) to do so. Why, then, are these new structure
+estimates taken to represent "the structure prediction accuracy of the
+TKFST and stemloc-native grammars"? Don't they represent the
+structure-prediction accuracy of the PFOLD grammar, conditioned on
+alignments inferred using the TKFST and stemloc-native grammars?
+
+I don't see a good reason why the PFOLD model should be used during
+re-estimation of the secondary structure. If the problem is early
+commitment to incorrect second structures during an algorithm like
+progressive alignment, then re-estimating the structure with the TKFST
+and stemloc-native models (respectively) should eliminate the problem.
+
+The authors have previous noted that "Rational design of ... pipelines
+can be facilitated by using a consistent statistical framework." This
+would seem to indicate that the same model should be used in all
+stages of this pipeline, especially since the authors are seeking to
+compare models.
+
+10c. [Table 2] I don't think the last two lines should be
+characterized by "+xrate" since xrate is just a software
+package. Instead, you should choose a label that indicates what you
+are doing.  (I) I am not sure, but it looks like you are using PFOLD?
+(II) If so, then perhaps the last two rows should be written as
+"+PFOLD?"
+
+10d. [pg. 5] "We parametrized the singlet and branch transducers of
+the TKFST model using estimates reported by PFOLD, a phylo-grammar for
+RNA secondary structure prediction, and evoldoer, an implementation of
+the Structure Tree model for two sequences."
+
+(i) How can you obtain estimates for the parameters in the TKFST model
+by using a different model - the PFOLD model?  (ii) This sentance
+again describes the names of program used instead of the methods and
+algorithms by which the estimates were constructed.  (iii) I would
+suggest rephrasing the last phrase "an implementation of the Structure
+Tree model for two sequences". This is because technically you don't
+implement models, you implement inference algorithms that use
+models. So, here, evoldoer implements inference of the pairwise
+alignment between two sequences under the TKFST model (I think). If
+one algorithm (DP) implements the hard part of a wide variety of
+inference methods then you could say so, I suppose.
+
+13. "Pair-SCFG" Can the authors describe a pair-SCFG in more detail?
+Although the manuscript compares the pair-SCFG to a pair-HMM, the
+authors should still point out (for example) that a pair-SCFG is an
+SCFG that emits pairs of letters, not a pair of SCFGs. It might also
+be worth explicitly pointing out that the transformation rule "S1 → x
+S2" in the SCFG corresponds to (in a pair-HMM) (I)state S1 emits
+letter "x" (II)state S1 then transitions to state S2.  These two
+things are probably worth pointing out, given that they do not add
+much length to the paper.
+
+14. [pg. 8] Define "X-terminals" and "Y-terminals." This is important
+terminology that is re-used, and it would be worth making sure the
+reader understands it here in order to clarify what follows. Also, you
+might clarify that X here represents the ancestor and Y the descendent
+along a branch of the tree, since this isn't always the case (I
+think).
+
+15. [pg. 10 ] "In practice, we find the size of the state space is
+approximately linear in the number of branches..."  Can you say
+whether you find this to be true for several different grammars, or
+just for (e.g.) the TKFST grammar? It would seem that the number of
+states should grow exponentially in the number of wait states for each
+branch transducer, or faster. However, because the TKFST model does
+not have affine gap penalties, it may have only one wait state,
+leading to the linear growth that you observed. Regardless of whether
+this guess is correct or incorrect, a comment about how affine gap
+penalties affect the number of states would be helpful here.
+
+If this is the case, then could you say something like "In the case of
+the TKFST model" instead of "In practice..."? Also, can you clarify
+"realistic biological models never reach this bound"? What aspect of
+realistic models prevents the bound from being reached?
+
+16. [pg. 11] "... is sufficient for a likelihood-sampling algorithm
+over a tree".  The phrase "likelihood-sampling" is vague - technically
+the likelihood itself isn't being sampled. You could say something
+like "is sufficient for a calculating the likelihood of a full tree,
+which would be used in likelihood-based algorithms for sampling branch
+lengths, substitution rates, and other model parameters". Or perhaps
+you mean, sufficient for sampling the alignment and the RNA structure
+at all nodes?  [pg. 11] "Evaluation of the likelihood function of a
+node conditioned on its neighborhood..."  Can you rewrite this for
+accuracy and clarity?  (I) "... the likelihood function of a node ..."
+- this is vague, and focuses more on commonly used algorithms than on
+what exactly those algorithms calculate.  (II) "... conditioned on its
+neighborhood..." - technically, you are not statistically conditioning
+on the sequence at every node in the neighborhood, but just on
+(perhaps) the sequence at the ancestor node. The sequences at the
+other nodes are given, but you are acutally computing the probability
+of the sequences at these nodes, not conditioning on them.
+
+[pg 6., Fig 3] "Maximum likelihood reconstruction of ancestral
+structures" When you say "ancestral structures", do you mean the
+structure at the internal node on an unrooted 3-taxon tree? This is
+not the ancestor of the three leaf sequences, but the common ancestor
+of two of the sequences, using the third as an
+outgroup. Reconstructing the ancestor of all three would require
+knowing where the root of the tree was, if I understand correctly.
+
+In summary, I hope that these suggestions are useful to the authors in
+improving readability of the paper. The only point that may be a real
+error is point 10a,b,c,d. Overall the manuscript was well-written and
+makes important contributions to the field of RNA structure
+reconstruction.
+
+-Benjamin Redelings

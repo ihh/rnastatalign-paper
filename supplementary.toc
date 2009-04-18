@@ -1,0 +1,40 @@
+\contentsline {section}{\numberline {1}Two-sequence transducer models}{4}
+\contentsline {subsection}{\numberline {1.1}Formal Grammars}{4}
+\contentsline {subsection}{\numberline {1.2}States, transitions and emissions}{4}
+\contentsline {section}{\numberline {2}Multiple-sequence transducer models}{7}
+\contentsline {subsection}{\numberline {2.1}The guide tree}{7}
+\contentsline {subsection}{\numberline {2.2}States, transitions and emissions}{7}
+\contentsline {subsection}{\numberline {2.3}Formal grammars}{9}
+\contentsline {subsection}{\numberline {2.4}Constructing the state graph}{9}
+\contentsline {subsection}{\numberline {2.5}Allowed transitions}{10}
+\contentsline {paragraph}{Left emission.}{11}
+\contentsline {paragraph}{Right emission.}{12}
+\contentsline {paragraph}{Paired emission.}{12}
+\contentsline {paragraph}{Left bifurcation.}{13}
+\contentsline {paragraph}{Right bifurcation.}{13}
+\contentsline {paragraph}{Paired bifurcation}{14}
+\contentsline {section}{\numberline {3}Inference with multi-sequence SCFGs}{16}
+\contentsline {subsection}{\numberline {3.1}Notation}{17}
+\contentsline {subsection}{\numberline {3.2}Fold Envelopes}{17}
+\contentsline {subsection}{\numberline {3.3}Inside}{18}
+\contentsline {subsection}{\numberline {3.4}CYK}{20}
+\contentsline {subsection}{\numberline {3.5}Outside}{20}
+\contentsline {subsection}{\numberline {3.6}Loopy DP}{22}
+\contentsline {section}{\numberline {4}The TKF Structure Tree model as a transducer}{24}
+\contentsline {subsection}{\numberline {4.1}The single-sequence TKFST model as a singlet transducer}{24}
+\contentsline {subsection}{\numberline {4.2}The two-sequence TKFST model as a branch transducer}{24}
+\contentsline {subsection}{\numberline {4.3}The multi-sequence TKFST model as a composite transducer}{24}
+\contentsline {paragraph}{Stem creation.}{25}
+\contentsline {paragraph}{Stem insertion.}{26}
+\contentsline {paragraph}{Stem termination.}{26}
+\contentsline {paragraph}{Singlet rules.}{28}
+\contentsline {paragraph}{Pair rules.}{28}
+\contentsline {paragraph}{Triplet rules.}{28}
+\contentsline {section}{\numberline {5}Software}{35}
+\contentsline {subsection}{\numberline {5.1}Automated grammar construction}{35}
+\contentsline {subsection}{\numberline {5.2}Reconstruction of ancestral structures}{35}
+\contentsline {section}{\numberline {6}Reconstruction of covariant substitution histories}{36}
+\contentsline {section}{\numberline {7}Terminological asides}{38}
+\contentsline {subsection}{\numberline {7.1}Phylogenetic grammars}{38}
+\contentsline {subsection}{\numberline {7.2}Statistical Alignment}{39}
+\contentsline {subsection}{\numberline {7.3}Parse trees and stacks}{40}
