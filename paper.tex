@@ -804,8 +804,8 @@ and a non-negative weight function on the rules, $P:(\gnons \times \grhs) \to [0
 The interpretation is that $P$ is a probabilistic weight function and $\grules$ is informally the set of rules with non-zero weight.)
 
 Let $\leftside{A}$ be the set of rules that can be applied to nonterminal $A \in \gnons$ (i.e., rules in which $A$ appears on the left),
-and let $\rightside{B}$ be the set of rules that can generate nonterminal $A$ (i.e.,rules in which $A$ appears on the right).
-Let $\allrules{B} = \leftside{A} \cup \rightside{A}$ be the set of all rules involving $A$.
+and let $\rightside{A}$ be the set of rules that can generate nonterminal $A$ (i.e.,rules in which $A$ appears on the right, including bifurcations which also generate another nonterminal as well as $A$).
+Let $\allrules{A} = \leftside{A} \cup \rightside{A}$ be the set of all rules involving $A$.
 Define these also on sets of nonterminals, e.g., $\leftside{\gnulls} = \bigcup_{A \in \gnulls} \leftside{A}$ for $\gnulls \subseteq \gnons$.
 
 Let $\gtrees$ be the set of all parse trees for $G$.
