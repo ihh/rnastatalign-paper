@@ -760,8 +760,10 @@ E_2$ with an identical probability.
 We refer to empty paths and empty bifurcations as {\bf null cycles}.
 They occur (in simpler form) in Hidden Markov Models (which are special cases of SCFGs)
 and independent-sites models (which can be viewed as special cases of HMMs).
-In all such models, null cycles represent events which are allowed by the model, but could never be observed.
-They can be accounted for by exact marginalization.
+In all such models, null cycles represent histories that are valid according to the model, but cannot be resolved by direct observation.
+Such null events can be real (e.g. ancestral residues that have been deleted in all extant lineages)
+or they can be artefactual (e.g. transitions between placeholder null states of an HMM).
+Often, one can account for the likelihood of such events by exact marginalization.
 For example, eliminating missing ``empty'' columns from an independent-sites model of sequence involves a straightforward application of a correction factor
 to account for the proportion of columns that are unobserved \cite{RivasEddy2008}.
 The slightly more complicated situation of missing emissions in a HMM can be dealt with by
