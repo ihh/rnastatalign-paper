@@ -727,38 +727,8 @@ required by modifying the DP algorithms themselves.
 
 \subsubsection*{Eliminating null cycles in SCFGs}
 
-Null cycles in SCFGs constitute a ``missing data'' problem, wherein
-the unobserved values of variables contribute to probabilities of
-observed events. Such missing data problems are common in
-probabilistic models of sequences and can
-frequently be dealt with by exactly marginalizing over the
-probabilities of the unobserved variables.  For example, eliminating
-missing ``empty'' columns from an independent-sites model of sequence,
-wherein alignment columns are independent, is straightforward
-\cite{RivasEddy2008} and missing emissions in a HMM can be dealt with by matrix inversion
-\cite{Holmes2003,Holmes2007,Lunter2007} or the ``wing retraction''
-techniques used in HMMER \cite{hmmer}.
-Algorithms for exact elimination of HMM null cycles by
-matrix inversion are well-known \cite{Holmes2003} and are implemented
-by programs such as PhyloComposer \cite{Holmes2007} and
-HMMoC \cite{Lunter2007}. These algorithms effectively replace the HMM
-with an equivalent HMM that contains no null cycles but generates the
-same probability distribution over sequences.
-However, these solutions do not easily generalize to SCFGs, due to the
-possible presence of null bifurcations.
-
-Null cycles can be removed from SCFGs by (i) separating bifurcations
-into those which have one or more empty children (and can therefore be
-represented using transition or termination rules) and those that have
-two nonempty children and then (ii) encapsulating all paths that do
-not emit any terminal symbols (and may therefore cause cyclic
-dependencies in the DP matrix) as effective direct transitions, with
-probabilities obtained by geometric series summation of the grammar's
-transition matrix.
-
-Both (i) empty bifurcations and (ii) paths without terminal symbols
-generically appear in the ensemble model.
-An empty bifurcation occurs when a child branch of a bifurcation state
+The ensemble model contains empty bifurcations {\em and} empty paths.
+An {\bf empty bifurcation} occurs when a child branch of a bifurcation state
 transitions to the $\Send$ state without emitting any symbols and can
 be removed from the model by creating an effective direct transition
 encapsulating the empty bifurcation.  For
@@ -771,8 +741,9 @@ part of our models, so it is important to eliminate as many as
 possible without reducing model expressiveness.
 
 Similarly, our model construction procedure generically produces many
-``windback'' null transitions to non-emitting placeholder
-states. If $\Semit$ states $E_1$ and $E_2$ are connected in the state
+{\bf empty paths} which do not emit any terminal symbols.
+Most common are paths of ``windback'' null transitions via non-emitting placeholder states.
+If $\Semit$ states $E_1$ and $E_2$ are connected in the state
 graph by $\Snull$ states $N_1$ and $N_2$, then the transition $E_1
 \rightarrow N_1 \rightarrow N_2 \rightarrow E_2$ with  probability
 $P(E_1 \rightarrow N_1) \cdot P(N_1 \rightarrow N_2) \cdot P(N_2
@@ -785,6 +756,35 @@ E_2$ with an identical probability.
 % $\Snull$ states can increase the number of transitions in the model,
 % so this reduction in memory usage comes at the cost of a small
 % increase in runtime.
+
+We refer to empty paths and empty bifurcations as {\bf null cycles}.
+They occur (in simpler form) in Hidden Markov Models (which are special cases of SCFGs)
+and independent-sites models (which can be viewed as special cases of HMMs).
+In all such models, null cycles represent events which are allowed by the model, but could never be observed.
+They can be accounted for by exact marginalization.
+For example, eliminating missing ``empty'' columns from an independent-sites model of sequence involves a straightforward application of a correction factor
+to account for the proportion of columns that are unobserved \cite{RivasEddy2008}.
+The slightly more complicated situation of missing emissions in a HMM can be dealt with by
+summing over all null paths, yielding a geometric series that is solvable by matrix inversion
+\cite{Holmes2003,Holmes2007,Lunter2007}; the ``wing retraction'' algorithms used in HMMER can be viewed as a special case of matrix inversion by iterated elimination \cite{hmmer}.
+
+Algorithms for exact elimination of HMM null cycles by matrix inversion are implemented
+by programs such as PhyloComposer \cite{Holmes2003,Holmes2007} and
+HMMoC \cite{Lunter2007}. These algorithms effectively replace the HMM
+with an equivalent HMM that contains no null cycles but generates the
+same probability distribution over sequences.
+However, these solutions do not easily generalize to SCFGs, due to the
+possible presence of null bifurcations.
+
+Here, we show how null cycles can be removed systematically from SCFGs by two steps:
+\begin{description}
+\item[(i)] separating bifurcations
+into those which have one or more empty children (and can therefore be
+represented using transition or termination rules) and those that have
+two nonempty children;
+\item[(ii)] replacing all empty paths through null states with effective direct transitions between non-null states,
+obtaining sum-over-paths probabilities by inverting the grammar's transition matrix.
+\end{description}
 
 We give a formal description of the null-cycle elimination procedure,
 along with procedures for probabilistically ``restoring'' null cycles
