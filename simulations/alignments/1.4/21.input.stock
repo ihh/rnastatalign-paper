@@ -1,26 +1,24 @@
 # STOCKHOLM 1.0
-#=GF         NH ((X:1,Y:1):1,Z:1.4)root;
-#=GF       ARGS -seed 1238555073 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
-#=GF       SEED 1238555073
+#=GF         NH (X:1,Y:1,Z:1.4)root;
+#=GF       ARGS -seed 1240076693 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF       SEED 1240076693
 #=GF      PARAM stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
 #=GF      PARAM lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
-#=GF       ROOT S-au-L-S(cg-gc-gc-gc-gc-ua-gc-ua-cg-L-c-S(gc-gu-gc-ua-cg-au-L-g-a-c-g)u-a-u-a-a)u-c-c-g
-#=GF     BRANCH Length 1.  Subst to a: c(1), g(2), u(1).  Subst to ac: au(1).  Subst to au: ac(1), gc(1), ua(1).  Subst to c: g(1), u(3).  Subst to cg: gc(1), ua(2).  Subst to g: a(1), u(1).  Subst to gc: cg(1), gu(2).  Subst to gu: gc(2).  Subst to u: a(2), c(4).  Subst to ua: cg(1), ug(1).  Subst to ug: cg(1), gu(1).  (root -> node1)
-#=GF       NODE S-au-L-S(cg-cg-gc-gc-gc-au-ug-cg-ua-L-c-S(gc-gc-au-ua-gc-au-L-a-a-u-a)a-c-g-a-c)u-u-u-g
-#=GF     BRANCH Length 1.  Loop delete: a(1), c(1).  Subst to a: g(3), u(1).  Subst to ac: au(1).  Subst to au: gc(1).  Subst to c: u(2).  Subst to cg: gc(2), ua(2).  Subst to g: a(1), u(1).  Subst to gc: ac(1), au(1), cg(1), ua(1).  Subst to gu: cg(1).  Subst to u: c(3).  Subst to ua: au(1), cg(1), ug(1).  (node1 -> X)
-#=GF       LEAF S-gc-L-S(cg-ua-gc-gc-gc-ua-gc-cg-cg-L-u-S(au-gc-au-gc-gu-cg-L-a-a-g-a)a-D-D-a-c)u-u-a-a
-#=GF     BRANCH Length 1.  Subst to a: c(1), g(1), u(2).  Subst to ac: au(1).  Subst to au: ac(1), gc(1).  Subst to c: g(2), u(3).  Subst to cg: gc(1), ua(2), ug(2).  Subst to g: a(2), u(1).  Subst to gc: au(2), gu(2).  Subst to gu: gc(2).  Subst to u: a(1), c(5), g(1).  Subst to ua: au(1), cg(1), ug(1).  Subst to ug: cg(2), ua(1).  (node1 -> Y)
-#=GF       LEAF S-gc-L-S(cg-cg-gc-gc-cg-gc-cg-cg-ug-L-u-S(gc-au-au-ua-gc-ua-L-a-a-a-g)u-a-c-a-u)u-c-a-u
-#=GF     BRANCH Length 1.4.  Loop insert: g(1).  Subst to a: g(3).  Subst to au: cg(1), gc(3), gu(1), ua(1).  Subst to c: g(1), u(1).  Subst to cg: gc(3), ua(1), ug(1).  Subst to g: a(1), c(3).  Subst to gc: au(3), cg(1), gu(1).  Subst to gu: au(1).  Subst to u: a(1), c(3).  Subst to ua: cg(1), gc(1).  Subst to ug: ua(1).  (root -> Z)
-#=GF       LEAF S-au-L-S(gc-gc-gc-ua-cg-cg-cg-au-ua-L-g-u-S(gc-au-au-cg-cg-gc-L-u-a-a-g)u-a-u-a-a)c-u-g-u
-#=GF   ANCSTEMS 3 (total) 3 (nonempty)
-#=GF ANCSTEMLEN 6 9 1
-#=GF ANCLOOPLEN 4 6 4
-      X         gcugggugccuagaggcaagagucucuaacggcacccaguuaac
-#=GR X       SS <<<<<<<<<<.<<<<<<....>>>>>>...>>>>>>>>>....>
-      Y         gccggcgccuugaauguaaagacauucuacaugggcgccggucauc
-#=GR Y       SS <<<<<<<<<<.<<<<<<....>>>>>>.....>>>>>>>>>....>
-      Z         agggucccaugugaaccguaagcgguucuauaaaugggaccccuguu
-#=GR Z       SS <<<<<<<<<<..<<<<<<....>>>>>>.....>>>>>>>>>....>
+#=GF       ROOT S-au-gc-cg-L-u-u-a-c-g-S(ug-L-g-c-g-c-g-c-u-g-u-g)a-c
+#=GF     BRANCH Length 1.  Loop delete: g(2).  Subst to a: g(3).  Subst to c: u(1).  Subst to cg: ug(1).  Subst to g: a(1), c(2), u(3).  Subst to u: a(2), c(4), g(1).  Subst to ua: cg(1), ug(1).  Subst to ug: ua(1).  (root -> X)
+#=GF       LEAF S-au-gc-cg-L-u-u-a-u-g-S(ua-L-g-g-g-D-u-g-g-u-u-D)a-u
+#=GF     BRANCH Length 1.  Subst to a: g(3).  Subst to au: cg(1).  Subst to c: a(2), u(1).  Subst to cg: au(1), ug(1).  Subst to g: c(1), u(1).  Subst to gc: au(1), gu(1).  Subst to gu: gc(1).  Subst to u: c(5), g(3).  (root -> Y)
+#=GF       LEAF S-cg-gc-cg-L-g-a-u-u-a-S(gc-L-u-u-g-u-u-c-u-a-u-u)u-c
+#=GF     BRANCH Length 1.4.  Loop insert: L(1).  Subst to a: c(2), g(2), u(2).  Subst to au: gu(1).  Subst to c: a(1), g(3), u(4).  Subst to cg: ug(1).  Subst to g: u(3).  Subst to gu: au(1), gc(1).  Subst to u: a(1), c(6).  Subst to ua: cg(1).  (root -> Z)
+#=GF       LEAF S-au-gu-ua-L-c-c-a-a-u-S(cg-L-S(cg-L-u-u-c-a-u-S(L-a)u-a-g-u)a-u-u-a-g-c-g-a-c-g)a-c
+#=GF   ANCSTEMS 2 (total) 2 (nonempty)
+#=GF ANCSTEMLEN 1 3
+#=GF ANCLOOPLEN 10 7
+      X         agcuuaugugggugguuaaugcu
+#=GR X       SS <<<.....<........>..>>>
+      Y         cgcgauuaguuguucuauucucgcg
+#=GR Y       SS <<<.....<..........>..>>>
+      Z         aguccaauccuucauauagugauuagcgacggacauu
+#=GR Z       SS <<<.....<<..........>..........>..>>>
 
 //

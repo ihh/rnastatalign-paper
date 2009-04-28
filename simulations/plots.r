@@ -26,6 +26,8 @@ if (toPDF) {
 par (family = "serif")
 par (cex = 1)
 
+par (oma = c (0, 0, 0, 0))
+
 ## read data
 data = read.table ("inferred/indiegram.analysis", header = TRUE, sep = "\t")
 
@@ -49,10 +51,10 @@ align = align[-1,]
 structure = structure[-1,]
 
 plot.new()
-plot.window (xlim = c (0.5, 3),
-             ylim = c (0.5, 1))
+plot.window (xlim = c (0, 2.5),
+             ylim = c (0.4, 1))
 axis (1,
-      c (0.5, 1, 1.5, 2, 2.5, 3))
+      c (0, 0.5, 1, 1.5, 2, 2.5))
 axis (2)
 title (xlab = "Outgroup branch length",
        ylab = "Inference accuracy",

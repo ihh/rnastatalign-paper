@@ -1,20 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-38 SS    .<...<<<(-...)>>>......>..<<......>>...
-X/1-38            aaaguuuag-gguuuaauugaauuaggguaucuuccuuu
-#=GR Y/1-38 SS    .<...<<<<....>>>>......>.-<<......>>...
-Y/1-38            agagaugguuaaaaccaugaugacu-aaaagguguuaau
-#=GR Z/1-38 SS    .<...<(<<....>>)>......>.-<<......>>...
-Z/1-38            gcaaacucuccuuagggacgcaaga-uuaauauaaaaga
-#=GC ancestral_SS .<...<<<<....>>>>......>.-<<......>>...
-#=GC PS_cons      ..a..........................a..u......
-#=GC SS_cons      .<...<<<<....>>>>......>..<<......>>...
-                  -266.45
+#=GR X/1-33 SS    <<<<<(<<<......<...>..-..>>>)>>>>>
+X/1-33            uagcauagcauauaccguaguu-cugcuuugcua
+#=GR Y/1-33 SS    <<<<<<<<<......<...>..-..>>>>>>>>>
+Y/1-33            auuccaacgauuauacuuaggg-ggcguuggaau
+#=GR Z/1-34 SS    <<<<<<<<(......<...>.....)>>>>>>>>
+Z/1-34            auuuacaauauggggcauaguguguguuguaaau
+#=GC ancestral_SS <<<<<<<<<......<...>..-..>>>>>>>>>
+#=GC PS_cons      ......a..au....c.uag.......u......
+#=GC SS_cons      <<<<<<<<<......<...>.....>>>>>>>>>
+                  -191.748
 //
-[0..38,0..38,0..38] -1 (Start) 35 (Null) 95 (EmitXLYLZL) 205 (Bifurc)
- [1..23,1..24,1..24] 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
-  [5..16,5..17,5..17] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 130 (EmitYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
-  [16..22,17..23,17..23] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
- [23..38,24..38,24..38] 35 (Null) 95 (EmitXLYLZL) 62 (EmitXL) 205 (Bifurc)
-  [25..35,25..35,25..35] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
-  [35..38,35..38,35..38] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+[0..33,0..33,0..34] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
+ [15..20,15..20,15..20] 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+ [20..24,20..24,20..25] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 138 (EmitZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
 

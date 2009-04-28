@@ -1,0 +1,8 @@
+*/all
+*.sge-jid
+*.sge-out
+*.sge-err
+*.log
+*.host
+*.timing
+

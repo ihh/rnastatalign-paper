@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GF NH         (X:1,Y:1,Z:0.2)root;
+#=GF ARGS       -seed 1240131449 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF SEED       1240131449
+#=GF PARAM      stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF PARAM      lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF ROOT       S-ua-gu-gc-L-S(cg-gc-ug-cg-gc-L-u-g-a-c-c-a)c-a-c-a-c-u-a
+#=GF BRANCH     Length 1.  Loop insert: a(1).  Subst to a: g(1), u(1).  Subst to au: gc(1), gu(1).  Subst to c: u(2).  Subst to ca: cg(1).  Subst to cg: ca(1), ug(2).  Subst to g: c(2).  Subst to gu: au(1).  Subst to u: a(2), c(2), g(1).  Subst to ug: cg(1).  (root -> X)
+#=GF LEAF       S-ua-gu-gc-L-S(cg-au-cg-cg-gc-L-a-g-u-a-c-a-a)u-a-u-c-c-u-a
+#=GF BRANCH     Length 1.  Loop insert: u(1).  Stem delete: cg(1).  Subst to a: c(3), g(1), u(2).  Subst to au: gc(2), ua(1).  Subst to c: a(1), g(1), u(1).  Subst to cg: gc(1), gu(1).  Subst to g: a(2), c(1), u(1).  Subst to gc: au(1), cg(1), gu(1), ua(1), ug(1).  Subst to gu: au(1).  Subst to u: a(2), c(2).  Subst to ua: cg(1), gc(1).  (root -> Y)
+#=GF LEAF       S-cg-gc-au-L-S(gc-gc-ua-D-gc-L-g-a-g-u-I-c-a-a)c-a-g-a-a-a-u
+#=GF BRANCH     Length 0.2.  Subst to au: gu(1).  Subst to c: u(1).  Subst to gc: ua(1).  Subst to u: a(1), c(1).  Subst to ua: ug(1).  (root -> Z)
+#=GF LEAF       S-gc-au-gc-L-S(cg-gc-ua-cg-gc-L-u-I-g-a-I-u-c-a)c-a-c-a-c-u-c
+#=GF ANCSTEMS   2 (total) 2 (nonempty)
+#=GF ANCSTEMLEN 5 3
+#=GF ANCLOOPLEN 6 7
+root            uggcgucgu-ga-ccacggcgcacacuacua
+#=GR root SS    <<<<<<<<.-..-...>>>>>.......>>>
+X               uggcaccga-guacaacgguguauccuacua
+#=GR X SS       <<<<<<<<.-......>>>>>.......>>>
+Y               cgaggu-ggagu-caac-acccagaaauucg
+#=GR Y SS       <<<<<<-<....-...>->>>.......>>>
+Z               gagcgucgu-ga-ucacgacgcacacuccuc
+#=GR Z SS       <<<<<<<<.-..-...>>>>>.......>>>
+#=GC SS_cons    <<<<<<<<........>>>>>.......>>>
+//

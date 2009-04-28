@@ -1,0 +1,24 @@
+# STOCKHOLM 1.0
+#=GF         NH (X:1,Y:1,Z:0.3)root;
+#=GF       ARGS -seed 1240127529 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF       SEED 1240127529
+#=GF      PARAM stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF      PARAM lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF       ROOT S-ua-L-g-a-a-g-a-a-S(cg-ua-au-gu-cg-ua-gc-gc-au-cg-au-ug-cg-L-c-c-u-a-c-a)u-g-u-g
+#=GF     BRANCH Length 1.  Loop delete: c(1).  Subst to a: g(4), u(2).  Subst to au: gu(1), ua(1).  Subst to c: a(2), u(1).  Subst to cg: ua(1).  Subst to g: a(3), u(2).  Subst to gc: gu(1).  Subst to gu: au(3), ug(1).  Subst to u: a(2), c(1), g(2).  Subst to ua: cg(5).  Subst to ug: au(1), ua(1).  (root -> X)
+#=GF       LEAF S-gu-L-g-g-a-a-a-g-S(ua-ua-gu-gc-ug-ua-gc-gc-gu-ua-ug-au-ua-L-c-c-u-c-D-u)a-c-a-u
+#=GF     BRANCH Length 1.  Stem delete: gc(1).  Subst to a: c(1), g(1).  Subst to au: gc(1).  Subst to c: g(1), u(2).  Subst to cg: gc(1), ug(1).  Subst to g: a(3), u(2).  Subst to gc: gu(2), ua(3).  Subst to gu: au(1), gc(1).  Subst to u: a(2), c(2), g(1).  Subst to ua: cg(2), gc(1).  Subst to ug: cg(2).  (root -> Y)
+#=GF       LEAF S-gc-L-g-a-a-c-u-g-S(ua-au-au-gu-cg-ua-ua-D-au-ug-gc-ug-cg-L-c-c-u-g-a-g)g-u-u-g
+#=GF     BRANCH Length 0.3.  Loop delete: a(1).  Subst to a: c(1).  Subst to au: ua(1).  Subst to cg: ua(1).  Subst to g: a(1), u(1).  Subst to gc: cg(1).  Subst to u: a(1).  (root -> Z)
+#=GF       LEAF S-au-L-g-a-u-g-D-g-S(cg-cg-au-gu-gc-ua-gc-gc-au-cg-au-ug-cg-L-c-c-u-a-a-a)g-g-u-g
+#=GF   ANCSTEMS 2 (total) 2 (nonempty)
+#=GF ANCSTEMLEN 13 1
+#=GF ANCLOOPLEN 6 10
+      X         gggaaaguugguuggguuauccucuaugauccagcuaaacauu
+#=GR X       SS <......<<<<<<<<<<<<<.....>>>>>>>>>>>>>....>
+      Y         ggaacuguaagcuuaugucccugagggcguaaguuuaguugc
+#=GR Y       SS <......<<<<<<<<<<<<......>>>>>>>>>>>>....>
+      Z         agauggccagguggacaucccuaaagguguccacuuggggugu
+#=GR Z       SS <.....<<<<<<<<<<<<<......>>>>>>>>>>>>>....>
+
+//

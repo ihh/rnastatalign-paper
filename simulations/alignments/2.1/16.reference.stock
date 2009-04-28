@@ -1,30 +1,26 @@
 # STOCKHOLM 1.0
-#=GF NH         ((X:1,Y:1):1,Z:2.1)root;
-#=GF ARGS       -seed 1238373174 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
-#=GF SEED       1238373174
+#=GF NH         (X:1,Y:1,Z:2.1)root;
+#=GF ARGS       -seed 1240104192 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF SEED       1240104192
 #=GF PARAM      stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
 #=GF PARAM      lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
-#=GF ROOT       S-cg-cg-cg-cg-au-au-L-S(ua-au-cg-cg-L-a-u-u-u)u-a-u-a-c-a-a
-#=GF BRANCH     Length 1.  Loop delete: u(1).  Loop insert: c(1).  Subst to a: u(2).  Subst to ag: cg(1).  Subst to au: cg(1), gc(2), gu(1).  Subst to c: a(1), u(2).  Subst to ca: ag(1), cg(1).  Subst to cg: au(1), ua(2), ug(1).  Subst to g: a(1), u(1).  Subst to gc: au(1), cg(1), gu(1), ua(1).  Subst to gu: au(1).  Subst to u: c(2), g(1).  Subst to ua: au(1), ca(1), cg(5), gc(2).  Subst to ug: au(1), cg(1), ua(1).  (root -> node1)
-#=GF NODE       S-ug-cg-ua-au-cg-au-L-S(gc-ua-gc-cg-L-g-u-a-a)g-c-u-a-D-S(ug-au-au-ca-ua-ua-ua-cg-cg-ua-cg-L-c)a-a
-#=GF BRANCH     Length 1.  Stem delete: ua(1).  Subst to a: g(3).  Subst to au: cg(1), gc(1).  Subst to c: a(1).  Subst to cg: gc(1), ua(1), ug(1).  Subst to g: a(3), u(2).  Subst to gc: au(2), ua(1), uc(1).  Subst to gu: au(1), gc(1).  Subst to u: c(2).  Subst to ua: ca(1), cg(2), ug(2).  Subst to uc: au(1).  Subst to ug: cg(3), ua(1).  (node1 -> X)
-#=GF LEAF       S-ug-ug-ua-gc-cg-cg-L-S(gc-ua-gu-ua-L-a-g-g-c)a-u-u-g-D-S(gu-gc-au-ug-ua-au-ua-ua-ua-D-cg-L-g)a-a
-#=GF BRANCH     Length 1.  Loop delete: g(1).  Loop insert: S(1).  Subst to a: u(3).  Subst to au: gu(2), ua(2).  Subst to c: a(1), g(1), u(1).  Subst to ca: ua(1).  Subst to cg: ua(2), ug(1).  Subst to g: c(1).  Subst to gc: au(1), gu(3), ua(1).  Subst to gu: au(4), cg(1), gc(1).  Subst to u: a(1), c(3), g(1).  Subst to ua: ca(1), ug(1).  Subst to ug: cg(2).  (node1 -> Y)
-#=GF LEAF       S-cg-gc-ca-au-cg-au-L-S(gc-ua-gu-cg-L-a-c-a-a)c-u-a-a-u-D-S(cg-au-gc-ua-gc-cg-gc-ug-cg-gc-ug-L-D)u-a
-#=GF BRANCH     Length 2.1.  Loop insert: a(1).  Stem insert: cg(1).  Subst to a: g(2), u(2).  Subst to au: cg(1), gc(1), gu(2).  Subst to c: g(1), u(2).  Subst to ca: ua(1).  Subst to cg: gu(1), ua(1), ug(1).  Subst to g: a(7), c(1), u(2).  Subst to gc: au(1), cg(2), gu(3).  Subst to gg: cg(1).  Subst to gu: gc(3), ua(1), ug(1), uu(1).  Subst to u: c(2), g(1).  Subst to ua: au(2), cg(2), gc(1), ug(1).  Subst to ug: ca(1), cg(2), gg(1).  Subst to uu: ua(1), ug(1).  (root -> Z)
-#=GF LEAF       S-au-au-au-cg-au-ua-cg-L-S(gc-ua-ua-uu-L-g-u-c-g)I-a-c-g-g-g-u-I(I-I-I-I-I-I-I-I-I-I-I-I-I)g-a
-#=GF ANCSTEMS   2 (total) 2 (nonempty)
-#=GF ANCSTEMLEN 4 6
-#=GF ANCLOOPLEN 4 7
-root            ccc-caauaccauuuggua-u-auac------------aa-----------uug-ggg
-#=GR root SS    <<<-<<<<<<<---->>>>-------------------------------->>>->>>
-node1           ucu-acagugcguaagcac-g-cua-uaacuuuccuccaagaggaaaauugugu-agg
-#=GR node1 SS   <<<-<<<<<<<---->>>>-------<<<<<<<<<<<--->>>>>>>>>>>>>>->>>
-X               uuu-gccguguaggcauac-a-uug-ggauuauuu-cgaag-aaauagucuggc-agg
-#=GR X SS       <<<-<<<<<<<---->>>>-------<<<<<<<<<-<--->->>>>>>>>>>>>->>>
-Y               cgc-acagugcacaaguaccu-aau-cagugcgucgu-uagcggcgcacugugu-acg
-#=GR Y SS       <<<-<<<<<<<---->>>>-------<<<<<<<<<<<--->>>>>>>>>>>>>>->>>
-Z               aaacaucguuugucguaac-acgggu------------ga-----------gauguuu
-#=GR Z SS       <<<<<<<<<<<---->>>>-------------------------------->>>>>>>
-#=GC SS_cons    <<<<<<<<<<<....>>>>.......<<<<<<<<<<<...>>>>>>>>>>>>>>>>>>
+#=GF ROOT       S-ua-L-a-a-a-u-S(L-S(gc-au-L-u-c-S(au-cg-L-a-u-a)c)u-a-S(L-g-a-a)g-g-u-g)a
+#=GF BRANCH     Length 1.  Loop delete: u(1).  Loop insert: a(1), c(1).  Subst to a: g(1).  Subst to au: cg(1), gc(1), ua(1).  Subst to c: g(4), u(3).  Subst to cg: ua(2).  Subst to g: a(6), c(2), u(1).  Subst to u: a(2), c(2), g(3).  Subst to ua: au(2), cg(1).  (root -> X)
+#=GF LEAF       S-cg-L-u-a-c-D-S(L-S(au-au-L-u-g-S(au-ua-L-a-c-a)c)u-u-u-S(L-g-g-u)c-g-u-g-g)c
+#=GF BRANCH     Length 1.  Loop delete: g(1).  Loop insert: c(1).  Stem insert: gc(1).  Subst to a: g(3), u(2).  Subst to au: gc(1).  Subst to c: u(4).  Subst to cg: gg(1), ug(1).  Subst to g: a(3), c(2), u(1).  Subst to gc: au(1), gu(2).  Subst to gg: cg(1).  Subst to gu: au(2), gc(1).  Subst to u: a(4), c(2), g(2).  Subst to ua: gu(1).  Subst to ug: cg(1).  (root -> Y)
+#=GF LEAF       S-ua-L-g-u-u-g-S(L-S(ua-gc-L-u-c-a-S(gc-gc-cg-L-u-a-a)a)g-g-I-S(L-u-a-a)a-D-c-I-u)a
+#=GF BRANCH     Length 2.1.  Loop insert: a(1).  Subst to a: g(5), u(5).  Subst to au: gc(1).  Subst to c: a(1), u(5).  Subst to cg: ua(1), ug(2).  Subst to g: a(7), u(2).  Subst to gc: au(1), gu(2), ug(1).  Subst to gu: au(1), gc(1).  Subst to u: a(4), c(5), g(4).  Subst to ua: ug(2).  Subst to ug: au(1), cg(3), ua(2).  (root -> Z)
+#=GF LEAF       S-gc-L-a-g-a-u-S(L-S(gc-ug-L-u-c-I-S(gc-I-cg-L-u-u-a-u)u)a-c-I-S(L-a-c-g)a-u-g-I-a)g
+#=GF ANCSTEMS   5 (total) 3 (nonempty)
+#=GF ANCSTEMLEN 2 0 2 0 1
+#=GF ANCLOOPLEN 3 3 3 6 5
+root            uaaaugauc-a-ca-uag-ucucua-gaaggu-gaa
+#=GR root SS    <....<<..-<-<.-..>->.>>..-......-..>
+X               cuac-aaug-a-ua-caa-ucuuuuuggucguggcg
+#=GR X SS       <...-<<..-<-<.-..>->.>>............>
+Y               uguugugucaggcu-aagccacagg-uaaa-c-uaa
+#=GR Y SS       <....<<...<<<.-..>>>.>>..-....-.-..>
+Z               gagauguuc-g-cuuaug-cugcac-acgaug-agc
+#=GR Z SS       <....<<..-<-<....>->.>>..-......-..>
+#=GC SS_cons    <....<<...<<<....>>>.>>............>
 //

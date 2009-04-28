@@ -1,0 +1,24 @@
+# STOCKHOLM 1.0
+#=GF         NH (X:1,Y:1,Z:0.4)root;
+#=GF       ARGS -seed 1240080438 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF       SEED 1240080438
+#=GF      PARAM stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF      PARAM lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF       ROOT S-cg-L-u-S(ua-gu-au-gc-gc-gc-ua-L-a-u-g-u-c-a-c-a)u-c-g-g-u-a-a
+#=GF     BRANCH Length 1.  Loop insert: c(1).  Stem insert: au(1).  Subst to a: c(1), g(5), u(3).  Subst to au: gc(1).  Subst to c: a(2), u(8).  Subst to cg: gc(1), ua(2).  Subst to g: a(4), c(2), u(1).  Subst to gc: au(2), gu(1).  Subst to gu: gc(2).  Subst to u: a(2), c(5), g(3).  Subst to ua: cg(1), gu(1).  (root -> X)
+#=GF       LEAF S-ua-L-g-S(cg-ua-gc-au-gu-gc-cg-ua-L-g-u-a-u-S(L-u-c-a-u-g-S(cg-L)c-a-c-a-u-g-a-a-c-a-S(L)u-u-a-u-a-c-g)a-a-u-u)u-c-a-u-c-a-a
+#=GF     BRANCH Length 1.  Subst to a: u(3).  Subst to au: ua(1).  Subst to c: a(1), u(4).  Subst to cg: ua(1).  Subst to gc: au(1), gu(1).  Subst to u: c(4), g(1).  (root -> Y)
+#=GF       LEAF S-cg-L-c-S(cg-gc-au-I-gc-gc-gc-gc-L-a-u-a-c-I(I-I-I-I-I-I-I(I-I)I-I-I-I-I-I-I-I-I-I-I(I)I-I-I-I-I-I-I)a-a-c-c)a-u-g-g-u-a-a
+#=GF     BRANCH Length 0.4.  Subst to a: c(1), g(1), u(1).  Subst to au: gc(1), gu(1).  Subst to c: a(1), u(2).  Subst to cg: gc(1).  Subst to u: c(1).  Subst to ua: cg(1).  (root -> Z)
+#=GF       LEAF S-ua-L-a-S(ua-au-au-I-cg-gc-au-ua-L-a-u-g-u-I(I-I-I-I-I-I-I(I-I)I-I-I-I-I-I-I-I-I-I-I(I)I-I-I-I-I-I-I)a-a-u-a)c-c-g-c-c-a-a
+#=GF   ANCSTEMS 2 (total) 2 (nonempty)
+#=GF ANCSTEMLEN 7 1
+#=GF ANCLOOPLEN 8 8
+      X         ugcugaggcuguauucaugccacaugaacauuauacgaauugagcuucagucaucaaa
+#=GR X       SS <.<<<<<<<<.........<.....................>>>>>>>>>.......>
+      Y         cccgaggggauacaaccccccucgaugguaag
+#=GR Y       SS <.<<<<<<<........>>>>>>>.......>
+      Z         uauaacgauauguaauaaucguuaccgccaaa
+#=GR Z       SS <.<<<<<<<........>>>>>>>.......>
+
+//

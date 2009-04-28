@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GF NH         (X:1,Y:1,Z:0)root;
+#=GF ARGS       -seed 1240090463 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF SEED       1240090463
+#=GF PARAM      stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF PARAM      lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF ROOT       S-gc-ua-L-c-S(cg-gu-cg-ug-au-au-L-c-u-c-g-S-ua-L-a-c-u-u)g-a-g-c-a-g-g-a
+#=GF BRANCH     Length 1.  Loop delete: g(1).  Stem delete: cg(1).  Subst to a: c(1), g(3), u(2).  Subst to au: gc(2), gu(2).  Subst to c: a(1), u(3).  Subst to cg: ug(3).  Subst to g: a(2).  Subst to gc: au(2), gu(1).  Subst to gu: au(2).  Subst to u: a(2), c(7), g(1).  Subst to ua: cg(1), gc(1), ug(1).  Subst to ug: ua(3).  (root -> X)
+#=GF LEAF       S-cg-ua-L-a-S(cg-au-cg-D-au-gc-L-u-u-a-u-S-ua-L-a-u-u-u)a-a-g-u-g-u-D-c
+#=GF BRANCH     Length 1.  Subst to a: c(1).  Subst to au: cg(1), gc(2), gu(1).  Subst to c: g(1), u(4).  Subst to cg: gc(1), ua(1).  Subst to g: a(1), c(1), u(2).  Subst to gc: au(1), gu(2).  Subst to gu: au(1), ua(1).  Subst to u: a(1), c(2), g(3).  Subst to ua: au(1), cg(1), ug(1).  (root -> Y)
+#=GF LEAF       S-ua-au-L-u-S(cg-gc-ua-au-au-cg-L-c-c-g-c-S-ua-L-a-u-c-g)g-a-u-c-g-c-g-a
+#=GF BRANCH     Length 0.  No events.  (root -> Z)
+#=GF LEAF       S-gc-ua-L-c-S(cg-gu-cg-ug-au-au-L-c-u-c-g-S-ua-L-a-c-u-u)g-a-g-c-a-g-g-a
+#=GF ANCSTEMS   3 (total) 3 (nonempty)
+#=GF ANCSTEMLEN 1 6 2
+#=GF ANCLOOPLEN 4 4 9
+root            guccgcuaacucguacuuauugguggagcaggaac
+#=GR root SS    <<.<<<<<<....<....>>>>>>>........>>
+X               cuacac-aguuauuauuuacu-gugaagugu-cag
+#=GR X SS       <<.<<<-<<....<....>>>->>>......-.>>
+Y               uaucguaacccgcuaucgaguuacggaucgcgaua
+#=GR Y SS       <<.<<<<<<....<....>>>>>>>........>>
+Z               guccgcuaacucguacuuauugguggagcaggaac
+#=GR Z SS       <<.<<<<<<....<....>>>>>>>........>>
+#=GC SS_cons    <<.<<<<<<....<....>>>>>>>........>>
+//

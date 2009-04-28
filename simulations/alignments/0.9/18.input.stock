@@ -1,26 +1,24 @@
 # STOCKHOLM 1.0
-#=GF         NH ((X:1,Y:1):1,Z:0.9)root;
-#=GF       ARGS -seed 1238551171 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
-#=GF       SEED 1238551171
+#=GF         NH (X:1,Y:1,Z:0.9)root;
+#=GF       ARGS -seed 1240077829 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF       SEED 1240077829
 #=GF      PARAM stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
 #=GF      PARAM lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
-#=GF       ROOT S-cg-gc-gu-cg-ug-L-g-S(cg-gc-cg-ua-ug-L-a-a-g-a)a-u
-#=GF     BRANCH Length 1.  Loop delete: a(1).  Stem insert: cg(1).  Subst to a: g(1).  Subst to au: gc(1).  Subst to c: a(1).  Subst to cg: gc(1), ua(1), ug(2).  Subst to g: u(1).  Subst to gc: gu(1), ua(1).  Subst to ua: cg(2), ug(1).  Subst to ug: cg(1).  (root -> node1)
-#=GF       NODE S-cg-cg-gc-gc-ua-ua-L-a-S(cg-au-cg-cg-cg-L-c-a-g-D)a-g
-#=GF     BRANCH Length 1.  Stem insert: ua(1).  Subst to au: gc(1).  Subst to c: g(1).  Subst to g: a(1).  Subst to gc: ua(1).  Subst to u: a(1), c(1).  Subst to ua: cg(1), ug(1).  Subst to ug: cg(3).  (node1 -> X)
-#=GF       LEAF S-ua-cg-au-gc-gc-ua-L-a-S(ug-au-ua-ug-cg-cg-L-u-u-g-D)c-g
-#=GF     BRANCH Length 1.  Subst to a: c(1), g(1).  Subst to au: cg(1), gc(1).  Subst to c: a(1), g(1), u(1).  Subst to cg: ua(3).  Subst to gc: gu(1).  Subst to gu: au(1), gc(1).  Subst to u: a(1), c(1).  Subst to ua: cg(3).  (node1 -> Y)
-#=GF       LEAF S-ua-cg-gc-au-cg-ua-L-a-S(cg-au-cg-I-gu-cg-L-c-a-c-D)u-a
-#=GF     BRANCH Length 0.9.  Subst to a: g(1), u(1).  Subst to au: gc(1).  Subst to c: a(1), g(1), u(1).  Subst to ca: ug(1).  Subst to cg: gc(1), ug(3).  Subst to g: a(1).  Subst to gc: cg(3), ua(1).  Subst to u: a(1), c(1).  Subst to ug: ca(1), gu(1).  (root -> Z)
-#=GF       LEAF S-cg-I-cg-gc-cg-au-L-a-S(cg-gc-gc-I-gc-cg-L-c-a-u-c)a-g
-#=GF   ANCSTEMS 2 (total) 2 (nonempty)
-#=GF ANCSTEMLEN 5 5
-#=GF ANCLOOPLEN 4 3
-      X         ucagguauauuccuuggggaugcgaccuga
-#=GR X       SS <<<<<<.<<<<<<...>>>>>>..>>>>>>
-      Y         ucgacuacacgccacguguguaagucga
-#=GR Y       SS <<<<<<.<<<<<...>>>>>..>>>>>>
-      Z         ccgcaacgggccaucgcccgagugcgg
-#=GR Z       SS <<<<<.<<<<<....>>>>>..>>>>>
+#=GF       ROOT S-gu-gc-gc-au-gc-au-L-a-u-c-u-a-u-u-g-S-au-gc-L-a-S(gc-gc-ug-gc-ua-L-g-c-c)S(au-gc-gc-gc-gc-au-L-u-u-a-a)a-c-g-u-a-g-a-a-c
+#=GF     BRANCH Length 1.  Loop delete: a(1).  Subst to a: c(2), g(1), u(3).  Subst to au: gc(1), gu(3), ua(1).  Subst to c: u(4).  Subst to cg: au(1), gc(1), ug(1).  Subst to cu: au(1).  Subst to g: a(4), c(1), u(3).  Subst to gc: au(1), cu(1), gu(2).  Subst to gu: au(2), gc(6).  Subst to u: a(2), c(3), g(6).  Subst to ua: au(2), gc(1).  Subst to uu: ua(1).  (root -> X)
+#=GF       LEAF S-gu-gc-gc-au-gu-au-L-a-u-c-g-g-u-u-a-S-gc-gc-L-g-S(ua-gc-cg-gu-au-L-u-c-u)S(cg-gc-uu-gu-cg-ua-L-u-c-D-a)a-g-a-a-a-u-a-u-g
+#=GF     BRANCH Length 1.  Loop insert: c(1).  Subst to a: g(2), u(1).  Subst to au: gc(1), ua(2).  Subst to c: u(6).  Subst to cc: au(1).  Subst to cg: cc(1), gc(2).  Subst to g: a(5), c(1), u(3).  Subst to gc: au(2), gu(3), ua(1).  Subst to gu: au(2), gc(3).  Subst to u: a(2), c(5), g(6).  Subst to ua: gc(2), ug(1).  (root -> Y)
+#=GF       LEAF S-au-gc-gc-au-gc-cg-L-u-u-c-c-u-u-u-u-u-S-gc-gu-L-g-S(cg-ua-au-cg-gc-L-g-c-u)S(gu-gc-gc-gu-gc-gc-L-c-c-a-a)a-u-g-u-a-u-g-a-g
+#=GF     BRANCH Length 0.9.  Loop delete: g(1).  Subst to a: c(2), g(1), u(1).  Subst to au: gc(5), gu(2).  Subst to c: g(1), u(2).  Subst to ca: au(1).  Subst to cg: ca(1), gc(1), ug(1).  Subst to g: a(2), c(1), u(3).  Subst to gc: au(4), gu(1).  Subst to gu: au(2), gc(2).  Subst to u: a(1), c(2), g(1).  Subst to ua: gc(1).  Subst to ug: au(1), gu(1).  (root -> Z)
+#=GF       LEAF S-ug-gc-cg-gc-gc-gc-L-a-g-u-I-c-a-u-g-g-S-au-gu-L-u-S(au-au-cg-gc-ua-L-c-c-a)S(ug-gc-au-ua-gc-cg-L-u-a-g-a)a-g-g-u-a-a-a-D-a
+#=GF   ANCSTEMS 4 (total) 4 (nonempty)
+#=GF ANCSTEMLEN 6 5 2 6
+#=GF ANCLOOPLEN 3 4 10 8
+      X         gggagaaucgguuagggugcgaucuuugcacgugcuucaaguucgagaaauaugccuuuccu
+#=GR X       SS <<<<<<........<<.<<<<<...>>>>><<<<<<...>>>>>>.........>>>>>>>>
+      Y         aggagcuuccuuuuugggcuacggcucguagggggggccaaccuccuauguaugagucgcuccu
+#=GR Y       SS <<<<<<.........<<.<<<<<...>>>>><<<<<<....>>>>>>.........>>>>>>>>
+      Z         ugcgggagucauggaguaacguccaacguuugaugcuagagcaucgagguaaaauucccgcg
+#=GR Z       SS <<<<<<........<<.<<<<<...>>>>><<<<<<....>>>>>>........>>>>>>>>
 
 //

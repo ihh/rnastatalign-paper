@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GF NH         (X:1,Y:1,Z:0)root;
+#=GF ARGS       -seed 1240121919 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF SEED       1240121919
+#=GF PARAM      stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF PARAM      lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF ROOT       S-cg-au-gc-gc-cg-au-au-ua-L-g-a-a-a-u-a-S(ua-L-g-a-u)u
+#=GF BRANCH     Length 1.  Loop delete: a(1).  Subst to a: u(1).  Subst to au: gc(1).  Subst to c: u(2).  Subst to ca: ua(1).  Subst to cg: ca(1).  Subst to g: a(1), u(2).  Subst to gc: au(1).  Subst to gu: au(1).  Subst to u: a(2), g(2).  Subst to ug: cg(1), ua(1).  (root -> X)
+#=GF LEAF       S-cg-au-gu-gc-cg-gc-au-ug-L-g-a-a-g-c-u-S(ug-L-u-D-c)g
+#=GF BRANCH     Length 1.  Stem insert: ua(1).  Subst to a: g(1).  Subst to ac: au(1).  Subst to au: ac(1), cg(1), gu(1).  Subst to c: a(2), g(1).  Subst to cg: au(1), ua(1).  Subst to g: a(3), u(1).  Subst to gc: cg(1), ua(1).  Subst to gu: au(2), gc(1).  Subst to u: c(1), g(2).  Subst to ua: au(1).  (root -> Y)
+#=GF LEAF       S-cg-gc-gc-au-gu-gu-gc-ua-au-L-a-u-g-u-g-c-S(cg-L-u-c-u)u
+#=GF BRANCH     Length 0.  No events.  (root -> Z)
+#=GF LEAF       S-cg-au-gc-gc-cg-au-au-ua-I-L-g-a-a-a-u-a-S(ua-L-g-a-u)u
+#=GF ANCSTEMS   2 (total) 2 (nonempty)
+#=GF ANCSTEMLEN 1 8
+#=GF ANCLOOPLEN 3 7
+root            caggcaau-gaaauaugauau-auugccug
+#=GR root SS    <<<<<<<<-......<...>.->>>>>>>>
+X               caggcgau-gaagcuuu-cgg-gucgcuug
+#=GR X SS       <<<<<<<<-......<.-.>.->>>>>>>>
+Y               cggaggguaaugugccucuguuacuuuccg
+#=GR Y SS       <<<<<<<<<......<...>.>>>>>>>>>
+Z               caggcaau-gaaauaugauau-auugccug
+#=GR Z SS       <<<<<<<<-......<...>.->>>>>>>>
+#=GC SS_cons    <<<<<<<<<......<...>.>>>>>>>>>
+//

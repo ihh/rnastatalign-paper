@@ -1,0 +1,26 @@
+# STOCKHOLM 1.0
+#=GF NH         (X:1,Y:1,Z:0.3)root;
+#=GF ARGS       -seed 1240082546 -sub /nfs/dart/grammars/pfold.eg -sroot -looplen 5 -stemlen 2.33333333333333 -pstem 0.1 /tmp/evolsayer_tree.newick
+#=GF SEED       1240082546
+#=GF PARAM      stem_prob=0.1 subfile=/nfs/dart/grammars/pfold.eg loop_length=5 stem_length=2.33333333333333
+#=GF PARAM      lambda_loop=0.025 mu_loop=0.03 lambda_stem=0.007 mu_stem=0.01
+#=GF ROOT       S-au-au-ug-gu-gc-au-L-S(gc-ug-ug-gc-au-L-a-u-c-S-cg-L-u-a-a-u)g-c-a-a-g
+#=GF BRANCH     Length 1.  Loop delete: S(1).  Subst to a: g(1), u(1).  Subst to ac: gc(1).  Subst to au: gc(2).  Subst to c: g(1), u(2).  Subst to ca: ua(1).  Subst to cg: ua(1), ug(2).  Subst to g: a(1).  Subst to gc: ac(1), au(3), cg(1), gu(2), ug(1).  Subst to gu: gc(2).  Subst to u: a(2), c(2), g(1).  Subst to ua: cg(1), gc(2), ug(1).  Subst to ug: ua(1).  (root -> X)
+#=GF LEAF       S-au-au-cg-au-gc-gc-L-S(ua-ca-gc-gc-gu-L-a-c-a-D-D-D-D-D-D-D)c-u-u-u-u
+#=GF BRANCH     Length 1.  Subst to a: c(1), g(2).  Subst to au: ua(1).  Subst to c: u(1).  Subst to cg: gu(1), ug(1).  Subst to g: a(1), u(1).  Subst to gc: au(2), gu(2), ua(2).  Subst to gu: au(1), ua(1).  Subst to u: a(1), g(1).  Subst to ua: cg(1), gc(1), ug(2).  (root -> Y)
+#=GF LEAF       S-gc-gc-au-gc-gc-gc-L-S(gc-cg-gc-gc-au-L-a-u-c-S-cg-L-u-a-g-u)a-c-a-a-a
+#=GF BRANCH     Length 0.3.  Subst to a: g(1).  Subst to aa: ca(1).  Subst to au: gu(1).  Subst to c: u(2).  Subst to ca: ug(1).  Subst to g: u(1).  Subst to gc: au(1), ug(1).  Subst to u: c(1).  (root -> Z)
+#=GF LEAF       S-au-gc-aa-au-gc-au-L-S(gc-ug-gc-gc-au-L-a-c-c-S-cg-L-c-a-a-u)g-g-a-a-a
+#=GF ANCSTEMS   3 (total) 3 (nonempty)
+#=GF ANCSTEMLEN 1 5 6
+#=GF ANCLOOPLEN 4 3 5
+root            aauggaguugaauccuaaugucggcgcaagucuguu
+#=GR root SS    <<<<<<<<<<<...<....>>>>>>.....>>>>>>
+X               aacaggucgggaca------uccaacuuuuccuguu
+#=GR X SS       <<<<<<<<<<<...------>>>>>.....>>>>>>
+Y               ggaggggcggaauccuaguguccgcacaaacccucc
+#=GR Y SS       <<<<<<<<<<<...<....>>>>>>.....>>>>>>
+Z               agaagaguggaaccccaauguccgcggaaaucuacu
+#=GR Z SS       <<<<<<<<<<<...<....>>>>>>.....>>>>>>
+#=GC SS_cons    <<<<<<<<<<<...<....>>>>>>.....>>>>>>
+//
