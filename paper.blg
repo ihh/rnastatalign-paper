@@ -14,45 +14,45 @@ Warning--empty pages in LunterEtAl2004
 `journal' is a missing field, not a string, for entry Sakakibara2003
 while executing---line 2643 of file PLoS2009.bst
 Warning--empty journal in Sakakibara2003
-You've used 104 entries,
+You've used 100 entries,
             2441 wiz_defined-function locations,
-            1326 strings with 24064 characters,
-and the built_in function-call counts, 79764 in all, are:
-= -- 7399
-> -- 1179
+            1303 strings with 23276 characters,
+and the built_in function-call counts, 75490 in all, are:
+= -- 6990
+> -- 1115
 < -- 6
-+ -- 587
-- -- 294
-* -- 6801
-:= -- 9573
-add.period$ -- 209
-call.type$ -- 104
-change.case$ -- 113
++ -- 555
+- -- 278
+* -- 6410
+:= -- 9061
+add.period$ -- 201
+call.type$ -- 100
+change.case$ -- 109
 chr.to.int$ -- 0
-cite$ -- 213
-duplicate$ -- 8015
-empty$ -- 8389
-format.name$ -- 372
-if$ -- 17705
+cite$ -- 205
+duplicate$ -- 7577
+empty$ -- 7943
+format.name$ -- 353
+if$ -- 16761
 int.to.chr$ -- 0
-int.to.str$ -- 104
-missing$ -- 1022
-newline$ -- 533
-num.names$ -- 109
-pop$ -- 1177
+int.to.str$ -- 100
+missing$ -- 979
+newline$ -- 513
+num.names$ -- 105
+pop$ -- 1137
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 628
+skip$ -- 596
 stack$ -- 0
-substring$ -- 11389
-swap$ -- 2004
+substring$ -- 10712
+swap$ -- 1920
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 5
-while$ -- 575
-width$ -- 107
-write$ -- 1146
+while$ -- 548
+width$ -- 103
+write$ -- 1102
 (There was 1 error message)

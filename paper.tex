@@ -71,6 +71,12 @@ Ian Holmes$^{1,2,\ast}$
 $\ast$ E-mail: indiegram@postbox.biowiki.org
 \end{flushleft}
 
+% figures in figs_plos:
+% 1: parent.pdf
+% 2: threeway.pdf
+% 3: stree-with-structure.pdf
+% 4: stree-mutations-with-structures.pdf
+% 5: simulations.pdf
 
 % Please keep the abstract between 250 and 300 words
 \newpage
@@ -1512,31 +1518,32 @@ dependence of reconstruction accuracy on outgroup branch length.
 We simulated the evolution of RNAs under the TKFST model along
 3-taxon phylogenies, where we kept the branch lengths of the two
 sibling species constant and varied the branch length of the
-outgroup.  We fixed the tree topology as $((X:1,Y:1):1,Z:z)$, where
-the branch length $z$ of the outgroup was varied between 0.5 and 3.0
-and a branch length of 1 corresponds to one expected substitution per site
-in loop sequence.  We chose the parameters of the TKFST model to
+outgroup.  We chose the parameters of the TKFST model to
 generate ``interesting'' alignments ($\sim 0.3$ substructure indels per
 alignment) and considered only alignments with at least two ancestral
 stems, sequences of length $\in [30, 70]$, loops of length $\in [3, 10]$ and
 stems of lengths $\in [1, 20]$.
 
-We expected to find a ``transition point'' in our reconstruction
-accuracy near the point $z \simeq 1$, corresponding to an outgroup
-distance equal to the distance from either of the sibling species to
-the most recent common ancestor.  Our results, shown in
-\figref{simulations}, indicate such a transition point for alignment
-accuracy but not for ancestral reconstruction accuracy.
-% to do: here now
-
-\cite{Mossel2003}
+The results of our simulations, illustrated in \figref{simulations},
+demonstrate that the accuracy of both structural
+reconstruction and alignment accuracy depend on the outgroup
+branch length.  However, while the difficulty of alignment inference
+increases in proportion to the outgroup branch length, becoming
+near-impossible for very long outgroup branch lengths, the same need not
+true for structural reconstruction accuracy.  As the outgroup branch
+length increases, its structure becomes increasingly decoupled from
+that of its ancestor, allowing the algorithm to ``ignore'' the
+information which it contains.
+Similarly, while we can perfectly reconstruct the ancestral
+structure given an outgroup branch length of 0 (the trivial case), we
+cannot perfectly reconstruct the alignment.  
 
 While these results correspond to a best-case scenario in which we
 have a perfectly-parametrized evolutionary model, recent results
 demonstrating that inference of sequence alignment is surprisingly
-robust to mis-parametrized models \cite{Lunter2007} suggest that the same
-may be true for inference of ancestral structures.
-
+robust to mis-parametrized probabilistic models \cite{Lunter2007}
+suggest that the same may be true for probabilistic inference of
+ancestral structures.
 
 
 \newpage
@@ -1639,8 +1646,10 @@ using the three-way sampling kernel which we have described
 would require resources far in excess of what are currently available;
 barring the availability of supercomputers with terabytes of memory,
 such algorithms will only be feasible for short RNAs (\tabref{complexities}).
-Thus, alternate strategies will have to be explored.
-One promising direction is to consider variations on the three-way sampling kernel,
+Thus, alternate strategies will have to be explored, such as the
+progressive reconstruction used by the \ortheus\ program for
+reconstructing ancestral genomes \cite{PatenEtAl2008}.
+Another promising direction is to consider variations on the three-way sampling kernel,
 such as the importance-sampling approach described for the TKF model
 by \cite{RedelingsSuchard2005}.
 This approach first proposes an ancestor $W$ by aligning extant
@@ -1777,12 +1786,25 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
   \caption{
     \textbf{Dependence of reconstruction accuracy on outgroup branch
       length.}
-    We allowed the outgroup branch length $z$ to vary within $[0.5,
-    3.0]$, where a branch length of 1 corresponds to one expected
-    substitution per site in loop sequence.  We divided this interval
+    We investigated the dependence of structural reconstruction and
+    alignment accuracy on outgroup branch length by simulating the
+    evolution of three structural RNAs under our model.  The two
+    sister species were equidistant from the ancestral sequence, with
+    a branch length of 1, corresponding to one expected
+    substitution per site in loop sequence.  We allowed the outgroup
+    branch length to vary between $[0, 2.5]$.  We divided this interval
     into 25 bins and simulated 25 alignments for each bin.
-    Parameters used were:
-  }
+    Parameters used were $\lambda_1 = 0.025$ and $\mu_1 = 0.03$ for
+    loop sequence and $\lambda_2 = 0.007$ and $\mu_2 = 0.01$ for stem
+    sequence; the probability of a stem insertion was $0.1$.  These
+    yielded a mean loop length of 5 and a mean stem length of 2.33,
+    with $\sim 0.3$ substructure indels per alignment.
+    We selected challenging alignments to reconstruct by requiring
+    that there be at least two ancestral stems, loops of length $\in [3,
+    10]$ and stems of length $\in [1, 20]$; to reduce the complexity of
+    our algorithms we additionally required that the sequences have
+    lengths $\in [30, 70]$.
+ }
   \figlabel{simulations}
 \end{figure}
 

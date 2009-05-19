@@ -309,19 +309,6 @@ Gutell RR (1993) Collection of small subunit ({16S} and {16S}-like) ribosomal
 \newblock Nucleic Acids Research 21: 3051-3054.
 \bibAnnoteFile{Gutell93}
 
-\bibitem{CrucsEtAl2000}
-Crucs S, Chatterjee S, Gavis ER (2000) Overlapping but distinct {RNA} elements
-  control repression and activation of nanos translation.
-\newblock Molecular cell 5: 457-467.
-\bibAnnoteFile{CrucsEtAl2000}
-
-\bibitem{Hopfield78}
-Hopfield JJ (1978) Origin of the genetic code: a testable hypothesis based on
-  t{RNA} structure, sequence, and kinetic proofreading.
-\newblock Proceedings of the National Academy of Sciences of the United States
-  of America 75: 4334-4338.
-\bibAnnoteFile{Hopfield78}
-
 \bibitem{PaulingZuckerkandl63}
 Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
   studies'' of extinct forms of life.
@@ -603,35 +590,23 @@ Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures} :
   232--240.
 \bibAnnoteFile{Sakakibara2003}
 
-\bibitem{KlostermanEtAl2006}
-Klosterman PS, Uzilov AV, Bendana YR, Bradley RK, Chao S, et~al. (2006)
-  {XRate}: a fast prototyping, training and annotation tool for phylo-grammars.
-\newblock BMC Bioinformatics 7.
-\bibAnnoteFile{KlostermanEtAl2006}
-
-\bibitem{Rfam2005}
-Griffiths-Jones S, Moxon S, Marshall M, Khanna A, Eddy SR, et~al. (2005) Rfam:
-  annotating non-coding {R}{N}{A}s in complete genomes.
-\newblock Nucleic Acids Research 33: D121-4.
-\bibAnnoteFile{Rfam2005}
-
-\bibitem{GardnerEtAl2005}
-Gardner PP, Wilm A, Washietl S (2005) A benchmark of multiple sequence
-  alignment programs upon structural {RNA}s.
-\newblock Nucleic Acids Research 33: 2433-2439.
-\bibAnnoteFile{GardnerEtAl2005}
-
-\bibitem{HofackerEtAl94}
-Hofacker IL, Fontana W, Stadler PF, Bonhoeffer S, Tacker M, et~al. (1994) Fast
-  folding and comparison of {RNA} secondary structures.
-\newblock Monatshefte f\"{u}r Chemie 125: 167-188.
-\bibAnnoteFile{HofackerEtAl94}
+\bibitem{PatenEtAl2008}
+Paten B, Herrero J, Fitzgerald S, Beal K, Flicek P, et~al. (2008)
+  {{G}enome-wide nucleotide-level mammalian ancestor reconstruction}.
+\newblock Genome Res 18: 1829--1843.
+\bibAnnoteFile{PatenEtAl2008}
 
 \bibitem{ThompsonEtal99}
 Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple
   sequence alignment programs.
 \newblock Nucleic Acids Research 27: 2682-2690.
 \bibAnnoteFile{ThompsonEtal99}
+
+\bibitem{GardnerEtAl2005}
+Gardner PP, Wilm A, Washietl S (2005) A benchmark of multiple sequence
+  alignment programs upon structural {RNA}s.
+\newblock Nucleic Acids Research 33: 2433-2439.
+\bibAnnoteFile{GardnerEtAl2005}
 
 \bibitem{TeunissenEtAl2000}
 Teunissen S, Kruithof M, Farris A, Harley J, Venrooij W, et~al. (2000)
