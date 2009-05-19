@@ -11,48 +11,45 @@ Warning--empty pages in ComonEtAl2007-TreeTransducers
 Warning--empty pages in GecsegSteinby97
 Warning--empty pages in Gaucher2007b
 Warning--empty pages in LunterEtAl2004
-`journal' is a missing field, not a string, for entry Sakakibara2003
-while executing---line 2643 of file PLoS2009.bst
-Warning--empty journal in Sakakibara2003
 You've used 100 entries,
             2441 wiz_defined-function locations,
-            1303 strings with 23276 characters,
-and the built_in function-call counts, 75490 in all, are:
-= -- 6990
+            1300 strings with 23156 characters,
+and the built_in function-call counts, 75672 in all, are:
+= -- 7013
 > -- 1115
 < -- 6
 + -- 555
 - -- 278
-* -- 6410
-:= -- 9061
-add.period$ -- 201
+* -- 6426
+:= -- 9083
+add.period$ -- 202
 call.type$ -- 100
 change.case$ -- 109
 chr.to.int$ -- 0
-cite$ -- 205
-duplicate$ -- 7577
-empty$ -- 7943
+cite$ -- 204
+duplicate$ -- 7596
+empty$ -- 7962
 format.name$ -- 353
-if$ -- 16761
+if$ -- 16804
 int.to.chr$ -- 0
 int.to.str$ -- 100
-missing$ -- 979
-newline$ -- 513
+missing$ -- 980
+newline$ -- 514
 num.names$ -- 105
-pop$ -- 1137
+pop$ -- 1134
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
 skip$ -- 596
 stack$ -- 0
-substring$ -- 10712
-swap$ -- 1920
+substring$ -- 10749
+swap$ -- 1922
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
+warning$ -- 4
 while$ -- 548
 width$ -- 103
-write$ -- 1102
-(There was 1 error message)
+write$ -- 1105
+(There were 4 warnings)

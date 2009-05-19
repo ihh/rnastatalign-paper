@@ -283,7 +283,7 @@ different length classes of RNA genes.
 > actually doing (and testing!) paleogenetics. A less grand title, more 
 > consistent with results on toy three-sequence data sets, is appropriate.
 
-We have accordingly changed the title to "Evolutionary models of
+We have accordingly changed the title to "Evolutionary triplet models of
 structured RNA".
 
 > p.3: as far as I'm aware, the Felsenstein "pruning algorithm" and 
@@ -404,7 +404,7 @@ alignment program.
 > biological hypothesis with a model whose realism and accuracy you've 
 > called into question?
 
-[we have deleted the references to Hopfield's hypothesis]
+We have removed the references to Hopfield's hypothesis from the revised manuscript.
 
 > p.21 in general the whole "reconstructing RNAs with a simple model" 
 > section is too chatty and imprecise. "Both predicted ancestral 
@@ -417,7 +417,7 @@ alignment program.
 > model could readily be designed...") and too little attention is given 
 > to the actual model and problems at hand.
 
-
+We have reworded this section per our new focus on the simulation results.
 
 > Table 2: it's unclear why we need separate states L and I_L, or S and 
 > I_S; these nonterminals have identical production rules.
@@ -477,7 +477,8 @@ the model.
 
 > Figure 1: 5' and 3' ends of RNA structures should be labeled.
 
-
+5' and 3' ends of structures are now labeled (e.g., Figures 3 and 4 of
+the revised manuscript).
 
 > Figure 3: It is very unclear what this figure is supposed to be 
 > representing (and I had the same problem with it when it appeared in 
@@ -486,7 +487,9 @@ the model.
 > of evolutionary model from one sequence/structure/parse tree to 
 > another, as the caption and text would seem to imply.
 
-[we have included stree-mutations.pdf, which was also in the cited paper, and illustrates the dynamic behavior of this model]
+We have updated this figure and included an additional figure (also
+extended from a figure in [28]) which illustrates the requested
+mutations.  Both figures now include the structures for clarity.
 
 > Figure 4 and Figure 5 seem unnecessary. Both are too schematic to 
 > convey useful information. The concept of conditional likelihood along 
@@ -516,4 +519,5 @@ criticism, we may accept it as a stylistic difference.
 > gives no page numbers. Ref 33 shows no volume nor page numbers. And so 
 > on.)
 
-[we have corrected this..... I hope]
+We have attempted to correct these mistakes; we apologize in advance
+for any which remain in the revised manuscript.
