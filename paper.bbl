@@ -596,6 +596,11 @@ Paten B, Herrero J, Fitzgerald S, Beal K, Flicek P, et~al. (2008)
 \newblock Genome Res 18: 1829--1843.
 \bibAnnoteFile{PatenEtAl2008}
 
+\bibitem{SchwartzMyersPachter2006}
+Schwartz AS, Myers EW, Pachter L (2006) Alignment metric accuracy.
+\newblock {http://arxiv.org/abs/q-bio/0510052}.
+\bibAnnoteFile{SchwartzMyersPachter2006}
+
 \bibitem{ThompsonEtal99}
 Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple
   sequence alignment programs.

@@ -11,45 +11,45 @@ Warning--empty pages in ComonEtAl2007-TreeTransducers
 Warning--empty pages in GecsegSteinby97
 Warning--empty pages in Gaucher2007b
 Warning--empty pages in LunterEtAl2004
-You've used 100 entries,
+You've used 101 entries,
             2441 wiz_defined-function locations,
-            1300 strings with 23156 characters,
-and the built_in function-call counts, 75672 in all, are:
-= -- 7013
-> -- 1115
+            1305 strings with 23314 characters,
+and the built_in function-call counts, 76202 in all, are:
+= -- 7059
+> -- 1127
 < -- 6
-+ -- 555
-- -- 278
-* -- 6426
-:= -- 9083
-add.period$ -- 202
-call.type$ -- 100
-change.case$ -- 109
++ -- 561
+- -- 281
+* -- 6466
+:= -- 9147
+add.period$ -- 204
+call.type$ -- 101
+change.case$ -- 110
 chr.to.int$ -- 0
-cite$ -- 204
-duplicate$ -- 7596
-empty$ -- 7962
-format.name$ -- 353
-if$ -- 16804
+cite$ -- 206
+duplicate$ -- 7653
+empty$ -- 8015
+format.name$ -- 357
+if$ -- 16919
 int.to.chr$ -- 0
-int.to.str$ -- 100
-missing$ -- 980
-newline$ -- 514
-num.names$ -- 105
-pop$ -- 1134
+int.to.str$ -- 101
+missing$ -- 988
+newline$ -- 519
+num.names$ -- 106
+pop$ -- 1148
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 596
+skip$ -- 603
 stack$ -- 0
-substring$ -- 10749
-swap$ -- 1922
+substring$ -- 10807
+swap$ -- 1937
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 548
-width$ -- 103
-write$ -- 1105
+while$ -- 552
+width$ -- 104
+write$ -- 1115
 (There were 4 warnings)
