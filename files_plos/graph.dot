@@ -1,0 +1,1157 @@
+digraph stateGraph {
+	S_S_S_S -> S_S_S_IS;
+	S_S_S_S -> S_S_S_WS;
+
+	L_L_L_L -> L_L_L_IL;
+	L_L_L_L -> L_L_L_WL;
+	L_L_L_L -> L_L_L_BiSiL;
+
+	L_e_L_L -> L_e_L_IL;
+	L_e_L_L -> L_e_L_WL;
+	L_e_L_L -> L_e_L_BiSiL;
+
+	S_e_S_S -> S_e_S_IS;
+	S_e_S_S -> S_e_S_WS;
+
+	S_S_e_S -> S_S_e_IS;
+	S_S_e_S -> S_S_e_WS;
+
+	L_L_e_L -> L_L_e_IL;
+	L_L_e_L -> L_L_e_WL;
+	L_L_e_L -> L_L_e_BiSiL;
+
+	S_S_S_IS -> S_S_S_IS;
+	S_S_S_IS -> S_S_S_WS;
+
+	L_L_L_IL -> L_L_L_IL;
+	L_L_L_IL -> L_L_L_WL;
+	L_L_L_IL -> L_L_L_BiSiL;
+
+	S_e_S_IS -> S_e_S_IS;
+	S_e_S_IS -> S_e_S_WS;
+
+	L_e_L_IL -> L_e_L_IL;
+	L_e_L_IL -> L_e_L_WL;
+	L_e_L_IL -> L_e_L_BiSiL;
+
+	L_L_e_IL -> L_L_e_IL;
+	L_L_e_IL -> L_L_e_WL;
+	L_L_e_IL -> L_L_e_BiSiL;
+
+	S_S_e_IS -> S_S_e_IS;
+	S_S_e_IS -> S_S_e_WS;
+
+	S_S_S_WS -> S_S_IS_WS;
+	S_S_S_WS -> S_S_WS_WS;
+
+	L_L_L_WL -> L_L_IL_WL;
+	L_L_L_WL -> L_L_WL_WL;
+	L_L_L_WL -> L_L_BiSiL_WL;
+
+	L_e_L_WL -> L_e_IL_WL;
+	L_e_L_WL -> L_e_WL_WL;
+	L_e_L_WL -> L_e_BiSiL_WL;
+
+	S_e_S_WS -> S_e_IS_WS;
+	S_e_S_WS -> S_e_WS_WS;
+
+	L_L_IL_WL -> L_L_IL_WL;
+	L_L_IL_WL -> L_L_WL_WL;
+	L_L_IL_WL -> L_L_BiSiL_WL;
+
+	S_S_IS_WS -> S_S_IS_WS;
+	S_S_IS_WS -> S_S_WS_WS;
+
+	S_S_WS_WS -> S_IS_WS_WS;
+	S_S_WS_WS -> S_WS_WS_WS;
+
+	L_L_WL_WL -> L_IL_WL_WL;
+	L_L_WL_WL -> L_WL_WL_WL;
+	L_L_WL_WL -> L_BiSiL_WL_WL;
+
+	L_L_L_e -> L_L_IL_e;
+	L_L_L_e -> L_L_WL_e;
+	L_L_L_e -> L_L_BiSiL_e;
+
+	S_S_S_e -> S_S_IS_e;
+	S_S_S_e -> S_S_WS_e;
+
+	S_e_IS_WS -> S_e_IS_WS;
+	S_e_IS_WS -> S_e_WS_WS;
+
+	L_L_IL_e -> L_L_IL_e;
+	L_L_IL_e -> L_L_WL_e;
+	L_L_IL_e -> L_L_BiSiL_e;
+
+	L_IL_WL_WL -> L_IL_WL_WL;
+	L_IL_WL_WL -> L_WL_WL_WL;
+	L_IL_WL_WL -> L_BiSiL_WL_WL;
+
+	S_IS_WS_WS -> S_IS_WS_WS;
+	S_IS_WS_WS -> S_WS_WS_WS;
+
+	L_WL_WL_WL -> IL_ML_ML_ML;
+	L_WL_WL_WL -> IL_DL_ML_ML;
+	L_WL_WL_WL -> IL_ML_DL_ML;
+	L_WL_WL_WL -> IL_ML_ML_DL;
+	L_WL_WL_WL -> IL_DL_DL_ML;
+	L_WL_WL_WL -> IL_DL_ML_DL;
+	L_WL_WL_WL -> IL_ML_DL_DL;
+	L_WL_WL_WL -> IL_DL_DL_DL;
+	L_WL_WL_WL -> BiSL_BmSL_BmSL_BmSL;
+	L_WL_WL_WL -> BiSL_BmSL_BmSL_BpeL;
+	L_WL_WL_WL -> BiSL_BmSL_BpeL_BmSL;
+	L_WL_WL_WL -> BiSL_BmSL_BpeL_BpeL;
+	L_WL_WL_WL -> BiSL_BpeL_BmSL_BmSL;
+	L_WL_WL_WL -> BiSL_BpeL_BmSL_BpeL;
+	L_WL_WL_WL -> BiSL_BpeL_BpeL_BmSL;
+	L_WL_WL_WL -> BiSL_BpeL_BpeL_BpeL;
+	L_WL_WL_WL -> e_e_e_e;
+
+	S_WS_WS_WS -> L_L_L_L;
+	S_WS_WS_WS -> IS_MS_MS_MS;
+	S_WS_WS_WS -> IS_DS_MS_MS;
+	S_WS_WS_WS -> IS_MS_DS_MS;
+	S_WS_WS_WS -> IS_MS_MS_DS;
+	S_WS_WS_WS -> IS_DS_DS_MS;
+	S_WS_WS_WS -> IS_DS_MS_DS;
+	S_WS_WS_WS -> IS_MS_DS_DS;
+	S_WS_WS_WS -> IS_DS_DS_DS;
+
+	S_e_e_S -> S_e_e_IS;
+	S_e_e_S -> S_e_e_WS;
+
+	L_e_e_L -> L_e_e_IL;
+	L_e_e_L -> L_e_e_WL;
+	L_e_e_L -> L_e_e_BiSiL;
+
+	L_e_e_IL -> L_e_e_IL;
+	L_e_e_IL -> L_e_e_WL;
+	L_e_e_IL -> L_e_e_BiSiL;
+
+	L_e_IL_WL -> L_e_IL_WL;
+	L_e_IL_WL -> L_e_WL_WL;
+	L_e_IL_WL -> L_e_BiSiL_WL;
+
+	L_e_WL_WL -> IL_e_ML_ML;
+	L_e_WL_WL -> IL_e_DL_ML;
+	L_e_WL_WL -> IL_e_ML_DL;
+	L_e_WL_WL -> IL_e_DL_DL;
+	L_e_WL_WL -> BiSL_e_BmSL_BmSL;
+	L_e_WL_WL -> BiSL_e_BmSL_BpeL;
+	L_e_WL_WL -> BiSL_e_BpeL_BmSL;
+	L_e_WL_WL -> BiSL_e_BpeL_BpeL;
+	L_e_WL_WL -> e_e_e_e;
+
+	S_e_WS_WS -> L_e_L_L;
+	S_e_WS_WS -> IS_e_MS_MS;
+	S_e_WS_WS -> IS_e_DS_MS;
+	S_e_WS_WS -> IS_e_MS_DS;
+	S_e_WS_WS -> IS_e_DS_DS;
+
+	S_S_e_WS -> S_IS_e_WS;
+	S_S_e_WS -> S_WS_e_WS;
+
+	L_L_e_WL -> L_IL_e_WL;
+	L_L_e_WL -> L_WL_e_WL;
+	L_L_e_WL -> L_BiSiL_e_WL;
+
+	L_IL_e_WL -> L_IL_e_WL;
+	L_IL_e_WL -> L_WL_e_WL;
+	L_IL_e_WL -> L_BiSiL_e_WL;
+
+	S_IS_e_WS -> S_IS_e_WS;
+	S_IS_e_WS -> S_WS_e_WS;
+
+	S_WS_e_WS -> L_L_e_L;
+	S_WS_e_WS -> IS_MS_e_MS;
+	S_WS_e_WS -> IS_DS_e_MS;
+	S_WS_e_WS -> IS_MS_e_DS;
+	S_WS_e_WS -> IS_DS_e_DS;
+
+	L_WL_e_WL -> IL_ML_e_ML;
+	L_WL_e_WL -> IL_DL_e_ML;
+	L_WL_e_WL -> IL_ML_e_DL;
+	L_WL_e_WL -> IL_DL_e_DL;
+	L_WL_e_WL -> BiSL_BmSL_e_BmSL;
+	L_WL_e_WL -> BiSL_BmSL_e_BpeL;
+	L_WL_e_WL -> BiSL_BpeL_e_BmSL;
+	L_WL_e_WL -> BiSL_BpeL_e_BpeL;
+	L_WL_e_WL -> e_e_e_e;
+
+	S_e_e_WS -> L_e_e_L;
+	S_e_e_WS -> IS_e_e_MS;
+	S_e_e_WS -> IS_e_e_DS;
+
+	L_e_e_WL -> IL_e_e_ML;
+	L_e_e_WL -> IL_e_e_DL;
+	L_e_e_WL -> BiSL_e_e_BmSL;
+	L_e_e_WL -> BiSL_e_e_BpeL;
+	L_e_e_WL -> e_e_e_e;
+
+	L_e_L_e -> L_e_IL_e;
+	L_e_L_e -> L_e_WL_e;
+	L_e_L_e -> L_e_BiSiL_e;
+
+	S_e_S_e -> S_e_IS_e;
+	S_e_S_e -> S_e_WS_e;
+
+	S_S_IS_e -> S_S_IS_e;
+	S_S_IS_e -> S_S_WS_e;
+
+	S_e_IS_e -> S_e_IS_e;
+	S_e_IS_e -> S_e_WS_e;
+
+	L_e_IL_e -> L_e_IL_e;
+	L_e_IL_e -> L_e_WL_e;
+	L_e_IL_e -> L_e_BiSiL_e;
+
+	L_L_WL_e -> L_IL_WL_e;
+	L_L_WL_e -> L_WL_WL_e;
+	L_L_WL_e -> L_BiSiL_WL_e;
+
+	S_S_WS_e -> S_IS_WS_e;
+	S_S_WS_e -> S_WS_WS_e;
+
+	L_IL_WL_e -> L_IL_WL_e;
+	L_IL_WL_e -> L_WL_WL_e;
+	L_IL_WL_e -> L_BiSiL_WL_e;
+
+	S_IS_WS_e -> S_IS_WS_e;
+	S_IS_WS_e -> S_WS_WS_e;
+
+	S_WS_WS_e -> L_L_L_e;
+	S_WS_WS_e -> IS_MS_MS_e;
+	S_WS_WS_e -> IS_DS_MS_e;
+	S_WS_WS_e -> IS_MS_DS_e;
+	S_WS_WS_e -> IS_DS_DS_e;
+
+	L_WL_WL_e -> IL_ML_ML_e;
+	L_WL_WL_e -> IL_DL_ML_e;
+	L_WL_WL_e -> IL_ML_DL_e;
+	L_WL_WL_e -> IL_DL_DL_e;
+	L_WL_WL_e -> BiSL_BmSL_BmSL_e;
+	L_WL_WL_e -> BiSL_BmSL_BpeL_e;
+	L_WL_WL_e -> BiSL_BpeL_BmSL_e;
+	L_WL_WL_e -> BiSL_BpeL_BpeL_e;
+	L_WL_WL_e -> e_e_e_e;
+
+	S_e_WS_e -> L_e_L_e;
+	S_e_WS_e -> IS_e_MS_e;
+	S_e_WS_e -> IS_e_DS_e;
+
+	L_e_WL_e -> IL_e_ML_e;
+	L_e_WL_e -> IL_e_DL_e;
+	L_e_WL_e -> BiSL_e_BmSL_e;
+	L_e_WL_e -> BiSL_e_BpeL_e;
+	L_e_WL_e -> e_e_e_e;
+
+	S_e_e_IS -> S_e_e_IS;
+	S_e_e_IS -> S_e_e_WS;
+
+	L_L_e_e -> L_IL_e_e;
+	L_L_e_e -> L_WL_e_e;
+	L_L_e_e -> L_BiSiL_e_e;
+
+	S_S_e_e -> S_IS_e_e;
+	S_S_e_e -> S_WS_e_e;
+
+	L_IL_e_e -> L_IL_e_e;
+	L_IL_e_e -> L_WL_e_e;
+	L_IL_e_e -> L_BiSiL_e_e;
+
+	S_IS_e_e -> S_IS_e_e;
+	S_IS_e_e -> S_WS_e_e;
+
+	L_WL_e_e -> IL_ML_e_e;
+	L_WL_e_e -> IL_DL_e_e;
+	L_WL_e_e -> BiSL_BmSL_e_e;
+	L_WL_e_e -> BiSL_BpeL_e_e;
+	L_WL_e_e -> e_e_e_e;
+
+	S_WS_e_e -> L_L_e_e;
+	S_WS_e_e -> IS_MS_e_e;
+	S_WS_e_e -> IS_DS_e_e;
+
+	L_e_e_e -> IL_e_e_e;
+	L_e_e_e -> BiSL_e_e_e;
+	L_e_e_e -> e_e_e_e;
+
+	S_e_e_e -> L_e_e_e;
+	S_e_e_e -> IS_e_e_e;
+
+	IL_ML_ML_L -> IL_ML_ML_IL;
+	IL_ML_ML_L -> IL_ML_ML_WL;
+	IL_ML_ML_L -> IL_ML_ML_BiSiL;
+
+	IL_ML_DL_L -> IL_ML_DL_IL;
+	IL_ML_DL_L -> IL_ML_DL_WL;
+	IL_ML_DL_L -> IL_ML_DL_BiSiL;
+
+	IL_ML_e_L -> IL_ML_e_IL;
+	IL_ML_e_L -> IL_ML_e_WL;
+	IL_ML_e_L -> IL_ML_e_BiSiL;
+
+	IS_MS_MS_IS -> IS_MS_MS_IS;
+	IS_MS_MS_IS -> IS_MS_MS_WS;
+
+	IL_ML_ML_IL -> IL_ML_ML_IL;
+	IL_ML_ML_IL -> IL_ML_ML_WL;
+	IL_ML_ML_IL -> IL_ML_ML_BiSiL;
+
+	IL_ML_L_WL -> IL_ML_IL_WL;
+	IL_ML_L_WL -> IL_ML_WL_WL;
+	IL_ML_L_WL -> IL_ML_BiSiL_WL;
+
+	IL_ML_IL_WL -> IL_ML_IL_WL;
+	IL_ML_IL_WL -> IL_ML_WL_WL;
+	IL_ML_IL_WL -> IL_ML_BiSiL_WL;
+
+	IS_MS_IS_WS -> IS_MS_IS_WS;
+	IS_MS_IS_WS -> IS_MS_WS_WS;
+
+	IL_DL_ML_IL -> IL_DL_ML_IL;
+	IL_DL_ML_IL -> IL_DL_ML_WL;
+	IL_DL_ML_IL -> IL_DL_ML_BiSiL;
+
+	IS_DS_MS_IS -> IS_DS_MS_IS;
+	IS_DS_MS_IS -> IS_DS_MS_WS;
+
+	IL_e_ML_IL -> IL_e_ML_IL;
+	IL_e_ML_IL -> IL_e_ML_WL;
+	IL_e_ML_IL -> IL_e_ML_BiSiL;
+
+	IS_MS_DS_IS -> IS_MS_DS_IS;
+	IS_MS_DS_IS -> IS_MS_DS_WS;
+
+	IL_ML_DL_IL -> IL_ML_DL_IL;
+	IL_ML_DL_IL -> IL_ML_DL_WL;
+	IL_ML_DL_IL -> IL_ML_DL_BiSiL;
+
+	IS_MS_MS_MS -> IS_MS_MS_IS;
+	IS_MS_MS_MS -> IS_MS_MS_WS;
+
+	IL_ML_ML_ML -> IL_ML_ML_IL;
+	IL_ML_ML_ML -> IL_ML_ML_WL;
+	IL_ML_ML_ML -> IL_ML_ML_BiSiL;
+
+	IS_MS_MS_DS -> IS_MS_MS_IS;
+	IS_MS_MS_DS -> IS_MS_MS_WS;
+
+	IS_MS_MS_WS -> IS_MS_IS_WS;
+	IS_MS_MS_WS -> IS_MS_WS_WS;
+
+	IL_ML_L_e -> IL_ML_IL_e;
+	IL_ML_L_e -> IL_ML_WL_e;
+	IL_ML_L_e -> IL_ML_BiSiL_e;
+
+	IL_DL_ML_L -> IL_DL_ML_IL;
+	IL_DL_ML_L -> IL_DL_ML_WL;
+	IL_DL_ML_L -> IL_DL_ML_BiSiL;
+
+	IL_DL_DL_L -> IL_DL_DL_IL;
+	IL_DL_DL_L -> IL_DL_DL_WL;
+	IL_DL_DL_L -> IL_DL_DL_BiSiL;
+
+	IL_DL_DL_IL -> IL_DL_DL_IL;
+	IL_DL_DL_IL -> IL_DL_DL_WL;
+	IL_DL_DL_IL -> IL_DL_DL_BiSiL;
+
+	IS_DS_DS_IS -> IS_DS_DS_IS;
+	IS_DS_DS_IS -> IS_DS_DS_WS;
+
+	IL_ML_e_IL -> IL_ML_e_IL;
+	IL_ML_e_IL -> IL_ML_e_WL;
+	IL_ML_e_IL -> IL_ML_e_BiSiL;
+
+	IS_MS_e_IS -> IS_MS_e_IS;
+	IS_MS_e_IS -> IS_MS_e_WS;
+
+	IS_DS_MS_MS -> IS_DS_MS_IS;
+	IS_DS_MS_MS -> IS_DS_MS_WS;
+
+	IL_DL_ML_ML -> IL_DL_ML_IL;
+	IL_DL_ML_ML -> IL_DL_ML_WL;
+	IL_DL_ML_ML -> IL_DL_ML_BiSiL;
+
+	IS_e_MS_MS -> IS_e_MS_IS;
+	IS_e_MS_MS -> IS_e_MS_WS;
+
+	IL_e_ML_ML -> IL_e_ML_IL;
+	IL_e_ML_ML -> IL_e_ML_WL;
+	IL_e_ML_ML -> IL_e_ML_BiSiL;
+
+	IS_MS_DS_MS -> IS_MS_DS_IS;
+	IS_MS_DS_MS -> IS_MS_DS_WS;
+
+	IL_ML_DL_ML -> IL_ML_DL_IL;
+	IL_ML_DL_ML -> IL_ML_DL_WL;
+	IL_ML_DL_ML -> IL_ML_DL_BiSiL;
+
+	IS_MS_e_MS -> IS_MS_e_IS;
+	IS_MS_e_MS -> IS_MS_e_WS;
+
+	IL_ML_ML_DL -> IL_ML_ML_IL;
+	IL_ML_ML_DL -> IL_ML_ML_WL;
+	IL_ML_ML_DL -> IL_ML_ML_BiSiL;
+
+	IS_DS_DS_MS -> IS_DS_DS_IS;
+	IS_DS_DS_MS -> IS_DS_DS_WS;
+
+	IL_DL_DL_ML -> IL_DL_DL_IL;
+	IL_DL_DL_ML -> IL_DL_DL_WL;
+	IL_DL_DL_ML -> IL_DL_DL_BiSiL;
+
+	IS_DS_MS_DS -> IS_DS_MS_IS;
+	IS_DS_MS_DS -> IS_DS_MS_WS;
+
+	IL_DL_ML_DL -> IL_DL_ML_IL;
+	IL_DL_ML_DL -> IL_DL_ML_WL;
+	IL_DL_ML_DL -> IL_DL_ML_BiSiL;
+
+	IL_e_DL_L -> IL_e_DL_IL;
+	IL_e_DL_L -> IL_e_DL_WL;
+	IL_e_DL_L -> IL_e_DL_BiSiL;
+
+	IL_e_DL_IL -> IL_e_DL_IL;
+	IL_e_DL_IL -> IL_e_DL_WL;
+	IL_e_DL_IL -> IL_e_DL_BiSiL;
+
+	IS_e_DS_IS -> IS_e_DS_IS;
+	IS_e_DS_IS -> IS_e_DS_WS;
+
+	IL_ML_DL_DL -> IL_ML_DL_IL;
+	IL_ML_DL_DL -> IL_ML_DL_WL;
+	IL_ML_DL_DL -> IL_ML_DL_BiSiL;
+
+	IL_DL_e_ML -> IL_DL_e_IL;
+	IL_DL_e_ML -> IL_DL_e_WL;
+	IL_DL_e_ML -> IL_DL_e_BiSiL;
+
+	IL_DL_DL_DL -> IL_DL_DL_IL;
+	IL_DL_DL_DL -> IL_DL_DL_WL;
+	IL_DL_DL_DL -> IL_DL_DL_BiSiL;
+
+	IS_DS_DS_DS -> IS_DS_DS_IS;
+	IS_DS_DS_DS -> IS_DS_DS_WS;
+
+	IL_ML_e_DL -> IL_ML_e_IL;
+	IL_ML_e_DL -> IL_ML_e_WL;
+	IL_ML_e_DL -> IL_ML_e_BiSiL;
+
+	IL_DL_L_WL -> IL_DL_IL_WL;
+	IL_DL_L_WL -> IL_DL_WL_WL;
+	IL_DL_L_WL -> IL_DL_BiSiL_WL;
+
+	IS_DS_IS_WS -> IS_DS_IS_WS;
+	IS_DS_IS_WS -> IS_DS_WS_WS;
+
+	IL_DL_IL_WL -> IL_DL_IL_WL;
+	IL_DL_IL_WL -> IL_DL_WL_WL;
+	IL_DL_IL_WL -> IL_DL_BiSiL_WL;
+
+	IL_DL_ML_WL -> IL_DL_IL_WL;
+	IL_DL_ML_WL -> IL_DL_WL_WL;
+	IL_DL_ML_WL -> IL_DL_BiSiL_WL;
+
+	IL_e_DL_ML -> IL_e_DL_IL;
+	IL_e_DL_ML -> IL_e_DL_WL;
+	IL_e_DL_ML -> IL_e_DL_BiSiL;
+
+	IS_e_DS_MS -> IS_e_DS_IS;
+	IS_e_DS_MS -> IS_e_DS_WS;
+
+	IS_MS_DS_DS -> IS_MS_DS_IS;
+	IS_MS_DS_DS -> IS_MS_DS_WS;
+
+	IS_e_MS_WS -> IS_e_IS_WS;
+	IS_e_MS_WS -> IS_e_WS_WS;
+
+	IL_e_ML_WL -> IL_e_IL_WL;
+	IL_e_ML_WL -> IL_e_WL_WL;
+	IL_e_ML_WL -> IL_e_BiSiL_WL;
+
+	IL_ML_DL_WL -> IL_ML_IL_WL;
+	IL_ML_DL_WL -> IL_ML_WL_WL;
+	IL_ML_DL_WL -> IL_ML_BiSiL_WL;
+
+	IL_L_WL_WL -> IL_IL_WL_WL;
+	IL_L_WL_WL -> IL_WL_WL_WL;
+	IL_L_WL_WL -> IL_BiSiL_WL_WL;
+
+	IL_IL_WL_WL -> IL_IL_WL_WL;
+	IL_IL_WL_WL -> IL_WL_WL_WL;
+	IL_IL_WL_WL -> IL_BiSiL_WL_WL;
+
+	IS_IS_WS_WS -> IS_IS_WS_WS;
+	IS_IS_WS_WS -> IS_WS_WS_WS;
+
+	IS_MS_WS_WS -> IS_IS_WS_WS;
+	IS_MS_WS_WS -> IS_WS_WS_WS;
+
+	IL_ML_WL_WL -> IL_IL_WL_WL;
+	IL_ML_WL_WL -> IL_WL_WL_WL;
+	IL_ML_WL_WL -> IL_BiSiL_WL_WL;
+
+	IL_ML_IL_e -> IL_ML_IL_e;
+	IL_ML_IL_e -> IL_ML_WL_e;
+	IL_ML_IL_e -> IL_ML_BiSiL_e;
+
+	IL_ML_ML_e -> IL_ML_IL_e;
+	IL_ML_ML_e -> IL_ML_WL_e;
+	IL_ML_ML_e -> IL_ML_BiSiL_e;
+
+	IS_DS_e_MS -> IS_DS_e_IS;
+	IS_DS_e_MS -> IS_DS_e_WS;
+
+	IL_e_e_ML -> IL_e_e_IL;
+	IL_e_e_ML -> IL_e_e_WL;
+	IL_e_e_ML -> IL_e_e_BiSiL;
+
+	IL_e_ML_DL -> IL_e_ML_IL;
+	IL_e_ML_DL -> IL_e_ML_WL;
+	IL_e_ML_DL -> IL_e_ML_BiSiL;
+
+	IS_e_MS_DS -> IS_e_MS_IS;
+	IS_e_MS_DS -> IS_e_MS_WS;
+
+	IS_MS_e_DS -> IS_MS_e_IS;
+	IS_MS_e_DS -> IS_MS_e_WS;
+
+	IL_DL_e_DL -> IL_DL_e_IL;
+	IL_DL_e_DL -> IL_DL_e_WL;
+	IL_DL_e_DL -> IL_DL_e_BiSiL;
+
+	IL_e_L_WL -> IL_e_IL_WL;
+	IL_e_L_WL -> IL_e_WL_WL;
+	IL_e_L_WL -> IL_e_BiSiL_WL;
+
+	IL_e_IL_WL -> IL_e_IL_WL;
+	IL_e_IL_WL -> IL_e_WL_WL;
+	IL_e_IL_WL -> IL_e_BiSiL_WL;
+
+	IS_DS_MS_WS -> IS_DS_IS_WS;
+	IS_DS_MS_WS -> IS_DS_WS_WS;
+
+	IL_DL_DL_WL -> IL_DL_IL_WL;
+	IL_DL_DL_WL -> IL_DL_WL_WL;
+	IL_DL_DL_WL -> IL_DL_BiSiL_WL;
+
+	IL_DL_WL_WL -> IL_IL_WL_WL;
+	IL_DL_WL_WL -> IL_WL_WL_WL;
+	IL_DL_WL_WL -> IL_BiSiL_WL_WL;
+
+	IS_WS_WS_WS -> L_L_L_L;
+	IS_WS_WS_WS -> IS_MS_MS_MS;
+	IS_WS_WS_WS -> IS_DS_MS_MS;
+	IS_WS_WS_WS -> IS_MS_DS_MS;
+	IS_WS_WS_WS -> IS_MS_MS_DS;
+	IS_WS_WS_WS -> IS_DS_DS_MS;
+	IS_WS_WS_WS -> IS_DS_MS_DS;
+	IS_WS_WS_WS -> IS_MS_DS_DS;
+	IS_WS_WS_WS -> IS_DS_DS_DS;
+
+	IL_e_e_L -> IL_e_e_IL;
+	IL_e_e_L -> IL_e_e_WL;
+	IL_e_e_L -> IL_e_e_BiSiL;
+
+	IS_e_e_DS -> IS_e_e_IS;
+	IS_e_e_DS -> IS_e_e_WS;
+
+	IS_e_IS_WS -> IS_e_IS_WS;
+	IS_e_IS_WS -> IS_e_WS_WS;
+
+	IS_e_DS_WS -> IS_e_IS_WS;
+	IS_e_DS_WS -> IS_e_WS_WS;
+
+	IL_e_DL_WL -> IL_e_IL_WL;
+	IL_e_DL_WL -> IL_e_WL_WL;
+	IL_e_DL_WL -> IL_e_BiSiL_WL;
+
+	IL_e_WL_WL -> IL_e_ML_ML;
+	IL_e_WL_WL -> IL_e_DL_ML;
+	IL_e_WL_WL -> IL_e_ML_DL;
+	IL_e_WL_WL -> IL_e_DL_DL;
+	IL_e_WL_WL -> BiSL_e_BmSL_BmSL;
+	IL_e_WL_WL -> BiSL_e_BmSL_BpeL;
+	IL_e_WL_WL -> BiSL_e_BpeL_BmSL;
+	IL_e_WL_WL -> BiSL_e_BpeL_BpeL;
+	IL_e_WL_WL -> e_e_e_e;
+
+	IS_MS_e_WS -> IS_IS_e_WS;
+	IS_MS_e_WS -> IS_WS_e_WS;
+
+	IL_ML_e_WL -> IL_IL_e_WL;
+	IL_ML_e_WL -> IL_WL_e_WL;
+	IL_ML_e_WL -> IL_BiSiL_e_WL;
+
+	IL_e_L_e -> IL_e_IL_e;
+	IL_e_L_e -> IL_e_WL_e;
+	IL_e_L_e -> IL_e_BiSiL_e;
+
+	IS_MS_IS_e -> IS_MS_IS_e;
+	IS_MS_IS_e -> IS_MS_WS_e;
+
+	IS_e_IS_e -> IS_e_IS_e;
+	IS_e_IS_e -> IS_e_WS_e;
+
+	IS_MS_MS_e -> IS_MS_IS_e;
+	IS_MS_MS_e -> IS_MS_WS_e;
+
+	IS_DS_WS_WS -> IS_IS_WS_WS;
+	IS_DS_WS_WS -> IS_WS_WS_WS;
+
+	IS_DS_IS_e -> IS_DS_IS_e;
+	IS_DS_IS_e -> IS_DS_WS_e;
+
+	IL_e_ML_L -> IL_e_ML_IL;
+	IL_e_ML_L -> IL_e_ML_WL;
+	IL_e_ML_L -> IL_e_ML_BiSiL;
+
+	IS_e_MS_IS -> IS_e_MS_IS;
+	IS_e_MS_IS -> IS_e_MS_WS;
+
+	IL_ML_ML_WL -> IL_ML_IL_WL;
+	IL_ML_ML_WL -> IL_ML_WL_WL;
+	IL_ML_ML_WL -> IL_ML_BiSiL_WL;
+
+	IS_MS_DS_WS -> IS_MS_IS_WS;
+	IS_MS_DS_WS -> IS_MS_WS_WS;
+
+	IL_DL_e_IL -> IL_DL_e_IL;
+	IL_DL_e_IL -> IL_DL_e_WL;
+	IL_DL_e_IL -> IL_DL_e_BiSiL;
+
+	IL_DL_L_e -> IL_DL_IL_e;
+	IL_DL_L_e -> IL_DL_WL_e;
+	IL_DL_L_e -> IL_DL_BiSiL_e;
+
+	IL_DL_ML_e -> IL_DL_IL_e;
+	IL_DL_ML_e -> IL_DL_WL_e;
+	IL_DL_ML_e -> IL_DL_BiSiL_e;
+
+	IS_DS_MS_e -> IS_DS_IS_e;
+	IS_DS_MS_e -> IS_DS_WS_e;
+
+	IL_e_ML_e -> IL_e_IL_e;
+	IL_e_ML_e -> IL_e_WL_e;
+	IL_e_ML_e -> IL_e_BiSiL_e;
+
+	IS_MS_DS_e -> IS_MS_IS_e;
+	IS_MS_DS_e -> IS_MS_WS_e;
+
+	IS_DS_DS_e -> IS_DS_IS_e;
+	IS_DS_DS_e -> IS_DS_WS_e;
+
+	IL_DL_DL_e -> IL_DL_IL_e;
+	IL_DL_DL_e -> IL_DL_WL_e;
+	IL_DL_DL_e -> IL_DL_BiSiL_e;
+
+	IL_WL_WL_WL -> IL_ML_ML_ML;
+	IL_WL_WL_WL -> IL_DL_ML_ML;
+	IL_WL_WL_WL -> IL_ML_DL_ML;
+	IL_WL_WL_WL -> IL_ML_ML_DL;
+	IL_WL_WL_WL -> IL_DL_DL_ML;
+	IL_WL_WL_WL -> IL_DL_ML_DL;
+	IL_WL_WL_WL -> IL_ML_DL_DL;
+	IL_WL_WL_WL -> IL_DL_DL_DL;
+	IL_WL_WL_WL -> BiSL_BmSL_BmSL_BmSL;
+	IL_WL_WL_WL -> BiSL_BmSL_BmSL_BpeL;
+	IL_WL_WL_WL -> BiSL_BmSL_BpeL_BmSL;
+	IL_WL_WL_WL -> BiSL_BmSL_BpeL_BpeL;
+	IL_WL_WL_WL -> BiSL_BpeL_BmSL_BmSL;
+	IL_WL_WL_WL -> BiSL_BpeL_BmSL_BpeL;
+	IL_WL_WL_WL -> BiSL_BpeL_BpeL_BmSL;
+	IL_WL_WL_WL -> BiSL_BpeL_BpeL_BpeL;
+	IL_WL_WL_WL -> e_e_e_e;
+
+	IS_e_e_IS -> IS_e_e_IS;
+	IS_e_e_IS -> IS_e_e_WS;
+
+	IL_e_e_IL -> IL_e_e_IL;
+	IL_e_e_IL -> IL_e_e_WL;
+	IL_e_e_IL -> IL_e_e_BiSiL;
+
+	IS_e_e_MS -> IS_e_e_IS;
+	IS_e_e_MS -> IS_e_e_WS;
+
+	IS_e_DS_DS -> IS_e_DS_IS;
+	IS_e_DS_DS -> IS_e_DS_WS;
+
+	IL_e_DL_DL -> IL_e_DL_IL;
+	IL_e_DL_DL -> IL_e_DL_WL;
+	IL_e_DL_DL -> IL_e_DL_BiSiL;
+
+	IS_IS_e_WS -> IS_IS_e_WS;
+	IS_IS_e_WS -> IS_WS_e_WS;
+
+	IL_ML_DL_e -> IL_ML_IL_e;
+	IL_ML_DL_e -> IL_ML_WL_e;
+	IL_ML_DL_e -> IL_ML_BiSiL_e;
+
+	IS_e_DS_e -> IS_e_IS_e;
+	IS_e_DS_e -> IS_e_WS_e;
+
+	IL_e_DL_e -> IL_e_IL_e;
+	IL_e_DL_e -> IL_e_WL_e;
+	IL_e_DL_e -> IL_e_BiSiL_e;
+
+	IL_L_WL_e -> IL_IL_WL_e;
+	IL_L_WL_e -> IL_WL_WL_e;
+	IL_L_WL_e -> IL_BiSiL_WL_e;
+
+	IS_IS_WS_e -> IS_IS_WS_e;
+	IS_IS_WS_e -> IS_WS_WS_e;
+
+	IL_IL_WL_e -> IL_IL_WL_e;
+	IL_IL_WL_e -> IL_WL_WL_e;
+	IL_IL_WL_e -> IL_BiSiL_WL_e;
+
+	IS_MS_WS_e -> IS_IS_WS_e;
+	IS_MS_WS_e -> IS_WS_WS_e;
+
+	IL_ML_WL_e -> IL_IL_WL_e;
+	IL_ML_WL_e -> IL_WL_WL_e;
+	IL_ML_WL_e -> IL_BiSiL_WL_e;
+
+	IL_DL_e_L -> IL_DL_e_IL;
+	IL_DL_e_L -> IL_DL_e_WL;
+	IL_DL_e_L -> IL_DL_e_BiSiL;
+
+	IS_DS_e_IS -> IS_DS_e_IS;
+	IS_DS_e_IS -> IS_DS_e_WS;
+
+	IL_ML_e_ML -> IL_ML_e_IL;
+	IL_ML_e_ML -> IL_ML_e_WL;
+	IL_ML_e_ML -> IL_ML_e_BiSiL;
+
+	IS_DS_e_DS -> IS_DS_e_IS;
+	IS_DS_e_DS -> IS_DS_e_WS;
+
+	IS_DS_DS_WS -> IS_DS_IS_WS;
+	IS_DS_DS_WS -> IS_DS_WS_WS;
+
+	IS_DS_e_WS -> IS_IS_e_WS;
+	IS_DS_e_WS -> IS_WS_e_WS;
+
+	IS_DS_WS_e -> IS_IS_WS_e;
+	IS_DS_WS_e -> IS_WS_WS_e;
+
+	IL_DL_WL_e -> IL_IL_WL_e;
+	IL_DL_WL_e -> IL_WL_WL_e;
+	IL_DL_WL_e -> IL_BiSiL_WL_e;
+
+	IL_WL_WL_e -> IL_ML_ML_e;
+	IL_WL_WL_e -> IL_DL_ML_e;
+	IL_WL_WL_e -> IL_ML_DL_e;
+	IL_WL_WL_e -> IL_DL_DL_e;
+	IL_WL_WL_e -> BiSL_BmSL_BmSL_e;
+	IL_WL_WL_e -> BiSL_BmSL_BpeL_e;
+	IL_WL_WL_e -> BiSL_BpeL_BmSL_e;
+	IL_WL_WL_e -> BiSL_BpeL_BpeL_e;
+	IL_WL_WL_e -> e_e_e_e;
+
+	IS_WS_WS_e -> L_L_L_e;
+	IS_WS_WS_e -> IS_MS_MS_e;
+	IS_WS_WS_e -> IS_DS_MS_e;
+	IS_WS_WS_e -> IS_MS_DS_e;
+	IS_WS_WS_e -> IS_DS_DS_e;
+
+	IL_e_e_DL -> IL_e_e_IL;
+	IL_e_e_DL -> IL_e_e_WL;
+	IL_e_e_DL -> IL_e_e_BiSiL;
+
+	IS_e_WS_WS -> L_e_L_L;
+	IS_e_WS_WS -> IS_e_MS_MS;
+	IS_e_WS_WS -> IS_e_DS_MS;
+	IS_e_WS_WS -> IS_e_MS_DS;
+	IS_e_WS_WS -> IS_e_DS_DS;
+
+	IL_L_e_WL -> IL_IL_e_WL;
+	IL_L_e_WL -> IL_WL_e_WL;
+	IL_L_e_WL -> IL_BiSiL_e_WL;
+
+	IL_IL_e_WL -> IL_IL_e_WL;
+	IL_IL_e_WL -> IL_WL_e_WL;
+	IL_IL_e_WL -> IL_BiSiL_e_WL;
+
+	IL_DL_e_WL -> IL_IL_e_WL;
+	IL_DL_e_WL -> IL_WL_e_WL;
+	IL_DL_e_WL -> IL_BiSiL_e_WL;
+
+	IL_WL_e_WL -> IL_ML_e_ML;
+	IL_WL_e_WL -> IL_DL_e_ML;
+	IL_WL_e_WL -> IL_ML_e_DL;
+	IL_WL_e_WL -> IL_DL_e_DL;
+	IL_WL_e_WL -> BiSL_BmSL_e_BmSL;
+	IL_WL_e_WL -> BiSL_BmSL_e_BpeL;
+	IL_WL_e_WL -> BiSL_BpeL_e_BmSL;
+	IL_WL_e_WL -> BiSL_BpeL_e_BpeL;
+	IL_WL_e_WL -> e_e_e_e;
+
+	IS_WS_e_WS -> L_L_e_L;
+	IS_WS_e_WS -> IS_MS_e_MS;
+	IS_WS_e_WS -> IS_DS_e_MS;
+	IS_WS_e_WS -> IS_MS_e_DS;
+	IS_WS_e_WS -> IS_DS_e_DS;
+
+	IL_e_e_WL -> IL_e_e_ML;
+	IL_e_e_WL -> IL_e_e_DL;
+	IL_e_e_WL -> BiSL_e_e_BmSL;
+	IL_e_e_WL -> BiSL_e_e_BpeL;
+	IL_e_e_WL -> e_e_e_e;
+
+	IL_DL_IL_e -> IL_DL_IL_e;
+	IL_DL_IL_e -> IL_DL_WL_e;
+	IL_DL_IL_e -> IL_DL_BiSiL_e;
+
+	IL_e_IL_e -> IL_e_IL_e;
+	IL_e_IL_e -> IL_e_WL_e;
+	IL_e_IL_e -> IL_e_BiSiL_e;
+
+	IS_e_MS_e -> IS_e_IS_e;
+	IS_e_MS_e -> IS_e_WS_e;
+
+	IS_e_e_WS -> L_e_e_L;
+	IS_e_e_WS -> IS_e_e_MS;
+	IS_e_e_WS -> IS_e_e_DS;
+
+	IS_e_WS_e -> L_e_L_e;
+	IS_e_WS_e -> IS_e_MS_e;
+	IS_e_WS_e -> IS_e_DS_e;
+
+	IL_e_WL_e -> IL_e_ML_e;
+	IL_e_WL_e -> IL_e_DL_e;
+	IL_e_WL_e -> BiSL_e_BmSL_e;
+	IL_e_WL_e -> BiSL_e_BpeL_e;
+	IL_e_WL_e -> e_e_e_e;
+
+	IL_L_e_e -> IL_IL_e_e;
+	IL_L_e_e -> IL_WL_e_e;
+	IL_L_e_e -> IL_BiSiL_e_e;
+
+	IL_IL_e_e -> IL_IL_e_e;
+	IL_IL_e_e -> IL_WL_e_e;
+	IL_IL_e_e -> IL_BiSiL_e_e;
+
+	IS_IS_e_e -> IS_IS_e_e;
+	IS_IS_e_e -> IS_WS_e_e;
+
+	IS_MS_e_e -> IS_IS_e_e;
+	IS_MS_e_e -> IS_WS_e_e;
+
+	IL_ML_e_e -> IL_IL_e_e;
+	IL_ML_e_e -> IL_WL_e_e;
+	IL_ML_e_e -> IL_BiSiL_e_e;
+
+	IL_DL_e_e -> IL_IL_e_e;
+	IL_DL_e_e -> IL_WL_e_e;
+	IL_DL_e_e -> IL_BiSiL_e_e;
+
+	IS_DS_e_e -> IS_IS_e_e;
+	IS_DS_e_e -> IS_WS_e_e;
+
+	IL_WL_e_e -> IL_ML_e_e;
+	IL_WL_e_e -> IL_DL_e_e;
+	IL_WL_e_e -> BiSL_BmSL_e_e;
+	IL_WL_e_e -> BiSL_BpeL_e_e;
+	IL_WL_e_e -> e_e_e_e;
+
+	IS_WS_e_e -> L_L_e_e;
+	IS_WS_e_e -> IS_MS_e_e;
+	IS_WS_e_e -> IS_DS_e_e;
+
+	IL_e_e_e -> IL_e_e_e;
+	IL_e_e_e -> BiSL_e_e_e;
+	IL_e_e_e -> e_e_e_e;
+
+	IS_e_e_e -> L_e_e_e;
+	IS_e_e_e -> IS_e_e_e;
+
+	e_e_e_Si -> e_e_e_Li;
+	e_e_e_Si -> e_e_e_ISi;
+
+	e_e_e_Li -> e_e_e_ILi;
+	e_e_e_Li -> e_e_e_BiSiLi;
+	e_e_e_Li -> e_e_e_e;
+
+	e_e_e_ILi -> e_e_e_ILi;
+	e_e_e_ILi -> e_e_e_BiSiLi;
+	e_e_e_ILi -> e_e_e_e;
+
+	e_e_e_ISi -> e_e_e_Li;
+	e_e_e_ISi -> e_e_e_ISi;
+
+	e_e_Li_e -> e_e_ILi_e;
+	e_e_Li_e -> e_e_BiSiLi_e;
+	e_e_Li_e -> e_e_e_e;
+
+	e_e_Si_e -> e_e_Li_e;
+	e_e_Si_e -> e_e_ISi_e;
+
+	e_e_ILi_e -> e_e_ILi_e;
+	e_e_ILi_e -> e_e_BiSiLi_e;
+	e_e_ILi_e -> e_e_e_e;
+
+	e_e_ISi_e -> e_e_Li_e;
+	e_e_ISi_e -> e_e_ISi_e;
+
+	e_Si_e_e -> e_Li_e_e;
+	e_Si_e_e -> e_ISi_e_e;
+
+	e_Li_e_e -> e_ILi_e_e;
+	e_Li_e_e -> e_BiSiLi_e_e;
+	e_Li_e_e -> e_e_e_e;
+
+	e_ILi_e_e -> e_ILi_e_e;
+	e_ILi_e_e -> e_BiSiLi_e_e;
+	e_ILi_e_e -> e_e_e_e;
+
+	e_ISi_e_e -> e_Li_e_e;
+	e_ISi_e_e -> e_ISi_e_e;
+
+L_L_L_BiSiL [shape=box, style=filled];
+	L_L_L_BiSiL -> L_L_L_L [style=bold];
+	L_L_L_BiSiL -> e_e_e_Si [style=bold];
+
+L_BiSiL_WL_WL [shape=box, style=filled];
+	L_BiSiL_WL_WL -> L_L_WL_WL [style=bold];
+	L_BiSiL_WL_WL -> e_Si_e_e [style=bold];
+
+L_L_BiSiL_WL [shape=box, style=filled];
+	L_L_BiSiL_WL -> L_L_L_WL [style=bold];
+	L_L_BiSiL_WL -> e_e_Si_e [style=bold];
+
+L_e_BiSiL_WL [shape=box, style=filled];
+	L_e_BiSiL_WL -> L_e_L_WL [style=bold];
+	L_e_BiSiL_WL -> e_e_Si_e [style=bold];
+
+L_e_L_BiSiL [shape=box, style=filled];
+	L_e_L_BiSiL -> L_e_L_L [style=bold];
+	L_e_L_BiSiL -> e_e_e_Si [style=bold];
+
+L_L_e_BiSiL [shape=box, style=filled];
+	L_L_e_BiSiL -> L_L_e_L [style=bold];
+	L_L_e_BiSiL -> e_e_e_Si [style=bold];
+
+L_BiSiL_e_WL [shape=box, style=filled];
+	L_BiSiL_e_WL -> L_L_e_WL [style=bold];
+	L_BiSiL_e_WL -> e_Si_e_e [style=bold];
+
+L_BiSiL_WL_e [shape=box, style=filled];
+	L_BiSiL_WL_e -> L_L_WL_e [style=bold];
+	L_BiSiL_WL_e -> e_Si_e_e [style=bold];
+
+L_e_e_BiSiL [shape=box, style=filled];
+	L_e_e_BiSiL -> L_e_e_L [style=bold];
+	L_e_e_BiSiL -> e_e_e_Si [style=bold];
+
+L_L_BiSiL_e [shape=box, style=filled];
+	L_L_BiSiL_e -> L_L_L_e [style=bold];
+	L_L_BiSiL_e -> e_e_Si_e [style=bold];
+
+L_e_BiSiL_e [shape=box, style=filled];
+	L_e_BiSiL_e -> L_e_L_e [style=bold];
+	L_e_BiSiL_e -> e_e_Si_e [style=bold];
+
+L_BiSiL_e_e [shape=box, style=filled];
+	L_BiSiL_e_e -> L_L_e_e [style=bold];
+	L_BiSiL_e_e -> e_Si_e_e [style=bold];
+
+IL_ML_ML_BiSiL [shape=box, style=filled];
+	IL_ML_ML_BiSiL -> IL_ML_ML_L [style=bold];
+	IL_ML_ML_BiSiL -> e_e_e_Si [style=bold];
+
+IL_DL_ML_BiSiL [shape=box, style=filled];
+	IL_DL_ML_BiSiL -> IL_DL_ML_L [style=bold];
+	IL_DL_ML_BiSiL -> e_e_e_Si [style=bold];
+
+IL_ML_BiSiL_WL [shape=box, style=filled];
+	IL_ML_BiSiL_WL -> IL_ML_L_WL [style=bold];
+	IL_ML_BiSiL_WL -> e_e_Si_e [style=bold];
+
+IL_e_ML_BiSiL [shape=box, style=filled];
+	IL_e_ML_BiSiL -> IL_e_ML_L [style=bold];
+	IL_e_ML_BiSiL -> e_e_e_Si [style=bold];
+
+IL_ML_e_BiSiL [shape=box, style=filled];
+	IL_ML_e_BiSiL -> IL_ML_e_L [style=bold];
+	IL_ML_e_BiSiL -> e_e_e_Si [style=bold];
+
+IL_DL_DL_BiSiL [shape=box, style=filled];
+	IL_DL_DL_BiSiL -> IL_DL_DL_L [style=bold];
+	IL_DL_DL_BiSiL -> e_e_e_Si [style=bold];
+
+IL_ML_DL_BiSiL [shape=box, style=filled];
+	IL_ML_DL_BiSiL -> IL_ML_DL_L [style=bold];
+	IL_ML_DL_BiSiL -> e_e_e_Si [style=bold];
+
+IL_BiSiL_WL_WL [shape=box, style=filled];
+	IL_BiSiL_WL_WL -> IL_L_WL_WL [style=bold];
+	IL_BiSiL_WL_WL -> e_Si_e_e [style=bold];
+
+IL_DL_BiSiL_WL [shape=box, style=filled];
+	IL_DL_BiSiL_WL -> IL_DL_L_WL [style=bold];
+	IL_DL_BiSiL_WL -> e_e_Si_e [style=bold];
+
+IL_ML_BiSiL_e [shape=box, style=filled];
+	IL_ML_BiSiL_e -> IL_ML_L_e [style=bold];
+	IL_ML_BiSiL_e -> e_e_Si_e [style=bold];
+
+IL_e_BiSiL_WL [shape=box, style=filled];
+	IL_e_BiSiL_WL -> IL_e_L_WL [style=bold];
+	IL_e_BiSiL_WL -> e_e_Si_e [style=bold];
+
+IL_BiSiL_e_WL [shape=box, style=filled];
+	IL_BiSiL_e_WL -> IL_L_e_WL [style=bold];
+	IL_BiSiL_e_WL -> e_Si_e_e [style=bold];
+
+IL_e_DL_BiSiL [shape=box, style=filled];
+	IL_e_DL_BiSiL -> IL_e_DL_L [style=bold];
+	IL_e_DL_BiSiL -> e_e_e_Si [style=bold];
+
+IL_DL_e_BiSiL [shape=box, style=filled];
+	IL_DL_e_BiSiL -> IL_DL_e_L [style=bold];
+	IL_DL_e_BiSiL -> e_e_e_Si [style=bold];
+
+IL_BiSiL_WL_e [shape=box, style=filled];
+	IL_BiSiL_WL_e -> IL_L_WL_e [style=bold];
+	IL_BiSiL_WL_e -> e_Si_e_e [style=bold];
+
+IL_DL_BiSiL_e [shape=box, style=filled];
+	IL_DL_BiSiL_e -> IL_DL_L_e [style=bold];
+	IL_DL_BiSiL_e -> e_e_Si_e [style=bold];
+
+IL_e_e_BiSiL [shape=box, style=filled];
+	IL_e_e_BiSiL -> IL_e_e_L [style=bold];
+	IL_e_e_BiSiL -> e_e_e_Si [style=bold];
+
+IL_e_BiSiL_e [shape=box, style=filled];
+	IL_e_BiSiL_e -> IL_e_L_e [style=bold];
+	IL_e_BiSiL_e -> e_e_Si_e [style=bold];
+
+IL_BiSiL_e_e [shape=box, style=filled];
+	IL_BiSiL_e_e -> IL_L_e_e [style=bold];
+	IL_BiSiL_e_e -> e_Si_e_e [style=bold];
+
+BiSL_BmSL_BmSL_BpeL [shape=box, style=filled];
+	BiSL_BmSL_BmSL_BpeL -> L_L_L_L [style=bold];
+	BiSL_BmSL_BmSL_BpeL -> S_S_S_e [style=bold];
+
+BiSL_BpeL_BpeL_BmSL [shape=box, style=filled];
+	BiSL_BpeL_BpeL_BmSL -> L_L_L_L [style=bold];
+	BiSL_BpeL_BpeL_BmSL -> S_e_e_S [style=bold];
+
+BiSL_BpeL_BmSL_BpeL [shape=box, style=filled];
+	BiSL_BpeL_BmSL_BpeL -> L_L_L_L [style=bold];
+	BiSL_BpeL_BmSL_BpeL -> S_e_S_e [style=bold];
+
+BiSL_BmSL_BpeL_BmSL [shape=box, style=filled];
+	BiSL_BmSL_BpeL_BmSL -> L_L_L_L [style=bold];
+	BiSL_BmSL_BpeL_BmSL -> S_S_e_S [style=bold];
+
+BiSL_BpeL_BpeL_BpeL [shape=box, style=filled];
+	BiSL_BpeL_BpeL_BpeL -> L_L_L_L [style=bold];
+	BiSL_BpeL_BpeL_BpeL -> S_e_e_e [style=bold];
+
+BiSL_BmSL_BmSL_BmSL [shape=box, style=filled];
+	BiSL_BmSL_BmSL_BmSL -> S_S_S_S [style=bold];
+	BiSL_BmSL_BmSL_BmSL -> L_L_L_L [style=bold];
+
+BiSL_BmSL_BpeL_BpeL [shape=box, style=filled];
+	BiSL_BmSL_BpeL_BpeL -> L_L_L_L [style=bold];
+	BiSL_BmSL_BpeL_BpeL -> S_S_e_e [style=bold];
+
+BiSL_BpeL_BmSL_BmSL [shape=box, style=filled];
+	BiSL_BpeL_BmSL_BmSL -> L_L_L_L [style=bold];
+	BiSL_BpeL_BmSL_BmSL -> S_e_S_S [style=bold];
+
+BiSL_e_BmSL_BpeL [shape=box, style=filled];
+	BiSL_e_BmSL_BpeL -> L_e_L_L [style=bold];
+	BiSL_e_BmSL_BpeL -> S_e_S_e [style=bold];
+
+BiSL_e_BpeL_BpeL [shape=box, style=filled];
+	BiSL_e_BpeL_BpeL -> L_e_L_L [style=bold];
+	BiSL_e_BpeL_BpeL -> S_e_e_e [style=bold];
+
+BiSL_e_BmSL_BmSL [shape=box, style=filled];
+	BiSL_e_BmSL_BmSL -> S_e_S_S [style=bold];
+	BiSL_e_BmSL_BmSL -> L_e_L_L [style=bold];
+
+BiSL_e_BpeL_BmSL [shape=box, style=filled];
+	BiSL_e_BpeL_BmSL -> L_e_L_L [style=bold];
+	BiSL_e_BpeL_BmSL -> S_e_e_S [style=bold];
+
+BiSL_BmSL_e_BmSL [shape=box, style=filled];
+	BiSL_BmSL_e_BmSL -> S_S_e_S [style=bold];
+	BiSL_BmSL_e_BmSL -> L_L_e_L [style=bold];
+
+BiSL_BmSL_e_BpeL [shape=box, style=filled];
+	BiSL_BmSL_e_BpeL -> L_L_e_L [style=bold];
+	BiSL_BmSL_e_BpeL -> S_S_e_e [style=bold];
+
+BiSL_BpeL_e_BmSL [shape=box, style=filled];
+	BiSL_BpeL_e_BmSL -> L_L_e_L [style=bold];
+	BiSL_BpeL_e_BmSL -> S_e_e_S [style=bold];
+
+BiSL_BpeL_e_BpeL [shape=box, style=filled];
+	BiSL_BpeL_e_BpeL -> L_L_e_L [style=bold];
+	BiSL_BpeL_e_BpeL -> S_e_e_e [style=bold];
+
+BiSL_BpeL_BpeL_e [shape=box, style=filled];
+	BiSL_BpeL_BpeL_e -> L_L_L_e [style=bold];
+	BiSL_BpeL_BpeL_e -> S_e_e_e [style=bold];
+
+BiSL_BpeL_BmSL_e [shape=box, style=filled];
+	BiSL_BpeL_BmSL_e -> L_L_L_e [style=bold];
+	BiSL_BpeL_BmSL_e -> S_e_S_e [style=bold];
+
+BiSL_BmSL_BpeL_e [shape=box, style=filled];
+	BiSL_BmSL_BpeL_e -> L_L_L_e [style=bold];
+	BiSL_BmSL_BpeL_e -> S_S_e_e [style=bold];
+
+BiSL_BmSL_BmSL_e [shape=box, style=filled];
+	BiSL_BmSL_BmSL_e -> S_S_S_e [style=bold];
+	BiSL_BmSL_BmSL_e -> L_L_L_e [style=bold];
+
+BiSL_e_e_BmSL [shape=box, style=filled];
+	BiSL_e_e_BmSL -> S_e_e_S [style=bold];
+	BiSL_e_e_BmSL -> L_e_e_L [style=bold];
+
+BiSL_e_e_BpeL [shape=box, style=filled];
+	BiSL_e_e_BpeL -> L_e_e_L [style=bold];
+	BiSL_e_e_BpeL -> S_e_e_e [style=bold];
+
+BiSL_e_BmSL_e [shape=box, style=filled];
+	BiSL_e_BmSL_e -> S_e_S_e [style=bold];
+	BiSL_e_BmSL_e -> L_e_L_e [style=bold];
+
+BiSL_e_BpeL_e [shape=box, style=filled];
+	BiSL_e_BpeL_e -> L_e_L_e [style=bold];
+	BiSL_e_BpeL_e -> S_e_e_e [style=bold];
+
+BiSL_BpeL_e_e [shape=box, style=filled];
+	BiSL_BpeL_e_e -> L_L_e_e [style=bold];
+	BiSL_BpeL_e_e -> S_e_e_e [style=bold];
+
+BiSL_BmSL_e_e [shape=box, style=filled];
+	BiSL_BmSL_e_e -> S_S_e_e [style=bold];
+	BiSL_BmSL_e_e -> L_L_e_e [style=bold];
+
+BiSL_e_e_e [shape=box, style=filled];
+	BiSL_e_e_e -> S_e_e_e [style=bold];
+	BiSL_e_e_e -> L_e_e_e [style=bold];
+
+e_e_e_BiSiLi [shape=box, style=filled];
+	e_e_e_BiSiLi -> e_e_e_Si [style=bold];
+	e_e_e_BiSiLi -> e_e_e_Li [style=bold];
+
+e_e_BiSiLi_e [shape=box, style=filled];
+	e_e_BiSiLi_e -> e_e_Si_e [style=bold];
+	e_e_BiSiLi_e -> e_e_Li_e [style=bold];
+
+e_BiSiLi_e_e [shape=box, style=filled];
+	e_BiSiLi_e_e -> e_Si_e_e [style=bold];
+	e_BiSiLi_e_e -> e_Li_e_e [style=bold];
+
+}
