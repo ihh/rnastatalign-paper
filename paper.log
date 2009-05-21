@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.10)  20 MAY 2009 16:36
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.11)  21 MAY 2009 11:14
 entering extended mode
 **paper
 (./paper.tex
@@ -320,52 +320,52 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 ] [47] [48
 
 ] [49] [50] [51]
-Underfull \hbox (badness 10000) detected at line 2113
+Underfull \hbox (badness 10000) detected at line 2118
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2158
+Underfull \hbox (badness 10000) detected at line 2163
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2185
+Underfull \hbox (badness 10000) detected at line 2190
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2227
+Underfull \hbox (badness 10000) detected at line 2232
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2247
+Underfull \hbox (badness 10000) detected at line 2252
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2290
+Underfull \hbox (badness 10000) detected at line 2295
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2310
+Underfull \hbox (badness 10000) detected at line 2315
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2356
+Underfull \hbox (badness 10000) detected at line 2361
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2376
+Underfull \hbox (badness 10000) detected at line 2381
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2436
+Underfull \hbox (badness 10000) detected at line 2441
 [][]
  []
 
@@ -403,4 +403,4 @@ sky/cm/cmsy7.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmmi7.pfb>
 texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></opt/local/share/texmf-dist/fonts
 /type1/bluesky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm
 /cmsl10.pfb>
-Output written on paper.pdf (58 pages, 318606 bytes).
+Output written on paper.pdf (58 pages, 319108 bytes).

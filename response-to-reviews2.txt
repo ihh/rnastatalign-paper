@@ -61,8 +61,8 @@ reviewer points out, perhaps the most realistic pieces of outside
 information to have are a consensus structure for sequences and/or a
 curated multiple alignment.  In principle these can all be
 incorporated into our inference algorithms with the alignment
-constraints used by e.g. QRNA and PFOLD, or the simultaneous fold and
-alignment constraints used by e.g. Stemloc and CONSAN.
+constraints used by, e.g., QRNA and PFOLD, or the simultaneous fold and
+alignment constraints used by, e.g., Stemloc and CONSAN.
 
 For this paper we used constraints on individual structures because
 these are simple to implement.  We state this clearly in the revised
@@ -182,10 +182,10 @@ Thank you for the feedback; we have attempted to revise the paper
 accordingly such that it is completely self-contained and
 reproducible.  We have given complete specifications of the CYK,
 Inside, Outside, and CYK traceback algorithms for three sequences,
-whether completely unconstrained, or constrained by a pre-determined
-set of folds for each sequence ("fold envelopes").  They are written
-in pseudocode which corresponds closely to our actual implementation
-in the program (INDIEGRAM) which we describe.
+constrained by a pre-determined set of folds for each sequence ("fold
+envelopes").  They are written in pseudocode which corresponds closely
+to our actual implementation in the program (INDIEGRAM) which we
+describe.
 
 We have entirely replaced the "loopy DP" algorithm with an algorithm
 for exactly eliminating null cycles from general SCFGs.  Per the
@@ -248,26 +248,21 @@ were short enough to be tractable on the hardware we had available. We
 now report simulation results instead, as suggested.
 
 We thank the reviewer for pointing out errors in the original
-figures. These arose during manual conversion of indiegram's output
-parse trees into Stockholm-format alignments, and due to a bug in
-xrate's reconstruction code. We have now automated this process
-(i.e. indiegram now outputs Stockholm format) and fixed the bug in
-xrate, verifying that this has eliminated the errors (e.g. see the
-simulation results).
+figures. These were due to mistakes made during manual conversion of
+indiegram's output parse trees into Stockholm-format alignments and a
+bug in the code used for maximum-likelihood reconstruction of
+sequences (the xrate program). We have now automated this process and
+fixed the bug, verifying that this has eliminated the errors.
 
 We removed the tRNA and nanos reconstructions and posted (corrected)
-versions online, at the following URL (which is linked from the
-indiegram webpage):
+versions online at the following URL (which is linked from the
+indiegram webpage),
+http://biowiki.org/IndiegramExamples,
+although we note in the text that the reconstructions were too easy
+because of short branch lengths.
 
-http://biowiki.org/IndiegramExamples
-
-We hope that these may still be useful for illustrative purposes for
-anyone trying to use the software, but we have removed references from
-the paper (since, as the reviewer notes, the short branch lengths make
-the answers somewhat obvious).
-
-The paper still includes the (experimentally-based) runtime estimates for
-different length classes of RNA genes.
+The paper still includes the runtime estimates for different length
+classes of RNA genes.
 
 
 > More minor comments follow.
@@ -284,7 +279,7 @@ different length classes of RNA genes.
 > consistent with results on toy three-sequence data sets, is appropriate.
 
 We have accordingly changed the title to "Evolutionary triplet models of
-structured RNA".
+structured RNA"; we welcome title suggestions from the reviewer!
 
 > p.3: as far as I'm aware, the Felsenstein "pruning algorithm" and 
 > "peeling algorithm" are just alternative names for the same algorithm 
@@ -404,7 +399,8 @@ alignment program.
 > biological hypothesis with a model whose realism and accuracy you've 
 > called into question?
 
-We have removed the references to Hopfield's hypothesis from the revised manuscript.
+We have removed the references to Hopfield's hypothesis from the
+revised manuscript.
 
 > p.21 in general the whole "reconstructing RNAs with a simple model" 
 > section is too chatty and imprecise. "Both predicted ancestral 
@@ -422,15 +418,32 @@ We have reworded this section per our new focus on the simulation results.
 > Table 2: it's unclear why we need separate states L and I_L, or S and 
 > I_S; these nonterminals have identical production rules.
 
-[distinction between clearest representation of the grammar for didactic purposes, versus the best representation for implementation purposes; for implementation we used a Moore machine representation]
+We distinguished between these states to help clarify our method,
+where states are classified as "Start" or "Insert" to simply the
+statement of the composition algorithm.  For implementation purposes
+we certainly agree that it is a mistake to have "duplicate" states and
+when possible, we remove these from the resulting 3-sequence SCFG.
 
 > Similarly, I 
 > don't see why we need B_e; S and I_S can produce L directly; and L and 
 > I_L can produce an LS bifurcation directly, rather than invoking 
-> nonterminal B. The L and I_L productions don't appear to be correctly 
+> nonterminal B.
+
+As with L and I_L, we drew this distinction for clarity of approach,
+so that we could distinguish between states which emitted nonterminals
+and bifurcation states to make the composition algorithm more
+intuitive.  A transition S -> B_e -> L is classified as an "empty
+bifurcation" as discussed in the revised text and replaced with an
+"equivalent direct transition" of precisely the form which you suggest.
+
+> The L and I_L productions don't appear to be correctly 
 > normalized, unless the (undefined) term p_S is 0.0.
 
-
+The equilibrium distribution of unpaired nucleotides is co-normalized
+with the stem probability p_S (labeled as \pi_l (S) for clarity in the
+revised manuscript), so that the production rules for L and I_L are
+properly normalized.  We have added a note to this effect in the
+caption for Table 2 in the revised manuscript.
 
 > A production I_L 
 > \rightarrow x I_L does not correspond to a pair-HMM rule, as the 
@@ -448,7 +461,6 @@ revised text.
 > more like a single-sequence SCFG to me (x,y do appear in the wait 
 > state conditionals, but where are x,y coming from on the left hand 
 > side -- where are they being absorbed from?)
-
 > The productions also 
 > don't seem to correspond entirely to the state definitions in Table 5; 
 > for example, if M_S is a "match" state describing "base pair 
@@ -477,8 +489,8 @@ the model.
 
 > Figure 1: 5' and 3' ends of RNA structures should be labeled.
 
-5' and 3' ends of structures are now labeled (e.g., Figures 3 and 4 of
-the revised manuscript).
+The 5' and 3' ends of structures are now labeled (e.g., Figures 3 and
+4 of the revised manuscript).
 
 > Figure 3: It is very unclear what this figure is supposed to be 
 > representing (and I had the same problem with it when it appeared in 

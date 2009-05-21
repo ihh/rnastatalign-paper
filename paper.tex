@@ -1433,35 +1433,38 @@ should be sufficient for ergodic sampling of reconstructions on any larger phylo
 using a MCMC kernel similar to that of \cite{JensenHein2002}.
 
 The statistics of the TKFST model on the three-taxon phylogeny
-illustrate the advantages of our procedure for model
-construction.  While the singlet and branch transducers are relatively simple---the singlet transducer,
-shown in \tabref{tkfstsinglet}, has 7 total states and 2 bifurcation states and
-the branch transducer, shown in \tabref{tkfstbranch}, has 21 total states
-and 6 bifurcation states---the ensemble model of three extant sequences 
-is very complex.
-The naive exponential upper-bound gives a maximal state space of size $O(7 \cdot 21^{3}) \Rightarrow 6 \cdot 10^4$ states.
-Using our uninformed search algorithm, we determined that there are 287 accessible states
-and 686 possible transitions between these states (compare with the $287^2 \simeq 8 \cdot 10^4$ transitions
-estimated with the exponential calculation).  After performing the
+illustrate the advantages of our procedure for model construction.
+While the singlet and branch transducers are relatively simple---the
+singlet transducer, shown in \tabref{tkfstsinglet}, has 7 total states
+and 2 bifurcation states and the branch transducer, shown in
+\tabref{tkfstbranch}, has 21 total states and 6 bifurcation
+states---the ensemble model of three extant sequences is very complex.
+The naive exponential upper-bound gives a maximal state space of size
+$O(7 \cdot 21^{3}) \Rightarrow 6 \cdot 10^4$ states.  Using our
+uninformed search algorithm, we determined that there are 287
+accessible states and 686 possible transitions between these states
+(compare with the $287^2 \simeq 8 \cdot 10^4$ transitions estimated
+with the exponential calculation).  After performing the
 transformations described in ``Eliminating null cycles in SCFGs'' to
-eliminate useless windback states,
-the ensemble model has a reduced state space with 230 states,
-albeit at the cost of extra transitions, bring the total to 1,789 transitions
-(here we are trading reduced memory complexity, which is linear in the number
-of states, for increased time complexity, which is linear in the number of transitions).
-Note that both before and after the reduction in complexity,
-the total number of states and transitions are less than the approximate bounds
-of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot 3) \Rightarrow 441$ states
-and
-$O(a \cdot b^2 \cdot N) = O(7 \cdot 21^2 \cdot 3) \Rightarrow 9,261$ transitions
-suggested in ``The composition algorithm.''
-
-% to do: dump output of tripletscfg.pl --tkfst into supplement
-Text S1 contains the complete model specification, including states and transitions,
-produced by our model composition algorithm.  The extreme complexity of the
+eliminate useless windback states, the ensemble model has a reduced
+state space with 230 states, albeit at the cost of extra transitions,
+bring the total to 1,789 transitions (here we are trading reduced
+memory complexity, which is linear in the number of states, for
+increased time complexity, which is linear in the number of
+transitions).  Note that both before and after the reduction in
+complexity, the total number of states and transitions are less than
+the approximate bounds of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot
+3) \Rightarrow 441$ states and $O(a \cdot b^2 \cdot N) = O(7 \cdot
+21^2 \cdot 3) \Rightarrow 9,261$ transitions suggested in ``The
+composition algorithm.''  Nonetheless, the extreme complexity of the
 ensemble model, despite the simplicity of the underlying model of RNA
 structure, makes clear the necessity for automated procedures for
-model construction.
+model construction.  Dataset S1 gives the state space of the composed
+model constructed by the search algorithm and Dataset S2 the reduced
+model after eliminating ``windback'' states; both are in Graphviz format for
+visualization and show the state of the singlet transducer generating
+ancestral sequence as well as the states of the branch transducers
+generating observed sequences.
 
 We implemented constrained maximum-likelihood inference of the structural alignment 
 and ancestral structure of three extant sequences in a C++ program (\indiegram).
@@ -1856,19 +1859,21 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
     $B_e$ & $\rightarrow$ & $(L \,\, \Send)$ & 1 & & & & \\ \hline
   \end{tabular}
   \begin{flushleft}
-    The state types for this model are shown in \tabref{tkfstsinglet-types}.
-    The singlet transducer generates ancestral RNA sequences and
-    structures.
-    We use the notation of formal grammars to represent state
-    transformation rules; for example, the rule $I_L \rightarrow
-    u\,\,I_L$ corresponds to (in a Pair HMM) an $\Sinsert$ state $I_L$
-    emitting a nucleotide $u$ and then making a self-transition.
-    Both loop ($L$ and $I_L$) and stem ($S$ and $I_S$) sequence evolve as TKF sequences
-    with length parameters $\kappa_l$ and $\kappa_s$ (defined in ``A simple model of RNA structural evolution'').
-    $\pi_l(u)$ and $\pi_s(uv)$ are the equilibrium distributions of unpaired nucleotides $x$ and
-    paired nucleotides $(u,v)$.
-    The bifurcation state $B_e$ is used to end stem sequences
-    (only loop sequences are allowed to transition to the empty string).
+    The state types for this model are shown in
+    \tabref{tkfstsinglet-types}.  The singlet transducer generates
+    ancestral RNA sequences and structures.  We use the notation of
+    formal grammars to represent state transformation rules; for
+    example, the rule $I_L \rightarrow u\,\,I_L$ corresponds to (in a
+    Pair HMM) an $\Sinsert$ state $I_L$ emitting a nucleotide $u$ and
+    then making a self-transition.  Both loop ($L$ and $I_L$) and stem
+    ($S$ and $I_S$) sequence evolve as TKF sequences with length
+    parameters $\kappa_l$ and $\kappa_s$ (defined in ``A simple model
+    of RNA structural evolution'').  $\pi_l(u)$ and $\pi_s(uv)$ are
+    the equilibrium distributions of unpaired nucleotides $u$ and
+    paired nucleotides $(u,v)$ and are normalized such that
+    $\pi_l(S) + \sum_u \pi_l(u) = 1$ and $\sum_{u,v} \pi_s(uv) = 1$.  The bifurcation state $B_e$ is used
+    to end stem sequences (only loop sequences are allowed to
+    transition to the empty string).
   \end{flushleft}
   \tablabel{tkfstsinglet}
 \end{table}
