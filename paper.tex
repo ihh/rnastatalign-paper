@@ -311,16 +311,17 @@ branch lengths, is known.
 This paper focuses on model construction and inference algorithms
 rather than the heuristics and constraints which will be necessary to make these
 algorithms fast enough for analysis of many biological datasets.
-As discussed below, the complexity of our inference algorithms is
+As discussed below, the complexity of general inference algorithms is
 prohibitively high for many problems of interest.
 However, this complexity can be significantly
 reduced by incorporating outside knowledge.  For example, if we know
 the consensus structure of several sequences or their individual
 structures, then we can constrain our algorithms accordingly.
 Similarly, we might consider only ancestral structures which are
-compatible with a curated multiple sequence alignment.  Such constraints are
-commonly used by programs for RNA sequence analysis \cite{RivasEddy2001,Holmes2005}.
-{\bf MENTION ORTHEUS HERE}
+compatible with a given multiple sequence alignment, or a relatively small set of candidate alignments (as in the ORTHEUS program \cite{PatenHolmesBirney2008}). 
+Such constraints are
+commonly used by programs for SCFG-based RNA sequence analysis such as QRNA \cite{RivasEddy2001}, Stemloc \cite{Holmes2005} and CONSAN \cite{DowellEddy2006}.
+Alignment and structural constraints can be combined \cite{Holmes2005}.
 
 
 In the following sections we introduce more precise definitions for two-sequence
@@ -412,18 +413,18 @@ Likewise, we will refer interchangeably to ``state paths'' (machines) and ``pars
 
 \paragraph{Terminology and normalization.}
 
-The stochastic state machine which generates parse trees from the marginal distribution $P(X)$ is a {\bf singlet transducer}.
-The machine that absorbs parse trees $X$ and generates modified parse trees $Y$ from the conditional distribution $P(Y | X, T)$ is a {\bf branch transducer}.
-Singlet transducers only emit symbols to their output sequence;
-branch transducers, in contrast, can both emit symbols to their output
-and absorb symbols from their input sequence.
+Consider the stochastic grammar which generates parse trees from the marginal distribution $P(X)$.
+It is occasionally convenient to represent this grammar as a transducer whose input is constrained to be null,
+i.e. a machine that accepts a dummy (empty) input sequence, and outputs sequence $X$.
+We refer to this as the {\bf singlet transducer}.
+In contrast, the more general type of transducer that absorbs parse trees $X$ and generates modified parse trees $Y$ from the conditional distribution $P(Y | X, T)$ is a {\bf branch transducer}.
+By definition, singlet transducers only emit symbols to their output sequence, and use a restricted set of state types.
+Branch transducers, in contrast, can both emit symbols to their outputs and absorb symbols from their inputs, and so use the full range of state types.
 
-Much as the states of Pair HMMs with no null states, other than the $\Sstart$
-and $\Send$ states, can be classified as $\Sinsert$ or $\Smatch$,
-transducers can have states of type $\Sstart$, $\Send$,
+Transducers can have states of type $\Sstart$, $\Send$,
 $\Swait$, $\Sinsert$ and $\Smatch$.
 The first three state types, $\Sstart$, $\Send$ and $\Swait$, are null:
-They do not emit or absorb any symbols and are required solely for
+they do not emit or absorb any symbols and are required solely for
 ``organizational'' purposes (see following section).
 Two types of states can emit and/or absorb symbols, $\Sinsert$ and $\Smatch$.
 An $\Sinsert$ state emits a symbol to the output without absorbing anything.
@@ -740,27 +741,32 @@ required by modifying the DP algorithms themselves.
 
 \subsubsection*{Eliminating null cycles in SCFGs}
 
-The ensemble model contains empty bifurcations {\em and} empty paths.
+The ensemble grammar contains many rules that can be applied redundantly,
+together or in isolation, to generate subtrees of the parse tree that do
+not generate any terminals, and could be replaced with simpler rules.
+In fact, this is a general property of SCFGs with null states and/or bifurcations.
+In this subsection, we describe how to transform the SCFG so as to eliminate such redundant rules.
+We begin by identifying two types of redundant parse-structures: {\bf empty bifurcations} and {\bf empty paths}.
+
 An {\bf empty bifurcation} occurs when a child branch of a bifurcation state
 transitions to the $\Send$ state without emitting any symbols and can
 be removed from the model by creating an effective direct transition
 encapsulating the empty bifurcation.  For
 example, we can create an effective direct transition $N_1 \rightarrow
 N_3$ between null states $N_1$ and $N_3$ in place of the empty
-bifurcation $N_1 \rightarrow B \rightarrow (N_2 \,\, N_3) \rightarrow
+parse-subtree $N_1 \rightarrow B \rightarrow (N_2 \,\, N_3) \rightarrow
 (End \,\, N_3)$, where $B$ is a bifurcation state with children $(N_2
 \,\, N_3)$. Bifurcation states are the most computationally-costly
 part of our models, so it is important to eliminate as many as
 possible without reducing model expressiveness.
 
-Similarly, our model construction procedure generically produces many
-{\bf empty paths} which do not emit any terminal symbols.
+In contrast, an {\bf empty path} is defined as any parse-subtree {\em without} bifurcations that does not emit terminal symbols.
 Most common are paths of ``windback'' null transitions via non-emitting placeholder states.
 If $\Semit$ states $E_1$ and $E_2$ are connected in the state
-graph by $\Snull$ states $N_1$ and $N_2$, then the transition $E_1
+graph via $\Snull$ states $N_1$ and $N_2$, then the path $E_1
 \rightarrow N_1 \rightarrow N_2 \rightarrow E_2$ with  probability
 $P(E_1 \rightarrow N_1) \cdot P(N_1 \rightarrow N_2) \cdot P(N_2
-\rightarrow E_2)$ can be replaced with a transition $E_1 \rightarrow
+\rightarrow E_2)$ can be replaced by a single direct transition $E_1 \rightarrow
 E_2$ with an identical probability.
 
 % In practice, eliminating windback
@@ -770,27 +776,30 @@ E_2$ with an identical probability.
 % so this reduction in memory usage comes at the cost of a small
 % increase in runtime.
 
-We refer to empty paths and empty bifurcations as {\bf null cycles}.
-They occur (in simpler form) in Hidden Markov Models (which are special cases of SCFGs)
+Empty paths occur in Hidden Markov Models (which are special cases of SCFGs)
 and independent-sites models (which can be viewed as special cases of HMMs).
-In all such models, null cycles represent histories that are valid
+Conceptually, empty paths can represent histories that are valid
 according to the model but cannot be resolved by direct observation.
 Such null events can be real (e.g., ancestral residues that have been deleted in all extant lineages)
 or they can be artefactual (e.g., transitions between placeholder null states of an HMM).
-Often, one can account for the likelihood of such events by exact marginalization.
-For example, eliminating missing ``empty'' columns from an independent-sites model of sequence involves a straightforward application of a correction factor
+
+We refer to empty paths and empty bifurcations collectively as {\bf null cycles}.
+Our goal is an algorithmic procedure to account for the likelihood of such cycles by exact marginalization.
+For simpler models, solutions to this problem are published.
+Eliminating missing (empty) columns from an independent-sites model of sequence involves a straightforward application of a correction factor
 to account for the proportion of columns that are unobserved \cite{RivasEddy2008}.
 The slightly more complicated situation of missing emissions in a HMM can be dealt with by
-summing over all null paths, yielding a geometric series that is solvable by matrix inversion
-\cite{Holmes2003,Holmes2007,Lunter2007}; the ``wing retraction'' algorithms used in HMMER can be viewed as a special case of matrix inversion by iterated elimination \cite{hmmer}.
+summing over all empty paths, yielding a geometric series that is solvable by matrix inversion
+\cite{Holmes2003,Holmes2007,Lunter2007}.
 
-Algorithms for exact elimination of HMM null cycles by matrix inversion are implemented
+Algorithms for exact elimination of empty paths from HMMs by matrix inversion are implemented
 by programs such as PhyloComposer \cite{Holmes2003,Holmes2007} and
 HMMoC \cite{Lunter2007}. These algorithms effectively replace the HMM
 with an equivalent HMM that contains no null cycles but generates the
 same probability distribution over sequences.
-However, these solutions do not easily generalize to SCFGs, due to the
-possible presence of null bifurcations.
+The ``wing retraction'' algorithms used in the repetitively structured profile HMMs of HMMER \cite{hmmer} appear similar in operation.
+However, these solutions do not easily generalize to SCFGs, which contain bifurcations
+(and, therefore, may generate empty bifurcations as well as empty paths).
 
 Here, we show how null cycles can be removed systematically from SCFGs by two steps:
 \begin{description}
@@ -1432,7 +1441,8 @@ sequence. We chose this phylogeny for two reasons: (1) it is the
 simplest extension of the well-studied, standard two-sequence (Pair
 SCFG) model and (2) algorithms on a phylogeny with three leaves
 should be sufficient for ergodic sampling of reconstructions on any larger phylogeny,
-using a MCMC kernel similar to that of \cite{JensenHein2002}.
+using e.g. a Gibbs-sampling MCMC kernel \cite{JensenHein2002}
+or a progressive suboptimal-alignment sampling heuristic \cite{PatenHolmesBirney2008}.
 
 The statistics of the TKFST model on the three-taxon phylogeny
 illustrate the advantages of our procedure for model construction.
@@ -1521,13 +1531,14 @@ the reconstruction problem was made easy by the presence of a close
 outgroup, we conducted a simulation study to investigate the
 dependence of reconstruction accuracy on outgroup branch length.
 We simulated the evolution of RNAs under the TKFST model along
-3-taxon phylogenies, where we kept the branch lengths of the two
+3-taxon phylogenies (with one internal node), where we kept the branch lengths of two
 sibling species constant and varied the branch length of the
 outgroup.  We chose the parameters of the TKFST model to
 generate ``interesting'' alignments ($\sim 0.3$ substructure indels per
 alignment) and considered only alignments with at least two ancestral
 stems, sequences of length $\in [30, 70]$ bp, loops of length $\in [3,
 10]$ bp and stems of lengths $\in [1, 20]$ bp.
+We then used \indiegram\ to reconstruct maximum likelihood reconstructions of the ancestral structure and the four-way multiple alignment (ancestor + three descendants).
 
 The results of our simulations, illustrated in \figref{simulations},
 demonstrate that the accuracy of both structural
@@ -1545,7 +1556,7 @@ cannot perfectly reconstruct the alignment.
 
 While these results correspond to a best-case scenario in which we
 have a perfectly-parametrized evolutionary model, recent results
-demonstrating that inference of sequence alignment is surprisingly
+demonstrating that inference of sequence alignment is
 robust to mis-parametrized probabilistic models \cite{Lunter2007}
 suggest that the same may be true for probabilistic inference of
 ancestral structures.
