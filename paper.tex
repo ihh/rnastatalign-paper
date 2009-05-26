@@ -687,14 +687,14 @@ the standard CYK and Inside recursions fail on the ensemble model:
 that is, they contain cyclic self-references which cannot be resolved.
 The intuitive reason for this is that a (potentially-unbounded) number of residues in the ancestor can be
 absent in all extant sequences.
-This manifests as cycles of $\Snull$ states within the multiple-sequence SCFG,
+This is manifested as cycles of $\Snull$ states within the multiple-sequence SCFG,
 states which emit to the ancestral sequence but not to any extant sequence.
 The presence of bifurcations with one or more possibly-empty child branches,
 corresponding to entire substructures in the ancestral sequence that
 are absent in any extant sequence, further complicates inference.
-While there exists a straightforward fix for the CYK algorithm, the Inside algorithm requires more work.
+While there exists a straightforward fix for the CYK algorithm, the Inside algorithm is more complicated.
 
-Consider the CYK algorithm first.
+We consider the CYK algorithm first.
 In order to correctly perform maximum-likelihood inference, we only
 require that the maximum-likelihood parse tree corresponds to the parse
 returned by the CYK algorithm; the entire
@@ -713,8 +713,8 @@ linguistics requires only that the CYK parse be preserved \cite{GecsegSteinby97}
 
 The transformations just described to make CYK work properly are insufficient for the
 Inside and Outside algorithms.
-For CYK, null cycles can be ignored, since they should never appear in the maximum likelihood parse.
-For Inside and Outside, null cycles cannot be ignored, since they will contribute to the likelihood sum over parse trees.
+For CYK, parse trees containing null cycles can be ignored, since the maximum likelihood parse tree should never contain null cycles.
+For Inside and Outside, such null-cycle parses cannot be ignored, since they will contribute to the likelihood sum over parse trees.
 
 There are two possible solutions to this difficulty: we can either
 create new versions of the standard inference algorithms for SCFGs
@@ -726,27 +726,31 @@ iteratively re-fill entries of the DP matrix, corresponding to summing
 the probabilities for unobserved null cycles, until the approximation
 is sufficiently good---but it is difficult to implement efficiently
 and necessarily has worse time complexity than the standard inference
-algorithms due to the need to iterate over parts of the (large) DP
+algorithms due to the need to reiterate over (large) parts of the DP
 matrix.  The second approach, of modifying the structure of the SCFGs
-themselves, has a closed-form solution for the case of HMMs, but to our
-knowledge, efficient exact null-cycle elimination for SCFGs is an open
-problem (complicated by the presence of null cycles
-involving bifurcations).
+themselves, is well-understood for the case of HMMs, but to our
+knowledge, still an open problem for SCFGs
+(complicated by the presence of null cycles involving bifurcations).
 
-We therefore developed a method to remove null cycles from
-the ensemble model, described below, in order to use the standard inference algorithms
+We therefore developed a method to eliminate null cycles from
+the ensemble model, in order to use the standard inference algorithms
 for SCFGs without incurring the further computational complexity
 required by modifying the DP algorithms themselves.
+We will describe this elimination procedure before proceeding to the descriptions of the DP algorithms.
 
 
 \subsubsection*{Eliminating null cycles in SCFGs}
 
 As noted above, the ensemble grammar contains many rules that can be applied redundantly,
 together or in isolation, to generate subtrees of the parse tree that do
-not generate any terminals, and could be replaced with simpler rules.
-In fact, this is a general property of SCFGs with null states and/or bifurcations.
-In this subsection, we describe how to transform the SCFG so as to eliminate such redundant rules.
-We begin by identifying two types of redundant parse-structures: {\bf empty bifurcations} and {\bf empty paths}.
+not generate any terminals.
+This generates cyclic dependencies in the standard DP recursions for inference.
+In this subsection, we describe how to transform the SCFG so as to eliminate such redundant rules, yielding strictly acyclic DP recursions.
+This transformation can be applied to any SCFG so as to remove null states and/or bifurcations:
+the procedure is not restricted to grammars that were generated using our transducer composition algorithm.
+
+We begin by identifying two distinct classes of redundant parse-subtree: {\bf empty bifurcations} and {\bf empty paths}.
+We will eliminate each of these in turn.
 
 An {\bf empty bifurcation} occurs when a child branch of a bifurcation state
 transitions to the $\Send$ state without emitting any symbols and can
@@ -801,7 +805,7 @@ The ``wing retraction'' algorithms used in the repetitively structured profile H
 However, these solutions do not easily generalize to SCFGs, which contain bifurcations
 (and, therefore, may generate empty bifurcations as well as empty paths).
 
-Here, we show how null cycles can be removed systematically from SCFGs by two steps:
+Null cycles can be removed systematically from SCFGs by two steps:
 \begin{description}
 \item[(i)] separating bifurcations
 into those which have one or more empty children (and can therefore be
@@ -823,10 +827,10 @@ consisting of
 a set of terminal symbols $\Omega$,
 a set of nonterminal symbols (a.k.a. ``states'') $\gnons$,
 a set $\grules$ of {\em production rules} $L \to R$ (where $L \in \gnons$ and $R \in \grhs$)
-and a non-negative weight function on the rules, $P:(\gnons \times \grhs) \to [0,\infty)$.
+and a probability function on the rules, $P:(\gnons \times \grhs) \to [0,\infty)$.
 
-(The rule set $\grules$ can be considered redundant to the specification of the grammar, in that $\rho \notin \grules \Leftrightarrow P(\rho)=0$.
-The interpretation is that $P$ is a probabilistic weight function and $\grules$ is informally the set of rules with non-zero weight.)
+% (The rule set $\grules$ can be considered redundant to the specification of the grammar, in that $\rho \notin \grules \Leftrightarrow P(\rho)=0$.
+% The interpretation is that $P$ is a probabilistic weight function and $\grules$ is informally the set of rules with non-zero weight.)
 
 Let $\leftside{A}$ be the set of rules that can be applied to nonterminal $A \in \gnons$ (i.e., rules in which $A$ appears on the left),
 and let $\rightside{A}$ be the set of rules that can generate nonterminal $A$ (i.e.,rules in which $A$ appears on the right, including bifurcations which also generate another nonterminal as well as $A$).
@@ -835,7 +839,7 @@ Define these also on sets of nonterminals, e.g., $\leftside{\gnulls} = \bigcup_{
 
 Let $\gtrees$ be the set of all parse trees for $G$.
 Suppose that parse tree $T \in \gtrees$ makes $n_T(\rho)$ uses of rule $\rho$;
-then define the parse tree weight $P(T) = \prod_{\rho \in \grules} \left[ P(\rho) \right]^{n_T(\rho)}$.
+then define the parse tree likelihood $P(T) = \prod_{\rho \in \grules} \left[ P(\rho) \right]^{n_T(\rho)}$.
 
 If $\sum_{T \in \gtrees} P(T) = 1$, we say that $G$ is {\em probabilistically normalized by parse tree}.
 If $\sum_{\rho \in \leftside{A}} P(\rho) = 1$ for all $A \in \gnons$, we say that $G$ is {\em probabilistically normalized by production rule}.
@@ -845,9 +849,9 @@ Let $S \in \Omega^\ast$ denote a terminal sequence.
 Let $\mathrm{seq}:\gtrees \to \Omega^\ast$ be the function mapping a parse tree to its terminal sequence.
 and let $\mathrm{root}:\gtrees \to \gnons$ be the function returning the root nonterminal of a parse tree.
 The {\em inside probability of $S$ rooted at $A$} is $P(S|A)\ = \sum_{T: \mathrm{seq}(T) = S,\mathrm{root}(T) = A} P(T)$.
-Of particular relevance to null state elimination are the probabilities $P(\epsilon|A)$,
+Of particular relevance to null state elimination is the probability $P(\epsilon|A)$,
 where $\epsilon$ is the empty sequence.
-These are the probabilities that a nonterminal will expire without generating any sequence.
+This is the probability that a nonterminal $A$ will expire without generating any sequence.
 
 Following earlier formalisms \cite{Durbin98,HolmesRubin2002a,Holmes2005},
 we say that the grammar $G$ has {\em RNA normal-form rules} if
@@ -879,7 +883,8 @@ A & \to & x\ B\ y
 \noindent
 Here $A,B,C \in \gnons$ and $x,y \in \Omega$.
 
-Furthermore, we say that the grammar $G$ has {\em RNA normal-form states} if
+Suppose that grammar $G$ has RNA normal-form rules.
+We further say that $G$ has {\em RNA normal-form states} if
 each nonterminal (state) $A \in \gnons$ takes one of the following forms:
 
 \noindent \hrulefill
@@ -940,7 +945,7 @@ then introduce a new state $N'$ for every null $N \in \gnulls$ and three new sta
 \left( \bigcup_{N \in \gnulls} \{ N' \} \right) \cup \left( \bigcup_{B \in \gbifs} \{ B^0, B', B^2 \} \right) \cup \gnons \setminus \gbifs
 \]
 
-The idea is that $N'$ is a null state that is equivalent to null state $N$ for non-empty sequence.
+The idea is that $N'$ (in $G'$) is a null state that is equivalent to null state $N$ (in $G$) for non-empty sequence only.
 That is, for any terminal sequence $S$,
 
 \[
@@ -1530,6 +1535,10 @@ Guided by our experience with the \emph{nanos} 3' TCE and tRNA, where
 the reconstruction problem was made easy by the presence of a close
 outgroup, we conducted a simulation study to investigate the
 dependence of reconstruction accuracy on outgroup branch length.
+(We here use the term ``outgroup'' loosely, to denote the variable-length branch in a three-branch study,
+where the other two branches are held at unit length.
+Technically, the term ``outgroup'' is only correct if the outgroup's branch is longer than the other two branches.)
+
 We simulated the evolution of RNAs under the TKFST model along
 3-taxon phylogenies (with one internal node), where we kept the branch lengths of two
 sibling species constant and varied the branch length of the
@@ -1550,17 +1559,18 @@ not be true for structural reconstruction accuracy.  As the branch
 length of the outgroup increases, the outgroup's structure becomes increasingly decoupled from
 that of its ancestor, allowing the algorithm to ``ignore'' the
 information which it contains.
-Similarly, while we can perfectly reconstruct the ancestral
-structure given an outgroup branch length of 0 (the trivial case), we
-cannot perfectly reconstruct the alignment.  
+In the trivial case where the outgroup branch length is zero (so the ancestor is identical to the outgroup),
+we can perfectly reconstruct the ancestral structure (as expected),
+but we cannot perfectly reconstruct the three-way multiple alignment (since there are still two finite-length branches, on which some unreconstructable mutations inevitably occur).
 
-While these results correspond to a best-case scenario in which we
-have a perfectly-parametrized evolutionary model, recent results
+These results correspond to a best-case scenario in which we
+have a perfectly-parametrized evolutionary model and exactly-known descendant structures.
+Recent results
 demonstrating that inference of sequence alignment is
 robust to mis-parametrized probabilistic models \cite{Lunter2007}
 suggest that the same may be true for probabilistic inference of
 ancestral structures.
-
+The effect of imperfect knowledge of the ancestral structures has not been explored.
 
 \newpage
 \section*{Discussion}
@@ -1606,8 +1616,8 @@ In particular, an early example of a pairwise conditional model $P(Y|X)$ for str
 may be found in \cite{KleinEddy2003}.
 A conditional framework similar to ours in some respects is described
 by Sakakibara et al \cite{Sakakibara2003}.
-The statistical inference algorithms for multiple-sequence SCFGs are closely related to the ``protosequence algorithm'' of Sankoff \cite{Sankoff85},
-a seminal work in both RNA structural alignment and ancestral reconstruction.
+The dynamic programming inference algorithms for multiple-sequence SCFGs are closely related to the ``protosequence algorithm'' of Sankoff \cite{Sankoff85}.
+%a seminal work in both RNA structural alignment and ancestral reconstruction.
 
 % In this paper we have reported innovations to two programs, \xrate\ and \stemloc,
 % rendering them suitable for the challenge of reconstructing
@@ -1660,7 +1670,7 @@ structural alignment.
 
 Reconstructing structural changes of large RNAs
 using the three-way sampling kernel which we have described
-would require resources far in excess of what are currently available;
+would require resources far in excess of those currently available;
 barring the availability of supercomputers with terabytes of memory,
 such algorithms will only be feasible for short RNAs (\tabref{complexities}).
 Thus, alternate strategies will have to be explored, such as the
