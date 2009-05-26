@@ -590,6 +590,13 @@ Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures} :
   232--240.
 \bibAnnoteFile{Sakakibara2003}
 
+\bibitem{MeyerMiklos2007}
+Meyer IM, Mikl\'os I (2007) {S}imul{F}old: simultaneously inferring rna
+  structures including pseudoknots, alignments, and trees using a {B}ayesian
+  {MCMC} framework.
+\newblock PLoS Computational Biology 3: e149.
+\bibAnnoteFile{MeyerMiklos2007}
+
 \bibitem{SchwartzMyersPachter2006}
 Schwartz AS, Myers EW, Pachter L (2006) Alignment metric accuracy.
 \newblock {http://arxiv.org/abs/q-bio/0510052}.

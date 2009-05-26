@@ -1664,6 +1664,10 @@ Note that this, in principle, permits construction of a crude sampler
 to simultaneously infer phylogeny as well, by proposing and accepting
 or rejecting changes to the underlying tree as well as the implied
 structural alignment.
+An alternative MCMC scheme for sampling RNA phylogeny, structure and alignment was implemented in the SimulFold program \cite{MeyerMiklos2007}.
+SimulFold does not use a strictly normalized probabilistic model, and it is unclear how structure and indels interact in the model
+(for example, it does not penalize deletion of one half of a basepair).
+
 
 % With reference to the motivating problem of reconstructing ribosomal RNA,
 % the sequence-level reconstructions with \xrate\ 

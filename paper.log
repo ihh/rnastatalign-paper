@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.8.14)  26 MAY 2009 12:13
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.8.14)  26 MAY 2009 13:39
 entering extended mode
 **paper
 (./paper.tex
@@ -316,7 +316,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [22] [23] [24] [25] [26]
 [27] [28] [29] [30] [31] [32] [33] [34] [35]
 
-LaTeX Warning: Citation `PatenEtAl2008' on page 36 undefined on input line 1680
+LaTeX Warning: Citation `PatenEtAl2008' on page 36 undefined on input line 1684
 .
 
 [36] (./paper.bbl [37] [38] [39] [40] [41] [42] [43] [44]) [45] [46
@@ -325,52 +325,52 @@ LaTeX Warning: Citation `PatenEtAl2008' on page 36 undefined on input line 1680
 [48
 
 ] [49] [50] [51]
-Underfull \hbox (badness 10000) detected at line 2143
+Underfull \hbox (badness 10000) detected at line 2147
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2188
+Underfull \hbox (badness 10000) detected at line 2192
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2215
+Underfull \hbox (badness 10000) detected at line 2219
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2257
+Underfull \hbox (badness 10000) detected at line 2261
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2277
+Underfull \hbox (badness 10000) detected at line 2281
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2320
+Underfull \hbox (badness 10000) detected at line 2324
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2340
+Underfull \hbox (badness 10000) detected at line 2344
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2386
+Underfull \hbox (badness 10000) detected at line 2390
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2406
+Underfull \hbox (badness 10000) detected at line 2410
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2466
+Underfull \hbox (badness 10000) detected at line 2470
 [][]
  []
 
@@ -382,10 +382,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3838 strings out of 94500
- 48209 string characters out of 1176114
- 168913 words of memory out of 1000000
- 6857 multiletter control sequences out of 10000+50000
+ 3840 strings out of 94500
+ 48241 string characters out of 1176114
+ 168918 words of memory out of 1000000
+ 6858 multiletter control sequences out of 10000+50000
  12268 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  36i,33n,32p,1733b,541s stack positions out of 1500i,500n,5000p,200000b,5000s
@@ -409,4 +409,4 @@ b></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></sw/share/texmf-dist
 xmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></sw/share/texmf-dist/fonts/type1/blue
 sky/cm/cmbx12.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></sw/s
 hare/texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb>
-Output written on paper.pdf (58 pages, 321187 bytes).
+Output written on paper.pdf (58 pages, 321735 bytes).
