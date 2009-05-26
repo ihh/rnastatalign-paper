@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.8.14)  26 MAY 2009 13:39
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.8.14)  26 MAY 2009 13:51
 entering extended mode
 **paper
 (./paper.tex
@@ -314,99 +314,91 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1032.
 
  [22] [23] [24] [25] [26]
-[27] [28] [29] [30] [31] [32] [33] [34] [35]
+[27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] (./paper.bbl [38]
+[39] [40] [41] [42] [43] [44] [45]) [46] [47
 
-LaTeX Warning: Citation `PatenEtAl2008' on page 36 undefined on input line 1684
-.
+] [48] [49
 
-[36] (./paper.bbl [37] [38] [39] [40] [41] [42] [43] [44]) [45] [46
-
-] [47]
-[48
-
-] [49] [50] [51]
-Underfull \hbox (badness 10000) detected at line 2147
+] [50] [51] [52]
+Underfull \hbox (badness 10000) detected at line 2151
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2192
+Underfull \hbox (badness 10000) detected at line 2196
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2219
+Underfull \hbox (badness 10000) detected at line 2223
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2261
+Underfull \hbox (badness 10000) detected at line 2265
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2281
+Underfull \hbox (badness 10000) detected at line 2285
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2324
+Underfull \hbox (badness 10000) detected at line 2328
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2344
+Underfull \hbox (badness 10000) detected at line 2348
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2390
+Underfull \hbox (badness 10000) detected at line 2394
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2410
+Underfull \hbox (badness 10000) detected at line 2414
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2470
+Underfull \hbox (badness 10000) detected at line 2474
 [][]
  []
 
-[52
+[53
 
-] [53] [54] [55] [56] [57] [58] (./paper.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] [54] [55] [56] [57] [58] [59] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3840 strings out of 94500
- 48241 string characters out of 1176114
- 168918 words of memory out of 1000000
- 6858 multiletter control sequences out of 10000+50000
+ 3839 strings out of 94500
+ 48226 string characters out of 1176114
+ 168879 words of memory out of 1000000
+ 6857 multiletter control sequences out of 10000+50000
  12268 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  36i,33n,32p,1733b,541s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 250 PDF objects out of 300000
+ 253 PDF objects out of 300000
  0 named destinations out of 131072
  1 words of extra memory for PDF output out of 65536
-</sw/share/texmf-dist/fonts/type1/bluesky/cm/cmss10.pfb></sw/share/texmf-dist
-/fonts/type1/bluesky/cm/cmtt8.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cme
-xtra/cmmib7.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmmib10.pfb></sw/s
-hare/texmf-dist/fonts/type1/hoekwater/rsfs/rsfs10.pfb></sw/share/texmf-dist/fon
-ts/type1/bluesky/cm/cmsy5.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmmi
-5.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmbx7.pfb></sw/share/texmf-d
-ist/fonts/type1/bluesky/cm/cmti10.pfb></sw/share/texmf-dist/fonts/type1/bluesky
-/cm/cmex10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmr5.pfb></sw/share
-/texmf-dist/fonts/type1/bluesky/cm/cmbxti10.pfb></sw/share/texmf-dist/fonts/typ
-e1/bluesky/cm/cmmi10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmtt10.pf
-b></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></sw/share/texmf-dist
-/fonts/type1/bluesky/cm/cmbx10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm
-/cmsy7.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmmi7.pfb></sw/share/te
-xmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></sw/share/texmf-dist/fonts/type1/blue
-sky/cm/cmbx12.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></sw/s
-hare/texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb>
-Output written on paper.pdf (58 pages, 321735 bytes).
+</sw/share/texmf-dist/fonts/type
+1/bluesky/cm/cmss10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmtt8.pfb>
+</sw/share/texmf-dist/fonts/type1/bluesky/cmextra/cmmib7.pfb></sw/share/texmf-d
+ist/fonts/type1/bluesky/cm/cmmib10.pfb></sw/share/texmf-dist/fonts/type1/hoekwa
+ter/rsfs/rsfs10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmsy5.pfb></sw
+/share/texmf-dist/fonts/type1/bluesky/cm/cmmi5.pfb></sw/share/texmf-dist/fonts/
+type1/bluesky/cm/cmbx7.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmti10.
+pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></sw/share/texmf-di
+st/fonts/type1/bluesky/cm/cmr5.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm
+/cmbxti10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></sw/shar
+e/texmf-dist/fonts/type1/bluesky/cm/cmtt10.pfb></sw/share/texmf-dist/fonts/type
+1/bluesky/cm/cmsy10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmbx10.pfb
+></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmsy7.pfb></sw/share/texmf-dist/f
+onts/type1/bluesky/cm/cmmi7.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cm
+r7.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></sw/share/texmf
+-dist/fonts/type1/bluesky/cm/cmr10.pfb></sw/share/texmf-dist/fonts/type1/bluesk
+y/cm/cmsl10.pfb>
+Output written on paper.pdf (59 pages, 322377 bytes).

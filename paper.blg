@@ -7,7 +7,6 @@ Database file #3: ../latex-inputs/duplication.bib
 Database file #4: ../latex-inputs/genomics.bib
 Database file #5: ../latex-inputs/ncrna.bib
 Database file #6: ../latex-inputs/url.bib
-Warning--I didn't find a database entry for "PatenEtAl2008"
 Warning--empty pages in ComonEtAl2007-TreeTransducers
 Warning--empty pages in GecsegSteinby97
 Warning--empty pages in Gaucher2007b
@@ -17,7 +16,7 @@ while executing---line 2643 of file PLoS2009.bst
 Warning--empty journal in Sakakibara2003
 You've used 101 entries,
             2441 wiz_defined-function locations,
-            1307 strings with 23431 characters,
+            1305 strings with 23405 characters,
 and the built_in function-call counts, 75810 in all, are:
 = -- 7022
 > -- 1111

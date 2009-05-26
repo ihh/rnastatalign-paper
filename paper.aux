@@ -104,9 +104,9 @@
 \citation{Sakakibara2003}
 \citation{Sankoff85}
 \citation{JensenHein2002}
-\citation{MeyerMiklos2007}
-\citation{PatenEtAl2008}
+\citation{PatenHolmesBirney2008}
 \citation{RedelingsSuchard2005}
+\citation{MeyerMiklos2007}
 \bibdata{../latex-inputs/alignment,../latex-inputs/reconstruction,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna,../latex-inputs/url}
 \bibcite{Crick68}{1}
 \bibcite{SmithEtAl2008}{2}
@@ -218,16 +218,16 @@
 \citation{Holmes2004}
 \citation{SchwartzMyersPachter2006}
 \citation{SchwartzMyersPachter2006}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  \textbf  {A simple example of transducer composition to build an evolutionary model of two extant sequences.} An ancestral sequence $W$ evolves into two descendant sequences $X$ and $Y$. A singlet transducer (the horizontal gray box) emits an ancestral sequence and structure and two branch transducers (the gray boxes labeled $T_X$ and $T_Y$) mutate it according to the specified evolutionary model. Gray nodes correspond to observed data and white nodes unobserved data. }}{46}}
-\newlabel{fig:parent}{{1}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  \textbf  {Transducer composition on a star phylogeny with three (extant) leaf sequences.} An ancestral sequence $W$ evolves into three descendant sequences $X$, $Y$ and $Z$. A singlet transducer (the horizontal gray box) emits an ancestral sequence and structure and three branch transducers (the gray boxes labeled $T_X$, $T_Y$ and $T_Z$) mutate it according to the specified evolutionary model. Gray nodes correspond to observed data and white nodes unobserved data. If the branch transducers are time-reversible, then this star phylogeny with three leaves is the neighborhood of any interior node in a (binary) phylogenetic tree, from which it follows that evaluating the likelihood function on this star phylogeny is sufficient, in principle, for a sampling algorithm on an arbitrary phylogeny. }}{46}}
-\newlabel{fig:threeway}{{2}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  \textbf  {The TKF Structure Tree model represents the evolution of RNA structure as nested stem and loop sequences.} The model consists of recursively nested loop sequences (gray, horizontal) and stem sequences (black, vertical). The loops are sequences of unpaired bases and the stems are sequences of covarying base-pairs. Both loop and stem sequences evolve according to the Thorne-Kishino-Felsenstein (TKF) model \cite  {ThorneEtal91} of molecular evolution. Figure is extended from a similar version in \cite  {Holmes2004}. }}{46}}
-\newlabel{fig:tkfst}{{3}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  \textbf  {Evolution of a RNA structure under the TKF Structure Tree model.} The TKF Structure Tree model includes phenomena such as point mutations in loop sequences ($1 \rightarrow 2$ and $4 \rightarrow 5$), covariant mutations in stem sequences ($2 \rightarrow 3$), insertions in loop sequences ($3 \rightarrow 4$), insertions in stem sequences ($5 \rightarrow 6$), structural insertions ($6 \rightarrow 7$), and structural deletions ($7 \rightarrow 8$). Figure is extended from a similar version in \cite  {Holmes2004}. }}{46}}
-\newlabel{fig:tkfst-mutations}{{4}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  \textbf  {Dependence of reconstruction accuracy on outgroup branch length.} We investigated the dependence of structural reconstruction and alignment accuracy on outgroup branch length by simulating the evolution of three structural RNAs under our model. The two sister species were equidistant from the ancestral sequence, with a branch length of 1, corresponding to one expected substitution per site in loop sequence. We allowed the outgroup branch length to vary between $[0, 2.5]$. We divided this interval into 25 bins and simulated 25 alignments for each bin. Parameters used were $\lambda _l = 0.025$ and $\mu _l = 0.03$ for loop sequence and $\lambda _l = 0.007$ and $\mu _l = 0.01$ for stem sequence; the probability of a stem insertion was $0.1$. These yielded a mean loop length of 5 bp and a mean stem length of 2.33 bp, with $\sim 0.3$ substructure indels per alignment. We selected challenging alignments to reconstruct by requiring that there be at least two ancestral stems, loops of length $\in [3, 10]$ bp and stems of length $\in [1, 20]$ bp; to reduce the complexity of our algorithms we additionally required that the sequences have lengths $\in [30, 70]$ bp. ``Structural reconstruction accuracy'' is the fraction of base-pairs in the ancestral structure present in the maximum-likelihood reconstruction thereof; ``Alignment accuracy'' is a measure of sequence alignment accuracy which takes both aligned and unaligned (indels) nucleotides into account, qualitatively corresponding to giving equal weight to sensitivity and specificity (see \cite  {SchwartzMyersPachter2006} for a precise definition). }}{47}}
-\newlabel{fig:simulations}{{5}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  \textbf  {A simple example of transducer composition to build an evolutionary model of two extant sequences.} An ancestral sequence $W$ evolves into two descendant sequences $X$ and $Y$. A singlet transducer (the horizontal gray box) emits an ancestral sequence and structure and two branch transducers (the gray boxes labeled $T_X$ and $T_Y$) mutate it according to the specified evolutionary model. Gray nodes correspond to observed data and white nodes unobserved data. }}{47}}
+\newlabel{fig:parent}{{1}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  \textbf  {Transducer composition on a star phylogeny with three (extant) leaf sequences.} An ancestral sequence $W$ evolves into three descendant sequences $X$, $Y$ and $Z$. A singlet transducer (the horizontal gray box) emits an ancestral sequence and structure and three branch transducers (the gray boxes labeled $T_X$, $T_Y$ and $T_Z$) mutate it according to the specified evolutionary model. Gray nodes correspond to observed data and white nodes unobserved data. If the branch transducers are time-reversible, then this star phylogeny with three leaves is the neighborhood of any interior node in a (binary) phylogenetic tree, from which it follows that evaluating the likelihood function on this star phylogeny is sufficient, in principle, for a sampling algorithm on an arbitrary phylogeny. }}{47}}
+\newlabel{fig:threeway}{{2}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  \textbf  {The TKF Structure Tree model represents the evolution of RNA structure as nested stem and loop sequences.} The model consists of recursively nested loop sequences (gray, horizontal) and stem sequences (black, vertical). The loops are sequences of unpaired bases and the stems are sequences of covarying base-pairs. Both loop and stem sequences evolve according to the Thorne-Kishino-Felsenstein (TKF) model \cite  {ThorneEtal91} of molecular evolution. Figure is extended from a similar version in \cite  {Holmes2004}. }}{47}}
+\newlabel{fig:tkfst}{{3}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  \textbf  {Evolution of a RNA structure under the TKF Structure Tree model.} The TKF Structure Tree model includes phenomena such as point mutations in loop sequences ($1 \rightarrow 2$ and $4 \rightarrow 5$), covariant mutations in stem sequences ($2 \rightarrow 3$), insertions in loop sequences ($3 \rightarrow 4$), insertions in stem sequences ($5 \rightarrow 6$), structural insertions ($6 \rightarrow 7$), and structural deletions ($7 \rightarrow 8$). Figure is extended from a similar version in \cite  {Holmes2004}. }}{47}}
+\newlabel{fig:tkfst-mutations}{{4}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  \textbf  {Dependence of reconstruction accuracy on outgroup branch length.} We investigated the dependence of structural reconstruction and alignment accuracy on outgroup branch length by simulating the evolution of three structural RNAs under our model. The two sister species were equidistant from the ancestral sequence, with a branch length of 1, corresponding to one expected substitution per site in loop sequence. We allowed the outgroup branch length to vary between $[0, 2.5]$. We divided this interval into 25 bins and simulated 25 alignments for each bin. Parameters used were $\lambda _l = 0.025$ and $\mu _l = 0.03$ for loop sequence and $\lambda _l = 0.007$ and $\mu _l = 0.01$ for stem sequence; the probability of a stem insertion was $0.1$. These yielded a mean loop length of 5 bp and a mean stem length of 2.33 bp, with $\sim 0.3$ substructure indels per alignment. We selected challenging alignments to reconstruct by requiring that there be at least two ancestral stems, loops of length $\in [3, 10]$ bp and stems of length $\in [1, 20]$ bp; to reduce the complexity of our algorithms we additionally required that the sequences have lengths $\in [30, 70]$ bp. ``Structural reconstruction accuracy'' is the fraction of base-pairs in the ancestral structure present in the maximum-likelihood reconstruction thereof; ``Alignment accuracy'' is a measure of sequence alignment accuracy which takes both aligned and unaligned (indels) nucleotides into account, qualitatively corresponding to giving equal weight to sensitivity and specificity (see \cite  {SchwartzMyersPachter2006} for a precise definition). }}{48}}
+\newlabel{fig:simulations}{{5}{48}}
 \citation{Holmes2005}
 \citation{ThompsonEtal99}
 \citation{Holmes2005}
@@ -235,37 +235,37 @@
 \citation{GardnerEtAl2005}
 \citation{GardnerEtAl2005}
 \citation{TeunissenEtAl2000}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  \textbf  {State types of the singlet transducer (single-sequence SCFG) of the TKF Structure Tree model.}}}{48}}
-\newlabel{tab:tkfstsinglet-types}{{1}{48}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  \textbf  {Singlet transducer (single-sequence SCFG) of the TKF Structure Tree model.}}}{48}}
-\newlabel{tab:tkfstsinglet}{{2}{48}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces  \textbf  {State types of the branch transducer (conditionally-normalized Pair SCFG) of the TKF Structure Tree model.}}}{49}}
-\newlabel{tab:tkfstbranch-types}{{3}{49}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces  \textbf  {Branch transducer (conditionally-normalized Pair SCFG) of the TKF Structure Tree model.}}}{50}}
-\newlabel{tab:tkfstbranch}{{4}{50}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  \textbf  {Percentage sensitivity and positive predictive value (Sensitivity / PPV) for pairwise nucleotide-level alignments in the BRalibaseII\ benchmark.}}}{51}}
-\newlabel{tab:bralibaseII-align}{{5}{51}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  \textbf  {Percentage sensitivity and positive predictive value (Sensitivity / PPV) for predicted base-pairs in the BRalibaseII\ benchmark.}}}{51}}
-\newlabel{tab:bralibaseII-struct}{{6}{51}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces  \textbf  {Estimates of the memory and time required to reconstruct ancestral structures of three RNAs from several families of biological interest (as reported by INDIEGRAM).}}}{51}}
-\newlabel{tab:complexities}{{7}{51}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces  Subroutine $\@mathrm {restoreTransitions}(\rho '')$ for the null cycle elimination procedure. }}{52}}
-\newlabel{alg:restoreTransitions}{{1}{52}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces  Subroutine $\@mathrm {restoreBifurcations}(\rho ')$ for the null cycle elimination procedure. }}{53}}
-\newlabel{alg:restoreBifurcations}{{2}{53}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces  Subroutine $\@mathrm {sampleNullSubtree}(A)$ for the null cycle elimination procedure. }}{53}}
-\newlabel{alg:sampleNullSubtree}{{3}{53}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {4}{\ignorespaces  The constrained Inside algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Inside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in reverse topological order. }}{54}}
-\newlabel{alg:inside}{{4}{54}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {5}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Inside algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{54}}
-\newlabel{alg:insidetransemit}{{5}{54}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {6}{\ignorespaces  The constrained CYK algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Inside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in reverse topological order. }}{55}}
-\newlabel{alg:cyk}{{6}{55}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {7}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the CYK algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{55}}
-\newlabel{alg:cyktransemit}{{7}{55}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {8}{\ignorespaces  The constrained Outside algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Outside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in topological order. }}{56}}
-\newlabel{alg:outside}{{8}{56}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {9}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Outside algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{57}}
-\newlabel{alg:outsidetransemit}{{9}{57}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {10}{\ignorespaces  The constrained CYK traceback algorithm for three sequences $X, Y, Z$. }}{58}}
-\newlabel{alg:cyktraceback}{{10}{58}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  \textbf  {State types of the singlet transducer (single-sequence SCFG) of the TKF Structure Tree model.}}}{49}}
+\newlabel{tab:tkfstsinglet-types}{{1}{49}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  \textbf  {Singlet transducer (single-sequence SCFG) of the TKF Structure Tree model.}}}{49}}
+\newlabel{tab:tkfstsinglet}{{2}{49}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces  \textbf  {State types of the branch transducer (conditionally-normalized Pair SCFG) of the TKF Structure Tree model.}}}{50}}
+\newlabel{tab:tkfstbranch-types}{{3}{50}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces  \textbf  {Branch transducer (conditionally-normalized Pair SCFG) of the TKF Structure Tree model.}}}{51}}
+\newlabel{tab:tkfstbranch}{{4}{51}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  \textbf  {Percentage sensitivity and positive predictive value (Sensitivity / PPV) for pairwise nucleotide-level alignments in the BRalibaseII\ benchmark.}}}{52}}
+\newlabel{tab:bralibaseII-align}{{5}{52}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  \textbf  {Percentage sensitivity and positive predictive value (Sensitivity / PPV) for predicted base-pairs in the BRalibaseII\ benchmark.}}}{52}}
+\newlabel{tab:bralibaseII-struct}{{6}{52}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces  \textbf  {Estimates of the memory and time required to reconstruct ancestral structures of three RNAs from several families of biological interest (as reported by INDIEGRAM).}}}{52}}
+\newlabel{tab:complexities}{{7}{52}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces  Subroutine $\@mathrm {restoreTransitions}(\rho '')$ for the null cycle elimination procedure. }}{53}}
+\newlabel{alg:restoreTransitions}{{1}{53}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces  Subroutine $\@mathrm {restoreBifurcations}(\rho ')$ for the null cycle elimination procedure. }}{54}}
+\newlabel{alg:restoreBifurcations}{{2}{54}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces  Subroutine $\@mathrm {sampleNullSubtree}(A)$ for the null cycle elimination procedure. }}{54}}
+\newlabel{alg:sampleNullSubtree}{{3}{54}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {4}{\ignorespaces  The constrained Inside algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Inside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in reverse topological order. }}{55}}
+\newlabel{alg:inside}{{4}{55}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {5}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Inside algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{55}}
+\newlabel{alg:insidetransemit}{{5}{55}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {6}{\ignorespaces  The constrained CYK algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Inside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in reverse topological order. }}{56}}
+\newlabel{alg:cyk}{{6}{56}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {7}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the CYK algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{56}}
+\newlabel{alg:cyktransemit}{{7}{56}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {8}{\ignorespaces  The constrained Outside algorithm for three sequences $X, Y, Z$. Ensemble states $\boldsymbol  {a}$ in the iteration over states are sorted in Outside fill order with $\@mathtt {Emit}$ states first, then $\@mathtt {Null}$ states in topological order. }}{57}}
+\newlabel{alg:outside}{{8}{57}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {9}{\ignorespaces  Subroutine $\@mathrm {calcTransEmitProb}()$ for the Outside algorithm. $\boldsymbol  {a}$ and $\boldsymbol  {b}$ are ensemble states; $\boldsymbol  {l}$ and $\boldsymbol  {r}$ are left and right terminal emissions. }}{58}}
+\newlabel{alg:outsidetransemit}{{9}{58}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {10}{\ignorespaces  The constrained CYK traceback algorithm for three sequences $X, Y, Z$. }}{59}}
+\newlabel{alg:cyktraceback}{{10}{59}}

@@ -107,8 +107,8 @@ of the ancestral structure of a set of diverged RNAs.
 We implemented these algorithms for a three-taxon phylogeny.  Using
 our implementation on a simple model of pairwise RNA structural
 evolution, we simulated data under the model and tested the dependence
-of alignment inference and ancestral structure reconstruction accuracy on the evolutionary
-distance of the outgroup of the phylogeny.  Our results suggest that
+of alignment inference and ancestral structure reconstruction accuracy on phylogenetic branch length.
+Our results suggest that
 we may be able to accurately reconstruct ancestral structures despite
 sequence and structural divergence if the evolutionary process is
 well-understood.
@@ -176,8 +176,8 @@ In a typical situation, the sequences at the leaves of the tree are observed, bu
 Questions of interest then include:
 \begin{description}
 \item[A.] What is the likelihood for the observed sequence data?
-\item[B.] Can we sample from (or exactly compute) the posterior distribution of the unobserved sequence at the root node?
-\item[C.] Can we sample from the posterior of the unobserved sequences at the other internal nodes?
+\item[B.] Can we sample (find the mode, take moments, etc.) from the posterior distribution of the unobserved sequence at the root node?
+\item[C.] Can we sample (etc.) from the posterior of the unobserved sequences at the other internal nodes?
 \item[D.] Can we estimate summaries of the evolutionary history, such as
   the number of substitution events on each branch (for a substitution
   model), the alignment (for a model which includes indels), or
@@ -1664,9 +1664,6 @@ Note that this, in principle, permits construction of a crude sampler
 to simultaneously infer phylogeny as well, by proposing and accepting
 or rejecting changes to the underlying tree as well as the implied
 structural alignment.
-An alternative MCMC scheme for sampling RNA phylogeny, structure and alignment was implemented in the SimulFold program \cite{MeyerMiklos2007}.
-SimulFold does not use a strictly normalized probabilistic model, and it is unclear how structure and indels interact in the model
-(for example, it does not penalize deletion of one half of a basepair).
 
 
 % With reference to the motivating problem of reconstructing ribosomal RNA,
@@ -1681,7 +1678,7 @@ barring the availability of supercomputers with terabytes of memory,
 such algorithms will only be feasible for short RNAs (\tabref{complexities}).
 Thus, alternate strategies will have to be explored, such as the
 progressive reconstruction used by the \ortheus\ program for
-reconstructing ancestral genomes \cite{PatenEtAl2008}.
+reconstructing ancestral genomes \cite{PatenHolmesBirney2008}.
 Another promising direction is to consider variations on the three-way sampling kernel,
 such as the importance-sampling approach described for the TKF model
 by \cite{RedelingsSuchard2005}.
@@ -1698,7 +1695,14 @@ be possible soon). The approach of Redelings and Suchard therefore
 merits future consideration in the context of modeling the evolution
 of RNAs on a tree.
 
-The evolutionary models we have described form a theoretical
+An alternative MCMC scheme for sampling RNA phylogeny, structure and alignment was developed for the SimulFold program \cite{MeyerMiklos2007}.
+SimulFold does not use a strictly normalized probabilistic model, resulting in some oddities in the ways that structure and indels interact
+(for example, it does not penalize deletion of one half of a basepair).
+Currently, it is not clear how appropriate SimulFold would be for ancestral reconstruction,
+although it has several advantages (e.g. explicit treatment of pseudoknots).
+Of course, MCMC kernels can often be adapted for use with different models, and the MCMC moves used by SimulFold may be useful for inference under our model as well.
+
+In summary, the evolutionary models we have described form a theoretical
 foundation for studying the structural evolution of RNA gene families
 in detail. By opening the door to ancestral sequence reconstruction
 and paleogenomics, these algorithms will allow us to test our
