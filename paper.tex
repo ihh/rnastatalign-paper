@@ -414,7 +414,7 @@ Likewise, we will refer interchangeably to ``state paths'' (machines) and ``pars
 \paragraph{Terminology and normalization.}
 
 Consider the stochastic grammar which generates parse trees from the marginal distribution $P(X)$.
-It is occasionally convenient to represent this grammar as a transducer whose input is constrained to be null,
+It is convenient to represent this grammar as a transducer whose input is constrained to be null,
 i.e. a machine that accepts a dummy (empty) input sequence, and outputs sequence $X$.
 We refer to this as the {\bf singlet transducer}.
 In contrast, the more general type of transducer that absorbs parse trees $X$ and generates modified parse trees $Y$ from the conditional distribution $P(Y | X, T)$ is a {\bf branch transducer}.
@@ -667,37 +667,39 @@ In this section, we describe dynamic programming (DP) algorithms for
 inferring the alignment, structure and evolutionary history
 of multiple related RNAs, using the multiple-sequence SCFG we have derived.
 
-The model construction algorithm described above creates a phylogenetic SCFG
-which generates a joint distribution over both ancestral and extant
-sequences. A parse tree for this SCFG represents a structural and evolutionary
+The transducer composition algorithm described above constructs a phylogenetic SCFG
+for both ancestral and extant sequences.
+A parse tree for this SCFG represents a structural and evolutionary
 explanation of the extant sequences, including a complete ancestral reconstruction.
-Therefore, given a set of extant sequences, many of the questions of interest to us
+Consequently, given a set of extant sequences, many of the questions of interest to us
 can be reduced to searches over, or summarizations of, the set of possible parse trees.
 
-Well-known algorithms exist for searching or summing over SCFG parse trees.
+Well-known algorithms already exist for maxing or summing over SCFG parse tree likelihoods
+(indeed, this is the motivation for our entire approach).
 The Cocke-Younger-Kasami (CYK) algorithm performs maximum-likelihood (ML) inference;
 the Inside algorithm can be used to sum over parse trees or sample them {\em a posteriori};
-and the Inside-Outside algorithm yields posterior probabilities for individual parse tree nodes.
+and the Inside-Outside algorithm yields posterior probabilities for individual parse tree nodes \cite{Durbin98}.
 
-All of these algorithms are, however, complicated for phylogenetic SCFGs by
-the possibility of fragments of ancestral sequence that were universally deleted and therefore
+All of these algorithms are, however, complicated (at least in our models) by
+the existence of ``null cycles'' in the grammar.
+A null cycle is a parse tree fragment that is redundant and could be removed, such as a detour through $\Snull$ states ($A \to X \to Y \to X \to Y \to B$)
+that could be replaced by a direct transition ($A \to B$).
+Biologically, null cycles correspond to fragments of ancestral sequence that were universally deleted and therefore
 are unobserved in any of the extant sequences.
-These unobserved fragments can be unbounded in length.
-In the parse tree, these fragments correspond to cyclic detours through $\Snull$ states,
-along with bifurcations where one or both sides terminate without observable emissions
-(e.g. $B \to X\ Y$ followed by $X \to \epsilon$).
-In the CYK, Inside and Outside recursions, this causes cyclic dependencies which cannot be resolved.
+These unobserved fragments can be unbounded in length (and so, therefore, can the parse tree).
+Within the CYK, Inside and Outside recursions, this causes cyclic dependencies which cannot be resolved.
 
-Therefore, before presenting equivalents of the CYK, Inside and Outside algorithms,
-we first give a method to eliminate ``null cycles'' from
+Below we describe a method to eliminate null cycles from
 the ensemble model, by transforming any SCFG to an equivalent acyclic SCFG.
-Some such step is required, in order to deal with cyclic dependencies, but alternative approaches to ours are clearly possible.
-A CYK-only approach appears in the computational linguistics literature \cite{GecsegSteinby97}.
-We have also developed an independent heuristic that iteratively re-fills entries of the DP matrix
-until the approximation is sufficiently good.
+We then present multiple-sequence versions of the CYK, Inside and Outside algorithms.
+
+As an aside: while some sort of null-cycle elimination is often required in order to deal with cyclic dependencies, there are several ways to accomplish this other than the algorithm presented here.
+A simpler approach (that only works for the CYK algorithm) appears in the computational linguistics literature \cite{GecsegSteinby97}.
+We have also developed a heuristic for CYK that simply ignores null cycles, as well as an iterative approximation that loops several times over cyclically-dependent cells of the DP matrix
+until the estimate starts to converge. For conciseness, we have omitted descriptions of these methods, presenting only the exact elimination algorithm.
 
 
-\subsubsection*{Eliminating null cycles in SCFGs}
+\subsubsection*{Exact elimination of null cycles in SCFGs}
 
 As noted above, the ensemble grammar contains many rules that can be applied redundantly,
 together or in isolation, to generate subtrees of the parse tree that do
@@ -723,7 +725,6 @@ part of our models, so it is important to eliminate as many as
 possible without reducing model expressiveness.
 
 In contrast, an {\bf empty path} is defined as any parse-subtree {\em without} bifurcations that does not emit terminal symbols.
-Most common are paths of ``windback'' null transitions via non-emitting placeholder states.
 If $\Semit$ states $E_1$ and $E_2$ are connected in the state
 graph via $\Snull$ states $N_1$ and $N_2$, then the path $E_1
 \rightarrow N_1 \rightarrow N_2 \rightarrow E_2$ with  probability
@@ -745,25 +746,29 @@ according to the model but cannot be resolved by direct observation.
 Such null events can be real (e.g., ancestral residues that have been deleted in all extant lineages)
 or they can be artefactual (e.g., transitions between placeholder null states of an HMM).
 
-Empty paths and empty bifurcations can be combined to give finite-probability sequences of rules
+In our composite model, empty paths occur whenever a series of branch transducers ``winds back'' into $\Swait$ states.
+Empty bifurcations occur when an entire substructure, present in an ancestor, is deleted in all that ancestor's extant descendants.
+
+Empty paths and empty bifurcations are problematic because they can be combined to give finite-probability sequences of rules
 that transform a nonterminal back into itself, with no observable emissions.
 We refer to such sequences of rules as {\bf null cycles}.
-Our goal is an algorithmic procedure to account for the likelihood of such cycles by exact marginalization.
+As noted, null cycles generate cyclic dependencies in the CYK, Inside \& Outside algorithms.
+Our goal is an algorithmic procedure to resolve these dependencies and account for the likelihood of such cycles by exact marginalization.
+
 For simpler models, solutions to this problem are published.
-Eliminating missing (empty) columns from an independent-sites model of sequence involves a straightforward application of a correction factor
-to account for the proportion of columns that are unobserved \cite{RivasEddy2008}.
+Missing (empty) columns in independent-sites models can be accounted for by applying a correction factor $(1-p)^{-1}$
+to account for the proportion of columns $p$ that are unobserved \cite{RivasEddy2008}.
 The slightly more complicated situation of missing emissions in a HMM can be dealt with by
 summing over all empty paths, yielding a geometric series that is solvable by matrix inversion
 \cite{Holmes2003,Holmes2007,Lunter2007}.
-
-Algorithms for exact elimination of empty paths from HMMs by matrix inversion are implemented
-by programs such as PhyloComposer \cite{Holmes2003,Holmes2007} and
-HMMoC \cite{Lunter2007}. These algorithms effectively replace the HMM
-with an equivalent HMM that contains no null cycles but generates the
+Such algorithms
+%, implemented by programs such as PhyloComposer \cite{Holmes2003,Holmes2007} and HMMoC \cite{Lunter2007},
+effectively replace the HMM
+with another HMM that contains no null cycles but is equivalent to the original, in that it models the
 same probability distribution over sequences.
-The ``wing retraction'' algorithms used in the repetitively structured profile HMMs of HMMER \cite{hmmer} appear similar in operation.
-However, these solutions do not easily generalize to SCFGs, which contain bifurcations
-(and, therefore, may generate empty bifurcations as well as empty paths).
+%The ``wing retraction'' algorithms used in the repetitively structured profile HMMs of HMMER \cite{hmmer} appear similar in operation.
+However, these solutions do not easily generalize to SCFGs
+(which may have empty bifurcations as well as empty paths).
 
 Null cycles can be removed systematically from SCFGs by two steps:
 \begin{description}
@@ -775,9 +780,11 @@ two nonempty children;
 obtaining sum-over-paths probabilities by inverting the grammar's transition matrix.
 \end{description}
 
-We give a formal description of the null-cycle elimination procedure,
+Note that step (i) is unique to SCFGs; step (ii), in contrast, is very similar to the empty-path elimination algorithm for HMMs.
+
+We now give a formal description of the null-cycle elimination procedure,
 along with procedures for probabilistically ``restoring'' null cycles
-to sampled parse trees and Inside-Outside expectation counts, below.
+to sampled parse trees and Inside-Outside expectation counts.
 
 
 \paragraph{Definitions.}
@@ -1080,12 +1087,12 @@ Note that $A$ and $B$ are also dependent on $N$ (see ``The TKFST model
 on a three-taxon phylogeny'').
 
 Exact inference on a star phylogeny with $N$ extant sequences therefore
-has complexities $O(A \cdot L^{2N})$ and $O(B \cdot L^{3N})$ in space and
-time for a multiple-SCFG with $A$ states and $B$ bifurcations. As
+has complexities $O(A \cdot L^{2N})$ and $O(B \cdot L^{3N})$ in memory and
+time (respectively) for a multiple-SCFG with $A$ states and $B$ bifurcations. As
 described earlier, in practice we frequently have expert knowledge
 (such as a curated multiple alignment)
 about the structures and/or evolutionary histories of the sequences of
-interest.  We can use this knowledge as a constraint to reduce the accessible volume of the DP matrix \cite{Holmes2005}.
+interest.  We can use this knowledge as a constraint to reduce the accessible volume, and hence the storage requirements, of the DP matrix \cite{Holmes2005}.
 Algorithms \ref{alg:inside}--\ref{alg:cyktraceback}, described below, give the Inside, CYK,
 Outside and CYK traceback algorithms for a three-taxon star phylogeny,
 constrained using the ``fold envelope'' concept.
@@ -1285,7 +1292,7 @@ the packages, allowing for flexible, automated model design.
 
 We illustrated our method for building models of structured sequences
 using a simplified model which was introduced in previous work,
-the TKF Structure Tree model \cite{Holmes2004}, a simple probabilistic
+the TKF Structure Tree \cite{Holmes2004}, a simplified probabilistic
 model of the evolution of RNA structure.
 
 The TKF Structure Tree (TKFST) model is based on the
@@ -1533,6 +1540,7 @@ ancestral structures.
 The effect of imperfect knowledge of the ancestral structures has not been explored.
 
 The program that we wrote to simulate RNA structural alignments from the TKFST model, \evolsayer, is available as part of the same software distribution as \indiegram\ (the \dart\ package).
+Another script (\animateevolsayer) can be used to make animations of the evolving RNA structures, using the RNAplot program in the \viennarna\ package \cite{HofackerEtAl94}.
 
 \newpage
 \section*{Discussion}
@@ -1555,18 +1563,17 @@ problem, deserving of strong bioinformatics support.
 
 
 % Prior art
-The work reported in this paper builds on substantial prior art in the areas of evolutionary modeling and ancestral reconstruction.
+The work reported in this paper builds on extensive prior art in the areas of evolutionary modeling and ancestral reconstruction.
 The reconstruction of ancient sequences was first proposed in 1963 by Pauling and Zuckerkandl \cite{PaulingZuckerkandl63};
 current applications of this idea, mostly using substitution models, are surveyed in the book edited by Liberles \cite{Liberles2007}.
 Many algorithms in phylogenetics implicitly reconstruct substitution histories,
 whether by parsimony \cite{Edwards63,HendyPenny82} or likelihood \cite{Felsenstein81}.
-There has been much effort to model the evolution of sequences related
-by a tree with models permitting indels
+There is a substantial body of work to model indels on phylogenies
 \cite{ThorneEtal91,HeinEtal2000,Hein2001,HolmesBruno2001,SteelHein2001,Holmes2003,KnudsenMiyamoto2003,LunterSongMiklosHein2003,MiklosLunterHolmes2004,LunterEtAl2004,BradleyHolmes2007,SatijaEtAl2008}.
 Recent work has extended these ideas to the reconstruction of indel
 histories \cite{KimSinha2007,DialloEtAl2007},
 particularly at the genomic scale \cite{MillerHausslerEtAl2006,PatenHolmesBirney2008}.
-There is substantial prior work in computational linguistics
+There is also prior work in computational linguistics
 on the theory of transducers for sequences \cite{MohriPereiraRiley2000}
 and parse trees \cite{Rounds70,Thatcher70,GecsegSteinby97,ComonEtAl2007-TreeTransducers}
 (from which we take the terms ``string transducer'' and ``parse-tree transducer'').
@@ -1608,6 +1615,12 @@ or loop length distributions---can, in principle, be incorporated.
 %is necessarily complex,
 %our model-construction algorithm enforces a compact parametrization,
 %allowing fast training on structural alignments of pairs of sequences.
+Other phenomena of RNA evolution may prove more difficult:
+modeling helix slippage with a branch transducer is awkward,
+let alone more radical changes in structure;
+pseudoknots, too, are impossible with the models we have described here.
+Even so, variants of our models could be used for proposing candidate alignments
+for more accurate scoring by such models.
 
 An implementation of inference algorithms for models on the three-taxon phylogeny
 is sufficient to construct a MCMC sampling algorithm
@@ -1636,10 +1649,7 @@ using the three-way sampling kernel which we have described
 would require resources far in excess of those currently available;
 barring the availability of supercomputers with terabytes of memory,
 such algorithms will only be feasible for short RNAs (\tabref{complexities}).
-Thus, alternate strategies will have to be explored, such as the
-progressive reconstruction used by the \ortheus\ program for
-reconstructing ancestral genomes \cite{PatenHolmesBirney2008}.
-Another promising direction is to consider variations on the three-way sampling kernel,
+A promising direction is to consider variations on the three-way sampling kernel,
 such as the importance-sampling approach described for the TKF model
 by \cite{RedelingsSuchard2005}.
 This approach first proposes an ancestor $W$ by aligning extant
@@ -1662,12 +1672,25 @@ Currently, it is not clear how appropriate SimulFold would be for ancestral reco
 although it has several advantages (e.g. explicit treatment of pseudoknots).
 Of course, MCMC kernels can often be adapted for use with different models, and the MCMC moves used by SimulFold may be useful for inference under our model as well.
 
-In summary, the evolutionary models we have described form a theoretical
-foundation for studying the structural evolution of RNA gene families
-in detail. By opening the door to ancestral sequence reconstruction
-and paleogenomics, these algorithms will allow us to test our
-knowledge of RNA evolution by direct experimental investigation
-of early ribonucleic machines.
+While MCMC provides the most information about the posterior distribution of evolutionary histories,
+in practice a maximum likelihood inference may be adequate (and typically faster).
+The progressive profiling used by the \ortheus\ program for
+reconstructing ancestral genomes is promising \cite{PatenHolmesBirney2008}.
+This approach is similar to a progressive multiple alignment algorithm, in that it proceeds via a single postorder (leaf-to-root) traversal of the phylogeny.
+As each node is visited, a profile is generated for that node, by aligning the profiles of its children to a composite transducer using DP, then sampling a finite number of traceback paths through the DP matrix.
+The profile is not linear: the sampled paths instead form a reticulate network, a.k.a. a partial order graph \cite{LeeGrassoSharlow2002}.
+An equivalent of \ortheus\ for RNA reconstruction should be possible,
+representing the intermediate profiles using transducers.
+
+In summary, the evolutionary models and algorithms we have described form a
+systematic theoretical platform on which we can test different optimization and sampling strategies
+for studying the structural evolution of RNA gene families in detail.
+Stochastic grammars are powerful tools for this task; although they will not be the only tools we need,
+particularly as we move towards modeling RNA evolution in greater detail,
+they are flexible and serve our current purposes well.
+Our hope is that these algorithms will allow us, and others, to test our
+knowledge of RNA evolution by computational reconstruction and (eventually)
+direct experimental investigation of early ribonucleic machines.
 
 %All programs described here are released under the GNU General Public License and
 %can be download from \darturl\ as part of the \dart\ software package for sequence analysis.

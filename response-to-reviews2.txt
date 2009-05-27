@@ -341,7 +341,7 @@ Pair HMM is in the revised manuscript.
 By "singlet transducer" we mean the same thing as is often referred to
 as a "single-sequence SCFG".  Instead of "a model that generates a
 parse tree X", we use the contrivance of saying "a model that inputs a
-(dummy) empty parse tree, and outputs a parse tree X".  It's annoying
+(dummy) empty parse tree, and outputs a parse tree X".  It's awkward,
 but it keeps the notation straight: it allows us to be consistent
 throughout the manuscript. Rather than always having to specify
 whether a model is generative (SCFG) or transductive (input-output),
