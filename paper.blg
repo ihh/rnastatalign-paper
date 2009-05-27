@@ -16,43 +16,43 @@ while executing---line 2643 of file PLoS2009.bst
 Warning--empty journal in Sakakibara2003
 You've used 101 entries,
             2441 wiz_defined-function locations,
-            1305 strings with 23405 characters,
-and the built_in function-call counts, 75810 in all, are:
-= -- 7022
+            1306 strings with 23413 characters,
+and the built_in function-call counts, 75674 in all, are:
+= -- 7007
 > -- 1111
 < -- 6
 + -- 553
 - -- 277
-* -- 6435
-:= -- 9103
+* -- 6420
+:= -- 9084
 add.period$ -- 203
 call.type$ -- 101
-change.case$ -- 109
+change.case$ -- 110
 chr.to.int$ -- 0
 cite$ -- 207
-duplicate$ -- 7623
-empty$ -- 7980
+duplicate$ -- 7609
+empty$ -- 7965
 format.name$ -- 353
-if$ -- 16829
+if$ -- 16798
 int.to.chr$ -- 0
 int.to.str$ -- 101
-missing$ -- 984
+missing$ -- 983
 newline$ -- 518
 num.names$ -- 106
-pop$ -- 1144
+pop$ -- 1147
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 594
+skip$ -- 595
 stack$ -- 0
-substring$ -- 10746
-swap$ -- 1928
+substring$ -- 10718
+swap$ -- 1927
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 5
-while$ -- 549
+while$ -- 548
 width$ -- 104
-write$ -- 1113
+write$ -- 1112
 (There was 1 error message)

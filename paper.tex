@@ -666,77 +666,35 @@ state, thereby creating a very sparse transition matrix of size $O(a \cdot b^2 \
 In this section, we describe dynamic programming (DP) algorithms for
 inferring the alignment, structure and evolutionary history
 of multiple related RNAs, using the multiple-sequence SCFG we have derived.
-The model construction algorithm described above creates an evolutionary model
+
+The model construction algorithm described above creates a phylogenetic SCFG
 which generates a joint distribution over both ancestral and extant
-sequences.  If we regard the ancestral sequences as hidden variables
-to be marginalized over, then this model corresponds to a
-jointly-normalized multiple-sequence SCFG (modeling the extant sequences).
-We can then use the Cocke-Younger-Kasami (CYK) algorithm to infer the
-maximum-likelihood alignment, secondary structure and common ancestor
-of the extant sequences or the Inside algorithm to sample from
-the joint posterior distribution of these unknowns.
+sequences. A parse tree for this SCFG represents a structural and evolutionary
+explanation of the extant sequences, including a complete ancestral reconstruction.
+Therefore, given a set of extant sequences, many of the questions of interest to us
+can be reduced to searches over, or summarizations of, the set of possible parse trees.
 
-The possibility of fragments of ancestral sequence that are unobserved
-in any of the descendant sequences, which can be unbounded in length,
-leads to complications when performing inference on the multiple-sequence
-SCFG. The SCFG can contain null cycles, corresponding to generation of
-these unobserved fragments, which complicates inference.
+Well-known algorithms exist for searching or summing over SCFG parse trees.
+The Cocke-Younger-Kasami (CYK) algorithm performs maximum-likelihood (ML) inference;
+the Inside algorithm can be used to sum over parse trees or sample them {\em a posteriori};
+and the Inside-Outside algorithm yields posterior probabilities for individual parse tree nodes.
 
-Due to this possibility of unobserved ancestral sequence,
-the standard CYK and Inside recursions fail on the ensemble model:
-that is, they contain cyclic self-references which cannot be resolved.
-The intuitive reason for this is that a (potentially-unbounded) number of residues in the ancestor can be
-absent in all extant sequences.
-This is manifested as cycles of $\Snull$ states within the multiple-sequence SCFG,
-states which emit to the ancestral sequence but not to any extant sequence.
-The presence of bifurcations with one or more possibly-empty child branches,
-corresponding to entire substructures in the ancestral sequence that
-are absent in any extant sequence, further complicates inference.
-While there exists a straightforward fix for the CYK algorithm, the Inside algorithm is more complicated.
+All of these algorithms are, however, complicated for phylogenetic SCFGs by
+the possibility of fragments of ancestral sequence that were universally deleted and therefore
+are unobserved in any of the extant sequences.
+These unobserved fragments can be unbounded in length.
+In the parse tree, these fragments correspond to cyclic detours through $\Snull$ states,
+along with bifurcations where one or both sides terminate without observable emissions
+(e.g. $B \to X\ Y$ followed by $X \to \epsilon$).
+In the CYK, Inside and Outside recursions, this causes cyclic dependencies which cannot be resolved.
 
-We consider the CYK algorithm first.
-In order to correctly perform maximum-likelihood inference, we only
-require that the maximum-likelihood parse tree corresponds to the parse
-returned by the CYK algorithm; the entire
-probability distribution over parses need not be preserved.
-Because a state path which includes a cycle of $\Snull$ states
-necessarily has lower probability than an equivalent one without, we
-can simply ignore such $\Snull$ cycles during CYK.
-Bifurcations with empty child branches cannot be similarly ignored,
-but this problem can be addressed by creating equivalent effective
-direct transitions between the parents of these bifurcation states and
-their non-empty children.  Once these transformations have been performed,
-maximum-likelihood inference can be performed using a standard
-three-sequence CYK algorithm on the ensemble model.
-(Similarly, the null cycle elimination discussed in computational
-linguistics requires only that the CYK parse be preserved \cite{GecsegSteinby97}.)
-
-The transformations just described to make CYK work properly are insufficient for the
-Inside and Outside algorithms.
-For CYK, parse trees containing null cycles can be ignored, since the maximum likelihood parse tree should never contain null cycles.
-For Inside and Outside, such null-cycle parses cannot be ignored, since they will contribute to the likelihood sum over parse trees.
-
-There are two possible solutions to this difficulty: we can either
-create new versions of the standard inference algorithms for SCFGs
-which can cope with SCFGs with null cycles or we can modify the
-structure of the SCFGs generated by our model-construction algorithm
-such that they are free of null cycles.  The first approach of
-creating new algorithms is simple in principle---we can simply
-iteratively re-fill entries of the DP matrix, corresponding to summing
-the probabilities for unobserved null cycles, until the approximation
-is sufficiently good---but it is difficult to implement efficiently
-and necessarily has worse time complexity than the standard inference
-algorithms due to the need to reiterate over (large) parts of the DP
-matrix.  The second approach, of modifying the structure of the SCFGs
-themselves, is well-understood for the case of HMMs, but to our
-knowledge, still an open problem for SCFGs
-(complicated by the presence of null cycles involving bifurcations).
-
-We therefore developed a method to eliminate null cycles from
-the ensemble model, in order to use the standard inference algorithms
-for SCFGs without incurring the further computational complexity
-required by modifying the DP algorithms themselves.
-We will describe this elimination procedure before proceeding to the descriptions of the DP algorithms.
+Therefore, before presenting equivalents of the CYK, Inside and Outside algorithms,
+we first give a method to eliminate ``null cycles'' from
+the ensemble model, by transforming any SCFG to an equivalent acyclic SCFG.
+Some such step is required, in order to deal with cyclic dependencies, but alternative approaches to ours are clearly possible.
+A CYK-only approach appears in the computational linguistics literature \cite{GecsegSteinby97}.
+We have also developed an independent heuristic that iteratively re-fills entries of the DP matrix
+until the approximation is sufficiently good.
 
 
 \subsubsection*{Eliminating null cycles in SCFGs}
@@ -787,7 +745,9 @@ according to the model but cannot be resolved by direct observation.
 Such null events can be real (e.g., ancestral residues that have been deleted in all extant lineages)
 or they can be artefactual (e.g., transitions between placeholder null states of an HMM).
 
-We refer to empty paths and empty bifurcations collectively as {\bf null cycles}.
+Empty paths and empty bifurcations can be combined to give finite-probability sequences of rules
+that transform a nonterminal back into itself, with no observable emissions.
+We refer to such sequences of rules as {\bf null cycles}.
 Our goal is an algorithmic procedure to account for the likelihood of such cycles by exact marginalization.
 For simpler models, solutions to this problem are published.
 Eliminating missing (empty) columns from an independent-sites model of sequence involves a straightforward application of a correction factor
@@ -1107,11 +1067,11 @@ ${\bf c} = ({\bf 1}-{\bf M})^{-1} {\bf k}$.
 
 Once we have performed the transformations described above to remove
 null cycles from the multiple-sequence SCFGs generated by our
-model-construction algorithm, we can use the standard CYK, Inside and
-Outside algorithms for multiple-sequence SCFGs given by Sankoff \cite{Sankoff85}.
+model-construction algorithm, we can compute likelihoods and sample parse trees
+using the ``standard'' CYK, Inside and Outside algorithms for multiple-sequence SCFGs \cite{Sankoff85,Durbin98}.
 
 The asymptotic time and memory complexities of our inference algorithms
-are essentially the same as for the Sankoff algorithm \cite{Sankoff85}:
+are essentially the same as for Sankoff's algorithm \cite{Sankoff85}:
 the DP algorithms take memory $O(A \cdot L^{2N})$ and time $O(B \cdot L^{3N})$
 for $N$ sequences of length $L$, where $A$ is the number of
 (accessible) states in the multiple-SCFG and $B$ is the number of
@@ -1123,9 +1083,9 @@ Exact inference on a star phylogeny with $N$ extant sequences therefore
 has complexities $O(A \cdot L^{2N})$ and $O(B \cdot L^{3N})$ in space and
 time for a multiple-SCFG with $A$ states and $B$ bifurcations. As
 described earlier, in practice we frequently have expert knowledge
-about the structures or evolutionary histories of the sequences of
-interest, such as a curated multiple alignment.  We can use these
-constraints to reduce the accessible volume of the DP matrix \cite{Holmes2005}.
+(such as a curated multiple alignment)
+about the structures and/or evolutionary histories of the sequences of
+interest.  We can use this knowledge as a constraint to reduce the accessible volume of the DP matrix \cite{Holmes2005}.
 Algorithms \ref{alg:inside}--\ref{alg:cyktraceback}, described below, give the Inside, CYK,
 Outside and CYK traceback algorithms for a three-taxon star phylogeny,
 constrained using the ``fold envelope'' concept.

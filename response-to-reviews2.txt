@@ -112,9 +112,10 @@ attempt, and we acknowledge room for improvement.
 
 Thank you for pointing this out.  We have removed the reference to the
 supplementary material in this section and have attempted to make the
-main text a self-contained description of the composition algorithm.
+main text a self-contained description of the composition algorithm,
+including its key corollaries (elimination of null states, and DP inference).
 We have attempted to remove redundant text, including the two
-paragraphs which the reviewer notes.
+paragraphs which the reviewer notes, and other sentences.
 
 > It is still not clear enough what the authors mean by a "composition 
 > algorithm". The description of the generative model on pp 9-10 seems 
@@ -145,7 +146,7 @@ and 1,789 transitions.
 
 In summary, while we completely agree that the model construction procedure
 is no more than a formalization of an intuitive concept, we believe
-that it is nonetheless substantial, due to the sheer complexity
+that it is nonetheless an essential reference point, due to the sheer complexity
 of the ensemble models so created.  The "TKFST" model which we use
 here is relatively simple; more realistic models will give rise to even
 more complex ensemble models.
@@ -252,7 +253,8 @@ figures. These were due to mistakes made during manual conversion of
 indiegram's output parse trees into Stockholm-format alignments and a
 bug in the code used for maximum-likelihood reconstruction of
 sequences (the xrate program). We have now automated this process and
-fixed the bug, verifying that this has eliminated the errors.
+fixed the bug, verifying that this has eliminated the errors
+(in fact this verification is incorporated into our new benchmark).
 
 We removed the tRNA and nanos reconstructions and posted (corrected)
 versions online at the following URL (which is linked from the
@@ -336,14 +338,19 @@ Pair HMM is in the revised manuscript.
 > transducer"? It's not transducing anything (it's not conditionally 
 > dependent on an input parse tree).
 
-We chose to call it a "singlet" transducer so that we used similar
-terminology for the model generating the marginal and conditional
-distributions.  A singlet transducer can be viewed as a special case
-of a transducer, where the input being transduced is empty.  Indeed,
-by "singlet transducer" we mean the same thing as is often referred to
-as a "single-sequence SCFG".  We apologize if it is poor terminology;
-we can change it if the reviewer feels that doing so would help
-clarify the methods.
+By "singlet transducer" we mean the same thing as is often referred to
+as a "single-sequence SCFG".  Instead of "a model that generates a
+parse tree X", we use the contrivance of saying "a model that inputs a
+(dummy) empty parse tree, and outputs a parse tree X".  It's annoying
+but it keeps the notation straight: it allows us to be consistent
+throughout the manuscript. Rather than always having to specify
+whether a model is generative (SCFG) or transductive (input-output),
+we can treat all models as transducers, if we just think of generative
+models as transducers with a (dummy) input that is always zero/empty.
+
+We apologize if it is poor terminology. We just think it's as clear as
+we can get. We can change it if the reviewer feels that doing so would
+help clarify the methods.
 
 > p.13 The DP inference algorithm section says "the standard CYK ... 
 > algorithms fail". But then it says "Maximum likelihood inference is 
