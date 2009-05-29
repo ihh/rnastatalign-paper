@@ -7,52 +7,44 @@ Database file #3: ../latex-inputs/duplication.bib
 Database file #4: ../latex-inputs/genomics.bib
 Database file #5: ../latex-inputs/ncrna.bib
 Database file #6: ../latex-inputs/url.bib
-Warning--empty pages in ComonEtAl2007-TreeTransducers
-Warning--empty pages in GecsegSteinby97
-Warning--empty pages in Gaucher2007b
-Warning--empty pages in LunterEtAl2004
-`journal' is a missing field, not a string, for entry Sakakibara2003
-while executing---line 2643 of file PLoS2009.bst
-Warning--empty journal in Sakakibara2003
-You've used 102 entries,
+You've used 101 entries,
             2441 wiz_defined-function locations,
-            1313 strings with 23727 characters,
-and the built_in function-call counts, 77562 in all, are:
+            1311 strings with 23520 characters,
+and the built_in function-call counts, 77300 in all, are:
 = -- 7193
-> -- 1146
-< -- 6
-+ -- 570
-- -- 286
-* -- 6602
-:= -- 9326
-add.period$ -- 205
-call.type$ -- 102
-change.case$ -- 109
+> -- 1122
+< -- 12
++ -- 558
+- -- 280
+* -- 6525
+:= -- 9262
+add.period$ -- 209
+call.type$ -- 101
+change.case$ -- 111
 chr.to.int$ -- 0
-cite$ -- 209
-duplicate$ -- 7790
-empty$ -- 8151
-format.name$ -- 364
-if$ -- 17215
+cite$ -- 202
+duplicate$ -- 7741
+empty$ -- 8110
+format.name$ -- 357
+if$ -- 17216
 int.to.chr$ -- 0
-int.to.str$ -- 102
-missing$ -- 1001
-newline$ -- 523
-num.names$ -- 108
-pop$ -- 1147
+int.to.str$ -- 101
+missing$ -- 1000
+newline$ -- 522
+num.names$ -- 107
+pop$ -- 1146
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 602
+skip$ -- 644
 stack$ -- 0
-substring$ -- 11033
-swap$ -- 1965
-text.length$ -- 5
+substring$ -- 10966
+swap$ -- 2005
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
-while$ -- 564
-width$ -- 105
-write$ -- 1127
-(There was 1 error message)
+warning$ -- 0
+while$ -- 563
+width$ -- 104
+write$ -- 1131

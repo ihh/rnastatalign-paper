@@ -4,6 +4,18 @@
 \input{parsetree.sty}
 
 
+\newcommand\titlestring{Evolutionary triplet models of structured RNA}
+\newcommand\authorstring{
+Robert K. Bradley$^{1}$, 
+Ian Holmes$^{1,2,\ast}$
+\\
+\textbf{1} Biophysics Graduate Group, University of California, Berkeley, CA, USA
+\\
+\textbf{2} Department of Bioengineering, University of California, Berkeley, CA, USA
+\\
+$\ast$ E-mail: indiegram@postbox.biowiki.org
+}
+
 \usepackage{array}
 
 \usepackage[boxed]{algorithm2e}
@@ -11,8 +23,14 @@
 
 % Labels & references for sections, figures and tables
 % Commented out \secref definition & replaced \seclabel with a dummy, because PLoS doesn't like numbered section references -- IH, 11/11/08
+% (This edit appears to have been reversed as of 5/29/09 - presumably so that the supplementary information compiles OK using these same definitions - IH, 5/29/09)
 \newcommand{\secref}[1]{Section~\ref{sec:#1}}
 \newcommand{\seclabel}[1]{\label{sec:#1}}
+
+\newcommand{\secname}[1]{``#1''}  % PLoS-style section names
+
+% "Text S1"
+\newcommand\supptext{Text S1}
 
 \newcommand{\appref}[1]{Appendix~\ref{app:#1}}
 \newcommand{\applabel}[1]{\label{app:#1}}

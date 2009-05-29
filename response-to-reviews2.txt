@@ -113,7 +113,13 @@ attempt, and we acknowledge room for improvement.
 Thank you for pointing this out.  We have removed the reference to the
 supplementary material in this section and have attempted to make the
 main text a self-contained description of the composition algorithm,
-including its key corollaries (elimination of null states, and DP inference).
+including its key corollaries (elimination of null states, and DP
+inference).  The presentation of the composition algorithm in the
+supplement now merely reprises the presentation in the main text using
+more formal notation. We hope this is an appropriate use of the
+supplementary information, but we welcome additional suggestions to
+improve the flow of the manuscript for the reader.
+
 We have attempted to remove redundant text, including the two
 paragraphs which the reviewer notes, and other sentences.
 
@@ -191,9 +197,10 @@ describe.
 We have entirely replaced the "loopy DP" algorithm with an algorithm
 for exactly eliminating null cycles from general SCFGs.  Per the
 reviewer's recommendation, the full description of this algorithm is
-described in the main text ("Eliminating null cycles in SCFGs") of the
-revised manuscript.  This new algorithm avoids the increased time
-complexity associated with the iterative inference of "loopy DP."
+described in the main text ("Exact elimination of null cycles in
+SCFGs") of the revised manuscript.  This new algorithm avoids the
+increased time complexity associated with the iterative inference of
+"loopy DP."
 
 > It's possible that I would come to adequately understand these 
 > algorithms if I spent a lot more time thinking about them and studying 
@@ -259,7 +266,9 @@ fixed the bug, verifying that this has eliminated the errors
 We removed the tRNA and nanos reconstructions and posted (corrected)
 versions online at the following URL (which is linked from the
 indiegram webpage),
-http://biowiki.org/IndiegramExamples,
+
+http://biowiki.org/IndiegramExamples
+
 although we note in the text that the reconstructions were too easy
 because of short branch lengths.
 
@@ -374,10 +383,26 @@ the revised text to permit standard CYK to work properly.
 > inference described by Rivas and Eddy (2008) PLoS CB 4:e1000172, for 
 > example.
 
-We completely agree and have included an extended discussion of this in
-the revised text.  The primary difficulty is that while this marginalization
-is reasonably straightforward for independent-sites models and HMMs,
-the possible presence of null bifurcations complicates matters for SCFGs.
+We completely agree. Such an algorithm was initially a goal of this
+work, but was abandoned. We thank the reviewer for challenging us to
+attack it afresh; a verbal presentation of the algorithm we came up
+with is given in the revised text, with a full formal description
+(including notation) in the supplement. (Since this is a standalone
+result that can be applied to any SCFG, we think it fits better as an
+appendix in the supplement; the obvious cost is omitting some detail
+from the main paper, but the PLoS Authors' Guidelines and the
+reviewer's preference for including more detail in the manuscript are
+potentially in conflict on the best approach to take here. We welcome
+suggestions for improving the flow generally.)
+
+As a technical aside, the primary difficulty with SCFG null cycle
+elimination is that while this marginalization is reasonably
+straightforward for independent-sites models and HMMs, the possible
+presence of null bifurcations complicates matters for SCFGs.  Indeed,
+no *closed form* elimination is possible (due to bifurcations, such an
+elimination would involve solving simultaneous nonlinear equations, as
+explained in the supplement) but an iterative approximation
+(e.g. Newton-Raphson) appears adequate.
 
 > p.15-18 The whole section on "terminological asides" contributes 
 > little to the paper. It would be vastly preferable to spend this space 

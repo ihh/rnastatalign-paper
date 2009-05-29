@@ -51,6 +51,8 @@
 %% ** EDIT HERE **
 %% PLEASE INCLUDE ALL MACROS BELOW
 \input{defs.tex}
+% no idea why \outside was redefined with a "\right," instead of a normal comma in defs.tex, but am redefining it back here - IH, 5/29/09
+\renewcommand{\outside}[7]{\beta_{#1}\left(#2,#3,#4\right)}
 %% END MACROS SECTION
 
 \begin{document}
@@ -58,22 +60,304 @@
 % Title must be 150 words or less
 \begin{flushleft}
   {\Large
-    \textbf{Evolutionary models of structured RNA: Text S1}
+    \textbf{\titlestring: \supptext}
   }
 \\
-Robert K. Bradley$^{1}$, 
-Ian Holmes$^{1,2,\ast}$
-\\
-\textbf{1} Biophysics Graduate Group, University of California, Berkeley, CA, USA
-\\
-\textbf{2} Department of Bioengineering, University of California, Berkeley, CA, USA
-\\
-$\ast$ E-mail: indiegram@postbox.biowiki.org
+\authorstring
 \end{flushleft}
 
 
 \newpage
 \tableofcontents
+
+\newpage
+\section{Exact elimination of SCFG null cycles}
+
+The following section describes how to transform any SCFG so as to remove null cycles while preserving access to the full posterior probability distribution over parses, including parses with null cycles.
+
+\subsection{Definitions}
+
+Let $G = ( \Omega, \gnons, \grules, P )$ be a stochastic context-free grammar (SCFG)
+consisting of
+a set of terminal symbols $\Omega$,
+a set of nonterminal symbols (a.k.a. ``states'') $\gnons$,
+a set $\grules$ of {\em production rules} $L \to R$ (where $L \in \gnons$ and $R \in \grhs$)
+and a probability function on the rules, $P:(\gnons \times \grhs) \to [0,\infty)$.
+
+% (The rule set $\grules$ can be considered redundant to the specification of the grammar, in that $\rho \notin \grules \Leftrightarrow P(\rho)=0$.
+% The interpretation is that $P$ is a probabilistic weight function and $\grules$ is informally the set of rules with non-zero weight.)
+
+Let $\leftside{A}$ be the set of rules that can be applied to nonterminal $A \in \gnons$ (i.e., rules in which $A$ appears on the left),
+and let $\rightside{A}$ be the set of rules that can generate nonterminal $A$ (i.e.,rules in which $A$ appears on the right, including bifurcations which also generate another nonterminal as well as $A$).
+Let $\allrules{A} = \leftside{A} \cup \rightside{A}$ be the set of all rules involving $A$.
+Define these also on sets of nonterminals, e.g., $\leftside{\gnulls} = \bigcup_{A \in \gnulls} \leftside{A}$ for $\gnulls \subseteq \gnons$.
+
+Let $\gtrees$ be the set of all parse trees for $G$.
+Suppose that parse tree $T \in \gtrees$ makes $n_T(\rho)$ uses of rule $\rho$;
+then define the parse tree likelihood $P(T) = \prod_{\rho \in \grules} \left[ P(\rho) \right]^{n_T(\rho)}$.
+
+If $\sum_{T \in \gtrees} P(T) = 1$, we say that $G$ is {\em probabilistically normalized by parse tree}.
+If $\sum_{\rho \in \leftside{A}} P(\rho) = 1$ for all $A \in \gnons$, we say that $G$ is {\em probabilistically normalized by production rule}.
+Note that normalization by production rule $\Rightarrow$ normalization by parse tree.
+
+Let $S \in \Omega^\ast$ denote a terminal sequence.
+Let $\mathrm{seq}:\gtrees \to \Omega^\ast$ be the function mapping a parse tree to its terminal sequence.
+and let $\mathrm{root}:\gtrees \to \gnons$ be the function returning the root nonterminal of a parse tree.
+The {\em inside probability of $S$ rooted at $A$} is $P(S|A)\ = \sum_{T: \mathrm{seq}(T) = S,\mathrm{root}(T) = A} P(T)$.
+Of particular relevance to null state elimination is the probability $P(\epsilon|A)$,
+where $\epsilon$ is the empty sequence.
+This is the probability that a nonterminal $A$ will expire without generating any sequence.
+
+Following earlier formalisms \cite{Durbin98,HolmesRubin2002a,Holmes2005},
+we say that the grammar $G$ has {\em RNA normal-form rules} if
+each rule in $\grules$ takes one of the following four forms:
+
+\noindent \hrulefill
+\begin{description}
+\item[Termination rules] with one nonterminal on the left and the empty string on the right
+\begin{eqnarray*}
+A & \to & \epsilon
+\end{eqnarray*}
+\item[Transition rules] with one nonterminal on the left and the right
+\begin{eqnarray*}
+A & \to & B
+\end{eqnarray*}
+\item[Bifurcation rules] with one nonterminal on the left and two on the right
+\begin{eqnarray*}
+A & \to & B\ C
+\end{eqnarray*}
+\item[Emission rules] with one nonterminal on the left and right and at least one terminal on the right
+\begin{eqnarray*}
+A & \to & x\ B \\
+A & \to & B\ y \\
+A & \to & x\ B\ y
+\end{eqnarray*}
+\end{description}
+\noindent \hrulefill
+
+\noindent
+Here $A,B,C \in \gnons$ and $x,y \in \Omega$.
+
+Suppose that grammar $G$ has RNA normal-form rules.
+We further say that $G$ has {\em RNA normal-form states} if
+each nonterminal (state) $A \in \gnons$ takes one of the following forms:
+
+\noindent \hrulefill
+\begin{description}
+\item[Null states]: $\leftside{A}$ contains only transition and termination rules.
+\item[Bifurcation states]: $\leftside{A}$ contains exactly one bifurcation rule, $A \to X\ Y$, where $X \neq Y$ and $X,Y$ are both null states.
+\item[Emit states]: $\leftside{A}$ contains only emission rules. Further, $\leftside{A} = \rightside{B}$ for some null state $B$.
+This null state $B$ is called $A$'s {\em post-emit} state.
+\end{description}
+\noindent \hrulefill
+
+Define a {\em null cycle} to be a nonterminal $A$
+and a sequence of rules $\rho_1, \rho_2 \ldots \rho_k$ that, when applied consecutively to $A$, leave $A$ unchanged;
+that is, $\rho_k(\rho_{k-1} \ldots \rho_2(\rho_1(A))) = A$.
+Define a {\em null subtree} to be a null cycle using at least one bifurcation rule.
+
+Suppose that $G = ( \Omega, \gnons, \grules, P )$ and $G' = ( \Omega, \gnons', \grules', P' )$ are two grammars.
+We say that $G$ and $G'$ are {\em equivalent in sequence} if there is a mapping between nonterminals, $f:\gnons \to \gnons'$,
+such that $P(S|A) = P(S|f(A))$.
+We say that $G$ and $G'$ are {\em equivalent in parse} if there is a mapping between parse trees, $g:\gtrees \to \gtrees'$,
+such that $P'(T') = \sum_{T:T'=g(T)} P(T)$ and we can define
+\[
+P(T|T') = P(T|g(T)=T') = \frac{P(T)}{P'(T')}
+\]
+
+Note that equivalence in parse $\Rightarrow$ equivalence in sequence.
+
+Suppose that a grammar $G$ contains null cycles.
+We seek to transform $G$ into a grammar $G''$ that is equivalent in parse and sequence, but has no null cycles.
+If $G$ is normalized by parse tree, then $G''$ will be too; but $G''$ is not (necessarily) normalized by production rule.
+
+We do the transformation in two steps, $G \to G' \to G''$.
+We also provide a stochastic ``null cycle restoration'' algorithm for sampling from $P(T|T'')$.
+
+
+\subsection{Eliminating null bifurcations}
+
+Note first that any SCFG can be transformed into an equivalent one with RNA normal-form states by adding null states.
+Without loss of generality, we therefore consider SCFGs with RNA normal-form states.
+
+Let $G = ( \Omega, \gnons, \grules, P )$ be such an SCFG.
+Let $\gnulls \subseteq \gnons$ be the set of null states in $\gnons$, {\bf excluding} post-emit states.
+Let $\gemits \subset \gnons$ be the set of post-emit states.
+Let $\gbifs \subseteq \gnons$ be the set of bifurcation states.
+
+We here define the grammar $G'$,
+\[
+G' = \left( \Omega, \gnons', \grules', P' \right)
+\]
+which is equivalent to $G$ in sequence but has no null subtrees.
+
+The new states $\gnons'$ are defined as follows.
+Start with $\gnons$; remove bifurcation states;
+then introduce a new state $N'$ for every null $N \in \gnulls$ and three new states $B^0, B', B^2$ for every bifurcation $B \in \gbifs$.
+
+\[
+\gnons' = 
+\left( \bigcup_{N \in \gnulls} \{ N' \} \right) \cup \left( \bigcup_{B \in \gbifs} \{ B^0, B', B^2 \} \right) \cup \gnons \setminus \gbifs
+\]
+
+The idea is that $N'$ (in $G'$) is a null state that is equivalent to null state $N$ (in $G$) for non-empty sequence only.
+That is, for any terminal sequence $S$,
+
+\[
+P'(S|N') = \left\{ \begin{array}{ll} P(S|N) & \mbox{if $S \neq \epsilon$} \\ 0 & \mbox{if $S = \epsilon$} \end{array} \right.
+\]
+
+Similarly, $B'$ is a null state that is equivalent to bifurcation state $B$ for non-empty sequence,
+while $B^2$ is a null state that is is equivalent to $B$ for parse trees where both children of $B$ are non-empty.
+
+In contrast, $B^0$ is {\bf exactly} equivalent to $B$ in sequence.
+However, null subtrees in $B^0$ are explicitly accounted for,
+their probabilities factored into the transitions $B' \to L'$ and $B' \to R'$ and the termination $B^0 \to \epsilon$,
+using the inside probabilities for empty sequences, $P(\epsilon|L)$ and $P(\epsilon|R)$.
+
+The probabilities $P(\epsilon|X)$ are related by the following system of equations
+
+\[
+P(\epsilon|X) = P(X \to \epsilon) + \sum_Y P(X \to Y) P(\epsilon|Y) + \sum_{L,R} P(X \to LR) P(\epsilon|L) P(\epsilon|R)
+\]
+
+which are nonlinearly coupled (via bifurcations) but may be solved numerically, e.g., by the Newton-Raphson method,
+or by iterated approximation starting from a lower bound $P(\epsilon|X) \geq 0$.
+
+The new rules and their probabilities are
+\[
+\begin{array}{rrcl}
+\forall \rho \in (\grules \setminus \allrules{\gbifs}): & P'(\rho)             & = & P(\rho) \\
+                                \forall N \in \gnulls: & P'(N' \to \epsilon)  & = & 0  \\
+                          \ldots \forall B \in \gbifs: & P'(N' \to B')        & = & P(N \to B) \\
+                         \ldots \forall M \in \gnulls: & P'(N' \to M')        & = & P(N \to M) \\
+                         \ldots \forall E \in \gemits: & P'(N' \to E)         & = & P(N \to E) \\
+               \forall (A \to B) \in \rightside{\gbifs}: & P'(A \to B^0)        & = & P(A \to B) \\
+              \forall (B \to LR) \in \leftside{\gbifs}: & P'(B^0 \to \epsilon) & = & P(B \to LR)\ P(\epsilon | L)\ P(\epsilon | R) \\
+                                                       & P'(B^0 \to B')       & = & 1 \\
+                                                       & P'(B' \to \epsilon)  & = & 0 \\
+                                                       & P'(B' \to L')        & = & P(B \to LR)\ P(\epsilon | R) \\
+                                                       & P'(B' \to R')        & = & P(B \to LR)\ P(\epsilon | L) \\
+                                                       & P'(B' \to B^2)       & = & 1 \\
+                                                       & P'(B^2 \to L'\ R')   & = & P(B \to LR) \\
+\end{array}
+\]
+
+Note that grammar $G'$, like $G$, has RNA normal-form states.
+Note also that $G'$ is not, in general, normalized by production rule;
+however, $G'$ is equivalent to $G$ in parse and is therefore normalized by parse tree (if $G$ is).
+
+\subsection{Eliminating null states}
+
+We now proceed to eliminate null cycles from $G'$.
+Since null subtrees have been eliminated, the remaining null cycles use only transition rules.
+
+We create the grammar
+\[
+G'' = \left( \Omega, \gnons', \grules'', P'' \right)
+\]
+which has the same nonterminals as $G'$, but different rules and rule probabilities.
+
+Let $\gnulls' \subseteq \gnons'$ be the set of null states in $\gnons'$, {\bf including} post-emit states.
+
+Define ${\bf t}$, the {\em transition matrix} of $G'$, as $t_{XY} = P'(X \to Y)$ for all $X,Y \in \gnons'$.
+The effective transition probability $q_{XY}$ between two states $X,Y$
+sums over all paths through null states (in the summand, $n$ is the length of the null path):
+\[
+{\bf q} = \sum_{n=0}^\infty {\bf t}^n = ({\bf 1}-{\bf t})^{-1}
+\]
+Here ${\bf 1}$ is the identity matrix.
+The matrix inverse may be computed in the usual ways (Gauss-Jordan elimination, LU decomposition, etc.)
+
+Since the bifurcation states of $G'$ explicitly generate non-empty sequence,
+the system of equations relating the probabilities $P'(\epsilon|X)$ is completely linear
+and may be solved in the same way.
+Let $u_X = P'(\epsilon|X)$ and $v_X = P'(X \to \epsilon)$.
+Then
+
+\[
+{\bf u} = {\bf v} + {\bf tu}
+\]
+
+whose solution is ${\bf u} = {\bf qv}$.
+Thus $P'(\epsilon|X) = \sum_Y q_{XY} P'(Y \to \epsilon)$.
+
+We now define $P''$ as follows.
+\begin{itemize}
+\item For all rules $\rho \in \grules'$ that are {\bf not} transitions or terminations, set $P''(\rho) = P'(\rho)$.
+\item For terminations from null states $X \in \gnulls'$, set $P''(X \to \epsilon) = u_X$.
+(NB this may create some terminations $X \to \epsilon$ that were not present in $G'$.)
+\item For transitions from null states $X \in \gnulls'$ to non-null states $Y \notin \gnulls'$, set $P''(X \to Y) = q_{XY}$.
+(NB this may create some transitions $X \to Y$ that were not present in $G'$.)
+\item For transitions {\bf to} null states $X \in \gnulls'$, set $P''(A \to X) = 0$.
+\end{itemize}
+
+Although we have left null states in $G''$, they now have no incoming transitions
+and are inaccessible unless they are post-bifurcation states (i.e.,states which appear on the right-hand side of bifurcation rules), post-emit states, or the start (root) state.
+All other null states can therefore be dropped from $\gnons''$.
+
+\subsection{Restoring null states}
+
+Suppose that $\rho''$ is a rule in $G''$.
+Algorithm~\ref{alg:restoreTransitions} samples from the distribution of equivalent parse subtrees in $G'$ (possibly containing null cycles).
+In order to sample from $P(T'|T'')$ we need simply map Algorithm~\ref{alg:restoreTransitions} to each rule in $T''$.
+
+For parameter estimation by Expectation Maximization and some other applications, it is useful to know the expected number
+of times that a transition was used, summed over the posterior distribution of parse trees (including those with null cycles).
+If $n''(\rho'')$ is the expected number of times that transition $\rho''$ was used according to an Inside-Outside computation on $G''$,
+then the corresponding expectations $n'(\rho')$ are given by
+
+\begin{eqnarray*}
+       n'(X \to Y) & = & n''(X \to Y) \frac{P''(X \to Y)}{q_{XY}} + \sum_Z n''(X \to Z) \frac{P''(X \to Y) q_{YZ}}{q_{XZ}} \\
+n'(X \to \epsilon) & = & n''(X \to \epsilon) \frac{P''(X \to \epsilon)}{P''(\epsilon | X)}
+ + \sum_W n''(W \to \epsilon) \frac{q_{WX} P''(X \to \epsilon)}{P''(\epsilon | W)}
+\end{eqnarray*}
+
+Expectations for other rules (bifurcations and emissions) are the same for $G'$ as $G''$.
+
+
+\subsection{Restoring null bifurcations}
+
+Suppose that $\rho'$ is a rule in $G'$.
+Algorithm~\ref{alg:restoreBifurcations} samples from the distribution of equivalent parse subtrees in $G$ (possibly containing null subtrees).
+This algorithm also calls Algorithm~\ref{alg:sampleNullSubtree}, which samples from the distribution of empty subtrees rooted at a particular nonterminal.
+In order to sample from $P(T|T')$ we need simply map Algorithm~\ref{alg:restoreBifurcations} to each rule in $T'$.
+
+If $n'(\rho')$ is the expected number of times that rule $\rho'$ was used by $G'$,
+then the corresponding expectations $n(\rho)$ are given by
+
+\begin{eqnarray*}
+    n(B \to L\ R) & = & n'(B' \to L') + n'(B' \to R') + n'(B^0 \to L'\ R') + d(B \to L\ R) \\
+       n(X \to Y) & = & n'(X \to Y) + d(X \to Y) \\
+n(X \to \epsilon) & = & n'(X \to \epsilon) + d(X \to \epsilon)
+\end{eqnarray*}
+Expectations for emissions are the same for $G$ as $G'$.
+In the above expressions $d(\rho)$ is the expected usage of rule $\rho$ by null subtrees:
+
+\[
+d(\rho) = \sum_{(B \to LR) \in \grules} \left[
+n'(B' \to L') c_R(\rho)
++ n'(B' \to R') c_L(\rho)
++ n'(B^0 \to \epsilon) (c_L(\rho) + c_R(\rho))
+\right]
+\]
+
+where $c_W(\rho)$ is the expected usage of rule $\rho$ by an empty parse tree rooted at $W$,
+given by
+
+\begin{eqnarray*}
+c_X(\rho) P(\epsilon | X) & = & P(X \to \epsilon) \delta_{\rho=(X \to \epsilon)}
+ + \sum_Y P(X \to Y) P(\epsilon|Y) \left( c_Y(\rho) + \delta_{\rho=(X \to Y)} \right)
+\\ & &
+ + \sum_{L,R} P(X \to LR) P(\epsilon|L) P(\epsilon|R) \left( c_L(\rho) + c_R(\rho) + \delta_{\rho=(X \to LR)} \right)
+\end{eqnarray*}
+
+where $\delta_U$ is the Kronecker delta (1 if condition $U$ is true, 0 if it is false).
+Note that in contrast to the system of equations for $P(\epsilon|X)$, this is a linear system of equations
+of the form ${\bf c} = {\bf Mc} + {\bf k}$, which may be solved by matrix inversion:
+${\bf c} = ({\bf 1}-{\bf M})^{-1} {\bf k}$.
+
+
 
 \newpage
 \section{Two-sequence transducer models}
@@ -86,7 +370,7 @@ We refer to the branch transducer as $\theta$, so the conditional distribution
 is more precisely $P (Y | X, \Delta T, \theta)$.
 
 
-\subsection{Formal Grammars} \seclabel{grammars}
+\subsection{Formal grammars} \seclabel{grammars}
 
 There is a close relationship between formal grammars and the singlet and branch transducer abstract state machines.
 By labeling the nonterminals of a regular or stochastic context-free grammar (SCFG) as states of an abstract machine, allowing these states to absorb and emit 
@@ -429,7 +713,7 @@ forcing the entire multi-sequence model to transition to $\Send$.\footnote{The n
 is the root of the greatest active subtree of the whole guide tree (called such because $a_m = \Send \, \forall \, m \ntrianglerighteq \hat{n}$).}
 If the branch transducer does not permit inserted bifurcations then $\hat{n} = 1$ always,
 but this is generically not true for a more general grammar
-(for example, see the TKF91 Structure Tree model).
+(for example, see the TKF Structure Tree model).
 
 We require:
 
@@ -454,330 +738,12 @@ A more general approach is probably possible, but it involves summing over paths
 handling possible bifurcations in these paths, etc.
 
 
-\newpage
-\section{Inference with multi-sequence SCFGs}
-
-The model construction algorithm described above creates a composed state machine
-which generates the joint distribution $P(X, Y, Z, W)$.
-As described in \secref{multigrammars}, there exists a corresponding multi-sequence SCFG
-which generates the same probability distribution.
-It follows that we can perform inference on our composed model with the well-known Sankoff
-algorithms.
-
-As described in the paper, we can use the CYK algorithm directly, but
-the Inside and Outside algorithms fail for generic multi-sequence models
-due to the presence of looping $\Snull$ transitions.  We here give algorithms for inference 
-in the case of no looping $\Snull$ transitions and explain how to modify them to 
-create {\bf loopy DP} iterative algorithms for our models.
-
-We here give versions for the model of three extant sequences
-show in \figref{threeway}; the generalization to $N$ sequences is straightforward.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics [scale=0.4] {figs/threeway.pdf}
-  \caption{\figlabel{threeway}
-    A star phylogeny with three (extant) leaf sequences.
-    An ancestral sequence $W$ evolves into three descendant sequences $X$, $Y$ and $Z$.
-    A singlet transducer (the horizontal gray box) emit ancestral sequence and structure
-    and three branch transducers (the gray boxes labeled $\Delta T_X$, $\Delta T_Y$ and $\Delta T_Z$)
-    mutate it according to the specified multi-sequence model.
-    Gray nodes correspond to observed data and white nodes unobserved data.
-    If the branch transducers are time-reversible, then this star phylogeny with three leaves is
-    the neighborhood of any interior node in a (binary) phylogenetic tree, 
-    from which it follows that evaluating the likelihood function
-    on this star phylogeny is sufficient for a sampling algorithm on an arbitrary phylogeny.
-  }
-\end{figure}
-
-\subsection{Notation}
-The 3 (ungapped) sequences to be aligned are $x^{(1)}$, $x^{(2)}$ and $x^{(3)}$
-(we refer to them by an index rather than as $X$, $Y$ and $Z$ for notational convenience).
-The $\mathrm{i}^{\mathrm{th}}$ symbol of sequence $x^{(1)}$ is written $x^{(1)}_i$ 
-and the length of the same sequence is $L_1 = |x^{(1)}|$.
-
-
-\subsection{Fold Envelopes} \seclabel{foldenv}
-We use the fold envelope concept \cite{HolmesRubin2002a,Holmes2004} to constrain the set of structures our algorithms consider.
-A fold envelope $\foldenv$ for a sequence $x$ is a set of coordinate pairs satisfying
-\beqn \label{eqn:cabbage}
-\foldenv \subset \left\{ (i,j):0 \le i \le j \le L \right\} \, .
-\eeqn
-We consider a subsequence $x_{i+1} \dots x_{j}$ only if the corresponding coordinate pair $(i,j) \in \foldenv$.
-The unconstrained fold envelope has set equality in \eqref{eqn:cabbage}.
-
-We use two orderings for sequences in the fold envelopes.  An inside-outside ordering is used for the iteration 
-in the Inside algorithm: Subsequences are ordered such that each successive subsequence 
-contains all previous subsequences in the fold envelope.  More precisely, subsequences in $\mathscr{F}$ are sorted  
-in the same order as coordinate pairs $(i,j)$ are generated by the iteration $\{\,\mathrm{for}\, i = L \,\mathrm{to}\, 0 \,\,\{ \mathrm{for}\, j = i \,\mathrm{to}\, L \}\,\}$.
-
-The Outside algorithm uses an outside-inside ordering, where subsequences starting at a fixed $i$ are reverse-sorted 
-with respect to the inside-outside ordering described above.  Subsequences in $\mathscr{F}$ are then sorted 
-in the same order as coordinate pairs $(i,j)$ are generated by the 
-iteration $\{\,\mathrm{for}\, i = 0 \,\mathrm{to}\, L \,\,\{ \mathrm{for}\, j = L\, \mathrm{to}\, i \}\,\}$.
-
-We frequently refer to subsequences by their index in the fold envelope.
-The $\mth$ subsequence in $\foldenv$ is labeled $m$ and corresponds to the coordinate pair $(i_{m}, j_{m})$.  The 
-index of a pair $(i,j) \in \foldenv$ is $n[i,j]$.
-
-Inward and outward emission connections, specifying which subsequences are reachable from 
-a given subsequence and state, are defined as
-\begin{align}
-c_{in}\left(\bvec{b}; m\right) &= n\left[ i_{m} + \Delta_{\bvec{b}}^{L}, j_{m} - \Delta_{\bvec{b}}^{R} \right] \\
-c_{out}\left(\bvec{b}; m\right) &= n\left[ i_{m} - \Delta_{\bvec{b}}^{L}, j_{m} + \Delta_{\bvec{b}}^{R} \right]
-\end{align}
-The emission connection is undefined if the corresponding subsequence is not in the fold envelope.\footnote{We defined emission connections slightly differently than do \cite{HolmesRubin2002a}.}  Inward, outward-left and outward-right bifurcation connections are defined as
-\begin{align}
-b_{in}(n) &= \left\{ \left( n_L,n_R \right): i_{n_L} = i_{n},\, j_{n_L} = i_{n_R},\, j_{n_R} = j_{n} \right\} \\
-b_{out,L}(n) &= \left\{ \left( n_O,n_L \right): i_{n_L} = i_{n_O},\, j_{n_L} = i_{n},\, j_{n} = j_{n_O} \right\} \\
-b_{out,R}(n) &= \left\{ \left( n_O,n_R \right): i_{n} = i_{n_O},\, j_{n} = i_{n_R},\, j_{n_R} = j_{n_O} \right\}
-\end{align}
-
-We generally write out explicit subsequence coordinate pairs $(i,j)$ when their usage will make mathematical formulae clearer and 
-fold-envelope labels $n$ when writing pseudocode.  An implementation will rely on such an iterator over subsequences in the fold envelope.
-
-\subsection{Inside}
-The inside probability $\inside{\bvec{a}}{i_1}{j_1}{i_2}{j_2}{i_3}{j_3}$ is the summed probability of subsequences 
-$x^{(1)}_{i_1+1} \dots x^{(1)}_{j_1}$, $x^{(2)}_{i_2+1} \dots x^{(2)}_{j_2}$, $x^{(3)}_{i_3+1} \dots x^{(3)}_{j_3}$
-under all paths through the model which are rooted in state $\bvec{a}$.  
-\algref{inside} gives pseudocode for the fold-envelope version of the Inside algorithm.  The subroutines 
-$\mathrm{calcTransEmitProb}()$, $\mathrm{calcLBifurcProb}()$ and $\mathrm{calcRBifurcProb}()$
-used in the Inside algorithm are defined below.
-
-\begin{algorithm}[!ht]
-
-  \SetKwData{bifurcProb}{bifurcProb}
-  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
-  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
-  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
-  \SetLine
-  \KwIn{sequences $x^{(1)},x^{(2)},x^{(3)}$}
-
-  initialization\;
-  \ForEach(\tcc*[f]{inside-outside sorted}){$n^{(1)} \in \foldenv^{(1)}$} {
-    \ForEach(\tcc*[f]{inside-outside sorted}){$n^{(2)} \in \foldenv^{(2)}$} {
-      \ForEach(\tcc*[f]{inside-outside sorted}){$n^{(3)} \in \foldenv^{(3)}$} {
-        \BlankLine
-        \ForEach{state $\bvec{a}$}{
-          \BlankLine
-          \bifurcProb $\leftarrow 0$\;
-          \ForEach{$\left( n^{(1)}_L,n^{(1)}_R \right) \in b_{in}\left( n^{(1)} \right)$} {
-            \ForEach{$\left( n^{(2)}_L,n^{(2)}_R \right) \in b_{in}\left( n^{(2)} \right)$} {
-              \ForEach{$\left( n^{(3)}_L,n^{(3)}_R \right) \in b_{in}\left( n^{(3)} \right)$} {
-                \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
-                \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
-              }
-            }
-          }
-          \BlankLine
-          $\alpha_{\bvec{a}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right)$ $\leftarrow$ \calcTransEmitProb$\left( \bvec{a}; n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-          $\alpha_{\bvec{a}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right)$ += \bifurcProb\;
-          store $\alpha_{\bvec{a}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-        }
-        \BlankLine
-      }
-    }
-  }
-  \KwRet{$\alpha_{\bvec{a}}\left( n[0,L_1],n[0,L_2],n[0,L_3] \right)$}\;
-  
-  \caption{\alglabel{inside}
-    The constrained Inside algorithm for three sequences $x^{(1)},x^{(2)},x^{(3)}$.
-    States $\bvec{a}$ in the iteration over states are sorted in Inside fill order
-    with $\Semit$ states first, then $\Snull$ states in reverse topological order.
-  }
-\end{algorithm}
-
-The transition and emission probability $\mathrm{calcTransEmitProb}(\bvec{a}; \cdot)$ can be calculated recursively 
-in the unconstrained case as
-\begin{align} \label{eqn:insidetransemit}
-  & \sum_{y_1\in\{x^{(1)}_{i_1+1},\Tnull\}}\sum_{z_1\in\{x^{(1)}_{j_1},\Tnull\}} \sum_{y_2\in\{x^{(2)}_{i_2+1},\Tnull\}}\sum_{z_2\in\{x^{(2)}_{j_2},\Tnull\}} \sum_{y_3\in\{x^{(3)}_{i_3+1},\Tnull\}}\sum_{z_3\in\{x^{(3)}_{j_3},\Tnull\}} \nonumber \\
-  &\qquad \left[ \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{y}\bvec{b}\bvec{z}} \weight (\bvec{a}\to\bvec{y}\,\bvec{b}\,\bvec{z}) \inside{\bvec{b}}{i_1+|y_1|}{j_1-|z_1|}{i_2+|y_2|}{j_2-|z_2|}{i_3+|y_3|}{j_3-|z_3|} \right] . \nonumber
-\end{align}
-Null transitions are caught in the sum when the terminals $\bvec{y} = \bvec{z} = \Tnull$.
-The constrained case is handled differently: The multiple sums are replaced by a single iteration over states $\bvec{b}$
-which connect subsequences $n^{(1)}, n^{(2)}, n^{(3)}$ to others in the fold envelopes.
-Pseudocode for the constrained calculation is given in \algref{insidetransemit}.
-
-\begin{algorithm}[!ht]
-  \SetKwData{emitProb}{emitProb}
-  \SetKwFunction{Weight}{Weight}
-  \SetLine
-  \KwIn{state $\bvec{a}, n^{(1)}, n^{(2)}, n^{(3)}$, intermediate Inside matrix $\alpha$}
-
-  \emitProb $\leftarrow 0$\;
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
-    \emitProb += \Weight$\left( \bvec{a} \to \bvec{b} \right)\, \alpha_{\bvec{b}}\left( n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-  }
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{y}\,\bvec{b}\,\bvec{z}$} {
-    \lIf{$c_{in}\left(\bvec{b}; n^{(1)}\right) \notin \foldenv^{(1)}$ or $c_{in}\left(\bvec{b}; n^{(2)}\right) \notin \foldenv^{(2)}$ or $c_{in}\left(\bvec{b}; n^{(3)}\right) \notin \foldenv^{(3)}$}{next\;}
-    \emitProb += \Weight$\left( \bvec{a} \to \bvec{y}\,\bvec{b}\,\bvec{z} \right)\, \alpha_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(1)}\right), c_{in}\left(\bvec{b}; n^{(2)}\right), c_{in}\left(\bvec{b}; n^{(3)}\right) \right)$\;
-  }
-  \KwRet{\emitProb}\;
-  \caption{\alglabel{insidetransemit}
-    Subroutine $\mathrm{calcTransEmitProb}()$ for the Inside algorithm.
-  }
-\end{algorithm}
-
-The left-bifurcation probability $\mathrm{calcLBifurcProb}\left( \bvec{a}; n^{(1)}_L,n^{(1)}_R,n^{(2)}_L,n^{(2)}_R,n^{(3)}_L,n^{(3)}_R \right)$ is
-\[ \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \alpha_{\bvec{c}}\left( n^{(1)}_L,n^{(2)}_L,n^{(3)}_L\right) \, \alpha_{\bvec{b}}\left( n^{(1)}_R,n^{(2)}_R,n^{(3)}_R\right) \]
-and the right-bifurcation probability $\mathrm{calcRBifurcProb}\left( \bvec{a}; n^{(1)}_L,n^{(1)}_R,n^{(2)}_L,n^{(2)}_R,n^{(3)}_L,n^{(3)}_R \right)$ is
-\[ \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \alpha_{\bvec{b}}\left( n^{(1)}_L,n^{(2)}_L,n^{(3)}_L\right) \, \alpha_{\bvec{d}}\left( n^{(1)}_R,n^{(2)}_R,n^{(3)}_R\right) . \]
-
-The boundary condition gives the probability of a subsequence of length 0,
-\beqn \label{eqn:insidetoend}
-\inside{\bvec{a}}{j_1}{j_1}{j_2}{j_2}{j_3}{j_3} = t(\bvec{a},\Send) + \sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}} \weight (\bvec{a}\to\bvec{b}) \, \inside{\bvec{a}}{j_1}{j_1}{j_2}{j_2}{j_3}{j_3} \, ,
-\eeqn
-for $0 \le j_1 \le L_1, 0 \le j_2 \le L_2, 0 \le j_3 \le L_3$.
-We are assuming that there are no cycles of $\Snull$ states as well as no bifurcations which can result in no emissions.
-The termination condition is 
-\[ P\left(x^{(1)},x^{(2)},x^{(3)}\right) = \alpha_{\mathrm{Start}}(0,L_1,0,L_2,0,L_3) \, , \]
-where $\mathrm{Start}$ is the unique start state of the model.
-
-We write the DP algorithms using the $\weight (\cdot)$ notation in order to preserve generality: In our formalism, a transition $a \to x\,b$ has $\emit(b) = x$, but the more common convention is to have $\emit(a) = x$.
-The difference will show up only in the value assigned to $\weight (a \to x\,b)$, so our DP algorithms can be used in both cases.
-
-
-\subsection{CYK}
-The CYK algorithm can be obtained from the Inside algorithm by replacing sums over paths through the model (or equivalently, parses)
-with the $\max()$ operation (e.g., in \eqref{eqn:insidetoend}, $\sum_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}}$ will be replaced by $ \max_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}}$).
-The CYK probabilities for indices $(i_1,j_1,i_2,j_2,i_3,j_3)$ then represent 
-the probability of the most likely path through the model for 
-subsequences $x^{(1)}_{i_1+1} \dots x^{(1)}_{j_1}$, $x^{(2)}_{i_2+1} \dots x^{(2)}_{j_2}$, $x^{(3)}_{i_3+1} \dots x^{(3)}_{j_3}$.
-
-
-\subsection{Outside}
-The outside probability $\outside{\bvec{b}}{i_1}{j_1}{i_2}{j_2}{i_3}{j_3}$ is the summed probability of the sequences $x^{(1)}$, $x^{(2)}$, $x^{(3)}$ 
-under all paths through the model which are rooted in the start state of the model, excluding all paths for the subsequences 
-$x^{(1)}_{i_1+1} \dots x^{(1)}_{j_1}$, $x^{(2)}_{i_2+1} \dots x^{(2)}_{j_2}$, $x^{(3)}_{i_3+1} \dots x^{(3)}_{j_3}$ 
-which are rooted in the state $\bvec{b}$.
-\algref{outside} gives pseudocode for the fold-envelope version of the Outside algorithm.
-The subroutines $\mathrm{calcTransEmitProb}()$, $\mathrm{calcLBifurcProb}()$ and $\mathrm{calcRBifurcProb}()$
-used in the Outside algorithm are defined below.
-
-
-\begin{algorithm}[!ht]
-  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
-  \SetKwData{bifurcProb}{bifurcProb}
-  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
-  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
-  \SetLine
-  \KwIn{sequences $x^{(1)},x^{(2)},x^{(3)}$, CYK matrix $\alpha$}
-
-  initialization\;
-  \ForEach(\tcc*[f]{outside-inside sorted}){$n^{(1)} \in \foldenv^{(1)}$} {
-    \ForEach(\tcc*[f]{outside-inside sorted}){$n^{(2)} \in \foldenv^{(2)}$} {
-      \ForEach(\tcc*[f]{outside-inside sorted}){$n^{(3)} \in \foldenv^{(3)}$} {
-        \BlankLine
-        \ForEach{state $\bvec{b}$}{
-          \BlankLine
-          \bifurcProb $\leftarrow 0$\;
-          \ForEach{$\left( n^{(1)}_O,n^{(1)}_L \right) \in b_{out,L}\left( n^{(1)} \right)$}{
-            \ForEach{$\left( n^{(2)}_O,n^{(2)}_L \right) \in b_{out,L}\left( n^{(2)} \right)$}{
-              \ForEach{$\left( n^{(3)}_O,n^{(3)}_L \right) \in b_{out,L}\left( n^{(3)} \right)$}{
-                \bifurcProb += \calcLBifurcProb($\bvec{b}; \cdot$)\;
-              }
-            }
-          }
-          \ForEach{$\left( n^{(1)}_O,n^{(1)}_R \right) \in b_{out,R}\left( n^{(1)} \right)$}{
-            \ForEach{$\left( n^{(2)}_O,n^{(2)}_R \right) \in b_{out,R}\left( n^{(2)} \right)$}{
-              \ForEach{$\left( n^{(3)}_O,n^{(3)}_R \right) \in b_{out,R}\left( n^{(3)} \right)$}{
-                \bifurcProb += \calcRBifurcProb($\bvec{b}; \cdot$)\;
-              }
-            }
-          }
-          \BlankLine
-          $\beta_{\bvec{b}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right) \leftarrow$ \calcTransEmitProb$\left( \bvec{b}; n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-          $\beta_{\bvec{b}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right)$ += \bifurcProb\;
-          store $\beta_{\bvec{b}} \left( n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-        }
-        \BlankLine
-      }
-    }
-  }
-  \caption{\alglabel{outside}
-    The constrained Outside algorithm for three sequences $x^{(1)},x^{(2)},x^{(3)}$.
-    States $\bvec{a}$ in the iteration over states are sorted in Outside fill order
-    with $\Semit$ states first, then $\Snull$ states in topological order.
-  }
-\end{algorithm}
-
-The transition and emission probability $\mathrm{calcTransEmitProb}()$ can be calculated recursively in the unconstrained case as
-\begin{align}
-  & \sum_{y_1\in\{x^{(1)}_{i_1},\Tnull\}}\sum_{z_1\in\{x^{(1)}_{j_1+1},\Tnull\}} \sum_{y_2\in\{x^{(2)}_{i_2},\Tnull\}}\sum_{z_2\in\{x^{(2)}_{j_2+1},\Tnull\}} \sum_{y_3\in\{x^{(3)}_{i_3},\Tnull\}}\sum_{z_3\in\{x^{(3)}_{j_3+1},\Tnull\}} \nonumber \\
-  & \qquad \left[ \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{y}\bvec{b}\bvec{z}} \weight (\bvec{a}\to\bvec{y}\,\bvec{b}\,\bvec{z}) \, \outside{\bvec{a}}{i_1-|y_1|}{j_1+|z_1|}{i_2-|y_2|}{j_2+|z_2|}{i_3-|y_3|}{j_3+|z_3|}  \right] . \nonumber
-\end{align}
-As with the Inside algorithm, an efficient implementation of the fold-envelope constraints requires a different treatment, given in \algref{outsidetransemit}.
-
-The left-bifurcation probability $\mathrm{calcLBifurcProb}\left( \bvec{b}; n^{(1)}_O,n^{(1)}_L,n^{(2)}_O,n^{(2)}_L,n^{(3)}_O,n^{(3)}_L \right)$ is
-\[ \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{c}\bvec{b}} \weight (\bvec{a}\to\bvec{c}\,\bvec{b}) \, \beta_{\bvec{a}}\left( n^{(1)}_O,n^{(2)}_O,n^{(3)}_O\right) \, \alpha_{\bvec{c}}\left( n^{(1)}_L,n^{(2)}_L,n^{(3)}_L\right) \]
-and the right-bifurcation probability $\mathrm{calcRBifurcProb}\left( \bvec{b}; n^{(1)}_O,n^{(1)}_R,n^{(2)}_O,n^{(2)}_R,n^{(3)}_O,n^{(3)}_R \right)$ is
-\[ \sum_{\bvec{a}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} \weight (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \beta_{\bvec{a}}\left( n^{(1)}_O,n^{(2)}_O,n^{(3)}_O\right) \, \alpha_{\bvec{d}}\left( n^{(1)}_R,n^{(2)}_R,n^{(3)}_R\right) \]
-
-
-\begin{algorithm}[!ht]
-  \SetKwData{emitProb}{emitProb}
-  \SetKwFunction{Weight}{Weight}
-  \SetLine
-  \KwIn{state $\bvec{b}, n^{(1)}, n^{(2)}, n^{(3)}$, intermediate Outside matrix $\beta$}
-
-  \emitProb $\leftarrow 0$\;
-  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{b}$} {
-    \emitProb += \Weight$\left( \bvec{a} \to \bvec{b} \right)\, \beta_{\bvec{a}}\left( n^{(1)}, n^{(2)}, n^{(3)} \right)$\;
-  }
-  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{y}\,\bvec{b}\,\bvec{z}$} {
-    \lIf{$c_{out}\left(\bvec{b}; n^{(1)}\right) \notin \foldenv^{(1)}$ or $c_{out}\left(\bvec{b}; n^{(2)}\right) \notin \foldenv^{(2)}$ or $c_{out}\left(\bvec{b}; n^{(3)}\right) \notin \foldenv^{(3)}$}{next\;}
-    \emitProb += \Weight$\left( \bvec{a} \to \bvec{y}\,\bvec{b}\,\bvec{z} \right)\, \beta_{\bvec{a}}\left( c_{out}\left(\bvec{b}; n^{(1)}\right), c_{out}\left(\bvec{b}; n^{(2)}\right), c_{out}\left(\bvec{b}; n^{(3)}\right) \right)$\;
-  }
-  \KwRet{\emitProb}\;
-  \caption{\alglabel{outsidetransemit}
-    Subroutine $\mathrm{calcTransEmitProb}()$ for the Outside algorithm.
-  }
-\end{algorithm}
-
-The boundary condition is just
-\beqn
-\outside{\mathrm{Start}}{0}{L_1}{0}{L_2}{0}{L_3} = 1 \, .
-\eeqn
-
-
-
-\subsection{Loopy DP}
-
-The standard Inside and Outside algorithms fail on grammars with 1) cycles of $\Snull$ states, 
-or 2) bifurcations with empty children
-because they are incapable of performing a probabilistic summation over $\Snull$ cycles
-(empty children of bifurcations can give rise to effective cycles of $\Snull$ states).
-Phrased qualitatively, the standard Inside and Outside fail because the iterations over
-states $\bvec{a}$ in \algref{inside} and \algref{outside}
-can correspond to, at most, single $\Snull$ cycles rather than the infinitely many which are possible.
-
-While we believe that an efficient analytic summation is impossible,
-we can use an iterative approach to approximate an exact result to high precision.
-A brute-force approach is to just repeatedly iterate over all states $\bvec{a}$ until
-convergence is reached, but this is computationally-costly.
-A much more efficient algorithm exists.
-The key insight is that only $\Snull$ states which are strongly connected
-(reachable from each other in the state graph by either other $\Snull$ states
-or bifurcations with empty children) can contribute to any possible $\Snull$ cycle.
-It follows that instead of repeatedly iterating over all states $\bvec{a}$,
-it suffices to decompose the state (sub) graph of $\Snull$ states and bifurcation
-states with possibly-empty children into its strongly-connected components
-and repeatedly iterate over these connected components rather than the entire graph.
-Decomposition of a graph into its strongly-connected components can
-be done in linear time \cite{Tarjan1972},
-so the overall complexity of inference is still determined by the DP iterations themselves.
-If we iterate over each connected component 5 times, then upper bounds on 
-the complexity of inference are
-$O(5 \cdot A \cdot L^{2n})$ and $O(5 \cdot A \cdot L^{3n})$ in space and time for a model 
-with $A$ states of $n$ extant sequences.
-For the star phylogeny of \figref{threeway}, 
-
 
 \newpage
 \section{The TKF Structure Tree model as a transducer} \seclabel{tkfst}
 
-We can cast the TKF91 Structure Tree model as a transducer.
-{\bf Why is this important/useful? e.g. ``This means we can automatically deduce rules like those shown in Tables~\tabnum{abc} through~\tabref{agapbc}...''}
+We can cast the TKF Structure Tree (TKFST) model as a transducer.
+This means we can automatically deduce rules like those shown for the TKFST model in the main paper.
 
 \subsection{The single-sequence TKFST model as a singlet transducer}
 
@@ -800,7 +766,7 @@ Allowed transitions between these states are shown in the paper.
     \tablabel{tkfstsinglet}
     States of the singlet transducer of the TKF Structure Tree model \cite{Holmes2004}.
     Singlet transducers can only have states of type $\Sstart$ or $\Sinsert$.
-    {\bf This is the indiegram-style transducer equivalent of the SCFG in \tabref{a} ...}
+    This is the indiegram-style transducer equivalent of the singlet TKFST SCFG in the main paper.
   }
 \end{table}
 
@@ -838,7 +804,7 @@ Allowed transitions between these states are shown in the paper.
     (e.g. a $\Smatch$ state might be the branch equivalent of an $\Sinsert$ state).
     States $L_i$ and $S_i$ are the $\Sstart$ states of a sub-model (not shown) identical
     in structure to the singlet transducer.  They are used to insert a new stem-loop structure.
-    {\bf This is the indiegram-style transducer equivalent of the SCFG in \tabref{ab} ...}
+    This is the indiegram-style transducer equivalent of the conditional pair TKFST SCFG in the main paper.
   }
 \end{table}
 
@@ -965,9 +931,16 @@ three-sequence SCFGs automatically generated by the ComposedTreeTransducer::Trip
 Complete or no structural information for the three extant sequences can be supplied
 as input.
 
+\subsection{Simulation of RNA family evolution}
+The program that we wrote to simulate RNA structural alignments from the TKFST model, \evolsayer, is available as part of the same software distribution as \indiegram\ (the \dart\ package).
+Another script (\animateevolsayer) can be used to make animations of the evolving RNA structures, in combination with the RNAplot program in the \viennarna\ package \cite{HofackerEtAl94}.
+
+
 
 \newpage
-\section{Reconstruction of covariant substitution histories}
+\section{Computational experiments}
+
+\subsection{Reconstruction of covariant substitution histories}
 
 Our \xrate\ program is a multiple-alignment analysis tool
 that estimates rate parameters for a broad class of models, including covariant RNA substitution models \cite{KlostermanEtAl2006}.
@@ -1215,7 +1188,8 @@ This is the machine that we describe as a parse-tree transducer.
 
 
 
-\bibliography{../latex-inputs/alignment,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna}
+\bibliography{../latex-inputs/alignment,../latex-inputs/reconstruction,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna,../latex-inputs/url}
+
 
 
 \end{document}

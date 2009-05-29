@@ -112,7 +112,7 @@ Knudsen B, Hein J (2003) {Pfold: {RNA} secondary structure prediction using
 \bibitem{DowellEddy2004}
 Dowell RD, Eddy SR (2004) Evaluation of several lightweight stochastic
   context-free grammars for {RNA} secondary structure prediction.
-\newblock BMC Bioinformatics 5: 71.
+\newblock BMC Bioinformatics 5.
 \bibAnnoteFile{DowellEddy2004}
 
 \bibitem{Holmes2005}
@@ -124,13 +124,13 @@ Holmes I (2005) Accelerated probabilistic inference of {RNA} structure
 \bibitem{DowellEddy2006}
 Dowell RD, Eddy SR (2006) Efficient pairwise {RNA} structure prediction and
   alignment using sequence alignment constraints.
-\newblock BMC Bioinformatics 7: 400.
+\newblock BMC Bioinformatics 7.
 \bibAnnoteFile{DowellEddy2006}
 
 \bibitem{BradleyPachterHolmes2008}
 Bradley RK, Pachter L, Holmes I (2008) Specific alignment of structured {RNA}:
   Stochastic grammars and sequence annealing.
-\newblock Bioinformatics .
+\newblock Bioinformatics 24: 2677-2683.
 \bibAnnoteFile{BradleyPachterHolmes2008}
 
 \bibitem{Felsenstein2003}
@@ -207,7 +207,7 @@ Redelings BD, Suchard MA (2005) Joint bayesian estimation of alignment and
 \bibitem{PatenHolmesBirney2008}
 Paten B, Herrero J, Fitzgerald S, Flicek P, Holmes I, et~al. (2008) Genome-wide
   nucleotide level mammalian ancestor reconstruction.
-\newblock Genome Research 18.
+\newblock Genome Research 18: 1829-1843.
 \bibAnnoteFile{PatenHolmesBirney2008}
 
 \bibitem{RivasEddy2001}
@@ -225,13 +225,15 @@ Bradley RK, Holmes I (2007) {{T}ransducers: an emerging probabilistic framework
 \bibitem{ComonEtAl2007-TreeTransducers}
 Comon H, Dauchet M, Gilleron R, L\"oding C, Jacquemard F, et~al. (2007) Tree
   Automata Techniques and Applications, Available from: {\tt
-  http://www.grappa.univ-lille3.fr/tata}, chapter 6 (``Tree Transducers'').
+  http://tata.gforge.inria.fr/}, chapter 6 (``Tree Transducers'').
+\newblock pp. 161-182.
 \newblock Release October, 12th 2007.
 \bibAnnoteFile{ComonEtAl2007-TreeTransducers}
 
 \bibitem{GecsegSteinby97}
 G\'{e}cseg F, Steinby M (1997) Handbook of formal languages, Volume 3: Beyond
   Words, Springer-Verlag, chapter Tree languages.
+\newblock pp. 1-61.
 \bibAnnoteFile{GecsegSteinby97}
 
 \bibitem{RivasEddy2008}
@@ -257,17 +259,17 @@ Lunter G (2007) {{HMMoC}--a compiler for hidden {M}arkov models}.
 \newblock Bioinformatics 23: 2485--2487.
 \bibAnnoteFile{Lunter2007}
 
-\bibitem{HolmesRubin2002a}
-Holmes I, Rubin GM (2002) Pairwise {RNA} structure comparison using stochastic
-  context-free grammars.
-\newblock Pacific Symposium on Biocomputing, 2002.
-\bibAnnoteFile{HolmesRubin2002a}
-
 \bibitem{Sankoff85}
 Sankoff D (1985) Simultaneous solution of the {RNA} folding, alignment, and
   protosequence problems.
 \newblock SIAM Journal of Applied Mathematics 45: 810-825.
 \bibAnnoteFile{Sankoff85}
+
+\bibitem{HolmesRubin2002a}
+Holmes I, Rubin GM (2002) Pairwise {RNA} structure comparison using stochastic
+  context-free grammars.
+\newblock Pacific Symposium on Biocomputing, 2002.
+\bibAnnoteFile{HolmesRubin2002a}
 
 \bibitem{ThorneEtal91}
 Thorne JL, Kishino H, Felsenstein J (1991) An evolutionary model for maximum
@@ -309,12 +311,6 @@ Gutell RR (1993) Collection of small subunit ({16S} and {16S}-like) ribosomal
   {RNA} structures.
 \newblock Nucleic Acids Research 21: 3051-3054.
 \bibAnnoteFile{Gutell93}
-
-\bibitem{HofackerEtAl94}
-Hofacker IL, Fontana W, Stadler PF, Bonhoeffer S, Tacker M, et~al. (1994) Fast
-  folding and comparison of {RNA} secondary structures.
-\newblock Monatshefte f\"{u}r Chemie 125: 167-188.
-\bibAnnoteFile{HofackerEtAl94}
 
 \bibitem{PaulingZuckerkandl63}
 Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
@@ -390,7 +386,7 @@ Adey NB, Tollefsbol TO, Sparks AB, Edgell MH, Hutchison CA (1994) Molecular
 \bibitem{BlanchetteEtAl2004}
 Blanchette M, Green ED, Miller W, Haussler D (2004) {{R}econstructing large
   regions of an ancestral mammalian genome in silico}.
-\newblock Genome Res 14: 2412--2423.
+\newblock Genome Research 14: 2412--2423.
 \bibAnnoteFile{BlanchetteEtAl2004}
 
 \bibitem{NoonanEtAl2006}
@@ -402,8 +398,8 @@ Noonan JP, Coop G, Kudaravalli S, Smith D, Krause J, et~al. (2006) Sequencing
 \bibitem{Gaucher2007b}
 Gaucher EA (2007) Ancestral sequence reconstruction as a tool to understand
   natural history and guide synthetic biology: realizing and extending the
-  vision of zuckerkandl and pauling.
-\newblock In: Liberles  \cite{Liberles2007}, chapter~2.
+  vision of {Z}uckerkandl and {P}auling.
+\newblock In: Liberles  \cite{Liberles2007}, chapter~2, pp. 20-33.
 \bibAnnoteFile{Gaucher2007b}
 
 \bibitem{EliasTuller2007}
@@ -537,7 +533,8 @@ Mikl\'{o}s I, Lunter G, Holmes I (2004) A long indel model for evolutionary
 Lunter GA, Drummond AJ, Mikl\'{o}s I, Hein J (2004) Statistical alignment:
   Recent progress, new applications, and challenges.
 \newblock In: Nielsen R, editor, Statistical methods in Molecular Evolution,
-  Springer Verlag, Series in Statistics in Health and Medicine.
+  Springer Verlag, Series in Statistics in Health and Medicine, chapter~14. pp.
+  375-406.
 \bibAnnoteFile{LunterEtAl2004}
 
 \bibitem{SatijaEtAl2008}
@@ -565,9 +562,9 @@ Ma J, Zhang L, Suh BB, Raney BJ, Brian J, et~al. (2006) {{R}econstructing
 \bibAnnoteFile{MillerHausslerEtAl2006}
 
 \bibitem{MohriPereiraRiley2000}
-Mohri M, Pereira F, Riley M (2000) Weighted finite-state transducers in speech
+Mohri M, Pereira F, Riley M (2002) Weighted finite-state transducers in speech
   recognition.
-\newblock ISCA ITRW Automatic Speech Recognition : 97-106.
+\newblock Computer Speech and Language 16: 69-88.
 \bibAnnoteFile{MohriPereiraRiley2000}
 
 \bibitem{Rounds70}
@@ -587,8 +584,11 @@ Sakakibara Y, Brown M, Hughey R, Mian IS, Sj{\"o}lander K, et~al. (1994)
 \bibAnnoteFile{Sakakibara94c}
 
 \bibitem{Sakakibara2003}
-Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures} :
+Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures}.
+\newblock In: Proceedings of the Eleventh International Conference on
+  Intelligent Systems for Molecular Biology. Menlo Park, CA: AAAI Press, pp.
   232--240.
+\newblock Evaluation Studies.
 \bibAnnoteFile{Sakakibara2003}
 
 \bibitem{MeyerMiklos2007}
