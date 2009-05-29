@@ -7,44 +7,46 @@ Database file #3: ../latex-inputs/duplication.bib
 Database file #4: ../latex-inputs/genomics.bib
 Database file #5: ../latex-inputs/ncrna.bib
 Database file #6: ../latex-inputs/url.bib
+Warning--empty booktitle in Sakakibara2003
 You've used 101 entries,
             2441 wiz_defined-function locations,
-            1311 strings with 23520 characters,
+            1308 strings with 23400 characters,
 and the built_in function-call counts, 77300 in all, are:
-= -- 7193
+= -- 7192
 > -- 1122
-< -- 12
+< -- 13
 + -- 558
 - -- 280
-* -- 6525
-:= -- 9262
-add.period$ -- 209
+* -- 6527
+:= -- 9261
+add.period$ -- 207
 call.type$ -- 101
-change.case$ -- 111
+change.case$ -- 108
 chr.to.int$ -- 0
-cite$ -- 202
-duplicate$ -- 7741
-empty$ -- 8110
+cite$ -- 203
+duplicate$ -- 7739
+empty$ -- 8107
 format.name$ -- 357
-if$ -- 17216
+if$ -- 17214
 int.to.chr$ -- 0
 int.to.str$ -- 101
-missing$ -- 1000
-newline$ -- 522
+missing$ -- 999
+newline$ -- 521
 num.names$ -- 107
 pop$ -- 1146
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 644
+skip$ -- 650
 stack$ -- 0
-substring$ -- 10966
-swap$ -- 2005
-text.length$ -- 11
+substring$ -- 10975
+swap$ -- 2003
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
+warning$ -- 1
 while$ -- 563
 width$ -- 104
-write$ -- 1131
+write$ -- 1128
+(There was 1 warning)

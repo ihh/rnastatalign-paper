@@ -84,14 +84,15 @@ algorithms were first implemented using much simpler constraints:
 specifically, the fold-only constraints of (Holmes 2002), and the
 alignment-only constraints of (Rivas & Eddy 2001).
 
-We do hope that the sophistication of the constraint schemes used with
-these "tree transducer" models will increase over time. Eventually we
-hope to develop alignment constraints, simultaneous alignment-and-fold
-constraints, and other constraints (and/or sampling schemes) to enable
-efficient analysis of multiple phylogenetically-related sequences. The
-present work represents a first attempt at using these sorts of models
-for more than two sequences, but we hope it will not be the last
-attempt, and we acknowledge room for improvement.
+We hope & anticipate that the sophistication of the constraint schemes
+used with these sorts of model will steadily increase over
+time. Eventually we hope to develop alignment constraints,
+simultaneous alignment-and-fold constraints, and other constraints
+(and/or sampling schemes) to enable efficient analysis of multiple
+phylogenetically-related sequences. The present work represents a
+first attempt at using these sorts of models for more than two
+sequences, but we hope it will not be the last attempt, and we
+acknowledge room for improvement.
 
 > It is still not clear eenough what the authors' model is, though it is 
 > supposed to be a main result. Page 7 states "a prescriptive formalism 

@@ -307,11 +307,17 @@ Our problem statement is this:
   RNAs.}
 %}
 %\vspace{.5\baselineskip}
-We assume that the phylogeny, including both the tree topology and
-branch lengths, is known.
+
+We assume here that the phylogeny, including both the tree topology and branch lengths, is given.
+This constraint somewhat arbitrarily confines the problem domain to the rather restricted case where we already have a phylogeny (and potentially a consensus structure),
+and we seek only an alignment plus ancestral reconstruction.
+It is important to note, however, that as far as the {\em model} is concerned, none of the constraints (phylogeny, structure or alignment) are final.
+For example, the probabilistic framework readily allows us to compare likelihoods of two different phylogenetic trees, by constructing a composite transducer for each tree.
+Thus, MCMC samplers for alignments could in principal be extended to phylogenies (albeit at a computational cost).
+We revisit such MCMC samplers in the Discussion.
 
 This paper focuses on model construction and inference algorithms
-rather than the heuristics and constraints which will be necessary to make these
+rather than the heuristics which will be necessary to make these
 algorithms fast enough for analysis of many biological datasets.
 As discussed below, the complexity of general inference algorithms is
 prohibitively high for many problems of interest.

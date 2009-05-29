@@ -164,8 +164,8 @@ Nielsen R (2001) {{M}utations as missing data: inferences on the ages and
 \bibAnnoteFile{Nielsen2001}
 
 \bibitem{Pearl82}
-J P (1982) {R}everend {B}ayes on inference engines: A distributed hierarchical
-  approach.
+Pearl J (1982) {R}everend {B}ayes on inference engines: A distributed
+  hierarchical approach.
 \newblock In: Proceedings American Association of Artificial Intelligence
   National Conference on AI. Pittsburgh, PA, pp. 133-136.
 \bibAnnoteFile{Pearl82}
@@ -585,10 +585,7 @@ Sakakibara Y, Brown M, Hughey R, Mian IS, Sj{\"o}lander K, et~al. (1994)
 
 \bibitem{Sakakibara2003}
 Sakakibara Y (2003) {{P}air hidden {M}arkov models on tree structures}.
-\newblock In: Proceedings of the Eleventh International Conference on
-  Intelligent Systems for Molecular Biology. Menlo Park, CA: AAAI Press, pp.
-  232--240.
-\newblock Evaluation Studies.
+\newblock volume 19 Suppl 1, pp. i232--240.
 \bibAnnoteFile{Sakakibara2003}
 
 \bibitem{MeyerMiklos2007}
