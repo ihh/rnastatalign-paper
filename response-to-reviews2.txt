@@ -384,25 +384,28 @@ the revised text to permit standard CYK to work properly.
 > example.
 
 We completely agree. Such an algorithm was initially a goal of this
-work, but was abandoned. We thank the reviewer for challenging us to
-attack it afresh; a verbal presentation of the algorithm we came up
-with is given in the revised text, with a full formal description
-(including notation) in the supplement. (Since this is a standalone
-result that can be applied to any SCFG, we think it fits better as an
-appendix in the supplement; the obvious cost is omitting some detail
-from the main paper, but the PLoS Authors' Guidelines and the
-reviewer's preference for including more detail in the manuscript are
-potentially in conflict on the best approach to take here. We welcome
-suggestions for improving the flow generally.)
+work, but was dropped. We thank the reviewer for challenging us to
+try again; a verbal presentation of the algorithm we came up with is
+given in the revised text, with a full formal description (including
+notation) in the supplement. (Since this is a standalone result that
+can be applied to any SCFG, we think it fits better as a technical
+appendix in the supplement, with a verbal description in the main
+paper; the obvious cost is omitting some detail from the main paper.
+The PLoS Authors' Guidelines (which recommend using the supplement for
+algorithmic details) and the reviewer's preference for including more
+detail in the manuscript are potentially in conflict on the best
+approach to take here. We welcome advice on how to improve the flow
+generally.)
 
 As a technical aside, the primary difficulty with SCFG null cycle
 elimination is that while this marginalization is reasonably
-straightforward for independent-sites models and HMMs, the possible
-presence of null bifurcations complicates matters for SCFGs.  Indeed,
-no *closed form* elimination is possible (due to bifurcations, such an
-elimination would involve solving simultaneous nonlinear equations, as
-explained in the supplement) but an iterative approximation
-(e.g. Newton-Raphson) appears adequate.
+straightforward for independent-sites models and HMMs, essentially
+involving summing a geometric series to obtain a correction factor,
+the possible presence of null bifurcations complicates matters for
+SCFGs.  Indeed, no *closed form* elimination is possible (due to
+bifurcations, such an elimination would involve solving simultaneous
+nonlinear equations, as explained in the supplement) but an iterative
+approximation (e.g. Newton-Raphson) appears adequate.
 
 > p.15-18 The whole section on "terminological asides" contributes 
 > little to the paper. It would be vastly preferable to spend this space 
@@ -534,6 +537,13 @@ The 5' and 3' ends of structures are now labeled (e.g., Figures 3 and
 We have updated this figure and included an additional figure (also
 extended from a figure in [28]) which illustrates the requested
 mutations.  Both figures now include the structures for clarity.
+
+Additionally, we have used our simulation script to prepare animations
+showing illustrative evolutionary trajectories of RNA structures under
+our model.  The software to produce these animations is available and
+briefly mentioned in the supplement.  (If there were some way to
+include these animations in the online version, we would like to do
+that, though this may have to wait for the <video> tag of HTML 5...)
 
 > Figure 4 and Figure 5 seem unnecessary. Both are too schematic to 
 > convey useful information. The concept of conditional likelihood along 
