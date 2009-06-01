@@ -78,7 +78,7 @@ fold (as the reviewer suggests), the reconstruction algorithm would
 probably need to deviate slightly from the supplied alignment as
 well. (This will be necessary because not every evolutionarily related
 basepair is likely to be perfectly aligned.) This sort of flexible
-fold and alignment constraint is, of course, implemented in CONSAN and
+fold and alignment constraint is implemented in both CONSAN and
 Stemloc. However, we note that the Pair SCFGs used in both those
 algorithms were first implemented using much simpler constraints:
 specifically, the fold-only constraints of (Holmes 2002), and the
@@ -111,10 +111,9 @@ acknowledge room for improvement.
 > using conditional models, still in
 > terms too vague and conceptual to enable reproduction of the work.
 
-Thank you for pointing this out.  We have removed the reference to the
-supplementary material in this section and have attempted to make the
+Thank you for pointing this out.  We have attempted to make the
 main text a self-contained description of the composition algorithm,
-including its key corollaries (elimination of null states, and DP
+including its key corollaries (elimination of null states and DP
 inference).  The presentation of the composition algorithm in the
 supplement now merely reprises the presentation in the main text using
 more formal notation. We hope this is an appropriate use of the
@@ -258,7 +257,7 @@ now report simulation results instead, as suggested.
 
 We thank the reviewer for pointing out errors in the original
 figures. These were due to mistakes made during manual conversion of
-indiegram's output parse trees into Stockholm-format alignments and a
+indiegram's output parse trees into structural alignments and a
 bug in the code used for maximum-likelihood reconstruction of
 sequences (the xrate program). We have now automated this process and
 fixed the bug, verifying that this has eliminated the errors
@@ -392,11 +391,7 @@ notation) in the supplement. (Since this is a standalone result that
 can be applied to any SCFG, we think it fits better as a technical
 appendix in the supplement, with a verbal description in the main
 paper; the obvious cost is omitting some detail from the main paper.
-The PLoS Authors' Guidelines (which recommend using the supplement for
-algorithmic details) and the reviewer's preference for including more
-detail in the manuscript are potentially in conflict on the best
-approach to take here. We welcome advice on how to improve the flow
-generally.)
+We welcome advice on how to improve the flow generally.)
 
 As a technical aside, the primary difficulty with SCFG null cycle
 elimination is that while this marginalization is reasonably

@@ -602,7 +602,7 @@ following three mutually-exclusive conditions holds:
 \item{Type 3:} Transducer ${\cal T}_m$ is in a $\Swait$ state. Its parent transducer enters the $\Send$ state, forcing ${\cal T}_m$ into the $\Send$ state as well.
 \end{description}
 
-A notational prescription for the allowed transitions may be found in \supptext.
+A notational prescription for the allowed transitions may be found in \supptext{1}.
 
 \subsubsection*{How the ensemble generates multiple alignments}
 
@@ -783,7 +783,7 @@ same probability distribution over sequences.
 However, these solutions do not easily generalize to SCFGs
 (which may have empty bifurcations as well as empty paths).
 
-\supptext\ includes a complete formal algorithm for exact null-cycle elimination in SCFGs,
+\supptext{2} includes a complete formal algorithm for exact null-cycle elimination in SCFGs,
 along with procedures for probabilistically restoring null cycles
 to sampled parse trees and Inside-Outside expectation counts.
 Informally, the essence of the algorithm is contained within the following two steps:
@@ -982,6 +982,8 @@ C++ code for the corresponding jointly-normalized three-sequence
 Any model of structural evolution which can be represented as a Pair
 SCFG and factored into singlet and branch transducers is permitted as input to
 the packages, allowing for flexible, automated model design.
+
+The available software is described in \supptext{3}.
 
 % Simultaneous alignment and folding of three RNA sequences is highly-demanding computationally.
 % The completely-unconstrained algorithm requires time
@@ -1828,111 +1830,6 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 \clearpage
 \section*{Algorithms}
 
-\begin{algorithm}[!ht]
-  \SetLine
-  \SetKwFunction{rnd}{Random[0,1]}
-  \KwIn{Rule $\rho'' \in \grules''$}
-  \KwOut{Parse (sub)tree $T' \in \gtrees'$}
-
-  \Switch{$\rho''$}{
-    \Case{$X \to Y$}{
-      \eIf{\rnd $< P(X \to Y) / q_{XY}$}{
-        \KwRet{$(X \to Y)$} \;
-      }{
-        Let $z = \sum_W q_{XW} P'(W \to Y)$ \;
-        Sample state $V$ from probability distribution $P(V) = q_{XV} P'(V \to Y) / z$ \;
-        \KwRet{$(\mathrm{restoreTransitions}(X \to V) \to Y)$} \;
-      }
-    }
-    \Case{$X \to \epsilon$}{
-      \eIf{\rnd $< P'(X \to \epsilon) / P'(\epsilon | X)$}{
-        \KwRet{$(X \to \epsilon)$} \;
-      }{
-        Let $z = \sum_W q_{XW} P'(W \to \epsilon)$ \;
-        Sample state $V$ from probability distribution $P(V) = q_{XV} P'(V \to \epsilon) / z$ \;
-        \KwRet{$(\mathrm{restoreTransitions}(X \to V) \to \epsilon)$} \;
-      }
-    }
-    \Other{
-      \KwRet{$(\rho'')$} \;
-    }
-  }
-  \caption{\label{alg:restoreTransitions}
-    Subroutine $\mathrm{restoreTransitions}(\rho'')$ for the null cycle elimination procedure.
-  }
-\end{algorithm}
-
-
-\begin{algorithm}[!ht]
-  \SetLine
-  \SetKwFunction{rnd}{Random[0,1]}
-  \KwIn{Rule $\rho' \in \grules'$}
-  \KwOut{Parse (sub)tree $T \in \gtrees$}
-
-  \Switch{$\rho'$}{
-    \Case{$B^0 \to \epsilon$}{
-      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
-      $T_L \leftarrow \mathrm{sampleNullSubtree}(L)$ \;
-      $T_R \leftarrow \mathrm{sampleNullSubtree}(R)$ \;
-      \KwRet{$(B \to T_L\ T_R)$} \;
-    }
-    \Case{$B' \to L'$}{
-      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
-      $T_R \leftarrow \mathrm{sampleNullSubtree}(R)$ \;
-      \KwRet{$(B \to L\ T_R)$} \;
-    }
-    \Case{$B' \to R'$}{
-      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
-      $T_L \leftarrow \mathrm{sampleNullSubtree}(L)$ \;
-      \KwRet{$(B \to T_L\ R)$} \;
-    }
-    \Case{$B^2 \to L'\ R'$}{
-      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
-      \KwRet{$(B \to L\ R)$} \;
-    }
-    \lCase{$B^0 \to B'$}{
-      \KwRet{$()$} \;
-    }
-    \lCase{$B' \to B^2$}{
-      \KwRet{$()$} \;
-    }
-    \Other{
-      Let $\rho$ be the original rule in $\grules$ \;
-      \KwRet{$(\rho)$} \;
-    }
-  }
-
-  \caption{\label{alg:restoreBifurcations}
-    Subroutine $\mathrm{restoreBifurcations}(\rho')$ for the null cycle elimination procedure.
-  }
-\end{algorithm}
-
-
-\begin{algorithm}[!ht]
-  \SetLine
-  \SetKwFunction{rnd}{Random[0,1]}
-  \KwIn{Nonterminal $A \in \gnons$}
-  \KwOut{Parse tree $T \in \gtrees: \mathrm{seq}(T) = \epsilon, \mathrm{root}(T) = A$}
-
-  \eIf{$A$ is a bifurcation state, $A \to X\ Y$,}{
-    $T_X \leftarrow \mathrm{sampleNullSubtree}(X)$ \;
-    $T_Y \leftarrow \mathrm{sampleNullSubtree}(Y)$ \;
-    \KwRet{$(A \rightarrow T_X\ T_Y)$} \;
-  }{
-    \eIf{\rnd $< P(A \to \epsilon) / P(\epsilon|A)$}{
-      \KwRet{$(A \to \epsilon)$} \;
-    }{
-      Let $z = \sum_Y P(A \to Y) P(\epsilon | Y)$ \;
-      Sample state $X$ from probability distribution $P(X) = P(A \to X) P(\epsilon | X) / z$ \;
-      $T_X \leftarrow \mathrm{sampleNullSubtree}(X)$ \;
-      \KwRet{$(A \rightarrow T_X)$} \;
-    }
-  }
-
-  \caption{\label{alg:sampleNullSubtree}
-    Subroutine $\mathrm{sampleNullSubtree}(A)$ for the null cycle elimination procedure.
-  }
-\end{algorithm}
 
 \begin{algorithm}[!ht]
 
