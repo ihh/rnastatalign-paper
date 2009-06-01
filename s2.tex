@@ -1,0 +1,475 @@
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+\usepackage{color} 
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm 
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+% Use the PLoS provided bibtex style
+\bibliographystyle{PLoS2009}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+%% ** EDIT HERE **
+%% Please insert a running head of 30 characters or less.  
+%% Include it twice, once between each set of braces
+\markboth{Evolutionary modeling}{Evolutionary modeling}
+
+%% ** EDIT HERE **
+%% PLEASE INCLUDE ALL MACROS BELOW
+\input{defs.tex}
+% no idea why \outside was redefined with a "\right," instead of a normal comma in defs.tex, but am redefining it back here - IH, 5/29/09
+\renewcommand{\outside}[7]{\beta_{#1}\left(#2,#3,#4\right)}
+%% END MACROS SECTION
+
+\begin{document}
+
+% Title must be 150 words or less
+\begin{flushleft}
+  {\Large
+    \textbf{\titlestring: \supptext{2}}
+  }
+\\
+\authorstring
+\end{flushleft}
+
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Exact elimination of SCFG null cycles}
+
+The following section describes how to transform any SCFG so as to remove null cycles while preserving access to the full posterior probability distribution over parses, including parses with null cycles.
+
+\subsection{Definitions}
+
+Let $G = ( \Omega, \gnons, \grules, P )$ be a stochastic context-free grammar (SCFG)
+consisting of
+a set of terminal symbols $\Omega$,
+a set of nonterminal symbols (a.k.a. ``states'') $\gnons$,
+a set $\grules$ of {\em production rules} $L \to R$ (where $L \in \gnons$ and $R \in \grhs$)
+and a probability function on the rules, $P:(\gnons \times \grhs) \to [0,\infty)$.
+
+% (The rule set $\grules$ can be considered redundant to the specification of the grammar, in that $\rho \notin \grules \Leftrightarrow P(\rho)=0$.
+% The interpretation is that $P$ is a probabilistic weight function and $\grules$ is informally the set of rules with non-zero weight.)
+
+Let $\leftside{A}$ be the set of rules that can be applied to nonterminal $A \in \gnons$ (i.e., rules in which $A$ appears on the left),
+and let $\rightside{A}$ be the set of rules that can generate nonterminal $A$ (i.e.,rules in which $A$ appears on the right, including bifurcations which also generate another nonterminal as well as $A$).
+Let $\allrules{A} = \leftside{A} \cup \rightside{A}$ be the set of all rules involving $A$.
+Define these also on sets of nonterminals, e.g., $\leftside{\gnulls} = \bigcup_{A \in \gnulls} \leftside{A}$ for $\gnulls \subseteq \gnons$.
+
+Let $\gtrees$ be the set of all parse trees for $G$.
+Suppose that parse tree $T \in \gtrees$ makes $n_T(\rho)$ uses of rule $\rho$;
+then define the parse tree likelihood $P(T) = \prod_{\rho \in \grules} \left[ P(\rho) \right]^{n_T(\rho)}$.
+
+If $\sum_{T \in \gtrees} P(T) = 1$, we say that $G$ is {\em probabilistically normalized by parse tree}.
+If $\sum_{\rho \in \leftside{A}} P(\rho) = 1$ for all $A \in \gnons$, we say that $G$ is {\em probabilistically normalized by production rule}.
+Note that normalization by production rule $\Rightarrow$ normalization by parse tree.
+
+Let $S \in \Omega^\ast$ denote a terminal sequence.
+Let $\mathrm{seq}:\gtrees \to \Omega^\ast$ be the function mapping a parse tree to its terminal sequence.
+and let $\mathrm{root}:\gtrees \to \gnons$ be the function returning the root nonterminal of a parse tree.
+The {\em inside probability of $S$ rooted at $A$} is $P(S|A)\ = \sum_{T: \mathrm{seq}(T) = S,\mathrm{root}(T) = A} P(T)$.
+Of particular relevance to null state elimination is the probability $P(\epsilon|A)$,
+where $\epsilon$ is the empty sequence.
+This is the probability that a nonterminal $A$ will expire without generating any sequence.
+
+Following earlier formalisms \cite{Durbin98,HolmesRubin2002a,Holmes2005},
+we say that the grammar $G$ has {\em RNA normal-form rules} if
+each rule in $\grules$ takes one of the following four forms:
+
+\noindent \hrulefill
+\begin{description}
+\item[Termination rules] with one nonterminal on the left and the empty string on the right
+\begin{eqnarray*}
+A & \to & \epsilon
+\end{eqnarray*}
+\item[Transition rules] with one nonterminal on the left and the right
+\begin{eqnarray*}
+A & \to & B
+\end{eqnarray*}
+\item[Bifurcation rules] with one nonterminal on the left and two on the right
+\begin{eqnarray*}
+A & \to & B\ C
+\end{eqnarray*}
+\item[Emission rules] with one nonterminal on the left and right and at least one terminal on the right
+\begin{eqnarray*}
+A & \to & x\ B \\
+A & \to & B\ y \\
+A & \to & x\ B\ y
+\end{eqnarray*}
+\end{description}
+\noindent \hrulefill
+
+\noindent
+Here $A,B,C \in \gnons$ and $x,y \in \Omega$.
+
+Suppose that grammar $G$ has RNA normal-form rules.
+We further say that $G$ has {\em RNA normal-form states} if
+each nonterminal (state) $A \in \gnons$ takes one of the following forms:
+
+\noindent \hrulefill
+\begin{description}
+\item[Null states]: $\leftside{A}$ contains only transition and termination rules.
+\item[Bifurcation states]: $\leftside{A}$ contains exactly one bifurcation rule, $A \to X\ Y$, where $X \neq Y$ and $X,Y$ are both null states.
+\item[Emit states]: $\leftside{A}$ contains only emission rules. Further, $\leftside{A} = \rightside{B}$ for some null state $B$.
+This null state $B$ is called $A$'s {\em post-emit} state.
+\end{description}
+\noindent \hrulefill
+
+Define a {\em null cycle} to be a nonterminal $A$
+and a sequence of rules $\rho_1, \rho_2 \ldots \rho_k$ that, when applied consecutively to $A$, leave $A$ unchanged;
+that is, $\rho_k(\rho_{k-1} \ldots \rho_2(\rho_1(A))) = A$.
+Define a {\em null subtree} to be a null cycle using at least one bifurcation rule.
+
+Suppose that $G = ( \Omega, \gnons, \grules, P )$ and $G' = ( \Omega, \gnons', \grules', P' )$ are two grammars.
+We say that $G$ and $G'$ are {\em equivalent in sequence} if there is a mapping between nonterminals, $f:\gnons \to \gnons'$,
+such that $P(S|A) = P(S|f(A))$.
+We say that $G$ and $G'$ are {\em equivalent in parse} if there is a mapping between parse trees, $g:\gtrees \to \gtrees'$,
+such that $P'(T') = \sum_{T:T'=g(T)} P(T)$ and we can define
+\[
+P(T|T') = P(T|g(T)=T') = \frac{P(T)}{P'(T')}
+\]
+
+Note that equivalence in parse $\Rightarrow$ equivalence in sequence.
+
+Suppose that a grammar $G$ contains null cycles.
+We seek to transform $G$ into a grammar $G''$ that is equivalent in parse and sequence, but has no null cycles.
+If $G$ is normalized by parse tree, then $G''$ will be too; but $G''$ is not (necessarily) normalized by production rule.
+
+We do the transformation in two steps, $G \to G' \to G''$.
+We also provide a stochastic ``null cycle restoration'' algorithm for sampling from $P(T|T'')$.
+
+
+\subsection{Eliminating null bifurcations}
+
+Note first that any SCFG can be transformed into an equivalent one with RNA normal-form states by adding null states.
+Without loss of generality, we therefore consider SCFGs with RNA normal-form states.
+
+Let $G = ( \Omega, \gnons, \grules, P )$ be such an SCFG.
+Let $\gnulls \subseteq \gnons$ be the set of null states in $\gnons$, {\bf excluding} post-emit states.
+Let $\gemits \subset \gnons$ be the set of post-emit states.
+Let $\gbifs \subseteq \gnons$ be the set of bifurcation states.
+
+We here define the grammar $G'$,
+\[
+G' = \left( \Omega, \gnons', \grules', P' \right)
+\]
+which is equivalent to $G$ in sequence but has no null subtrees.
+
+The new states $\gnons'$ are defined as follows.
+Start with $\gnons$; remove bifurcation states;
+then introduce a new state $N'$ for every null $N \in \gnulls$ and three new states $B^0, B', B^2$ for every bifurcation $B \in \gbifs$.
+
+\[
+\gnons' = 
+\left( \bigcup_{N \in \gnulls} \{ N' \} \right) \cup \left( \bigcup_{B \in \gbifs} \{ B^0, B', B^2 \} \right) \cup \gnons \setminus \gbifs
+\]
+
+The idea is that $N'$ (in $G'$) is a null state that is equivalent to null state $N$ (in $G$) for non-empty sequence only.
+That is, for any terminal sequence $S$,
+
+\[
+P'(S|N') = \left\{ \begin{array}{ll} P(S|N) & \mbox{if $S \neq \epsilon$} \\ 0 & \mbox{if $S = \epsilon$} \end{array} \right.
+\]
+
+Similarly, $B'$ is a null state that is equivalent to bifurcation state $B$ for non-empty sequence,
+while $B^2$ is a null state that is is equivalent to $B$ for parse trees where both children of $B$ are non-empty.
+
+In contrast, $B^0$ is {\bf exactly} equivalent to $B$ in sequence.
+However, null subtrees in $B^0$ are explicitly accounted for,
+their probabilities factored into the transitions $B' \to L'$ and $B' \to R'$ and the termination $B^0 \to \epsilon$,
+using the inside probabilities for empty sequences, $P(\epsilon|L)$ and $P(\epsilon|R)$.
+
+The probabilities $P(\epsilon|X)$ are related by the following system of equations
+
+\[
+P(\epsilon|X) = P(X \to \epsilon) + \sum_Y P(X \to Y) P(\epsilon|Y) + \sum_{L,R} P(X \to LR) P(\epsilon|L) P(\epsilon|R)
+\]
+
+which are nonlinearly coupled (via bifurcations) but may be solved numerically, e.g., by the Newton-Raphson method,
+or by iterated approximation starting from a lower bound $P(\epsilon|X) \geq 0$.
+
+The new rules and their probabilities are
+\[
+\begin{array}{rrcl}
+\forall \rho \in (\grules \setminus \allrules{\gbifs}): & P'(\rho)             & = & P(\rho) \\
+                                \forall N \in \gnulls: & P'(N' \to \epsilon)  & = & 0  \\
+                          \ldots \forall B \in \gbifs: & P'(N' \to B')        & = & P(N \to B) \\
+                         \ldots \forall M \in \gnulls: & P'(N' \to M')        & = & P(N \to M) \\
+                         \ldots \forall E \in \gemits: & P'(N' \to E)         & = & P(N \to E) \\
+               \forall (A \to B) \in \rightside{\gbifs}: & P'(A \to B^0)        & = & P(A \to B) \\
+              \forall (B \to LR) \in \leftside{\gbifs}: & P'(B^0 \to \epsilon) & = & P(B \to LR)\ P(\epsilon | L)\ P(\epsilon | R) \\
+                                                       & P'(B^0 \to B')       & = & 1 \\
+                                                       & P'(B' \to \epsilon)  & = & 0 \\
+                                                       & P'(B' \to L')        & = & P(B \to LR)\ P(\epsilon | R) \\
+                                                       & P'(B' \to R')        & = & P(B \to LR)\ P(\epsilon | L) \\
+                                                       & P'(B' \to B^2)       & = & 1 \\
+                                                       & P'(B^2 \to L'\ R')   & = & P(B \to LR) \\
+\end{array}
+\]
+
+Note that grammar $G'$, like $G$, has RNA normal-form states.
+Note also that $G'$ is not, in general, normalized by production rule;
+however, $G'$ is equivalent to $G$ in parse and is therefore normalized by parse tree (if $G$ is).
+
+\subsection{Eliminating null states}
+
+We now proceed to eliminate null cycles from $G'$.
+Since null subtrees have been eliminated, the remaining null cycles use only transition rules.
+
+We create the grammar
+\[
+G'' = \left( \Omega, \gnons', \grules'', P'' \right)
+\]
+which has the same nonterminals as $G'$, but different rules and rule probabilities.
+
+Let $\gnulls' \subseteq \gnons'$ be the set of null states in $\gnons'$, {\bf including} post-emit states.
+
+Define ${\bf t}$, the {\em transition matrix} of $G'$, as $t_{XY} = P'(X \to Y)$ for all $X,Y \in \gnons'$.
+The effective transition probability $q_{XY}$ between two states $X,Y$
+sums over all paths through null states (in the summand, $n$ is the length of the null path):
+\[
+{\bf q} = \sum_{n=0}^\infty {\bf t}^n = ({\bf 1}-{\bf t})^{-1}
+\]
+Here ${\bf 1}$ is the identity matrix.
+The matrix inverse may be computed in the usual ways (Gauss-Jordan elimination, LU decomposition, etc.)
+
+Since the bifurcation states of $G'$ explicitly generate non-empty sequence,
+the system of equations relating the probabilities $P'(\epsilon|X)$ is completely linear
+and may be solved in the same way.
+Let $u_X = P'(\epsilon|X)$ and $v_X = P'(X \to \epsilon)$.
+Then
+
+\[
+{\bf u} = {\bf v} + {\bf tu}
+\]
+
+whose solution is ${\bf u} = {\bf qv}$.
+Thus $P'(\epsilon|X) = \sum_Y q_{XY} P'(Y \to \epsilon)$.
+
+We now define $P''$ as follows.
+\begin{itemize}
+\item For all rules $\rho \in \grules'$ that are {\bf not} transitions or terminations, set $P''(\rho) = P'(\rho)$.
+\item For terminations from null states $X \in \gnulls'$, set $P''(X \to \epsilon) = u_X$.
+(NB this may create some terminations $X \to \epsilon$ that were not present in $G'$.)
+\item For transitions from null states $X \in \gnulls'$ to non-null states $Y \notin \gnulls'$, set $P''(X \to Y) = q_{XY}$.
+(NB this may create some transitions $X \to Y$ that were not present in $G'$.)
+\item For transitions {\bf to} null states $X \in \gnulls'$, set $P''(A \to X) = 0$.
+\end{itemize}
+
+Although we have left null states in $G''$, they now have no incoming transitions
+and are inaccessible unless they are post-bifurcation states (i.e.,states which appear on the right-hand side of bifurcation rules), post-emit states, or the start (root) state.
+All other null states can therefore be dropped from $\gnons''$.
+
+\subsection{Restoring null states}
+
+Suppose that $\rho''$ is a rule in $G''$.
+Algorithm~\ref{alg:restoreTransitions} samples from the distribution of equivalent parse subtrees in $G'$ (possibly containing null cycles).
+In order to sample from $P(T'|T'')$ we need simply map Algorithm~\ref{alg:restoreTransitions} to each rule in $T''$.
+
+For parameter estimation by Expectation Maximization and some other applications, it is useful to know the expected number
+of times that a transition was used, summed over the posterior distribution of parse trees (including those with null cycles).
+If $n''(\rho'')$ is the expected number of times that transition $\rho''$ was used according to an Inside-Outside computation on $G''$,
+then the corresponding expectations $n'(\rho')$ are given by
+
+\begin{eqnarray*}
+       n'(X \to Y) & = & n''(X \to Y) \frac{P''(X \to Y)}{q_{XY}} + \sum_Z n''(X \to Z) \frac{P''(X \to Y) q_{YZ}}{q_{XZ}} \\
+n'(X \to \epsilon) & = & n''(X \to \epsilon) \frac{P''(X \to \epsilon)}{P''(\epsilon | X)}
+ + \sum_W n''(W \to \epsilon) \frac{q_{WX} P''(X \to \epsilon)}{P''(\epsilon | W)}
+\end{eqnarray*}
+
+Expectations for other rules (bifurcations and emissions) are the same for $G'$ as $G''$.
+
+
+\subsection{Restoring null bifurcations}
+
+Suppose that $\rho'$ is a rule in $G'$.
+Algorithm~\ref{alg:restoreBifurcations} samples from the distribution of equivalent parse subtrees in $G$ (possibly containing null subtrees).
+This algorithm also calls Algorithm~\ref{alg:sampleNullSubtree}, which samples from the distribution of empty subtrees rooted at a particular nonterminal.
+In order to sample from $P(T|T')$ we need simply map Algorithm~\ref{alg:restoreBifurcations} to each rule in $T'$.
+
+If $n'(\rho')$ is the expected number of times that rule $\rho'$ was used by $G'$,
+then the corresponding expectations $n(\rho)$ are given by
+
+\begin{eqnarray*}
+    n(B \to L\ R) & = & n'(B' \to L') + n'(B' \to R') + n'(B^0 \to L'\ R') + d(B \to L\ R) \\
+       n(X \to Y) & = & n'(X \to Y) + d(X \to Y) \\
+n(X \to \epsilon) & = & n'(X \to \epsilon) + d(X \to \epsilon)
+\end{eqnarray*}
+Expectations for emissions are the same for $G$ as $G'$.
+In the above expressions $d(\rho)$ is the expected usage of rule $\rho$ by null subtrees:
+
+\[
+d(\rho) = \sum_{(B \to LR) \in \grules} \left[
+n'(B' \to L') c_R(\rho)
++ n'(B' \to R') c_L(\rho)
++ n'(B^0 \to \epsilon) (c_L(\rho) + c_R(\rho))
+\right]
+\]
+
+where $c_W(\rho)$ is the expected usage of rule $\rho$ by an empty parse tree rooted at $W$,
+given by
+
+\begin{eqnarray*}
+c_X(\rho) P(\epsilon | X) & = & P(X \to \epsilon) \delta_{\rho=(X \to \epsilon)}
+ + \sum_Y P(X \to Y) P(\epsilon|Y) \left( c_Y(\rho) + \delta_{\rho=(X \to Y)} \right)
+\\ & &
+ + \sum_{L,R} P(X \to LR) P(\epsilon|L) P(\epsilon|R) \left( c_L(\rho) + c_R(\rho) + \delta_{\rho=(X \to LR)} \right)
+\end{eqnarray*}
+
+where $\delta_U$ is the Kronecker delta (1 if condition $U$ is true, 0 if it is false).
+Note that in contrast to the system of equations for $P(\epsilon|X)$, this is a linear system of equations
+of the form ${\bf c} = {\bf Mc} + {\bf k}$, which may be solved by matrix inversion:
+${\bf c} = ({\bf 1}-{\bf M})^{-1} {\bf k}$.
+
+
+
+\bibliography{../latex-inputs/alignment,../latex-inputs/reconstruction,../latex-inputs/duplication,../latex-inputs/genomics,../latex-inputs/ncrna,../latex-inputs/url}
+
+\clearpage
+\section*{Algorithms}
+
+\begin{algorithm}[!ht]
+  \SetLine
+  \SetKwFunction{rnd}{Random[0,1]}
+  \KwIn{Rule $\rho'' \in \grules''$}
+  \KwOut{Parse (sub)tree $T' \in \gtrees'$}
+
+  \Switch{$\rho''$}{
+    \Case{$X \to Y$}{
+      \eIf{\rnd $< P(X \to Y) / q_{XY}$}{
+        \KwRet{$(X \to Y)$} \;
+      }{
+        Let $z = \sum_W q_{XW} P'(W \to Y)$ \;
+        Sample state $V$ from probability distribution $P(V) = q_{XV} P'(V \to Y) / z$ \;
+        \KwRet{$(\mathrm{restoreTransitions}(X \to V) \to Y)$} \;
+      }
+    }
+    \Case{$X \to \epsilon$}{
+      \eIf{\rnd $< P'(X \to \epsilon) / P'(\epsilon | X)$}{
+        \KwRet{$(X \to \epsilon)$} \;
+      }{
+        Let $z = \sum_W q_{XW} P'(W \to \epsilon)$ \;
+        Sample state $V$ from probability distribution $P(V) = q_{XV} P'(V \to \epsilon) / z$ \;
+        \KwRet{$(\mathrm{restoreTransitions}(X \to V) \to \epsilon)$} \;
+      }
+    }
+    \Other{
+      \KwRet{$(\rho'')$} \;
+    }
+  }
+  \caption{\label{alg:restoreTransitions}
+    Subroutine $\mathrm{restoreTransitions}(\rho'')$ for the null cycle elimination procedure.
+  }
+\end{algorithm}
+
+
+\begin{algorithm}[!ht]
+  \SetLine
+  \SetKwFunction{rnd}{Random[0,1]}
+  \KwIn{Rule $\rho' \in \grules'$}
+  \KwOut{Parse (sub)tree $T \in \gtrees$}
+
+  \Switch{$\rho'$}{
+    \Case{$B^0 \to \epsilon$}{
+      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
+      $T_L \leftarrow \mathrm{sampleNullSubtree}(L)$ \;
+      $T_R \leftarrow \mathrm{sampleNullSubtree}(R)$ \;
+      \KwRet{$(B \to T_L\ T_R)$} \;
+    }
+    \Case{$B' \to L'$}{
+      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
+      $T_R \leftarrow \mathrm{sampleNullSubtree}(R)$ \;
+      \KwRet{$(B \to L\ T_R)$} \;
+    }
+    \Case{$B' \to R'$}{
+      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
+      $T_L \leftarrow \mathrm{sampleNullSubtree}(L)$ \;
+      \KwRet{$(B \to T_L\ R)$} \;
+    }
+    \Case{$B^2 \to L'\ R'$}{
+      Let $B \to L\ R$ be the original bifurcation in $\grules$ \;
+      \KwRet{$(B \to L\ R)$} \;
+    }
+    \lCase{$B^0 \to B'$}{
+      \KwRet{$()$} \;
+    }
+    \lCase{$B' \to B^2$}{
+      \KwRet{$()$} \;
+    }
+    \Other{
+      Let $\rho$ be the original rule in $\grules$ \;
+      \KwRet{$(\rho)$} \;
+    }
+  }
+
+  \caption{\label{alg:restoreBifurcations}
+    Subroutine $\mathrm{restoreBifurcations}(\rho')$ for the null cycle elimination procedure.
+  }
+\end{algorithm}
+
+
+\begin{algorithm}[!ht]
+  \SetLine
+  \SetKwFunction{rnd}{Random[0,1]}
+  \KwIn{Nonterminal $A \in \gnons$}
+  \KwOut{Parse tree $T \in \gtrees: \mathrm{seq}(T) = \epsilon, \mathrm{root}(T) = A$}
+
+  \eIf{$A$ is a bifurcation state, $A \to X\ Y$,}{
+    $T_X \leftarrow \mathrm{sampleNullSubtree}(X)$ \;
+    $T_Y \leftarrow \mathrm{sampleNullSubtree}(Y)$ \;
+    \KwRet{$(A \rightarrow T_X\ T_Y)$} \;
+  }{
+    \eIf{\rnd $< P(A \to \epsilon) / P(\epsilon|A)$}{
+      \KwRet{$(A \to \epsilon)$} \;
+    }{
+      Let $z = \sum_Y P(A \to Y) P(\epsilon | Y)$ \;
+      Sample state $X$ from probability distribution $P(X) = P(A \to X) P(\epsilon | X) / z$ \;
+      $T_X \leftarrow \mathrm{sampleNullSubtree}(X)$ \;
+      \KwRet{$(A \rightarrow T_X)$} \;
+    }
+  }
+
+  \caption{\label{alg:sampleNullSubtree}
+    Subroutine $\mathrm{sampleNullSubtree}(A)$ for the null cycle elimination procedure.
+  }
+\end{algorithm}
+
+
+
+\end{document}
