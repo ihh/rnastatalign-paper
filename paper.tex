@@ -705,13 +705,19 @@ These unobserved fragments can be unbounded in length (and so, therefore, can th
 Within the CYK, Inside and Outside recursions, this causes cyclic dependencies which cannot be resolved.
 
 Below we describe a method to eliminate null cycles from
-the ensemble model, by transforming any SCFG to an equivalent acyclic SCFG.
+the ensemble model by transforming any SCFG to an equivalent acyclic SCFG.
 We then present multiple-sequence versions of the CYK, Inside and Outside algorithms.
 
-As an aside: while some sort of null-cycle elimination is often required in order to deal with cyclic dependencies, there are several ways to accomplish this other than the algorithm presented here.
-A simpler approach (that only works for the CYK algorithm) appears in the computational linguistics literature \cite{GecsegSteinby97}.
-We have also developed a heuristic for CYK that simply ignores null cycles, as well as an iterative approximation that loops several times over cyclically-dependent cells of the DP matrix
-until the estimate starts to converge. For conciseness, we have omitted descriptions of these methods, presenting only the exact elimination algorithm.
+While some sort of null-cycle elimination is often required in order
+to deal with cyclic dependencies, there are several ways to accomplish
+this other than the algorithm presented below.  A simpler approach
+(that only works for the CYK algorithm) appears in the computational
+linguistics literature \cite{GecsegSteinby97}.  We have also developed
+a heuristic for CYK that simply ignores null cycles as well as an
+iterative approximation that loops several times over
+cyclically-dependent cells of the DP matrix until the estimate starts
+to converge. For conciseness, we have omitted descriptions of these
+methods, presenting only the exact elimination algorithm.
 
 
 \subsubsection*{Exact elimination of null cycles in SCFGs}
@@ -1177,7 +1183,7 @@ the approximate bounds of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot
  Nonetheless, the extreme complexity of the
 ensemble model, despite the simplicity of the underlying model of RNA
 structure, makes clear the necessity for automated procedures for
-model construction.  Dataset S1 gives the state space of the composed
+model construction.  Dataset S1 gives the state space of the ensemble
 model constructed by the search algorithm and Dataset S2 the reduced
 model after eliminating windback states; both are in Graphviz format for
 visualization and show the state of the singlet transducer generating
