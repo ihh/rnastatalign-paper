@@ -85,7 +85,7 @@ robust theoretical framework for reconstructing histories of
 substitutions, indels and changes in RNA structure.
 
 We describe a ``transducer composition'' algorithm for extending
-pairwise statistical models of RNA structural evolution to models of
+pairwise probabilistic models of RNA structural evolution to models of
 multiple sequences related by a phylogenetic tree.  This algorithm
 draws on formal models of computational linguistics as well as the
 1985 protosequence algorithm of David Sankoff.  The output of the
@@ -120,17 +120,22 @@ released under the GNU Public License at
 \newpage
 \section*{Author Summary}
 
-A number of leading methods for bioinformatics analysis of noncoding RNA
- use probabilistic grammars as models for pairwise alignments.
-We show that any such pairwise grammar can be extended to an entire phylogeny,
- by considering the pairwise grammar as a machine (a ``transducer'') that locally transforms one RNA structure into another
- (thereby modeling a single parent-child relationship in the tree).
-In addition to current applications such as genefinding, homology detection, alignment and secondary structure prediction,
- this should permit statistical reconstruction of RNA genes ancestral to many present-day sequences.
-We describe algorithms, software implementations, and an elementary benchmark wherein
- the complexity and accuracy of three-way RNA reconstruction is measured as the length of one branch is varied.
-In the Discussion we consider how the three-way RNA alignment-reconstruction-folding algorithm, which is currently very expensive computationally,
- might be made more efficient so that larger phylogenies could be considered.
+A number of leading methods for bioinformatics analysis of structural
+RNAs use probabilistic grammars as models for pairs of homologous
+RNAs.  We show that any such pairwise grammar can be extended to an
+entire phylogeny by treating the pairwise grammar as a machine (a
+``transducer'') that models a single ancestor-descendant relationship
+in the tree, transforming one RNA structure into another.  In addition
+to current applications such as RNA genefinding, homology detection,
+alignment and secondary structure prediction, this should permit
+probabilistic reconstruction of RNA genes ancestral to many
+present-day sequences.  We describe algorithms, software
+implementations, and an elementary benchmark of the dependence of the
+accuracy of three-taxon RNA reconstruction on the outgroup branch
+length.  In the Discussion we consider how the three-taxon RNA
+alignment-reconstruction-folding algorithm, which is currently very
+computationally-expensive, might be made more efficient so that larger
+phylogenies could be considered.
 
 \newpage
 \section*{Introduction}
@@ -176,12 +181,13 @@ A pairwise model represents an individual branch of a phylogenetic tree, with $T
 % (second part: multiple)
 The second half of the phylogenetic modeling problem involves extending the model (and related inference algorithms) from a single branch to a complete phylogeny,
 i.e., from a pairwise model of two sequences to a {\bf multiple-sequence model} of many sequences.
-In a typical situation, the sequences at the leaves of the tree are observed, but those at internal nodes are unobserved.
+In a typical situation, the sequences at the leaves of the tree are
+observed but those at internal nodes are not.
 Questions of interest then include:
 \begin{description}
 \item[A.] What is the likelihood for the observed sequence data?
 \item[B.] Can we sample (find the mode, take moments, etc.) from the posterior distribution of the unobserved sequence at the root node?
-\item[C.] Can we sample (etc.) from the posterior of the unobserved sequences at the other internal nodes?
+\item[C.] Can we sample from the posterior of the unobserved sequences at the other internal nodes?
 \item[D.] Can we estimate summaries of the evolutionary history, such as
   the number of substitution events on each branch (for a substitution
   model), the alignment (for a model which includes indels), or
@@ -233,12 +239,12 @@ into a coherent, multiple-sequence SCFG,
 this multiple-sequence SCFG, and
 % (which appear to converge even if the SCFG contains null bifurcations and null cycles);
 (3) freely-available software implementing algorithms (1) and (2) for
-the simplified case of a three-branch star-topology tree.
+the simplified case of a three-taxon star-topology tree.
 While the idea of composing conditionally-normalized models on trees
 is intuitive, the resulting models can be very complex, even for
 simple models of RNA evolution, making (1) necessary.
 Studies of related indel models have suggested that an implementation
-of dynamic programming (DP) algorithms on the three-branch tree topology is sufficient to
+of dynamic programming (DP) algorithms on a three-taxon tree is sufficient to
 draw samples from the posterior distribution of ancestral sequences on
 more complex tree topologies, using Markov Chain Monte Carlo or MCMC
 \cite{HolmesBruno2001,JensenHein2002,RedelingsSuchard2005},
@@ -251,7 +257,7 @@ much more compact than suggested by naive approaches to model
 construction.  We provide analyses of the asymptotic complexities of
 models constructed using our procedure and provide estimates of the
 time and memory required to reconstruct the structures of several RNA
-families for the case of a 3-taxon phylogeny, which we have
+families for the case of a three-taxon phylogeny, which we have
 implemented in the program \indiegram. While by these estimates only
 the smallest sequences currently fit into affordable memory, thereby
 preventing us from applying our method to many problems of interest,
@@ -307,14 +313,10 @@ Our problem statement is this:
   RNAs.}
 %}
 %\vspace{.5\baselineskip}
-
-We assume here that the phylogeny, including both the tree topology and branch lengths, is given.
-This constraint somewhat arbitrarily confines the problem domain to the rather restricted case where we already have a phylogeny (and potentially a consensus structure),
-and we seek only an alignment plus ancestral reconstruction.
-It is important to note, however, that as far as the {\em model} is concerned, none of the constraints (phylogeny, structure or alignment) are final.
-For example, the probabilistic framework readily allows us to compare likelihoods of two different phylogenetic trees, by constructing a composite transducer for each tree.
-Thus, MCMC samplers for alignments could in principal be extended to phylogenies (albeit at a computational cost).
-We revisit such MCMC samplers in the Discussion.
+We assume here that the phylogeny, including both the tree topology
+and branch lengths, is given.
+% Ian, I moved the bits which you added here to the discussion; please
+% edit per your discretion.
 
 This paper focuses on model construction and inference algorithms
 rather than the heuristics which will be necessary to make these
@@ -1234,12 +1236,12 @@ Guided by our experience with the \emph{nanos} 3' TCE and tRNA, where
 the reconstruction problem was made easy by the presence of a close
 outgroup, we conducted a simulation study to investigate the
 dependence of reconstruction accuracy on outgroup branch length.
-(We here use the term ``outgroup'' loosely, to denote the variable-length branch in a three-branch study,
-where the other two branches are held at unit length.
-Technically, the term ``outgroup'' is only correct if the outgroup's branch is longer than the other two branches.)
+(We here use the term ``outgroup'' loosely to denote the
+variable-length branch in our three-taxon study,
+where the other two branches are held at unit length.)
 
 We simulated the evolution of RNAs under the TKFST model along
-3-taxon phylogenies (with one internal node), where we kept the branch lengths of two
+three-taxon phylogenies (with one internal node), where we kept the branch lengths of two
 sibling species constant and varied the branch length of the
 outgroup.  We chose the parameters of the TKFST model to
 generate ``interesting'' alignments ($\sim 0.3$ substructure indels per
@@ -1397,12 +1399,27 @@ be possible soon). The approach of Redelings and Suchard therefore
 merits future consideration in the context of modeling the evolution
 of RNAs on a tree.
 
-An alternative MCMC scheme for sampling RNA phylogeny, structure and alignment was developed for the SimulFold program \cite{MeyerMiklos2007}.
-SimulFold does not use a strictly normalized probabilistic model, resulting in some oddities in the ways that structure and indels interact
-(for example, it does not penalize deletion of one half of a basepair).
-Currently, it is not clear how appropriate SimulFold would be for ancestral reconstruction,
-although it has several advantages (e.g. explicit treatment of pseudoknots).
-Of course, MCMC kernels are inherently adaptable to other purposes: the MCMC moves developed for SimulFold may be useful for inference under different models.
+An alternative MCMC scheme for sampling RNA phylogeny, structure and
+alignment was developed for the SimulFold program
+\cite{MeyerMiklos2007}.  SimulFold does not use a strictly normalized
+probabilistic model, resulting in some oddities in the ways that
+structure and indels interact (for example, it does not penalize
+deletion of one half of a basepair).  Currently, it is not clear how
+appropriate SimulFold would be for ancestral reconstruction, although
+it has several advantages (e.g. explicit treatment of pseudoknots).
+Of course, MCMC kernels are inherently adaptable to other purposes:
+the MCMC moves developed for SimulFold may be useful for inference
+under different models.
+
+This paper focuses on the case where the tree topology is known, but
+many of the methods which we describe below can be extended to the
+more general case where none of the possible constraints (phylogeny,
+structure or alignment) are final.  For example, the probabilistic
+framework readily allows us to compare likelihoods of two different
+phylogenetic trees by constructing a composite transducer for each
+tree.  Thus, the MCMC samplers described above for alignments could,
+in principal, be extended to phylogenies (albeit at a computational
+cost).
 
 While MCMC provides the most information about the posterior distribution of evolutionary histories,
 in practice a maximum likelihood inference may be adequate (and typically much faster).
