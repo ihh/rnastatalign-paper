@@ -1,6 +1,8 @@
 
+# there has to be a better way of doing this...
 #MAKEFILE := /mnt/nfs/users/rbradley/projects/rnastatalign-paper/simulations/Makefile
-MAKEFILE := /Users/rbradley/papers/rnastatalign-paper/simulations/Makefile
+#MAKEFILE := /Users/rbradley/papers/rnastatalign-paper/simulations/Makefile
+MAKEFILE := $(CURDIR)/Makefile
 
 EVOLSAYER = $(DARTDIR)/perl/evolsayer.pl
 EVOLSAYER_ARGS = -sub $(DARTDIR)/grammars/pfold-mix80.eg -looplen 9 -stemlen 5 -stem 0.01

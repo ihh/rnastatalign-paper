@@ -40,23 +40,23 @@ for my $branch (qw(X Y Z)) {
 
 # create rows of new alignment
 my %newrow;
-$newrow{'X'} = $seq{'X'} . ("-" x ($seqlen{'Y'} + $seqlen{'Z'}));
-$newrow{'Y'} = ("-" x $seqlen{'X'}) . $seq{'Y'} . ("-" x $seqlen{'Z'});
-$newrow{'Z'} = ("-" x ($seqlen{'X'} + $seqlen{'Y'})) . $seq{'Z'};
+$newrow{'Z'} = $seq{'Z'} . ("-" x ($seqlen{'Y'} + $seqlen{'X'}));
+$newrow{'Y'} = ("-" x $seqlen{'Z'}) . $seq{'Y'} . ("-" x $seqlen{'X'});
+$newrow{'X'} = ("-" x ($seqlen{'Z'} + $seqlen{'Y'})) . $seq{'X'};
 
-$newrow{'subroot'} = $newrow{'Z'};
-$newrow{'subroot'} =~ s/[^\.\-_]/*/g;
+$newrow{'xyzroot'} = $newrow{'Z'};
+$newrow{'xyzroot'} =~ s/[^\.\-_]/*/g;
 
-$newrow{'root'} = $branchlen{'X'} < $branchlen{'Y'} ? $newrow{'X'} : $newrow{'Y'};
-$newrow{'root'} =~ s/[^\.\-_]/*/g;
+$newrow{'xyroot'} = $branchlen{'X'} < $branchlen{'Y'} ? $newrow{'X'} : $newrow{'Y'};
+$newrow{'xyroot'} =~ s/[^\.\-_]/*/g;
 
 # create new alignment
 my $new = Stockholm->new;
 
-$new->seqname ([qw(root subroot X Y Z)]);
+$new->seqname ([qw(xyzroot xyroot X Y Z)]);
 $new->seqdata (\%newrow);
 
-$new->add_gf ("NH", "((X:$branchlen{X},Y:$branchlen{Y})root:$branchlen{Z},Z:$tiny)subroot;");
+$new->add_gf ("NH", "((X:$branchlen{X},Y:$branchlen{Y})xyroot:$branchlen{Z},Z:$tiny)xyzroot;");
 
 # extract loop TKF parameters from alignment
 my ($lambda, $mu);
@@ -74,7 +74,8 @@ print TEMP $new->to_string;
 close TEMP or die "Couldn't write $temp_alignment: $!";
 
 # run handalign
-my $command = "$handalign -tkf91 -l $loop_len -d $mu -m $loopmodel -s 0 -r -ub $temp_alignment -ha -hca '-lstdc++' -hc /tmp/indiegram-benchmark-cache";
+#my $command = "$handalign -tkf91 -l $loop_len -d $mu -m $loopmodel -s 0 -r -ub $temp_alignment -ha -hca '-lstdc++' -hc /tmp/indiegram-benchmark-cache";
+my $command = "$handalign -tkf91 -l $loop_len -d $mu -m $loopmodel -s 0 -r -ub $temp_alignment -ha -hca '-lstdc++'";   # let's not do the hmmoc cache for now; avoid creepy side-effects
 warn "Running $command\n";
 my @output = `$command`;
 #print grep (!/root/, @output);
