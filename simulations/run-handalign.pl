@@ -18,7 +18,7 @@ my $loopmodel = "$Bin/loopmodel.eg";  # substitution model for handalign (should
 # load alignment
 my $true = Stockholm->from_file ($true_alignment);
 warn "True alignment\n";
-print $true->to_string;
+warn $true->to_string;
 
 # read stuff from alignment
 my %seq = %{$true->seqdata};
@@ -74,6 +74,8 @@ print TEMP $new->to_string;
 close TEMP or die "Couldn't write $temp_alignment: $!";
 
 # run handalign
-my $command = "$handalign -tkf91 -l $loop_len -d $mu -m $loopmodel -s 0 -r -ub $temp_alignment -ha -hca '-lstdc++'";
+my $command = "$handalign -tkf91 -l $loop_len -d $mu -m $loopmodel -s 0 -r -ub $temp_alignment -ha -hca '-lstdc++' -hc /tmp/indiegram-benchmark-cache";
 warn "Running $command\n";
-system $command;
+my @output = `$command`;
+#print grep (!/root/, @output);
+print @output;

@@ -1,0 +1,4 @@
+#!/usr/bin/perl -w
+
+my ($start, $end) = @ARGV;
+print join (" ", $start .. $end), "\n";

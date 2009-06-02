@@ -117,14 +117,26 @@ inferred/clean-empty:
 	@echo "Making $@"
 	@find $(@D) -type f -name *.stock | perl -MStockholm -ne'$$file = $$_; chomp $$file; $$stk=Stockholm->from_file("$$file"); if (@{$$stk->seqname} == 0) { $$file =~ s/\.stock//; print "$$file.stock $$file.submission\n"; }' | xargs -n 50 rm -fv
 
+
+# Run handalign on a single simulated alignment.
+# stem: '0.01/1'
+inferred/%.tkf.stock: alignments/%.reference.stock
+	@echo "Making $@"
+	./run-handalign.pl $< >$@
+
+# Run handalign on all simulated alignments.
+inferred/tkf:
+	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,tkf,$(wildcard alignments/*/*.reference.stock)))
+
 # Analysis.
 inferred/%.indiegram.analysis:	alignments/%.reference.stock\
-				inferred/%.indiegram.stock
+				inferred/%.indiegram.stock\
+				inferred/%.tkf.stock
 	@echo "Making $@"
 	./compare.pl $^ >$@
 
 # Collate results.
-inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix inferred/%/,$(shell gseq 1 25)))
+inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix inferred/%/,$(shell ./gseq 1 25)))
 	@echo "Making $@"
 	rm -fv $@
 	@for i in $^;\

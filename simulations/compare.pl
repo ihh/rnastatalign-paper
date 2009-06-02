@@ -5,9 +5,12 @@ use Stockholm;
 
 my $ref = Stockholm->from_file (shift);
 my $cmp = Stockholm->from_file (shift);
+my $tkf = Stockholm->from_file (shift);
 
-@{$ref->seqname} = ("X", "Y", "Z");
-@{$cmp->seqname} = ("X", "Y", "Z");
+# indiegram adds cruft to the sequence names and prints non-Stockholm stuff that gets read back incorrectly by Stockholm.pm
+# handalign and indiegram both add "root" and "subroot" lines
+# so we need to tidy up the sequence name fields...
+@{$ref->seqname} = @{$cmp->seqname} = @{$tkf->seqname} = ("X", "Y", "Z");
 
 $ref->gc->{"ancestral_SS"} = $ref->gr->{"SS"}->{"root"};
 delete $ref->gr->{"SS"}->{"root"};
@@ -23,18 +26,10 @@ while (my ($name, $data) = each %{$cmp->seqdata}) {
 
 $ref->to_file ("/tmp/ref.stock");
 $cmp->to_file ("/tmp/cmp.stock");
+$tkf->to_file ("/tmp/tkf.stock");
 
-my $cmd = "cmpalign.pl /tmp/ref.stock /tmp/cmp.stock >/tmp/cmpalign.out";
-system ($cmd) == 0 or die "Couldn't run command: $cmd\n";
-
-open CMPALIGN, "</tmp/cmpalign.out" or die "Couldn't open '/tmp/cmpalign.out'\n";
-my ($acc, $sn, $ppv);
-while (<CMPALIGN>) {
-  if (/^Acc\s+(\S+)$/) { $acc = $1; }
-  if (/^Sn\s+(\S+)$/) { $sn = $1; }
-  if (/^PPV\s+(\S+)$/) { $ppv = $1; }  
-}
-close CMPALIGN;
+my ($acc, $sn, $ppv) = cmpalign ("/tmp/ref.stock", "/tmp/cmp.stock");
+my ($acc_tkf, $sn_tkf, $ppv_tkf) = cmpalign ("/tmp/ref.stock", "/tmp/tkf.stock");
 
 my $refanc = $ref->gc->{"ancestral_SS"};
 my $refseq = $ref->seqdata->{"root"};
@@ -82,7 +77,7 @@ $refancstock->to_file ("/tmp/refanc.stock");
 $cmpancstock->to_file ("/tmp/cmpanc.stock");
 
 my $stemloc = "$ENV{'DARTDIR'}/bin/stemloc";
-$cmd = "$stemloc /tmp/refanc.stock /tmp/cmpanc.stock >/tmp/stemloc.out";
+my $cmd = "$stemloc /tmp/refanc.stock /tmp/cmpanc.stock >/tmp/stemloc.out";
 system ($cmd) == 0 or die "Couldn't run '$cmd'.\n";
 
 my $stemlocout = Stockholm->from_file ("/tmp/stemloc.out");
@@ -93,5 +88,24 @@ if ($stemlocout->gc->{"SS_cons"} =~ /[<>()]/) {
   $ancoverlap /= $refanc =~ tr/><//;
 }
 
-# print "## ", join ("\t", ("Acc", "Sn", "PPV", "ancestral_bp_overlap")), "\n";
-print join ("\t", ($acc, $sn, $ppv, $ancoverlap)), "\n";
+# print "## ", join ("\t", ("Acc", "Sn", "PPV", "ancestral_bp_overlap", "Acc_TKF", "Sn_TKF", "PPV_TKF")), "\n";
+print join ("\t", ($acc, $sn, $ppv, $ancoverlap, $acc_tkf, $sn_tkf, $ppv_tkf)), "\n";
+
+sub cmpalign {
+    my ($ref, $cmp) = @_;
+    my $cmd = "cmpalign $ref $cmp >/tmp/cmpalign.out";
+    warn "Running $cmd\n";
+    system ($cmd) == 0 or die "Couldn't run command: $cmd\n";
+
+    local *CMPALIGN;
+    open CMPALIGN, "</tmp/cmpalign.out" or die "Couldn't open '/tmp/cmpalign.out'\n";
+    my ($acc, $sn, $ppv);
+    while (<CMPALIGN>) {
+	if (/^Acc\s+(\S+)$/) { $acc = $1; }
+	if (/^Sn\s+(\S+)$/) { $sn = $1; }
+	if (/^PPV\s+(\S+)$/) { $ppv = $1; }  
+    }
+    close CMPALIGN;
+
+    return ($acc, $sn, $ppv);
+}
