@@ -592,7 +592,7 @@ into making reactive transitions.
 The four types of allowed transitions listed above can be formalized
 as follows.
 Let the total order on the nodes correspond to any preorder traversal of
-the tree; thus, ``$m$ is ancestral to $n$'' is sufficient-but-not-necessary for ``$m \prec n$''.
+the tree; thus, ``$m$ is ancestral to $n$'' is sufficient-but-not-necessary for ``$m \prec n$.''
 Let ${\cal T}_m$ denote the singlet or branch transducer which emits symbols to node $m$.
 Transducer ${\cal T}_m$ changes state if and only if one of the
 following three mutually-exclusive conditions holds:
@@ -990,7 +990,6 @@ C++ code for the corresponding jointly-normalized three-sequence
 Any model of structural evolution which can be represented as a Pair
 SCFG and factored into singlet and branch transducers is permitted as input to
 the packages, allowing for flexible, automated model design.
-
 The available software is described in \supptext{3}.
 
 % Simultaneous alignment and folding of three RNA sequences is highly-demanding computationally.
@@ -1031,7 +1030,7 @@ The available software is described in \supptext{3}.
 \subsection*{A simple model of RNA structural evolution}
 
 We illustrated our method for building models of structured sequences
-using a simplified model which was introduced in previous work,
+using a model which was introduced in previous work,
 the TKF Structure Tree \cite{Holmes2004}, a simplified probabilistic
 model of the evolution of RNA structure.
 
@@ -1062,7 +1061,7 @@ large-scale structural changes (\figref{tkfst-mutations}).
 
 We parametrized the singlet and branch transducers of the TKFST model
 using estimates reported by a phylo-grammar for RNA secondary
-structure prediction, \pfold\ \cite{KnudsenHein2003} and an
+structure prediction, \pfold\ \cite{KnudsenHein2003}, and an
 implementation of pairwise alignment for the TKF Structure Tree model,
 \evoldoer\ \cite{Holmes2004}.
 The equilibrium distributions of unpaired and paired nucleotides of
@@ -1153,7 +1152,7 @@ sequence. We chose this phylogeny for two reasons: (1) it is the
 simplest extension of the well-studied, standard two-sequence (Pair
 SCFG) model and (2) algorithms on a phylogeny with three leaves
 should be sufficient for ergodic sampling of reconstructions on any larger phylogeny,
-using e.g. a Gibbs-sampling MCMC kernel \cite{JensenHein2002}
+using, e.g., a Gibbs-sampling MCMC kernel \cite{JensenHein2002}
 or a progressive suboptimal-alignment sampling heuristic \cite{PatenHolmesBirney2008}.
 
 The statistics of the TKFST model on the three-taxon phylogeny
@@ -1179,7 +1178,7 @@ transitions).  Note that both before and after the reduction in
 complexity, the total number of states and transitions are less than
 the approximate bounds of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot
 3) \Rightarrow 441$ states and $O(a \cdot b^2 \cdot N) = O(7 \cdot
-21^2 \cdot 3) \Rightarrow 9,261$ transitions suggested in \secname{The composition algorithm}.
+21^2 \cdot 3) \Rightarrow 9,261$ transitions suggested in \secname{The composition algorithm.}
  Nonetheless, the extreme complexity of the
 ensemble model, despite the simplicity of the underlying model of RNA
 structure, makes clear the necessity for automated procedures for
@@ -1208,7 +1207,7 @@ alignments, such as those constructed for ribosomal RNAs
 \cite{Gutell93}, are frequently available for characterized RNA families.  By constraining the
 inference algorithms with such sequence alignments, the memory and
 time complexity of the algorithms could be dramatically reduced.  Such
-constraints can be naturally expressed with {\em alignment envelopes},'
+constraints can be naturally expressed with ``alignment envelopes,''
 the alignment-space analogue of fold envelopes \cite{Holmes2005}.
 However, in this paper we focus on model construction and inference
 algorithms and postpone exploration of heuristics and constraints of
@@ -1281,7 +1280,6 @@ suggest that the same may be true for probabilistic inference of
 ancestral structures.
 The effect of imperfect knowledge of the ancestral structures has not been explored.
 
-\newpage
 \section*{Discussion}
 
 
@@ -1412,13 +1410,13 @@ probabilistic model, resulting in some oddities in the ways that
 structure and indels interact (for example, it does not penalize
 deletion of one half of a basepair).  Currently, it is not clear how
 appropriate SimulFold would be for ancestral reconstruction, although
-it has several advantages (e.g. explicit treatment of pseudoknots).
+it has several advantages (e.g., explicit treatment of pseudoknots).
 Of course, MCMC kernels are inherently adaptable to other purposes:
 the MCMC moves developed for SimulFold may be useful for inference
 under different models.
 
 This paper focuses on the case where the tree topology is known, but
-many of the methods which we describe below can be extended to the
+many of the methods which we have described can be extended to the
 more general case where none of the possible constraints (phylogeny,
 structure or alignment) are final.  For example, the probabilistic
 framework readily allows us to compare likelihoods of two different
