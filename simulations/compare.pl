@@ -93,19 +93,19 @@ print join ("\t", ($acc, $sn, $ppv, $ancoverlap, $acc_tkf, $sn_tkf, $ppv_tkf)), 
 
 sub cmpalign {
     my ($ref, $cmp) = @_;
-    my $cmd = "cmpalign $ref $cmp >/tmp/cmpalign.out";
+    my $cmd = "cmpalign -s $ref $cmp >/tmp/cmpalign.out";
     warn "Running $cmd\n";
     system ($cmd) == 0 or die "Couldn't run command: $cmd\n";
 
     local *CMPALIGN;
     open CMPALIGN, "</tmp/cmpalign.out" or die "Couldn't open '/tmp/cmpalign.out'\n";
-    my ($acc, $sn, $ppv);
+    my ($acc, $sn, $ppv, $tcs);
     while (<CMPALIGN>) {
-	if (/^Acc\s+(\S+)$/) { $acc = $1; }
-	if (/^Sn\s+(\S+)$/) { $sn = $1; }
-	if (/^PPV\s+(\S+)$/) { $ppv = $1; }  
+	if (/\S/) {
+	    ($acc, $sn, $ppv, $tcs) = split;
+	}
     }
     close CMPALIGN;
 
-    return ($acc, $sn, $ppv);
+    return ($acc, $sn, $ppv, $tcs);
 }
