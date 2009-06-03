@@ -3,9 +3,13 @@
 use strict;
 use Stockholm;
 
+my $tmpdir = "/tmp";
+
 my $ref = Stockholm->from_file (shift);
 my $cmp = Stockholm->from_file (shift);
 my $tkf = Stockholm->from_file (shift);
+my $stemloc = Stockholm->from_file (shift);
+my $stemlocama = Stockholm->from_file (shift);
 
 # indiegram adds cruft to the sequence names and prints non-Stockholm stuff that gets read back incorrectly by Stockholm.pm
 # handalign and indiegram both add "root" and "subroot" lines
@@ -24,12 +28,12 @@ while (my ($name, $data) = each %{$cmp->seqdata}) {
   }
 }
 
-$ref->to_file ("/tmp/ref.stock");
-$cmp->to_file ("/tmp/cmp.stock");
-$tkf->to_file ("/tmp/tkf.stock");
+for my $file (qw(ref cmp tkf stemloc stemlocama)) {
+    eval('$'.$file)->to_file ("$tmpdir/$file.stock");
+}
 
-my ($acc, $sn, $ppv) = cmpalign ("/tmp/ref.stock", "/tmp/cmp.stock");
-my ($acc_tkf, $sn_tkf, $ppv_tkf) = cmpalign ("/tmp/ref.stock", "/tmp/tkf.stock");
+my ($acc, $sn, $ppv, $tcs) = cmpalign ("$tmpdir/ref.stock", "$tmpdir/cmp.stock");
+my @acc_sn_ppv_tcs = map ([cmpalign ("$tmpdir/ref.stock", "$tmpdir/$_.stock")], qw(tkf stemloc stemlocama));
 
 my $refanc = $ref->gc->{"ancestral_SS"};
 my $refseq = $ref->seqdata->{"root"};
@@ -73,14 +77,14 @@ $cmpancstock->seqdata->{"cmp"} = $cmpseq;
 $refancstock->gr->{"SS"}->{"ref"} = $refanc;
 $cmpancstock->gr->{"SS"}->{"cmp"} = $cmpanc;
 
-$refancstock->to_file ("/tmp/refanc.stock");
-$cmpancstock->to_file ("/tmp/cmpanc.stock");
+$refancstock->to_file ("$tmpdir/refanc.stock");
+$cmpancstock->to_file ("$tmpdir/cmpanc.stock");
 
-my $stemloc = "$ENV{'DARTDIR'}/bin/stemloc";
-my $cmd = "$stemloc /tmp/refanc.stock /tmp/cmpanc.stock >/tmp/stemloc.out";
+my $stemloc_bin = "$ENV{'DARTDIR'}/bin/stemloc";
+my $cmd = "$stemloc_bin $tmpdir/refanc.stock $tmpdir/cmpanc.stock >$tmpdir/stemloc.out";
 system ($cmd) == 0 or die "Couldn't run '$cmd'.\n";
 
-my $stemlocout = Stockholm->from_file ("/tmp/stemloc.out");
+my $stemlocout = Stockholm->from_file ("$tmpdir/stemloc.out");
 my $ancoverlap = 0;
 # catch case of inferred ancestral structure having no base-pairs
 if ($stemlocout->gc->{"SS_cons"} =~ /[<>()]/) {
@@ -88,24 +92,15 @@ if ($stemlocout->gc->{"SS_cons"} =~ /[<>()]/) {
   $ancoverlap /= $refanc =~ tr/><//;
 }
 
-# print "## ", join ("\t", ("Acc", "Sn", "PPV", "ancestral_bp_overlap", "Acc_TKF", "Sn_TKF", "PPV_TKF")), "\n";
-print join ("\t", ($acc, $sn, $ppv, $ancoverlap, $acc_tkf, $sn_tkf, $ppv_tkf)), "\n";
+warn "## ", join ("\t", ("Acc", "Sn", "PPV", "ancestral_bp_overlap", map (("Acc_$_", "Sn_$_", "PPV_$_"), qw(tkf stemloc stemlocama)))), "\n";
+print join ("\t", ($acc, $sn, $ppv, $ancoverlap, map (@$_[0..2], @acc_sn_ppv_tcs))), "\n";
 
 sub cmpalign {
     my ($ref, $cmp) = @_;
-    my $cmd = "cmpalign -s $ref $cmp >/tmp/cmpalign.out";
+    my $cmd = "cmpalign -s $ref $cmp";
     warn "Running $cmd\n";
-    system ($cmd) == 0 or die "Couldn't run command: $cmd\n";
-
-    local *CMPALIGN;
-    open CMPALIGN, "</tmp/cmpalign.out" or die "Couldn't open '/tmp/cmpalign.out'\n";
-    my ($acc, $sn, $ppv, $tcs);
-    while (<CMPALIGN>) {
-	if (/\S/) {
-	    ($acc, $sn, $ppv, $tcs) = split;
-	}
-    }
-    close CMPALIGN;
-
+    my $line = `$cmd`;
+    warn "Output: $line" if $line =~ /\S/;
+    ($acc, $sn, $ppv, $tcs) = split /\s+/, $line;
     return ($acc, $sn, $ppv, $tcs);
 }

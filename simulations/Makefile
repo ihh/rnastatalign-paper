@@ -130,10 +130,41 @@ inferred/%.tkf.stock: alignments/%.reference.stock
 inferred/tkf:
 	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,tkf,$(wildcard alignments/*/*.reference.stock)))
 
+
+# Prepare a stemloc input alignment (indiegram format is not strict flush Stockholm, as unaligned input sequences are not separated by "# STOCKHOLM 1.0" delimiter lines)
+alignments/%.stemloc.input.stock: alignments/%.input.stock
+		@echo "Converting $< (indiegram Stockholm dialect) into $@ (pared-down Stockholm for stemloc)"
+	cat $< | perl -ne 'if(/#=/){if(/#=GR/){print;print"\n//\n\n# STOCKHOLM 1.0\n"unless++$$seqs>=3}}else{print}' >$@
+
+# Run stemloc on a single simulated alignment.
+# stem: '0.01/1'
+inferred/%.stemloc.stock: alignments/%.stemloc.input.stock
+	@echo "Making $@"
+	stemloc --global --noshow-intermediates --multiple $< >$@
+
+# Run stemloc on all simulated alignments.
+inferred/stemloc:
+	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,stemloc,$(wildcard alignments/*/*.reference.stock)))
+
+
+# Run stemlocama on a single simulated alignment.
+# stem: '0.01/1'
+inferred/%.stemlocama.stock: alignments/%.stemloc.input.stock
+	@echo "Making $@"
+	stemloc --global --noshow-intermediates --ama $< >$@
+
+# Run stemlocama on all simulated alignments.
+inferred/stemlocama:
+	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,stemlocama,$(wildcard alignments/*/*.reference.stock)))
+
+
+
 # Analysis.
 inferred/%.indiegram.analysis:	alignments/%.reference.stock\
 				inferred/%.indiegram.stock\
-				inferred/%.tkf.stock
+				inferred/%.tkf.stock\
+				inferred/%.stemloc.stock\
+				inferred/%.stemlocama.stock
 	@echo "Making $@"
 	./compare.pl $^ >$@
 
@@ -147,9 +178,9 @@ inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix infer
 	done
 
 # Collate results.
-inferred/indiegram.analysis: inferred/all
+inferred/indiegram.analysis: inferred/all inferred/tkf inferred/stemloc inferred/stemlocama
 	@echo "Making $@"
-	echo "z\tAlignAcc\tAlignSn\tAlignPPV\tStructureReconstruction" >$@
+	echo "z\tAlignAcc\tAlignSn\tAlignPPV\tStructureReconstruction\tAlignAccTKF\tAlignSnTKF\tAlignPPVTKF" >$@
 	@for directory in `find $(<D)/ -mindepth 1 -type d ! -iname "*cvs*" -print | xargs -n 1 basename`;\
 	do\
 		make -f $(MAKEFILE) $(@D)/$$directory/indiegram.analysis;\

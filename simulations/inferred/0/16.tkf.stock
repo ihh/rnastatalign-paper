@@ -1,0 +1,12 @@
+# STOCKHOLM 1.0
+#=GF TYPE Final
+#=GF STEP 1
+#=GF SC -76.469
+#=GF NH ((X:1.0000000000,Y:1.0000000000)xyroot:0.0000000000,Z:0.0000100000)xyzroot;
+xyzroot -***-****-*--***-****-****-***-***-**-******
+xyroot  -***-****-*--***-****-****-***-***-**-******
+X       -gaucagug-a--ccuauggcguauc-ccauaugagaaaaccuu
+Y       -gca-accu-g--gcc-cggu-ugac-uua-auc-cg-aauggu
+Z       cgag-acugcauuccc-ugau-uggcacua-acc-gu-gauggg
+#=GF CC LgP(alignment|tree)= -364.58 bits; LgP(sequences|unrelated)= -288.111 bits; LgOddsRatio= -76.469 bits
+//
