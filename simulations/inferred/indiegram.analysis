@@ -1,4 +1,4 @@
-z\tAlignAcc\tAlignSn\tAlignPPV\tStructureReconstruction
+z	AlignAcc	AlignSn	AlignPPV	StructureReconstruction	AlignAccTKF	AlignSnTKF	AlignPPVTKF
 0\t\c
 0.781609	0.819277	0.819277	1	0.885057	0.915663	0.904762
 0\t\c

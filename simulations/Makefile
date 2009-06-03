@@ -174,13 +174,13 @@ inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix infer
 	rm -fv $@
 	@for i in $^;\
 	do\
-		echo "$*\t\c" >>$@ && cat $$i >>$@;\
+		perl -e 'print "$*\t", `cat @{[shift]}`' $$i >>$@;\
 	done
 
 # Collate results.
 inferred/indiegram.analysis: inferred/all inferred/tkf inferred/stemloc inferred/stemlocama
 	@echo "Making $@"
-	echo "z\tAlignAcc\tAlignSn\tAlignPPV\tStructureReconstruction\tAlignAccTKF\tAlignSnTKF\tAlignPPVTKF" >$@
+	perl -e '@s=qw(AlignAcc AlignSn AlignPPV StructureReconstruction;print join ("\t", @s, "StructureReconstruction"); for $$a (qw(TKF stemloc stemlocama)) { print map ("\t$$_$$a", @s) } print "\n"' >$@
 	@for directory in `find $(<D)/ -mindepth 1 -type d ! -iname "*cvs*" -print | xargs -n 1 basename`;\
 	do\
 		make -f $(MAKEFILE) $(@D)/$$directory/indiegram.analysis;\
