@@ -140,7 +140,7 @@ alignments/%.stemloc.input.stock: alignments/%.input.stock
 # stem: '0.01/1'
 inferred/%.stemloc.stock: alignments/%.stemloc.input.stock
 	@echo "Making $@"
-	stemloc --global --noshow-intermediates --multiple $< >$@
+	stemloc -na -1 --global --noshow-intermediates --multiple $< >$@
 
 # Run stemloc on all simulated alignments.
 inferred/stemloc:
@@ -151,7 +151,7 @@ inferred/stemloc:
 # stem: '0.01/1'
 inferred/%.stemlocama.stock: alignments/%.stemloc.input.stock
 	@echo "Making $@"
-	stemloc --global --noshow-intermediates --ama $< >$@
+	stemloc -na -1 --global --noshow-intermediates --ama $< >$@
 
 # Run stemlocama on all simulated alignments.
 inferred/stemlocama:
