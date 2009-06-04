@@ -1,0 +1,10 @@
+# STOCKHOLM 1.0
+#=GF SC      -20.51
+Y            gcguagcuacc-aaugucguuugcg-ccaguuugc
+#=GR Y SS    <<((<.....<-......<......->..>>))>>
+Z            g-ggauccaug-aacuucgucugua-ccucucu-u
+#=GR Z SS    (-(<<.....<-......<......->..>>>)-)
+X            acgaaucaauugaacacugguggggauagauucgu
+#=GR X SS    <<<<<.....<.......(.......)..>>>>>>
+#=GC SS_cons <<.<<.....<.......<.......>..>>>.>>
+//
