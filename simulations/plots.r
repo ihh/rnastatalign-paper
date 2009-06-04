@@ -7,14 +7,16 @@ toPDF = TRUE
 
 alignColor = "blue"
 alignTKFColor = "cyan"
+alignLongColor = "darkblue"
 alignStemlocColor = "skyblue"
-alignStemlocAmaColor = "lightskyblue"
+alignStemlocAmaColor = "darkblue"
 structureColor = "red"
 
 alignShape = 16
-alignTKFShape = 16
-alignStemlocShape = 16
-alignStemlocAmaShape = 16
+alignTKFShape = 1
+alignLongShape = 2
+alignStemlocShape = 3
+alignStemlocAmaShape = 4
 structureShape = 17
 
 ## default plot filename
@@ -40,6 +42,7 @@ data = read.table ("inferred/indiegram.analysis", header = TRUE, sep = "\t")
 ## average datapoints for each outgroup length
 align = array()
 alignTKF = array()
+alignLong = array()
 alignStemloc = array()
 alignStemlocAma = array()
 structure = array()
@@ -52,6 +55,10 @@ for (bin in bins) {
   alignTKF = rbind (
     alignTKF,
     c (bin, mean (subset (data$AlignAccTKF,
+                          data$z == bin))))
+  alignLong = rbind (
+    alignTKF,
+    c (bin, mean (subset (data$AlignAccLong,
                           data$z == bin))))
   alignStemloc = rbind (
     alignStemloc,
@@ -70,6 +77,7 @@ for (bin in bins) {
 ## remove NA rows
 align = align[-1,]
 alignTKF = alignTKF[-1,]
+alignLong = alignLong[-1,]
 alignStemloc = alignStemloc[-1,]
 alignStemlocAma = alignStemlocAma[-1,]
 structure = structure[-1,]
@@ -94,6 +102,11 @@ points (alignTKF,
 lines (lowess (alignTKF), col = alignTKFColor, lwd = 1.5)
 
 
+points (alignLong,
+        col = alignLongColor, pch = alignLongShape, cex = 1)
+lines (lowess (alignLong), col = alignLongColor, lwd = 1.5)
+
+
 points (alignStemloc,
         col = alignStemlocColor, pch = alignStemlocShape, cex = 1)
 lines (lowess (alignStemloc), col = alignStemlocColor, lwd = 1.5)
@@ -109,9 +122,9 @@ points (structure,
 lines (lowess (structure), col = structureColor, lwd = 1.5)
 
 
-legend ("bottomleft", legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)", "Alignment accuracy (Stemloc ML)", "Alignment accuracy (Stemloc AMA)"),
-        col = c (structureColor, alignColor, alignTKFColor, alignStemlocColor, alignStemlocAmaColor),
-        pch = c (structureShape, alignShape, alignTKFShape, alignStemlocColor, alignStemlocAmaColor),
+legend ("bottomleft", legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)", "Alignment accuracy (Long Indel ML)", "Alignment accuracy (Stemloc ML)", "Alignment accuracy (Stemloc AMA)"),
+        col = c (structureColor, alignColor, alignTKFColor, alignLongColor, alignStemlocColor, alignStemlocAmaColor),
+        pch = c (structureShape, alignShape, alignTKFShape, alignLongShape, alignStemlocColor, alignStemlocAmaColor),
         xjust = 1,
         inset = 0.02)
 
