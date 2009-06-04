@@ -124,11 +124,23 @@ inferred/clean-empty:
 # stem: '0.01/1'
 inferred/%.tkf.stock: alignments/%.reference.stock
 	@echo "Making $@"
-	./run-handalign.pl $< >$@
+	./run-tkf.pl $< >$@
 
 # Run handalign (TKF91 model) on all simulated alignments.
 inferred/tkf:
 	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,tkf,$(wildcard alignments/*/*.reference.stock)))
+
+
+# Run handalign (long indel model) on a single simulated alignment.
+# stem: '0.01/1'
+inferred/%.long.stock: alignments/%.reference.stock
+	@echo "Making $@"
+	./run-long.pl $< >$@
+
+# Run handalign (long indel model) on all simulated alignments.
+inferred/long:
+	make -f $(MAKEFILE) $(subst alignments,inferred,$(subst reference,long,$(wildcard alignments/*/*.reference.stock)))
+
 
 
 # Prepare a stemloc input alignment (indiegram format is not strict flush Stockholm, as unaligned input sequences are not separated by "# STOCKHOLM 1.0" delimiter lines)
@@ -178,9 +190,9 @@ inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix infer
 	done
 
 # Collate results.
-inferred/indiegram.analysis: inferred/all inferred/tkf inferred/stemloc inferred/stemlocama
+inferred/indiegram.analysis: inferred/all inferred/tkf inferred/long inferred/stemloc inferred/stemlocama
 	@echo "Making $@"
-	perl -e '@s=qw(AlignAcc AlignSn AlignPPV StructureReconstruction;print join ("\t", @s, "StructureReconstruction"); for $$a (qw(TKF stemloc stemlocama)) { print map ("\t$$_$$a", @s) } print "\n"' >$@
+	perl -e '@s=qw(AlignAcc AlignSn AlignPPV);print join ("\t", @s, "StructureReconstruction"); for $$a (qw(TKF Long Stemloc StemlocAma)) { print map ("\t$$_$$a", @s) } print "\n"' >$@
 	@for directory in `find $(<D)/ -mindepth 1 -type d ! -iname "*cvs*" -print | xargs -n 1 basename`;\
 	do\
 		make -f $(MAKEFILE) $(@D)/$$directory/indiegram.analysis;\

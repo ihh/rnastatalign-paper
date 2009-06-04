@@ -7,6 +7,7 @@ Database file #3: ../latex-inputs/duplication.bib
 Database file #4: ../latex-inputs/genomics.bib
 Database file #5: ../latex-inputs/ncrna.bib
 Database file #6: ../latex-inputs/url.bib
+Warning--I didn't find a database entry for ""
 Warning--empty booktitle in Sakakibara2003
 You've used 101 entries,
             2441 wiz_defined-function locations,
@@ -49,4 +50,4 @@ warning$ -- 1
 while$ -- 563
 width$ -- 104
 write$ -- 1128
-(There was 1 warning)
+(There were 2 warnings)

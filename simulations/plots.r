@@ -7,10 +7,14 @@ toPDF = TRUE
 
 alignColor = "blue"
 alignTKFColor = "cyan"
+alignStemlocColor = "skyblue"
+alignStemlocAmaColor = "lightskyblue"
 structureColor = "red"
 
 alignShape = 16
 alignTKFShape = 16
+alignStemlocShape = 16
+alignStemlocAmaShape = 16
 structureShape = 17
 
 ## default plot filename
@@ -36,6 +40,8 @@ data = read.table ("inferred/indiegram.analysis", header = TRUE, sep = "\t")
 ## average datapoints for each outgroup length
 align = array()
 alignTKF = array()
+alignStemloc = array()
+alignStemlocAma = array()
 structure = array()
 bins = unique (data$z)
 for (bin in bins) {
@@ -47,6 +53,14 @@ for (bin in bins) {
     alignTKF,
     c (bin, mean (subset (data$AlignAccTKF,
                           data$z == bin))))
+  alignStemloc = rbind (
+    alignStemloc,
+    c (bin, mean (subset (data$AlignAccStemloc,
+                          data$z == bin))))
+  alignStemlocAma = rbind (
+    alignStemlocAma,
+    c (bin, mean (subset (data$AlignAccStemlocAma,
+                          data$z == bin))))
   structure = rbind (
     structure,
     c (bin, mean (subset (data$StructureReconstruction,
@@ -56,6 +70,8 @@ for (bin in bins) {
 ## remove NA rows
 align = align[-1,]
 alignTKF = alignTKF[-1,]
+alignStemloc = alignStemloc[-1,]
+alignStemlocAma = alignStemlocAma[-1,]
 structure = structure[-1,]
 
 plot.new()
@@ -72,17 +88,30 @@ points (align,
         col = alignColor, pch = alignShape, cex = 1)
 lines (lowess (align), col = alignColor, lwd = 1.5)
 
+
 points (alignTKF,
         col = alignTKFColor, pch = alignTKFShape, cex = 1)
 lines (lowess (alignTKF), col = alignTKFColor, lwd = 1.5)
+
+
+points (alignStemloc,
+        col = alignStemlocColor, pch = alignStemlocShape, cex = 1)
+lines (lowess (alignStemloc), col = alignStemlocColor, lwd = 1.5)
+
+
+points (alignStemlocAma,
+        col = alignStemlocAmaColor, pch = alignStemlocAmaShape, cex = 1)
+lines (lowess (alignStemlocAma), col = alignStemlocAmaColor, lwd = 1.5)
+
 
 points (structure,
         col = structureColor, pch = structureShape, cex = 1)
 lines (lowess (structure), col = structureColor, lwd = 1.5)
 
-legend ("bottomleft", legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)"),
-        col = c (structureColor, alignColor, alignTKFColor),
-        pch = c (structureShape, alignShape, alignTKFShape),
+
+legend ("bottomleft", legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)", "Alignment accuracy (Stemloc ML)", "Alignment accuracy (Stemloc AMA)"),
+        col = c (structureColor, alignColor, alignTKFColor, alignStemlocColor, alignStemlocAmaColor),
+        pch = c (structureShape, alignShape, alignTKFShape, alignStemlocColor, alignStemlocAmaColor),
         xjust = 1,
         inset = 0.02)
 

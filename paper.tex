@@ -791,7 +791,7 @@ same probability distribution over sequences.
 However, these solutions do not easily generalize to SCFGs
 (which may have empty bifurcations as well as empty paths).
 
-\supptext{2} includes a complete formal algorithm for exact null-cycle elimination in SCFGs,
+\supptext{2}\ includes a complete formal algorithm for exact null-cycle elimination in SCFGs,
 along with procedures for probabilistically restoring null cycles
 to sampled parse trees and Inside-Outside expectation counts.
 Informally, the essence of the algorithm is contained within the following two steps:
@@ -1038,7 +1038,7 @@ The TKF Structure Tree (TKFST) model is based on the
 Thorne-Kishino-Felsenstein (TKF) model of the stochastic evolution of
 primary sequences via indel events \cite{ThorneEtal91}.  In the
 original TKF model, sequence evolves under a time-homogeneous linear
-birth-death-immigration process \cite{Kendall1948}.  Single characters
+birth-death-immigration process \cite{Kendall1948}.  Single characters (``links'')
 are inserted with rate $\lambda$ and deleted with rate $\mu$.  At
 equilibrium, sequences obey a geometric length distribution with
 parameter $\kappa$.  Although this model has flaws (e.g., it lacks
@@ -1050,11 +1050,15 @@ analysis of birth-death processes \cite{Feller71,ThorneEtal91}.
 
 The TKF Structure Tree model is an extension of the TKF model to RNA
 structure.  In this model, loop and stem regions are
-mutually nested (\figref{tkfst}).  Both loops and stems have geometric length
-distributions with parameters $\kappa_l$ and $\kappa_s$.  Single bases
-are inserted and deleted in loops with rates $\lambda_l$ and $\mu_l$;
+mutually nested (\figref{tkfst}):
+the parameter $\pi_l(S)$ determines the proportion of links within loop sequences that are nested stems,
+and every stem sequence has a nested loop at the end.
+Single bases are inserted and deleted in loops with rates $\lambda_l$ and $\mu_l$;
 similarly, base-pairs are inserted and deleted in stems with rates
-$\lambda_s$ and $\mu_s$.  Insertions of a new stem into an existing
+$\lambda_s$ and $\mu_s$.
+Both loops and stems have geometric length
+distributions with parameters $\kappa_l = \lambda_l / \mu_l$ and $\kappa_s = \lambda_s / \mu_s$.  
+Insertions of a new stem into an existing
 loop sequence (or deletions of an existing stem) occur at the same
 rate as single-base insertions (or deletions) and can model
 large-scale structural changes (\figref{tkfst-mutations}).
@@ -1098,7 +1102,37 @@ for loop sequences as
 \end{align}
 and similarly for stem sequences \cite{Holmes2004}.
 
-
+A few other useful statistics for the TKFST model:
+the expected number of links in a loop sequence is $K_l = \frac{\lambda_l}{\mu_l - \lambda_l}$
+and in a stem sequence $K_s = \frac{\lambda_s}{\mu_s - \lambda_s}$.
+Since $\pi_l(S)$ of the links in a loop sequence are nested stems,
+and since each stem has twice as many nucleotides as it has links (since each link is a base {\em pair}),
+the expected number of bases in a loop sequence is
+\[
+B_l = \frac{K_l (1-\pi_l(S)) + 2K_l \pi_l(S)} {1 - \pi_l(S) K_l}
+\]
+The expected number of bases in a stem sequence is
+\[
+B_s = 2K_s + B_l
+\]
+The expected number of bases that are created/removed when a loop-sequence link is inserted/deleted is
+\[
+D_l = (1-\pi_l(S)) + \pi_l(S) B_s
+\]
+The expected number of stems directly rooted in a given loop sequence is
+$U = \pi_l(S) K_l$
+and the expected number of stems directly rooted in, {\bf or indirectly descended from}, a given loop sequence is
+$V = U / (1 - U)$
+(note that this is also the expected total number of loop sequences indirectly descended from a given loop sequence).
+Therefore, in the equilibrium structure,
+the expected number of stems is $V$;
+of loops, $V+1$;
+of unpaired bases, $K_l (1 - \pi_l(S)) (V+1)$;
+and of base-pairs, $K_s V$.
+In a tree with total branch length $T$,
+the expected number of single-base deletions is $\mu_l T K_l (1 - \pi_l(S)) (V+1)$;
+of base-pair deletions, $\mu_s T K_s V$;
+and of substructure deletions, $\mu_l T V$.
 
 
 \subsection*{Assessing TKFST as a model of RNA structure}
@@ -1240,7 +1274,9 @@ be essentially-identical to those of one of the extant RNAs.
 Guided by our experience with the \emph{nanos} 3' TCE and tRNA, where
 the reconstruction problem was made easy by the presence of a close
 outgroup, we conducted a simulation study to investigate the
-dependence of reconstruction accuracy on outgroup branch length.
+dependence of reconstruction accuracy on outgroup branch length,
+and to investigate the performance of our reconstruction method (when simulating directly from the model)
+compared to simpler reconstruction methods that ignore either structure or phylogeny.
 (We here use the term ``outgroup'' loosely to denote the
 variable-length branch in our three-taxon study,
 where the other two branches are held at unit length.)
@@ -1278,7 +1314,42 @@ demonstrating that inference of sequence alignment is
 robust to mis-parametrized probabilistic models \cite{Lunter2007}
 suggest that the same may be true for probabilistic inference of
 ancestral structures.
-The effect of imperfect knowledge of the ancestral structures has not been explored.
+%The effect of imperfect knowledge of the ancestral structures has not been explored.
+% [commented out because the following tests DO address this in a roundabout way; what we mean is that indiegram has not been tested when leaf structures are unknown]
+
+To compare \indiegram\ to simpler reconstruction methods, we also measured the alignment accuracy using various simpler statistical reconstruction techniques.
+We evaluated three maximum likelihood inference algorithms that use simpler gap-aware phylogenetic models,
+and one posterior decoding algorithm that uses a non-phylogenetic sum-of-pairs scoring scheme.
+These results are plotted on \figref{simulations} alongside the \indiegram\ accuracies.
+In detail, the reconstruction methods used were
+
+\begin{description}
+\item{TKF91 ML:} with the TKF91 model \cite{}, the \handel\ package \cite{HolmesBruno2001,Holmes2003,Holmes2007} was used to align the three extant sequences and reconstruct the ancestor.
+The correct phylogenetic tree and branch lengths were supplied (as they were for the \indiegram\ benchmark).
+The insertion, deletion and substitution rates for the TKF91 model were set equal to those of the loop submodel of TKFST.
+\item{Long Indel ML:} with a single-event trajectory approximation to the long indel model \cite{MiklosLunterHolmes2004}, the \handel\ package was used to align the three extant sequences and reconstruct the ancestor.
+The correct phylogenetic tree and branch lengths were supplied.
+The deletion and substitution rates were set equal to those of the loop submodel of TKFST.
+The mean indel length was set equal to $D_l$, the mean number of bases that are created/removed by an insertion/deletion in the loop submodel of TKFST;
+the mean equilibrium sequence length (and thereby the insertion rate) was equal to $B_l$, the mean number of bases in TKFST at equilibrium
+(\secname{A simple model of RNA structural evolution} has formulae for these quantities in terms of the TKFST rate parameters).
+\item{Stemloc ML:} the \stemloc\ program was used to align the three sequences via single-linkage clustering with a Pair SCFG \cite{Holmes2005}.
+The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
+\item{Stemloc AMA:} the \stemloc\ program was used to align the three sequences in AMA mode, using posterior decoding to optimize a sum-over-pairs expected alignment accuracy \cite{BradleyPachterHolmes2008}.
+The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
+\end{description}
+
+We did not measure the accuracy of the reconstructed ancestral structure in these tests (as we did in the \indiegram\ test),
+since \handel\ does not consider structures, whereas \stemloc\ and \stemlocama\ do not provide ancestral reconstructions.
+
+
+{\bf SUMMARY OF THESE RESULTS}
+% TKF is less accurate than indiegram, although for short branch lengths it is almost identical; the TKF and indiegram accuracies diverge at longer branch lengths
+% Long indel?
+% Stemloc?
+% StemlocAMA?
+
+
 
 \section*{Discussion}
 

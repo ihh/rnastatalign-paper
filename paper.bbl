@@ -312,6 +312,12 @@ Gutell RR (1993) Collection of small subunit ({16S} and {16S}-like) ribosomal
 \newblock Nucleic Acids Research 21: 3051-3054.
 \bibAnnoteFile{Gutell93}
 
+\bibitem{MiklosLunterHolmes2004}
+Mikl\'{o}s I, Lunter G, Holmes I (2004) A long indel model for evolutionary
+  sequence alignment.
+\newblock Molecular Biology and Evolution 21: 529-540.
+\bibAnnoteFile{MiklosLunterHolmes2004}
+
 \bibitem{PaulingZuckerkandl63}
 Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
   studies'' of extinct forms of life.
@@ -522,12 +528,6 @@ Lunter GA, Mikl\'{o}s I, Song YS, Hein J (2003) An efficient algorithm for
   statistical multiple alignment on arbitrary phylogenetic trees.
 \newblock Journal of Computational Biology 10: 869-889.
 \bibAnnoteFile{LunterSongMiklosHein2003}
-
-\bibitem{MiklosLunterHolmes2004}
-Mikl\'{o}s I, Lunter G, Holmes I (2004) A long indel model for evolutionary
-  sequence alignment.
-\newblock Molecular Biology and Evolution 21: 529-540.
-\bibAnnoteFile{MiklosLunterHolmes2004}
 
 \bibitem{LunterEtAl2004}
 Lunter GA, Drummond AJ, Mikl\'{o}s I, Hein J (2004) Statistical alignment:

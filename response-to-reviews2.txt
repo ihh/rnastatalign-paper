@@ -111,14 +111,19 @@ acknowledge room for improvement.
 > using conditional models, still in
 > terms too vague and conceptual to enable reproduction of the work.
 
-Thank you for pointing this out.  We have attempted to make the
-main text a self-contained description of the composition algorithm,
+Thank you for pointing this out.  We have attempted to make the main
+text a self-contained description of the composition algorithm,
 including its key corollaries (elimination of null states and DP
 inference).  The presentation of the composition algorithm in the
-supplement now merely reprises the presentation in the main text using
-more formal notation. We hope this is an appropriate use of the
-supplementary information, but we welcome additional suggestions to
-improve the flow of the manuscript for the reader.
+supplement (text S1) now merely reprises the presentation in the main
+text using more formal notation. Likewise, the null cycle elimination
+algorithm is discussed verbally in the main paper, and described again
+using formal notation in text S2. Texts S3 and S4 describe aspects of
+the software that are also probably too detailed for the main paper.
+
+We hope this is an appropriate use of the supplementary information,
+but we welcome additional suggestions to improve the flow of the
+manuscript for the reader.
 
 We have attempted to remove redundant text, including the two
 paragraphs which the reviewer notes, and other sentences.
@@ -387,7 +392,7 @@ We completely agree. Such an algorithm was initially a goal of this
 work, but was dropped. We thank the reviewer for challenging us to
 try again; a verbal presentation of the algorithm we came up with is
 given in the revised text, with a full formal description (including
-notation) in the supplement. (Since this is a standalone result that
+notation) in supplement S2. (Since this is a standalone result that
 can be applied to any SCFG, we think it fits better as a technical
 appendix in the supplement, with a verbal description in the main
 paper; the obvious cost is omitting some detail from the main paper.
@@ -398,10 +403,10 @@ elimination is that while this marginalization is reasonably
 straightforward for independent-sites models and HMMs, essentially
 involving summing a geometric series to obtain a correction factor,
 the possible presence of null bifurcations complicates matters for
-SCFGs.  Indeed, no *closed form* elimination is possible (due to
-bifurcations, such an elimination would involve solving simultaneous
-nonlinear equations, as explained in the supplement) but an iterative
-approximation (e.g. Newton-Raphson) appears adequate.
+SCFGs.  Indeed, no *closed form* elimination is possible (because of
+bifurcations: such an elimination would involve solving simultaneous
+nonlinear equations, as shown in supplement S2) but an iterative
+approximation (e.g. Newton-Raphson) appears to be adequate.
 
 > p.15-18 The whole section on "terminological asides" contributes 
 > little to the paper. It would be vastly preferable to spend this space 
@@ -448,6 +453,9 @@ We have reworded this section per our new focus on the simulation results.
 
 > Table 2: it's unclear why we need separate states L and I_L, or S and 
 > I_S; these nonterminals have identical production rules.
+
+This is a case of shoe-horning the grammar into the input format
+accepted by indiegram (and by our composition algorithm).
 
 We distinguished between these states to help clarify our method,
 where states are classified as "Start" or "Insert" to simply the
