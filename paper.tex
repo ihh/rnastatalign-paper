@@ -1324,19 +1324,24 @@ These results are plotted on \figref{simulations} alongside the \indiegram\ accu
 In detail, the reconstruction methods used were
 
 \begin{description}
-\item{TKF91 ML:} with the TKF91 model \cite{}, the \handel\ package \cite{HolmesBruno2001,Holmes2003,Holmes2007} was used to align the three extant sequences and reconstruct the ancestor.
+\item{TKF91 ML:} with the TKF91 model \cite{ThorneEtal91}, the \handel\ package \cite{HolmesBruno2001,Holmes2003,Holmes2007} was used to align the three extant sequences and reconstruct the ancestor.
 The correct phylogenetic tree and branch lengths were supplied (as they were for the \indiegram\ benchmark).
 The insertion, deletion and substitution rates for the TKF91 model were set equal to those of the loop submodel of TKFST.
+{\bf This may be understood as a naive reconstruction that completely ignores the stem sub-model of TKFST.}
 \item{Long Indel ML:} with a single-event trajectory approximation to the long indel model \cite{MiklosLunterHolmes2004}, the \handel\ package was used to align the three extant sequences and reconstruct the ancestor.
 The correct phylogenetic tree and branch lengths were supplied.
 The deletion and substitution rates were set equal to those of the loop submodel of TKFST.
 The mean indel length was set equal to $D_l$, the mean number of bases that are created/removed by an insertion/deletion in the loop submodel of TKFST;
 the mean equilibrium sequence length (and thereby the insertion rate) was equal to $B_l$, the mean number of bases in TKFST at equilibrium
 (\secname{A simple model of RNA structural evolution} has formulae for these quantities in terms of the TKFST rate parameters).
+{\bf This model improves on the previous model (TKF91) by introducing affine gap penalties.}
 \item{Stemloc ML:} the \stemloc\ program was used to align the three sequences via single-linkage clustering with a Pair SCFG \cite{Holmes2005}.
 The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
-\item{Stemloc AMA:} the \stemloc\ program was used to align the three sequences in AMA mode, using posterior decoding to optimize a sum-over-pairs expected alignment accuracy \cite{BradleyPachterHolmes2008}.
+{\bf This model improves on the previous model (Long Indel) by introducing RNA secondary structure, though it no longer models phylogeny as rigorously as the Long Indel model.}
+\item{Stemloc AMA:} the \stemloc\ program was used to align the three sequences in ``sequence annealing'' mode,
+ a posterior decoding method that attempts to optimize AMA, a sum-over-pairs alignment accuracy metric \cite{BradleyPachterHolmes2008}.
 The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
+{\bf This program uses the previous model but abandons phylogeny altogether, instead attempting to maximize a non-phylogenetic alignment accuracy metric.}
 \end{description}
 
 We did not measure the accuracy of the reconstructed ancestral structure in these tests (as we did in the \indiegram\ test),
@@ -1646,12 +1651,11 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
     lengths $\in [30, 70]$ bp.
     ``Structural reconstruction accuracy'' is the fraction of
     base-pairs in the ancestral structure present in the
-    maximum-likelihood reconstruction thereof; ``Alignment accuracy''
-    is a measure of sequence alignment accuracy which takes both
-    aligned and unaligned (indels) nucleotides into account,
-    qualitatively corresponding to giving equal weight to sensitivity
-    and specificity (see
-    \cite{SchwartzMyersPachter2006} for a precise definition).
+    maximum-likelihood reconstruction thereof, estimated by aligning the two structures using \stemloc\ \cite{Holmes2005}.
+    ``Alignment accuracy'' is the Alignment Metric Accuracy (AMA),
+    effectively the probability that any given residue is correctly
+    aligned, averaged over all pairs of sequences
+    (see \cite{SchwartzMyersPachter2006} for a precise definition).
 }
   \figlabel{simulations}
 \end{figure}
