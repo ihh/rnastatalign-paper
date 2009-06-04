@@ -8,17 +8,19 @@ my $tmpdir = "/tmp";
 my $ref = Stockholm->from_file (shift);
 my $cmp = Stockholm->from_file (shift);
 my $tkf = Stockholm->from_file (shift);
+my $long = Stockholm->from_file (shift);
 my $stemloc = Stockholm->from_file (shift);
 my $stemlocama = Stockholm->from_file (shift);
 
 # indiegram adds cruft to the sequence names and prints non-Stockholm stuff that gets read back incorrectly by Stockholm.pm
 # handalign and indiegram both add "root" and "subroot" lines
 # so we need to tidy up the sequence name fields...
-@{$ref->seqname} = @{$cmp->seqname} = @{$tkf->seqname} = ("X", "Y", "Z");
+for my $align ($ref, $cmp, $tkf, $long, $stemloc, $stemlocama) { @{$align->seqname} = ("X", "Y", "Z") }
 
 $ref->gc->{"ancestral_SS"} = $ref->gr->{"SS"}->{"root"};
 delete $ref->gr->{"SS"}->{"root"};
 
+# IH (6/4/09)... the following code scares the bejaysus out of me... can you really mix "delete" and "each" like this? wow
 while (my ($name, $data) = each %{$cmp->seqdata}) {
   if ($name =~ /([XYZ])\/.+/) {
     delete $cmp->seqdata->{$name};
@@ -28,12 +30,12 @@ while (my ($name, $data) = each %{$cmp->seqdata}) {
   }
 }
 
-for my $file (qw(ref cmp tkf stemloc stemlocama)) {
+for my $file (qw(ref cmp tkf long stemloc stemlocama)) {
     eval('$'.$file)->to_file ("$tmpdir/$file.stock");
 }
 
-my ($acc, $sn, $ppv, $tcs) = cmpalign ("$tmpdir/ref.stock", "$tmpdir/cmp.stock");
-my @acc_sn_ppv_tcs = map ([cmpalign ("$tmpdir/ref.stock", "$tmpdir/$_.stock")], qw(tkf stemloc stemlocama));
+my @tests = qw(cmp tkf long stemloc stemlocama);
+my @acc_sn_ppv_tcs = map ([cmpalign ("$tmpdir/ref.stock", "$tmpdir/$_.stock")], @tests);
 
 my $refanc = $ref->gc->{"ancestral_SS"};
 my $refseq = $ref->seqdata->{"root"};
@@ -92,15 +94,15 @@ if ($stemlocout->gc->{"SS_cons"} =~ /[<>()]/) {
   $ancoverlap /= $refanc =~ tr/><//;
 }
 
-warn "## ", join ("\t", ("Acc", "Sn", "PPV", "ancestral_bp_overlap", map (("Acc_$_", "Sn_$_", "PPV_$_"), qw(tkf stemloc stemlocama)))), "\n";
-print join ("\t", ($acc, $sn, $ppv, $ancoverlap, map (@$_[0..2], @acc_sn_ppv_tcs))), "\n";
+warn "## ", join ("\t", ("ancestral_bp_overlap", map (("Acc_$_", "Sn_$_", "PPV_$_", "TCS_$_"), @tests))), "\n";
+print join ("\t", $ancoverlap, map (@$_, @acc_sn_ppv_tcs)), "\n";
 
 sub cmpalign {
     my ($ref, $cmp) = @_;
     my $cmd = "cmpalign -s $ref $cmp";
-    warn "Running $cmd\n";
+#    warn "Running $cmd\n";
     my $line = `$cmd`;
-    warn "Output: $line" if $line =~ /\S/;
-    ($acc, $sn, $ppv, $tcs) = split /\s+/, $line;
+    warn "$cmd  ==>  $line";
+    my ($acc, $sn, $ppv, $tcs) = split /\s+/, $line;
     return ($acc, $sn, $ppv, $tcs);
 }

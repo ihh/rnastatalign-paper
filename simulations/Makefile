@@ -26,7 +26,7 @@ inferred/%.indiegram.stock: alignments/%.input.stock
 	$(DARTDIR)/bin/indiegram $< -log 7 -logfile $(subst .stock,.log,$@) >$@
 
 # Run indiegram on all simulated alignments.
-inferred/all: alignments/all
+inferred/indie: alignments/all
 	@echo "Making $@"
 	@mkdir -pv $(@D)
 	@for directory in `find $(<D)/ -mindepth 1 -type d ! -iname "*cvs*" -print | xargs -n 1 basename`;\
@@ -80,24 +80,24 @@ inferred/%.timing: 	inferred/%.stock\
 	@echo $$[ $(shell stat --format "%Y" $<) - $(shell stat --format "%Y" $(word 2,$^)) ] >$@
 
 # Remove .submission tags for jobs with a .failed tag.
-# Also cleans 'all' tags.
+# Also cleans 'indie' tags.
 # The submission tags indicate that a job (may) be currently running,
 # and serve to prevent re-submission of identical jobs.
 # This rule must be called before failed jobs can be re-submitted.
 inferred/clean-failed-submission-tags:
 	@echo "Making $@"
-	@find $(@D) -type f -name "all" | xargs -n 50 rm -fv
+	@find $(@D) -type f -name "indie" | xargs -n 50 rm -fv
 	@find $(@D) -type f -name "*.failed" | perl -ne'chomp; $$_ =~ s/\.failed//; print "$$_.failed $$_.submission ";' | xargs -n 50 rm -fv
 
 # Remove all .submission tags.
-# Also cleans 'all' tags.
+# Also cleans 'indie' tags.
 inferred/clean-all-submission-tags:
 	@echo "Making $@"
 	@read -p "You are about to clean all submission tags.  Do you want to continue? [yes/No]: ";\
 	if [ "$$REPLY" = "yes" ];\
 	then\
 		echo "Removing files...";\
-		find $(@D) -type f -name "all" | xargs -n 50 rm -fv;\
+		find $(@D) -type f -name "indie" | xargs -n 50 rm -fv;\
 		find $(@D) -type f -name *.submission -print0 | xargs -0 -n 50 rm -fv;\
 		find $(@D) -type f -name *.failed -print0 | xargs -0 -n 50 rm -fv;\
 	else\
@@ -175,6 +175,7 @@ inferred/stemlocama:
 inferred/%.indiegram.analysis:	alignments/%.reference.stock\
 				inferred/%.indiegram.stock\
 				inferred/%.tkf.stock\
+				inferred/%.long.stock\
 				inferred/%.stemloc.stock\
 				inferred/%.stemlocama.stock
 	@echo "Making $@"
@@ -190,9 +191,9 @@ inferred/%/indiegram.analysis: $(addsuffix .indiegram.analysis,$(addprefix infer
 	done
 
 # Collate results.
-inferred/indiegram.analysis: inferred/all inferred/tkf inferred/long inferred/stemloc inferred/stemlocama
+inferred/indiegram.analysis: inferred/indie inferred/tkf inferred/long inferred/stemloc inferred/stemlocama
 	@echo "Making $@"
-	perl -e '@s=qw(AlignAcc AlignSn AlignPPV);print join ("\t", @s, "StructureReconstruction"); for $$a (qw(TKF Long Stemloc StemlocAma)) { print map ("\t$$_$$a", @s) } print "\n"' >$@
+	perl -e '@s=qw(AlignAcc AlignSn AlignPPV AlignTCS);print join ("\t", "z", "StructureReconstruction"); for $$a (qw(TKF Long Stemloc StemlocAma)) { print map ("\t$$_$$a", @s) } print "\n"' >$@
 	@for directory in `find $(<D)/ -mindepth 1 -type d ! -iname "*cvs*" -print | xargs -n 1 basename`;\
 	do\
 		make -f $(MAKEFILE) $(@D)/$$directory/indiegram.analysis;\
