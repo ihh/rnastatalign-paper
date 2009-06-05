@@ -1,0 +1,11 @@
+# STOCKHOLM 1.0
+#=GR X/1-30 SS    <<-<-.....<<<<<....-..>>>>>...->->>
+X/1-30            ac-g-auaaugcuccucuc-auggagcaau-c-gu
+#=GR Y/1-28 SS    -<-<<-....<<<<<....-..>>>>>-..>>->-
+Y/1-28            -g-ga-agugccacucauu-agagugg-auuc-c-
+#=GR Z/1-31 SS    -<<<-.....<<<(<.......>)>>>...->>>-
+Z/1-31            -gcg-ugguggguucccuccggggaccgau-cgc-
+#=GC ancestral_SS -<-<-.....<<<<<....-..>>>>>...->->-
+#=GC PS_cons      ...g.............u.....g....au.c...
+#=GC SS_cons      .<.<......<<<<<.......>>>>>....>.>.
+//

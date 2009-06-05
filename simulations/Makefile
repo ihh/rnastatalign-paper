@@ -120,6 +120,16 @@ inferred/clean-empty:
 	@find $(@D) -type f -name *.stock | perl -MStockholm -ne'$$file = $$_; chomp $$file; $$stk=Stockholm->from_file("$$file"); if (@{$$stk->seqname} == 0) { $$file =~ s/\.stock//; print "$$file.stock $$file.submission\n"; }' | xargs -n 50 rm -fv
 
 
+
+# Sanitize indiegram's output format (i.e. turn it into valid Stockholm)
+inferred/%.sanitized.stock: inferred/%.indiegram.stock
+	cat $< | sed -n '1,10p;12p' >$@
+
+# Sanitize all *.indiegram.stock files
+inferred/sanitized:
+	make -f $(MAKEFILE) $(subst indiegram,sanitized,$(wildcard inferred/*/*.indiegram.stock))
+
+
 # Run handalign (TKF91 model) on a single simulated alignment.
 # stem: '0.01/1'
 inferred/%.tkf.stock: alignments/%.reference.stock
@@ -145,7 +155,7 @@ inferred/long:
 
 # Prepare a stemloc input alignment (indiegram format is not strict flush Stockholm, as unaligned input sequences are not separated by "# STOCKHOLM 1.0" delimiter lines)
 alignments/%.stemloc.input.stock: alignments/%.input.stock
-		@echo "Converting $< (indiegram Stockholm dialect) into $@ (pared-down Stockholm for stemloc)"
+	@echo "Converting $< (indiegram Stockholm dialect) into $@ (pared-down Stockholm for stemloc)"
 	cat $< | perl -ne 'if(/#=/){if(/#=GR/){print;print"\n//\n\n# STOCKHOLM 1.0\n"unless++$$seqs>=3}}else{print}' >$@
 
 # Run stemloc on a single simulated alignment.

@@ -1,0 +1,11 @@
+# STOCKHOLM 1.0
+#=GR X/1-56 SS    <<<(<<<<<(<<....<<..-<<<<...-------.>>>>-........>>..>>)>>>>>)>>>
+X/1-56            caaucucgcugcuaaacaua-gucuaac-------aagac-uguggaucuguugcggcgagguug
+#=GR Y/1-59 SS    <<<-<<<(<<<<....(<..<<<(-...<<<.>>>--)>>>.......->)..>>>>)>>>->>>
+Y/1-59            ccc-uaggcucgagauucauauuu-cuccguaacg--gaauuaaaaag-ggggcgagucua-ggg
+#=GR Z/1-51 SS    <<<-<<<(<<(<...-<<..-(<(<...-------->)>)-.......->>..>)>>)>>>->>>
+Z/1-51            ccc-cuggcuucaua-cgaa-guuuuaa--------agau-gguccaa-cgucggagucag-ggg
+#=GC ancestral_SS <<<-<<<<<<<<....<<..-<<<<...-------->>>>-.......->>..>>>>>>>>->>>
+#=GC PS_cons      c......gcu....a.......u..............ga.......a...g.....g.......g
+#=GC SS_cons      <<<.<<<<<<<<....<<...<<<.............>>>.........>>..>>>>>>>>.>>>
+//
