@@ -7,6 +7,8 @@ MAKEFILE := $(CURDIR)/Makefile
 EVOLSAYER = $(DARTDIR)/perl/evolsayer.pl
 EVOLSAYER_ARGS = -sub $(DARTDIR)/grammars/pfold-mix80.eg -looplen 9 -stemlen 5 -stem 0.01
 
+EVOLDOER = evoldoer -na -1 -ls $(DARTDIR)/grammars/pfold-loopmodel.eg -ss $(DARTDIR)/grammars/pfold-stemmodel.eg
+
 QSUB := /opt/sge/bin/lx24-amd64/qsub
 QSUB_ARGS := -cwd -V -l qname=himem_nodes.q -P stemloc
 
@@ -157,6 +159,28 @@ inferred/long:
 alignments/%.stemloc.input.stock: alignments/%.input.stock
 	@echo "Converting $< (indiegram Stockholm dialect) into $@ (pared-down Stockholm for stemloc)"
 	cat $< | perl -ne 'if(/#=/){if(/#=GR/){print;print"\n//\n\n# STOCKHOLM 1.0\n"unless++$$seqs>=3}}else{print}' >$@
+
+# get XY, YZ and XZ input pairs from stemloc input (for evoldoer pairwise tests)
+alignments/%.xy.stock: alignments/%.stemloc.input.stock
+	cat $< | sed -n '1,5p;7,11p' >$@
+
+alignments/%.yz.stock: alignments/%.stemloc.input.stock
+	cat $< | sed -n '7,11p;13,17p' >$@
+
+alignments/%.xz.stock: alignments/%.stemloc.input.stock
+	cat $< | sed -n '1,5p;13,17p' >$@
+
+inferred/%.xy.evoldoer.stock: alignments/%.xy.stock
+	$(EVOLDOER) -t `cat alignments/$*.reference.stock | perl -ne 'if(/NH.*X:(\d+).*Y:(\d+)/){print $$1+$$2}'` -sp `cat alignments/$*.reference.stock | perl -ne 'if(/stem_prob=(\S+)/){print$$1}'` -ll `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_loop=(\S+)/){print$$1}'`  -lm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_loop=(\S+)/){print$$1}'`  -sl `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_stem=(\S+)/){print$$1}'`  -sm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_stem=(\S+)/){print$$1}'` $< >$@
+
+inferred/%.yz.evoldoer.stock: alignments/%.yz.stock
+	$(EVOLDOER) -t `cat alignments/$*.reference.stock | perl -ne 'if(/NH.*Y:(\d+).*Z:(\d+)/){print $$1+$$2}'` -sp `cat alignments/$*.reference.stock | perl -ne 'if(/stem_prob=(\S+)/){print$$1}'` -ll `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_loop=(\S+)/){print$$1}'`  -lm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_loop=(\S+)/){print$$1}'`  -sl `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_stem=(\S+)/){print$$1}'`  -sm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_stem=(\S+)/){print$$1}'` $< >$@
+
+inferred/%.xz.evoldoer.stock: alignments/%.xz.stock
+	$(EVOLDOER) -t `cat alignments/$*.reference.stock | perl -ne 'if(/NH.*X:(\d+).*Z:(\d+)/){print $$1+$$2}'` -sp `cat alignments/$*.reference.stock | perl -ne 'if(/stem_prob=(\S+)/){print$$1}'` -ll `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_loop=(\S+)/){print$$1}'`  -lm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_loop=(\S+)/){print$$1}'`  -sl `cat alignments/$*.reference.stock | perl -ne 'if(/lambda_stem=(\S+)/){print$$1}'`  -sm `cat alignments/$*.reference.stock | perl -ne 'if(/mu_stem=(\S+)/){print$$1}'` $< >$@
+
+inferred/%.evoldoer:
+	make -f $(MAKEFILE) inferred/$*.xy.evoldoer.stock inferred/$*.xz.evoldoer.stock inferred/$*.yz.evoldoer.stock
 
 # Run stemloc on a single simulated alignment.
 # stem: '0.01/1'
