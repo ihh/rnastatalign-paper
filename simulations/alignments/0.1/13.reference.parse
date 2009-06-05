@@ -1,0 +1,46 @@
+;;  X gaagggguugggcucccuuuuggaaagggggcccaguccaaauuc
+;;  Y aa-auuaaggcgcuaggugcaa-gcacuuagcgccuugaauaauu
+;;  Z gg-aagacaacauuucgauuugaaaucgaauuguugucuaaaucc
+;; SS ((..((((((((((((((((...))))))))))))))))....))
+
+(start
+ (L_L_L_L
+  (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L
+   (S_S_S_S
+    (IS_MS_MS_MS  ;; emit [gc,au,gc]
+     (IS_MS_MS_MS ;; emit [au,au,gc]
+      (L_L_L_L
+       (L_IL_WL_WL	      ;; emit [a,-,-]
+	(IL_ML_ML_ML	      ;; emit [g,a,a]
+	 (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L
+	  (S_S_S_S
+	   (IS_MS_MS_MS		       ;; emit [gc,ua,au]
+	    (IS_MS_MS_MS	       ;; emit [gc,ug,gc]
+	     (IS_MS_MS_MS	       ;; emit [gu,au,au]
+	      (IS_MS_MS_MS	       ;; emit [ug,au,cg]
+	       (IS_MS_MS_MS	       ;; emit [ua,gc,au]
+		(IS_MS_MS_MS	       ;; emit [gc,gc,au]
+		 (IS_MS_MS_MS	       ;; emit [gc,cg,cg]
+		  (IS_MS_MS_MS	       ;; emit [gc,gc,au]
+		   (IS_MS_MS_MS	       ;; emit [cg,cg,uu]   ! rare uu
+		    (IS_MS_MS_MS       ;; emit [ug,ua,ua]
+		     (IS_MS_MS_MS      ;; emit [cg,au,ua]
+		      (IS_MS_MS_MS     ;; emit [cg,gu,cg]
+		       (IS_MS_MS_MS    ;; emit [cg,gc,gc]
+			(IS_MS_MS_MS   ;; emit [ua,ua,au]
+			 (IS_MS_MS_MS  ;; emit [ua,gc,ua]
+			  (IS_MS_MS_MS ;; emit [ua,cg,ua]
+			   (L_L_L_L
+			    (IL_ML_ML_ML   ;; emit [u,a,u]
+			     (IL_ML_ML_ML  ;; emit [g,a,g]
+			      (IL_ML_DL_ML ;; emit [g,-,a]
+			       (end)))))))))))))))))))))
+	   L_L_L_L
+	   (IL_ML_ML_ML	   ;; emit [a,a,a]
+	    (IL_ML_ML_ML   ;; emit [a,u,a]
+	     (IL_ML_ML_ML  ;; emit [a,a,a]
+	      (IL_ML_ML_ML ;; emit [u,a,u]
+	       (end))))))))))))
+    L_L_L_L
+    (end)))))
+
