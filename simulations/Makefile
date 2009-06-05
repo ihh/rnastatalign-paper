@@ -7,7 +7,7 @@ MAKEFILE := $(CURDIR)/Makefile
 EVOLSAYER = $(DARTDIR)/perl/evolsayer.pl
 EVOLSAYER_ARGS = -sub $(DARTDIR)/grammars/pfold-mix80.eg -looplen 9 -stemlen 5 -stem 0.01
 
-EVOLDOER = evoldoer -na -1 -ls $(DARTDIR)/grammars/pfold-loopmodel.eg -ss $(DARTDIR)/grammars/pfold-stemmodel.eg
+EVOLDOER = evoldoer -na -1 -ls $(DARTDIR)/src/indiegram/igloopmodel.eg -ss $(DARTDIR)/src/indiegram/igstemmodel.eg
 
 QSUB := /opt/sge/bin/lx24-amd64/qsub
 QSUB_ARGS := -cwd -V -l qname=himem_nodes.q -P stemloc
