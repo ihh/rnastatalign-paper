@@ -1,0 +1,39 @@
+  transition_scores.start[L_L_L_L] = Prob2Score ((1));
+  init_bifurc (BiSL_BmSL_BmSL_BmSL, S_S_S_S, L_L_L_L);
+  transition_scores.transition (L_L_L_L, S_S_S_S) = ScorePMul (transition_scores.transition (L_L_L_L, BiSL_BmSL_BmSL_BmSL), transition_scores.end[L_L_L_L]);
+  transition_scores.transition (S_S_S_S, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, L_L_L_L) = Prob2Score (((1-K2())*(1)) * ((1-b2(t))*((1)*(1))) * ((1-b2(u))*((1)*(1))) * ((1-b2(v))*((1)*(1))));
+  transition_scores.transition (L_L_L_L, L_IL_WL_WL) = Prob2Score ((b1(t)) * (1-b1(u)) * (1-b1(v)));
+  transition_scores.transition (IL_IL_WL_WL, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * (a1(u)) * (a1(v)));
+  transition_scores.transition (L_IL_WL_WL, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * (a1(u)) * (a1(v)));
+  init_bifurc (BiSL_BmSL_BmSL_BmSL, S_S_S_S, L_L_L_L);
+  transition_scores.transition (S_S_S_S, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, IS_MS_MS_MS) = Prob2Score ((K2()) * ((1-b2(t))*(a2(t))) * ((1-b2(u))*(a2(u))) * ((1-b2(v))*(a2(v))));
+  transition_scores.transition (IS_MS_MS_MS, L_L_L_L) = Prob2Score (((1-K2())*(1)) * ((1-b2(t))*((1)*(1))) * ((1-b2(u))*((1)*(1))) * ((1-b2(v))*((1)*(1))));
+  transition_scores.transition (L_L_L_L, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.transition (IL_ML_ML_ML, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.transition (IL_ML_ML_ML, IL_ML_DL_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(1-a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.end[IL_ML_DL_ML] = Prob2Score ((1-K1()) * ((1-b1(t))*(1)) * ((1-g1(u))*(1)) * ((1-b1(v))*(1)));
+  transition_scores.transition (IL_ML_ML_ML, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.transition (IL_ML_ML_ML, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.transition (IL_ML_ML_ML, IL_ML_ML_ML) = Prob2Score ((K1()) * ((1-b1(t))*(a1(t))) * ((1-b1(u))*(a1(u))) * ((1-b1(v))*(a1(v))));
+  transition_scores.end[IL_ML_ML_ML] = Prob2Score ((1-K1()) * ((1-b1(t))*(1)) * ((1-b1(u))*(1)) * ((1-b1(v))*(1)));
+% cat alignments/0.1/13.reference.parse | lines 6-45 | perl -e '$tkfst=shift;while(<>){chomp;if(/\((\S+).*\->\s+(\S+)\s+(\S+)/){system"egrep \"init_bifurc.*$1.*$2.*$3\" $tkfst"}else{s/^\s*\(([^\)\s]+).*/$1/; if ( defined$x ) {($a,$b)=/end/?($_,$x):($x,$_);system"egrep \"transition_scores.*$a.*$b\" $tkfst"}$x=$_ eq"end"?undef:$_}}' ~/dart/src/indiegram/tkfst.cc > alignments/0.1/13.reference.parse.inits
+
+
+lines is deprecated; instead try this:   sed -n '6,45p'
