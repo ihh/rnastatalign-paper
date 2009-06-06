@@ -1,5 +1,8 @@
 ;; all transition probs set to 1: this grammar is emissions only!
 
+;; NB the g->u rate in the loop matrix is set to the src/indiegram/tkfst.cc value, not the grammars/pfold.eg value
+;; (all other rates are the same in src/indiegram/tkfst.cc & grammars/pfold.eg)
+
 
 (alphabet
  (name RNA)
