@@ -10,6 +10,8 @@
 ;; trans represents the outgoing transition score, NOT the incoming one.
 ;; again, this is chosen for easy comparison to the Inside matrix.
 
+;; TODO: get emit scores via 'xrate -g simulations/pfold-emissions-only.eg simulations/inferred/0.1/13.ref -log FILL_UP'
+
 (start	  ;;   cell (0:45,0:43,0:44)     trans 0
  (L_L_L_L ;;   cell (0:45,0:43,0:44)     trans -3750
   (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L     cell (0:45,0:43,0:44) -> (0:45,0:43,0:44) (45:45,43:43,44:44)
