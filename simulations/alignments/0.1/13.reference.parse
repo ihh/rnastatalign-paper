@@ -8,42 +8,42 @@
 ;; Note that the inside sequence includes the emission from the current state, so the delta for a row is from the previous row's emission
 
 (start	  ;;                     cell (0:45,0:43,0:44)
- (L_L_L_L ;;                     cell (0:45,0:43,0:44)
-  (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L     cell (0:45,0:43,0:44) -> (0:45,0:43,0:44) (45:45,43:43,44:44)
+ (L_L_L_L ;;                     cell (0:45,0:43,0:44)     trans 0
+  (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L     cell (0:45,0:43,0:44) -> (0:45,0:43,0:44) (45:45,43:43,44:44)     trans -3750
    (S_S_S_S	       ;;                     cell (0:45,0:43,0:44)
-    (IS_MS_MS_MS       ;; emit [gc,au,gc]     cell (0:45,0:43,0:44)
-     (IS_MS_MS_MS      ;; emit [au,au,gc]     cell (1:44,1:42,1:43)
-      (L_L_L_L	       ;;                     cell (2:43,2:41,2:42)
-       (L_IL_WL_WL     ;; emit [a,-,-]     cell (2:43,2:41,2:42)
-	(IL_ML_ML_ML   ;; emit [g,a,a]     cell (3:43,2:41,2:42)
-	 (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L     cell (4:43,3:41,3:42) -> (4:39,3:37,3:38) (39:43,37:41,38:42)
+    (IS_MS_MS_MS       ;; emit [gc,au,gc]     cell (0:45,0:43,0:44)     trans -565
+     (IS_MS_MS_MS      ;; emit [au,au,gc]     cell (1:44,1:42,1:43)     trans -565
+      (L_L_L_L	       ;;                     cell (2:43,2:41,2:42)     trans -1758
+       (L_IL_WL_WL     ;; emit [a,-,-]     cell (2:43,2:41,2:42)     trans -5400
+	(IL_ML_ML_ML   ;; emit [g,a,a]     cell (3:43,2:41,2:42)     trans -389
+	 (BiSL_BmSL_BmSL_BmSL ;;  -> S_S_S_S L_L_L_L     cell (4:43,3:41,3:42) -> (4:39,3:37,3:38) (39:43,37:41,38:42)     trans -3750
 	  (S_S_S_S	      ;;                     cell (4:39,3:37,3:38)
-	   (IS_MS_MS_MS	  ;; emit [gc,ua,au]     cell (4:39,3:37,3:38)
-	    (IS_MS_MS_MS  ;; emit [gc,ug,gc]     cell (5:38,4:36,4:37)
-	     (IS_MS_MS_MS ;; emit [gu,au,au]     cell (6:37,5:35,5:36)
-	      (IS_MS_MS_MS ;; emit [ug,au,cg]     cell (7:36,6:34,6:35)
-	       (IS_MS_MS_MS ;; emit [ua,gc,au]     cell (8:35,7:33,7:34)
-		(IS_MS_MS_MS ;; emit [gc,gc,au]     cell (9:34,8:32,8:33)
-		 (IS_MS_MS_MS ;; emit [gc,cg,cg]     cell (10:33,9:31,9:32)
-		  (IS_MS_MS_MS ;; emit [gc,gc,au]     cell (11:32,10:30,10:31)
-		   (IS_MS_MS_MS	;; emit [cg,cg,uu]    cell (12:31,11:29,11:30)     ! rare uu
-		    (IS_MS_MS_MS ;; emit [ug,ua,ua]     cell (13:30,12:28,12:29)
-		     (IS_MS_MS_MS ;; emit [cg,au,ua]     cell (14:29,13:27,13:28)
-		      (IS_MS_MS_MS ;; emit [cg,gu,cg]     cell (15:28,14:26,14:27)
-		       (IS_MS_MS_MS ;; emit [cg,gc,gc]     cell (16:27,15:25,15:26)
-			(IS_MS_MS_MS ;; emit [ua,ua,au]     cell (17:26,16:24,16:25)
-			 (IS_MS_MS_MS ;; emit [ua,gc,ua]     cell (18:25,17:23,17:24)
-			  (IS_MS_MS_MS ;; emit [ua,cg,ua]     cell (19:24,18:22,18:23)
-			   (L_L_L_L    ;;                     cell (20:23,19:21,19:22)
-			    (IL_ML_ML_ML ;; emit [u,a,u]     cell (20:23,19:21,19:22)
-			     (IL_ML_ML_ML ;; emit [g,a,g]     cell (21:23,20:21,20:22)
-			      (IL_ML_DL_ML ;; emit [g,-,a]     cell (22:23,21:21,21:22)
-			       (end))))))))))))))))))))) ;; cell (23:23,21:21,22:22)
+	   (IS_MS_MS_MS	  ;; emit [gc,ua,au]     cell (4:39,3:37,3:38)     trans -565
+	    (IS_MS_MS_MS  ;; emit [gc,ug,gc]     cell (5:38,4:36,4:37)     trans -565
+	     (IS_MS_MS_MS ;; emit [gu,au,au]     cell (6:37,5:35,5:36)     trans -565
+	      (IS_MS_MS_MS ;; emit [ug,au,cg]     cell (7:36,6:34,6:35)     trans -565
+	       (IS_MS_MS_MS ;; emit [ua,gc,au]     cell (8:35,7:33,7:34)     trans -565
+		(IS_MS_MS_MS ;; emit [gc,gc,au]     cell (9:34,8:32,8:33)     trans -565
+		 (IS_MS_MS_MS ;; emit [gc,cg,cg]     cell (10:33,9:31,9:32)     trans -565
+		  (IS_MS_MS_MS ;; emit [gc,gc,au]     cell (11:32,10:30,10:31)     trans -565
+		   (IS_MS_MS_MS	;; emit [cg,cg,uu]    cell (12:31,11:29,11:30)     ! rare uu     trans -565
+		    (IS_MS_MS_MS ;; emit [ug,ua,ua]     cell (13:30,12:28,12:29)     trans -565
+		     (IS_MS_MS_MS ;; emit [cg,au,ua]     cell (14:29,13:27,13:28)     trans -565
+		      (IS_MS_MS_MS ;; emit [cg,gu,cg]     cell (15:28,14:26,14:27)     trans -565
+		       (IS_MS_MS_MS ;; emit [cg,gc,gc]     cell (16:27,15:25,15:26)     trans -565
+			(IS_MS_MS_MS ;; emit [ua,ua,au]     cell (17:26,16:24,16:25)     trans -565
+			 (IS_MS_MS_MS ;; emit [ua,gc,ua]     cell (18:25,17:23,17:24)     trans -565
+			  (IS_MS_MS_MS ;; emit [ua,cg,ua]     cell (19:24,18:22,18:23)     trans -565
+			   (L_L_L_L    ;;                     cell (20:23,19:21,19:22)     trans -1758
+			    (IL_ML_ML_ML ;; emit [u,a,u]     cell (20:23,19:21,19:22)     trans -428
+			     (IL_ML_ML_ML ;; emit [g,a,g]     cell (21:23,20:21,20:22)     trans -428
+			      (IL_ML_DL_ML ;; emit [g,-,a]     cell (22:23,21:21,21:22)     trans -5465
+			       (end))))))))))))))))))))) ;; cell (23:23,21:21,22:22)     trans -2641
 	   L_L_L_L	  ;;                     cell (39:43,37:41,38:42)
-	   (IL_ML_ML_ML	  ;; emit [a,a,a]     cell (39:43,37:41,38:42)
-	    (IL_ML_ML_ML  ;; emit [a,u,a]     cell (40:43,38:41,39:42)
-	     (IL_ML_ML_ML ;; emit [a,a,a]     cell (41:43,39:41,40:42)
-	      (IL_ML_ML_ML ;; emit [u,a,u]     cell (42:43,40:41,41:42)
-	       (end))))))))))))	;;                     cell (43:43,41:41,42:42)
+	   (IL_ML_ML_ML	  ;; emit [a,a,a]     cell (39:43,37:41,38:42)     trans -428
+	    (IL_ML_ML_ML  ;; emit [a,u,a]     cell (40:43,38:41,39:42)     trans -428
+	     (IL_ML_ML_ML ;; emit [a,a,a]     cell (41:43,39:41,40:42)     trans -428
+	      (IL_ML_ML_ML ;; emit [u,a,u]     cell (42:43,40:41,41:42)     trans -428
+	       (end))))))))))))	;;                     cell (43:43,41:41,42:42)     trans -2659
     L_L_L_L			;;                     cell (45:45,43:43,44:44)
-    (end)))))			;;                     cell (45:45,43:43,44:44)
+    (end)))))			;;                     cell (45:45,43:43,44:44)     trans -2659
