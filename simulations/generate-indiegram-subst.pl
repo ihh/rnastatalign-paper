@@ -12,6 +12,19 @@ my $mutateHash = $chain->mutate_hash;
 my @states = map (join ("",@{$_->state->value}), $chain->find_all("initial"));
 
 
+# get initial probability distribution
+my %init;
+foreach my $i (@states) {
+  my $p = $chain->initial($i);
+  if (defined $p) {
+    $init{$i} = $p->prob->value;
+  } else {
+    warn "Setting initial prob of $i = 0.\n";
+    $init{$i} = 0;
+  }
+}
+
+# get rate matrix
 my %rates;
 foreach my $i (@states) {
   my $total = 0;
@@ -32,6 +45,13 @@ my @sortedstates = qw(aa ca ga ua ac cc gc uc ag cg gg ug au cu gu uu);
 
 print "bkstem << \"1 16\\n\"\n";
 print "<< \"a c g u A C G U b d h v B D H V\\n\"\n";
+# initial dist
+print "<< \"";
+foreach my $i (@sortedstates) {
+  print $init{$i}, " ";
+}
+print "\\n\"\n";
+# rate matrix
 foreach my $i (@sortedstates) {
   print "<< \"";
   foreach my $j (@sortedstates) {
