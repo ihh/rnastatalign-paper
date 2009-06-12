@@ -1292,33 +1292,31 @@ stems, sequences of length $\in [30, 70]$ bp, loops of length $\in [3,
 We then used \indiegram\ to reconstruct maximum likelihood reconstructions of the ancestral structure and the four-way multiple alignment (ancestor + three descendants).
 
 The results of our simulations, illustrated in \figref{simulations},
-demonstrate that the accuracy of both structural
-reconstruction and alignment accuracy depend on the outgroup
-branch length.  However, while the difficulty of alignment inference
-increases in proportion to the outgroup branch length, becoming
-near-impossible for very long outgroup branch lengths, the same need
-not be true for structural reconstruction accuracy.  As the branch
-length of the outgroup increases, the outgroup's structure becomes increasingly decoupled from
-that of its ancestor, allowing the scoring scheme to ``ignore'' the
-information which it contains.
-In the trivial case where the outgroup branch length is zero (so the ancestor is identical to the outgroup),
-we can perfectly reconstruct the ancestral structure (as expected),
-but we cannot perfectly reconstruct the three-way multiple alignment
- (since there are still two finite-length branches,
- which on average contribute a greater-than-zero rate of unreconstructable mutations).
+demonstrate that while the difficulty of alignment inference increases
+in proportion to the outgroup branch length, becoming very challenging
+for long outgroup branch lengths, the same need not be true for
+structural reconstruction accuracy.  As the branch length of the
+outgroup increases, the outgroup's structure becomes increasingly
+decoupled from that of its ancestor, allowing the scoring scheme to
+``ignore'' the information which it contains.  In the trivial case
+where the outgroup branch length is zero (so the ancestor is identical
+to the outgroup), we can perfectly reconstruct the ancestral structure
+(as expected), but we cannot perfectly reconstruct the three-way
+multiple alignment (since there are still two finite-length branches,
+which on average contribute a greater-than-zero rate of
+unreconstructable mutations).
 
-These results correspond to a best-case scenario in which we
-have a perfectly-parametrized evolutionary model and exactly-known descendant structures.
-Recent results
-demonstrating that inference of sequence alignment is
-robust to mis-parametrized probabilistic models \cite{Lunter2007}
-suggest that the same may be true for probabilistic inference of
-ancestral structures.
+These results correspond to a best-case scenario in which we have a
+perfectly-parametrized evolutionary model and exactly-known descendant
+structures.  Recent results demonstrating that inference of sequence
+alignment is robust to mis-parametrized probabilistic models
+\cite{Lunter2007} suggest that the same may be true for probabilistic
+inference of ancestral structures.
 %The effect of imperfect knowledge of the ancestral structures has not been explored.
 % [commented out because the following tests DO address this in a roundabout way; what we mean is that indiegram has not been tested when leaf structures are unknown]
 
 To compare \indiegram\ to simpler reconstruction methods, we also measured the alignment accuracy using various simpler statistical reconstruction techniques.
-We evaluated three maximum likelihood inference algorithms that use simpler gap-aware phylogenetic models,
+We evaluated three maximum likelihood inference algorithms that use simpler gap-aware phylogenetic models
 and one posterior decoding algorithm that uses a non-phylogenetic sum-of-pairs scoring scheme.
 These results are plotted on \figref{simulations} alongside the \indiegram\ accuracies.
 In detail, the reconstruction methods used were
