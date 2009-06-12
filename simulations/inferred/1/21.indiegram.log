@@ -1,56 +1,52 @@
-<log date="2009/19/04" time="00:20:21" file="igmain.cc" line=220 level=8 tags="INDIEGRAM"/>
+<log date="2009/09/06" time="03:32:18" file="igmain.cc" line=222 level=8 tags="INDIEGRAM"/>
 
 Building triplet structural alignments.
-<log date="2009/19/04" time="00:20:21" file="igmain.cc" line=242 level=7 tags="INDIEGRAM"/>
+<log date="2009/09/06" time="03:32:18" file="igmain.cc" line=244 level=7 tags="INDIEGRAM"/>
 
 Processing alignment 'Alignment1' (1 of 1): 32 columns
-<log date="2009/19/04" time="00:20:21" file="irrev_diag_matrix_factory.cc" line=96 level=10 tags="ERROR_TAG"/>
-Warning: zeroing rate eigenvalue with positive real component (was (3.48373e-17,0))
-Warning: zeroing rate eigenvalue with positive real component (was (1.21967e-16,0))
-Warning: zeroing rate eigenvalue with positive real component (was (4.68767e-16,0))
-Warning: zeroing rate eigenvalue with positive real component (was (6.10661e-16,0))
-Warning: zeroing rate eigenvalue with positive real component (was (8.52726e-16,0))
-<log date="2009/19/04" time="00:20:21" file="tkfst.cc" line=458 level=7 tags="TKFST"/>
+<log date="2009/09/06" time="03:32:18" file="irrev_diag_matrix_factory.cc" line=96 level=10 tags="ERROR_TAG"/>
+Warning: zeroing rate eigenvalue with positive real component (was (5.53551e-17,0))
+<log date="2009/09/06" time="03:32:18" file="tkfst.cc" line=459 level=7 tags="TKFST"/>
 Initializing TKFST model.
-<log date="2009/19/04" time="00:20:21" file="statesorter.cc" line=151 level=10 tags="ERROR_TAG"/>
+<log date="2009/09/06" time="03:32:18" file="statesorter.cc" line=151 level=10 tags="ERROR_TAG"/>
 Warning: found null cycle(s) during topological sort. Some parses may be missed!
-<log date="2009/19/04" time="00:20:22" file="tripletscfgdp.cc" line=282 level=7 tags="ALLOC PREALLOC"/>
+<log date="2009/09/06" time="03:32:18" file="tripletscfgdp.cc" line=295 level=7 tags="ALLOC PREALLOC"/>
 Allocating Triplet SCFG DP matrix: 100 * 111 * 111 cells by 229 states.
-<log date="2009/19/04" time="00:20:22" file="tripletscfgdp.cc" line=203 level=7 tags="ALLOC"/>
+<log date="2009/09/06" time="03:32:18" file="tripletscfgdp.cc" line=216 level=7 tags="ALLOC"/>
 Trying to allocate approx 229 * (100 * 111 * 111) cells * 4 bytes => 1076 Mb.
-<log date="2009/19/04" time="00:20:25" file="tripletscfgdp.cc" line=285 level=7 tags="ALLOC POSTALLOC"/>
+<log date="2009/09/06" time="03:32:22" file="tripletscfgdp.cc" line=298 level=7 tags="ALLOC POSTALLOC"/>
 Allocated Triplet SCFG DP matrix (approx 1076 Mb).
-<log date="2009/19/04" time="00:20:25" file="tripletscfgdp.cc" line=806 level=7 tags="INDIEGRAM_DP"/>
+<log date="2009/09/06" time="03:32:22" file="tripletscfgdp.cc" line=820 level=7 tags="INDIEGRAM_DP"/>
 Starting CYK fill
-<log date="2009/19/04" time="00:20:33" file="tripletscfgdp.cc" line=982 level=7 tags="INDIEGRAM_DP"/>
+<log date="2009/09/06" time="03:32:30" file="tripletscfgdp.cc" line=996 level=7 tags="INDIEGRAM_DP"/>
 CYK: Finished 154956 subseqs (12.5%) and 3000228 bifurcations (6.9%)
-<log time="00:20:40"/>
+<log time="03:32:37"/>
 CYK: Finished 254079 subseqs (20.6%) and 6001952 bifurcations (13.9%)
-<log time="00:20:48"/>
+<log time="03:32:45"/>
 CYK: Finished 330447 subseqs (26.8%) and 9002180 bifurcations (20.8%)
-<log time="00:20:55"/>
+<log time="03:32:52"/>
 CYK: Finished 380619 subseqs (30.8%) and 12012132 bifurcations (27.8%)
-<log time="00:21:03"/>
+<log time="03:32:59"/>
 CYK: Finished 454878 subseqs (36.9%) and 15019092 bifurcations (34.8%)
-<log time="00:21:11"/>
+<log time="03:33:07"/>
 CYK: Finished 516705 subseqs (41.9%) and 18021564 bifurcations (41.8%)
-<log time="00:21:18"/>
+<log time="03:33:15"/>
 CYK: Finished 565878 subseqs (45.9%) and 21042736 bifurcations (48.8%)
-<log time="00:21:26"/>
+<log time="03:33:23"/>
 CYK: Finished 639693 subseqs (51.9%) and 24044086 bifurcations (55.8%)
-<log time="00:21:34"/>
+<log time="03:33:31"/>
 CYK: Finished 780885 subseqs (63.3%) and 27044314 bifurcations (62.7%)
-<log time="00:21:41"/>
+<log time="03:33:38"/>
 CYK: Finished 878121 subseqs (71.2%) and 30053144 bifurcations (69.7%)
-<log time="00:21:49"/>
+<log time="03:33:45"/>
 CYK: Finished 976023 subseqs (79.2%) and 33054868 bifurcations (76.7%)
-<log time="00:21:56"/>
+<log time="03:33:53"/>
 CYK: Finished 1093572 subseqs (88.7%) and 36059584 bifurcations (83.7%)
-<log time="00:22:04"/>
+<log time="03:34:00"/>
 CYK: Finished 1132644 subseqs (91.9%) and 39075520 bifurcations (90.7%)
-<log time="00:22:16"/>
+<log time="03:34:08"/>
 CYK: Finished 1175601 subseqs (95.4%) and 42075748 bifurcations (97.6%)
-<log time="00:22:19"/>
+<log time="03:34:11"/>
 CYK: Finished 1232100 subseqs (100%) and 43081808 bifurcations (100%)
-<log date="2009/19/04" time="00:22:20" file="igmain.cc" line=376 level=8 tags="INDIEGRAM"/>
+<log date="2009/09/06" time="03:34:11" file="igmain.cc" line=372 level=8 tags="INDIEGRAM"/>
 Completed triplet structural alignments.

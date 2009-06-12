@@ -1,16 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-37 SS    -<<......<....>..<<<<........-.>>>>..>>-
-X/1-37            -cgcgcuacgcuuucuacgcgcuggauga-ucgcgugcg-
-#=GR Y/1-34 SS    <<-.-....-....-.-<<<<..........>>>>..->>
-Y/1-34            ua-u-aaac-gaca-c-cgcguguugcgcgucgcgug-ua
-#=GR Z/1-34 SS    -<(.-....-....-..<<<<........-.>>>>..)>-
-Z/1-34            -cgg-uuuc-auua-cgcuaggaccucuu-ucuagucug-
-#=GC ancestral_SS -<<.-....-....-..<<<<........-.>>>>..>>-
-#=GC PS_cons      ........c........c..g.........uc..gu....
-#=GC SS_cons      .<...............<<<<..........>>>>...>.
-                  -263.722
+#=GR X/1-37 SS    <<......<....>..<<<<........-.>>>>..>>
+X/1-37            cgcgcuacgcuuucuacgcgcuggauga-ucgcgugcg
+#=GR Y/1-34 SS    <<.-....-....-.-<<<<..........>>>>..>>
+Y/1-34            uau-aaac-gaca-c-cgcguguugcgcgucgcgugua
+#=GR Z/1-34 SS    <(.-....-....-..<<<<........-.>>>>..)>
+Z/1-34            cgg-uuuc-auua-cgcuaggaccucuu-ucuagucug
+#=GC ancestral_SS <<.-....-....-..<<<<........-.>>>>..>>
+#=GC PS_cons      .......c........c..g.........uc..gu...
+#=GC SS_cons      <<..............<<<<..........>>>>..>>
+                  -245.163
 //
-[0..37,0..34,0..34] -1 (Start) 35 (Null) 48 (Null) 123 (EmitYLR) 90 (EmitXLRYLRZLR) 91 (EmitXLRZLR) 35 (Null) 95 (EmitXLYLZL) 62 (EmitXL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
+[0..37,0..34,0..34] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 62 (EmitXL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
  [8..14,7..11,7..11] 48 (Null) 83 (EmitXLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
  [14..35,11..32,11..32] 35 (Null) 95 (EmitXLYLZL) 96 (EmitXLZL) 205 (Bifurc)
   [16..33,12..30,13..30] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 102 (EmitYL) 95 (EmitXLYLZL) -2 (End)

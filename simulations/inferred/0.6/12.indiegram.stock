@@ -1,16 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-40 SS    <((<<-<<<<<<<(<<.......>>)>>>...>>>>->>))>
-X/1-40            gguag-aaacggaggguuaugguccuuccaccguuu-cuguc
-#=GR Y/1-40 SS    <-<<<<<<<<(<<<<<.......>>>>>)...>>>>>>>>->
-Y/1-40            u-gcuguuaagccggguuggcgacccgguaaauuaacagc-a
-#=GR Z/1-40 SS    <-<<<(<<<(<<<<<<.......>>>>>>...)>>>)>>>->
-Z/1-40            a-acgcaaaugcagggguuacaacccugcuguguuuacgu-u
-#=GC ancestral_SS <-<<<<<<<<<<<<<<.......>>>>>>...>>>>>>>>->
-#=GC PS_cons      ........a.g..ggg.u.....cc........u........
-#=GC SS_cons      <.<<<.<<<<<<<<<<.......>>>>>>...>>>>.>>>.>
-                  -219.237
+#=GR X/1-40 SS    <((<<<<<<<<<(<<.......>>)>>>...>>>>>>))>
+X/1-40            gguagaaacggaggguuaugguccuuccaccguuucuguc
+#=GR Y/1-40 SS    <<<<<<<<<(<<<<<.......>>>>>)...>>>>>>>>>
+Y/1-40            ugcuguuaagccggguuggcgacccgguaaauuaacagca
+#=GR Z/1-40 SS    <<<<(<<<(<<<<<<.......>>>>>>...)>>>)>>>>
+Z/1-40            aacgcaaaugcagggguuacaacccugcuguguuuacguu
+#=GC ancestral_SS <<<<<<<<<<<<<<<.......>>>>>>...>>>>>>>>>
+#=GC PS_cons      .......a.g..ggg.u.....cc........u....g..
+#=GC SS_cons      <<<<<<<<<<<<<<<.......>>>>>>...>>>>>>>>>
+                  -203.177
 //
-[0..40,0..40,0..40] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 75 (EmitXLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 128 (EmitYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 205 (Bifurc)
+[0..40,0..40,0..40] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 205 (Bifurc)
  [9..28,9..28,9..28] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
  [28..31,28..31,28..31] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
 

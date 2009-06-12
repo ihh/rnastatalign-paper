@@ -8,7 +8,7 @@ Z/1-31            gaguugggaac-gcgaguag----------ucaacggcuugc
 #=GC ancestral_SS <..<<<<...<-.......>---------->>>>.......>
 #=GC PS_cons      .a....g.aa.........................g......
 #=GC SS_cons      <..<<<<.......................>>>>.......>
-                  -227.172
+                  -216.524
 //
 [0..31,0..32,0..31] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
  [3..24,3..24,3..23] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 211 (Bifurc)

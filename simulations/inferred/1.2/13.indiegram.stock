@@ -8,7 +8,7 @@ Z/1-10            gcauccg-------------------------------agc
 #=GC ancestral_SS <<...--<.......---------------------.>->>
 #=GC PS_cons      ..a......................................
 #=GC SS_cons      <<.....................................>>
-                  -175.25
+                  -160.108
 //
 [0..37,0..17,0..10] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 138 (EmitZL) 138 (EmitZL) 169 (Bifurc)
  [5..35,5..15,7..7] 49 (Null) 89 (EmitXLRYLR) 37 (Null) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 219 (Bifurc)

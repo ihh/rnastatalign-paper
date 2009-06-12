@@ -1,24 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-39 SS    --------------------------------------------------------------------------------<<<.<<<<<<(<(<(.....)>)>)>>>>>>.....>>>
-X/1-39            --------------------------------------------------------------------------------uuaagaaggcuagugagccuuauuggccuucgugcguaa
-#=GR Y/1-41 SS    ---------------------------------------(<<..<<<<<<<<<(<<.....>>)>>>>>>>>>....>>)---------------------------------------
-Y/1-41            ---------------------------------------gagaaaaggggcguguaaucuguauacgccccuugacacuu---------------------------------------
-#=GR Z/1-39 SS    <<<<<<<<<(<<<<(.....)>>>>)>>>>>>....>>>--------------------------------------------------------------------------------
-Z/1-39            cacgagaaauggacguacuauguccguuucucgucugug--------------------------------------------------------------------------------
-#=GC ancestral_SS -----------------------------------------------------------------------------------------------------------------------
-#=GC PS_cons      .......................................................................................................................
-#=GC SS_cons      .......................................................................................................................
-                  -261.757
+#=GR X/1-39 SS    <<<.-<<-<<<<(<(<(.....)>)>)>>>>->>.....>>>
+X/1-39            uuaa-ga-aggcuagugagccuuauuggccu-ucgugcguaa
+#=GR Y/1-41 SS    (<<..<<<<<<<<<(<<.....>>)>>>>>>>>>..-..>>)
+Y/1-41            gagaaaaggggcguguaaucuguauacgccccuuga-cacuu
+#=GR Z/1-39 SS    <<<--<<<<<<(<<<<(.....)>>>>)>>>>>>..-..>>>
+Z/1-39            cac--gagaaauggacguacuauguccguuucucgu-cugug
+#=GC ancestral_SS <<<.-<<<<<<<<<<<<.....>>>>>>>>>>>>..-..>>>
+#=GC PS_cons      ......a............c..u.u..g....u.g..c....
+#=GC SS_cons      <<<..<<.<<<<<<<<<.....>>>>>>>>>.>>.....>>>
+                  -222.286
 //
-[0..39,0..41,0..39] -1 (Start) 35 (Null) 168 (Bifurc)
- [0..0,0..0,0..39] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 171 (Bifurc)
-  [0..0,0..0,3..32] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
-  [0..0,0..0,32..36] 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
- [0..39,0..41,39..39] 35 (Null) 210 (Bifurc)
-  [0..0,0..41,39..39] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 112 (EmitYL) 187 (Bifurc)
-   [0..0,5..34,39..39] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) -2 (End)
-   [0..0,34..38,39..39] 58 (Null) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) -2 (End)
-  [0..39,41..41,39..39] 36 (Null) 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 188 (Bifurc)
-   [4..31,41..41,39..39] 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) -2 (End)
-   [31..36,41..41,39..39] 56 (Null) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) -2 (End)
+[0..39,0..41,0..39] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 93 (EmitXLYL) 102 (EmitYL) 205 (Bifurc)
+ [4..31,5..34,3..32] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 128 (EmitYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+ [31..36,34..38,32..36] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 62 (EmitXL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
 

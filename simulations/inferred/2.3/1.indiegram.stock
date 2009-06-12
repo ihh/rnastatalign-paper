@@ -8,7 +8,7 @@ Z/1-12            cgacg-aa-ga------------------ucg
 #=GC ancestral_SS <<...-..-..<<<<-.........>>>>->>
 #=GC PS_cons      ................................
 #=GC SS_cons      <<............................>>
-                  -185.003
+                  -178.378
 //
 [0..29,0..30,0..12] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 102 (EmitYL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 102 (EmitYL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 169 (Bifurc)
  [9..27,11..28,9..9] 49 (Null) 89 (EmitXLRYLR) 89 (EmitXLRYLR) 89 (EmitXLRYLR) 89 (EmitXLRYLR) 37 (Null) 71 (EmitXL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) 94 (EmitXLYL) -2 (End)

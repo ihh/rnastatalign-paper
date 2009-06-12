@@ -8,7 +8,7 @@ Z/1-24            --------------------------------------------ggcagaaauacgcuugcu
 #=GC ancestral_SS --------------------------------------------<<.<<.......>>........>>
 #=GC PS_cons      ....................................................................
 #=GC SS_cons      ....................................................................
-                  -238.22
+                  -234.734
 //
 [0..24,0..44,0..24] -1 (Start) 35 (Null) 210 (Bifurc)
  [0..0,0..44,0..0] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 187 (Bifurc)

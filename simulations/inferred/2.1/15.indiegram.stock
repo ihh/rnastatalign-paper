@@ -5,12 +5,12 @@ X/1-11            aa-agggucg------------------------------------------------gu
 Y/1-56            gg-ggcaucugaaaguaaaa-cgugcgauauaaa-uagacuuuagaagaaucgcgcgu-c
 #=GR Z/1-12 SS    <.........------------------------------------------------.>
 Z/1-12            uccaauggaa------------------------------------------------ua
-#=GC ancestral_SS <.-.......-..........<-<-<-<<......<............>>>->->->-.>
+#=GC ancestral_SS <.-.......<..........<<<<<<<<......<............>>>>>>>>>>.>
 #=GC PS_cons      ....................-.............-.........................
 #=GC SS_cons      <..........................................................>
-                  -254.271
+                  -220.076
 //
 [0..11,0..56,0..12] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 138 (EmitZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 216 (Bifurc)
- [9..9,9..55,10..10] 53 (Null) 126 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 20 (Null) 53 (Null) 122 (EmitYLR) 120 (EmitYLR) 122 (EmitYLR) 120 (EmitYLR) 122 (EmitYLR) 120 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 20 (Null) 53 (Null) 122 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) -2 (End)
+ [9..9,9..55,10..10] 53 (Null) 122 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 20 (Null) 53 (Null) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 122 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 20 (Null) 53 (Null) 122 (EmitYLR) 45 (Null) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) 107 (EmitYL) -2 (End)
  [9..10,55..55,10..11] 35 (Null) 96 (EmitXLZL) -2 (End)
 

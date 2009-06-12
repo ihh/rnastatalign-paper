@@ -1,16 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-10 SS    -<------------------------------------..<..>..>-
-X/1-10            -g------------------------------------guuggacgc-
-#=GR Y/1-10 SS    -<------------------------------------..<..>..>-
-Y/1-10            -g------------------------------------guugcaagc-
-#=GR Z/1-46 SS    <-<<<<<<<<<....<<.....>>.....>>>>>>>>>..<..>..->
-Z/1-46            a-ucgggcgccuaaacugggggagaaguaggcgcccgaucuguaug-u
-#=GC ancestral_SS -<------------------------------------..<..>..>-
-#=GC PS_cons      ........................................ug.a.g..
-#=GC SS_cons      ........................................<..>....
-                  -167.382
+#=GR X/1-10 SS    <------------------------------------..<..>..>
+X/1-10            g------------------------------------guuggacgc
+#=GR Y/1-10 SS    <------------------------------------..<..>..>
+Y/1-10            g------------------------------------guugcaagc
+#=GR Z/1-46 SS    <<<<<<<<<<....<<.....>>.....>>>>>>>>>..<..>..>
+Z/1-46            aucgggcgccuaaacugggggagaaguaggcgcccgaucuguaugu
+#=GC ancestral_SS <------------------------------------..<..>..>
+#=GC PS_cons      .......................................ug.a.g.
+#=GC SS_cons      <......................................<..>..>
+                  -151.357
 //
-[0..10,0..10,0..46] -1 (Start) 35 (Null) 48 (Null) 163 (EmitZLR) 88 (EmitXLRYLR) 35 (Null) 168 (Bifurc)
+[0..10,0..10,0..46] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 168 (Bifurc)
  [1..1,1..1,1..37] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 171 (Bifurc)
   [1..1,1..1,14..23] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
   [1..1,1..1,23..28] 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)

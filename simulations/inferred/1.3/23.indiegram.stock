@@ -1,24 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-35 SS    ----------------------------------------------------------------------<<<..<<<<<<<<<<.....>>>>>>>>>>..>>>
-X/1-35            ----------------------------------------------------------------------uugucccguuccuuaaacuauaaggaacggggcaa
-#=GR Y/1-38 SS    --------------------------------<<<<<.(<<<<<<<<<.....>>>>>>>>>)..>>>>>-----------------------------------
-Y/1-38            --------------------------------ccuauauagaugugguaacgaaccacaucugaaauagg-----------------------------------
-#=GR Z/1-32 SS    <<<.<<<<<<<<<<...>>>>>>>>>>..>>>-------------------------------------------------------------------------
-Z/1-32            auuaccaucccggggggcccgggauggggaau-------------------------------------------------------------------------
-#=GC ancestral_SS ---------------------------------------------------------------------------------------------------------
-#=GC PS_cons      .........................................................................................................
-#=GC SS_cons      .........................................................................................................
-                  -214.099
+#=GR X/1-35 SS    <-<<-..<<<<<<<<<<.....>>>>>>>>>>..->>->
+X/1-35            u-ug-ucccguuccuuaaacuauaaggaacgggg-ca-a
+#=GR Y/1-38 SS    <<<<<.-(<<<<<<<<<.....>>>>>>>>>)..>>>>>
+Y/1-38            ccuaua-uagaugugguaacgaaccacaucugaaauagg
+#=GR Z/1-32 SS    <-<<-.-<<<<<<<<<<.--..>>>>>>>>>>..->>->
+Z/1-32            a-uu-a-ccaucccgggg--ggcccgggaugggg-aa-u
+#=GC ancestral_SS <-<<-.-<<<<<<<<<<.....>>>>>>>>>>..->>->
+#=GC PS_cons      ..u............................g....a..
+#=GC SS_cons      <.<<...<<<<<<<<<<.....>>>>>>>>>>...>>.>
+                  -195.781
 //
-[0..35,0..38,0..32] -1 (Start) 35 (Null) 168 (Bifurc)
- [0..0,0..0,0..32] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 171 (Bifurc)
-  [0..0,0..0,4..27] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
-  [0..0,0..0,27..29] 60 (Null) 149 (EmitZL) 149 (EmitZL) -2 (End)
- [0..35,0..38,32..32] 35 (Null) 210 (Bifurc)
-  [0..0,0..38,32..32] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 187 (Bifurc)
-   [0..0,6..31,32..32] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) -2 (End)
-   [0..0,31..33,32..32] 58 (Null) 112 (EmitYL) 112 (EmitYL) -2 (End)
-  [0..35,38..38,32..32] 36 (Null) 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 74 (EmitXL) 188 (Bifurc)
-   [5..30,38..38,32..32] 57 (Null) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 87 (EmitXLR) 56 (Null) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) 74 (EmitXL) -2 (End)
-   [30..32,38..38,32..32] 56 (Null) 74 (EmitXL) 74 (EmitXL) -2 (End)
+[0..35,0..38,0..32] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 117 (EmitYLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 117 (EmitYLR) 35 (Null) 95 (EmitXLYLZL) 62 (EmitXL) 205 (Bifurc)
+ [5..30,6..31,4..27] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 93 (EmitXLYL) 93 (EmitXLYL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+ [30..32,31..33,27..29] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
 

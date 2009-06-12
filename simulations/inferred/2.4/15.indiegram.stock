@@ -3,15 +3,15 @@
 X/1-35            ---------------------------------------acuaaaauaauaagcuguuaaacuaauaaguuagu
 #=GR Y/1-23 SS    <<(<<..<.....>.----------------...>>)>>-----------------------------------
 Y/1-23            aacagagcauauagu----------------aaucucuu-----------------------------------
-#=GR Z/1-34 SS    -<<-<..<.-...>.<<(<<<....>>>)>>...>->>------------------------------------
-Z/1-34            -cg-gauaa-ggauuccuacaaagaugucggauac-cg------------------------------------
-#=GC ancestral_SS -<<-<..<.....>.----------------...>->>------------------------------------
+#=GR Z/1-34 SS    --<<<..<.-...>.<<(<<<....>>>)>>...>>>-------------------------------------
+Z/1-34            --cggauaa-ggauuccuacaaagaugucggauaccg-------------------------------------
+#=GC ancestral_SS <<<<<..<.....>.----------------...>>>>>-----------------------------------
 #=GC PS_cons      ..........................................................................
 #=GC SS_cons      ..........................................................................
-                  -223.299
+                  -244.913
 //
 [0..35,0..23,0..34] -1 (Start) 35 (Null) 211 (Bifurc)
- [0..0,0..23,0..34] 52 (Null) 125 (EmitYLR) 129 (EmitYLRZLR) 129 (EmitYLRZLR) 119 (EmitYLR) 129 (EmitYLRZLR) 43 (Null) 131 (EmitYLZL) 131 (EmitYLZL) 212 (Bifurc)
+ [0..0,0..23,0..34] 52 (Null) 121 (EmitYLR) 121 (EmitYLR) 129 (EmitYLRZLR) 129 (EmitYLRZLR) 129 (EmitYLRZLR) 43 (Null) 131 (EmitYLZL) 131 (EmitYLZL) 212 (Bifurc)
   [0..0,7..14,5..11] 52 (Null) 129 (EmitYLRZLR) 43 (Null) 131 (EmitYLZL) 106 (EmitYL) 131 (EmitYLZL) 131 (EmitYLZL) 131 (EmitYLZL) -2 (End)
   [0..0,14..18,11..31] 43 (Null) 131 (EmitYLZL) 225 (Bifurc)
    [0..0,15..15,12..28] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)

@@ -1,16 +1,16 @@
 # STOCKHOLM 1.0
-#=GR X/1-33 SS    <<<<<(<<-<<<<...>>>>->>)>......>>>>
-X/1-33            cuuggguc-agccuaaggcu-gaucguuaagcaag
-#=GR Y/1-32 SS    <<<<<<(<-<<<<...>>>>->)>>....-.>>>>
-Y/1-32            caucuguc-cucaaaaugag-ggcaaaua-ggaug
-#=GR Z/1-33 SS    <<-<<<(<<<<(<...>)>>>>)>>......>->>
-Z/1-33            ga-caggcuaggacaauucuagucugauagag-uc
-#=GC ancestral_SS <<<<<<<<-<<<<...>>>>->>>>......>>>>
-#=GC PS_cons      .....g.c......aa.....g.....ua......
-#=GC SS_cons      <<.<<<<<.<<<<...>>>>.>>>>......>.>>
-                  -190.323
+#=GR X/1-33 SS    <<<<<(-<<<<<<...>>>>>>-)>......>>>>
+X/1-33            cuuggg-ucagccuaaggcuga-ucguuaagcaag
+#=GR Y/1-32 SS    <<<<<<-(<<<<<...>>>>>)->>....-.>>>>
+Y/1-32            caucug-uccucaaaaugaggg-caaaua-ggaug
+#=GR Z/1-33 SS    <<<-<<(<<<<(<...>)>>>>)>>......->>>
+Z/1-33            gac-aggcuaggacaauucuagucugauaga-guc
+#=GC ancestral_SS <<<<<<-<<<<<<...>>>>>>->>......>>>>
+#=GC PS_cons      .....g........aa...........ua......
+#=GC SS_cons      <<<.<<.<<<<<<...>>>>>>.>>.......>>>
+                  -180.142
 //
-[0..33,0..32,0..33] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 88 (EmitXLRYLR) 90 (EmitXLRYLRZLR) 35 (Null) 205 (Bifurc)
- [4..23,4..23,3..24] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 156 (EmitZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
+[0..33,0..32,0..33] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 88 (EmitXLRYLR) 35 (Null) 205 (Bifurc)
+ [4..23,4..23,3..24] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 156 (EmitZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
  [23..29,23..28,24..30] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) 95 (EmitXLYLZL) -2 (End)
 

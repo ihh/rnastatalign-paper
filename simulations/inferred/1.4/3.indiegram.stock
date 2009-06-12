@@ -3,14 +3,14 @@
 X/1-36            gucucaggaa---------------ggugugauauaaucgcacccugagac
 #=GR Y/1-32 SS    <<<<<((...<<<<<<...>>>>>>-------------------))>>>>>
 Y/1-32            caucauggaucacgcagucugcgug-------------------ugugaug
-#=GR Z/1-34 SS    <<<<<<-...---------------<<<<<<(<...>)>>>>>>->>>>>>
-Z/1-34            ccguua-cag---------------cgcguguguuccgcacgcg-uaacgg
+#=GR Z/1-34 SS    <-<<<<<...---------------<<<<<<(<...>)>>>>>>>>>>>->
+Z/1-34            c-cguuacag---------------cgcguguguuccgcacgcguaacg-g
 #=GC ancestral_SS <<<<<<<...---------------<<<<<<<<...>>>>>>>>>>>>>>>
 #=GC PS_cons      ........a..........................................
-#=GC SS_cons      <<<<<<.......................................>>>>>>
-                  -213.534
+#=GC SS_cons      <.<<<<<.....................................>>>>>.>
+                  -193.894
 //
-[0..36,0..32,0..34] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 88 (EmitXLRYLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 207 (Bifurc)
+[0..36,0..32,0..34] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 88 (EmitXLRYLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 207 (Bifurc)
  [10..10,10..25,9..9] 59 (Null) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 127 (EmitYLR) 58 (Null) 112 (EmitYL) 112 (EmitYL) 112 (EmitYL) -2 (End)
  [10..29,25..25,9..28] 14 (Null) 50 (Null) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 92 (EmitXLRZLR) 40 (Null) 97 (EmitXLZL) 97 (EmitXLZL) 97 (EmitXLZL) -2 (End)
 

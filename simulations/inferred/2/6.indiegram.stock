@@ -3,16 +3,16 @@
 X/1-31            uggac-auugccugauagggcuuauagcauca
 #=GR Y/1-31 SS    <<.....<(<<<(..-.)>>>....)>...>>
 Y/1-31            cuguggacucgguua-ggccgcuagggcucag
-#=GR Z/1-30 SS    <(.....<<-<((....))>-....>>...)>
-Z/1-30            gucgcaucg-ugggucuuua-uccacgauguc
+#=GR Z/1-30 SS    <(.....<<<((-....-))>....>>...)>
+Z/1-30            gucgcaucgugg-gucu-uuauccacgauguc
 #=GC ancestral_SS <<.....<<<<<<....>>>>....>>...>>
 #=GC PS_cons      ..........................g.....
-#=GC SS_cons      <<.....<<.<<<....>>>.....>>...>>
-                  -236.413
+#=GC SS_cons      <<.....<<<<<......>>>....>>...>>
+                  -222.663
 //
 [0..31,0..31,0..30] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 130 (EmitYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
  [6..26,7..26,7..25] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 205 (Bifurc)
-  [8..20,9..20,9..19] 48 (Null) 88 (EmitXLRYLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) 95 (EmitXLYLZL) -2 (End)
+  [8..20,9..20,9..19] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 88 (EmitXLRYLR) 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) 95 (EmitXLYLZL) -2 (End)
   [20..24,20..24,19..23] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
  [26..29,26..29,25..28] 35 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) -2 (End)
 

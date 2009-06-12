@@ -1,18 +1,18 @@
 # STOCKHOLM 1.0
-#=GR X/1-19 SS    <..---------------....-<<--......>>-.>
-X/1-19            cac---------------uacg-ca--acaggcug-ug
-#=GR Y/1-17 SS    (-.---------------....<<---.....-->>.)
-Y/1-17            g-c---------------agguug---uuuua--caaa
-#=GR Z/1-36 SS    (..(<<.........>>)....-<<........>>-.)
-Z/1-36            uauguggaugagauacauccug-gaguacauauuc-ag
-#=GC ancestral_SS <..---------------....-<<--......>>-.>
-#=GC PS_cons      ......................................
-#=GC SS_cons      <......................<..........>..>
-                  -204.889
+#=GR X/1-19 SS    <..---------------....<<--......>>.>
+X/1-19            cac---------------uacgca--acaggcugug
+#=GR Y/1-17 SS    (-.---------------....<<--.....->>.)
+Y/1-17            g-c---------------agguug--uuuua-caaa
+#=GR Z/1-36 SS    (..(<<.........>>)....<<........>>.)
+Z/1-36            uauguggaugagauacauccuggaguacauauucag
+#=GC ancestral_SS <..---------------....<<--......>>.>
+#=GC PS_cons      ....................................
+#=GC SS_cons      <.....................<<........>>.>
+                  -197.811
 //
 [0..19,0..17,0..36] -1 (Start) 35 (Null) 48 (Null) 90 (EmitXLRYLRZLR) 35 (Null) 96 (EmitXLZL) 95 (EmitXLYLZL) 170 (Bifurc)
  [3..3,2..2,3..18] 61 (Null) 167 (EmitZLR) 167 (EmitZLR) 167 (EmitZLR) 60 (Null) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) 149 (EmitZL) -2 (End)
  [3..18,2..16,18..35] 16 (Null) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 205 (Bifurc)
-  [7..17,6..15,22..34] 48 (Null) 123 (EmitYLR) 90 (EmitXLRYLRZLR) 91 (EmitXLRZLR) 35 (Null) 145 (EmitZL) 145 (EmitZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) -2 (End)
+  [7..17,6..15,22..34] 48 (Null) 90 (EmitXLRYLRZLR) 90 (EmitXLRYLRZLR) 35 (Null) 145 (EmitZL) 145 (EmitZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 95 (EmitXLYLZL) 96 (EmitXLZL) -2 (End)
   [17..18,15..16,34..35] 35 (Null) 95 (EmitXLYLZL) -2 (End)
 
