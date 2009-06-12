@@ -122,9 +122,10 @@ points (structure,
 lines (lowess (structure), col = structureColor, lwd = 1.5)
 
 
-legend ("bottomleft", legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)", "Alignment accuracy (Long Indel ML)", "Alignment accuracy (Stemloc ML)", "Alignment accuracy (Stemloc AMA)"),
+legend (x = "bottomleft",
+        legend = c ("Structural reconstruction accuracy (TKFST ML)", "Alignment accuracy (TKFST ML)", "Alignment accuracy (TKF91 ML)", "Alignment accuracy (Long Indel ML)", "Alignment accuracy (Stemloc ML)", "Alignment accuracy (Stemloc AMA)"),
         col = c (structureColor, alignColor, alignTKFColor, alignLongColor, alignStemlocColor, alignStemlocAmaColor),
-        pch = c (structureShape, alignShape, alignTKFShape, alignLongShape, alignStemlocColor, alignStemlocAmaColor),
+        pch = c (structureShape, alignShape, alignTKFShape, alignLongShape, alignStemlocShape, alignStemlocAmaShape),
         xjust = 1,
         inset = 0.02)
 
