@@ -12,6 +12,8 @@ my $long = Stockholm->from_file (shift);
 my $stemloc = Stockholm->from_file (shift);
 my $stemlocama = Stockholm->from_file (shift);
 
+my $cmpalignexec = "$ENV{'DARTDIR'}/bin/cmpalign";
+
 # indiegram adds cruft to the sequence names and prints non-Stockholm stuff that gets read back incorrectly by Stockholm.pm
 # handalign and indiegram both add "root" and "subroot" lines
 # so we need to tidy up the sequence name fields...
@@ -99,7 +101,7 @@ print join ("\t", $ancoverlap, map (@$_, @acc_sn_ppv_tcs)), "\n";
 
 sub cmpalign {
     my ($ref, $cmp) = @_;
-    my $cmd = "cmpalign -s $ref $cmp";
+    my $cmd = "$cmpalignexec -s $ref $cmp";
 #    warn "Running $cmd\n";
     my $line = `$cmd`;
     warn "$cmd  ==>  $line";
