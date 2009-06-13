@@ -1,0 +1,1 @@
+cat inferred/indiegram.analysis | perl -e '$_=<>;($z,@h)=split;while(<>){($z,@f)=split;$z=int($z*2)/2;for$i(0..@f-1){$t[$i]->{$z}+=$f[$i] if $f[$i]==1;$n[$i]->{$z}++}}for$i(0..@t-1){next unless $h[$i]=~/TCS/;$h[$i]=~s/AlignTCS/Correct/;print"\"$h[$i]\n";for$z(sort {$a<=>$b} keys%{$t[$i]}){print$z," ",$t[$i]->{$z},"\n"}print"\n"}' | xgraph
