@@ -8,45 +8,45 @@ Database file #4: ../latex-inputs/genomics.bib
 Database file #5: ../latex-inputs/ncrna.bib
 Database file #6: ../latex-inputs/url.bib
 Warning--empty booktitle in Sakakibara2003
-You've used 101 entries,
+You've used 103 entries,
             2441 wiz_defined-function locations,
-            1308 strings with 23400 characters,
-and the built_in function-call counts, 77300 in all, are:
-= -- 7192
-> -- 1122
+            1318 strings with 23601 characters,
+and the built_in function-call counts, 78686 in all, are:
+= -- 7324
+> -- 1138
 < -- 13
-+ -- 558
-- -- 280
-* -- 6527
-:= -- 9261
-add.period$ -- 207
-call.type$ -- 101
-change.case$ -- 108
++ -- 566
+- -- 284
+* -- 6645
+:= -- 9429
+add.period$ -- 211
+call.type$ -- 103
+change.case$ -- 110
 chr.to.int$ -- 0
-cite$ -- 203
-duplicate$ -- 7739
-empty$ -- 8107
-format.name$ -- 357
-if$ -- 17214
+cite$ -- 207
+duplicate$ -- 7879
+empty$ -- 8253
+format.name$ -- 363
+if$ -- 17522
 int.to.chr$ -- 0
-int.to.str$ -- 101
-missing$ -- 999
-newline$ -- 521
-num.names$ -- 107
-pop$ -- 1146
+int.to.str$ -- 103
+missing$ -- 1017
+newline$ -- 531
+num.names$ -- 109
+pop$ -- 1164
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 650
+skip$ -- 658
 stack$ -- 0
-substring$ -- 10975
-swap$ -- 2003
+substring$ -- 11175
+swap$ -- 2039
 text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 563
-width$ -- 104
-write$ -- 1128
+while$ -- 573
+width$ -- 106
+write$ -- 1150
 (There was 1 warning)

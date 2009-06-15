@@ -291,7 +291,7 @@ bigbins = unique (round ((bins / delta) / chunks)) * binwidth + binwidth / 2
 bigbins = bigbins[-6]
 
 # get bin names
-#binnamefun <- function(x) cat (x - binwidth/2, " to ", x + binwidth/2)
+#binnamefun <- function(x) cat (x - binwidth/2, " to ", x + binwidth/2 - delta)
 #binname = apply(bigbins, 1, binnamefun)
 binname = c("0 to 0.5", "0.5 to 1", "1 to 1.5", "1.5 to 2", "2 to 2.5");
 

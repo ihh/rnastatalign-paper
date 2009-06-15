@@ -312,11 +312,26 @@ Gutell RR (1993) Collection of small subunit ({16S} and {16S}-like) ribosomal
 \newblock Nucleic Acids Research 21: 3051-3054.
 \bibAnnoteFile{Gutell93}
 
+\bibitem{Holmes98}
+Holmes I, Durbin R (1998) Dynamic programming alignment accuracy.
+\newblock Journal of Computational Biology 5: 493-504.
+\bibAnnoteFile{Holmes98}
+
+\bibitem{SchwartzPachter2007}
+Schwartz AS, Pachter L (2007) Multiple alignment by sequence annealing.
+\newblock Bioinformatics 23: e24-9.
+\bibAnnoteFile{SchwartzPachter2007}
+
 \bibitem{MiklosLunterHolmes2004}
 Mikl\'{o}s I, Lunter G, Holmes I (2004) A long indel model for evolutionary
   sequence alignment.
 \newblock Molecular Biology and Evolution 21: 529-540.
 \bibAnnoteFile{MiklosLunterHolmes2004}
+
+\bibitem{SchwartzMyersPachter2006}
+Schwartz AS, Myers EW, Pachter L (2006) Alignment metric accuracy.
+\newblock {http://arxiv.org/abs/q-bio/0510052}.
+\bibAnnoteFile{SchwartzMyersPachter2006}
 
 \bibitem{PaulingZuckerkandl63}
 Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
@@ -600,11 +615,6 @@ Lee C, Grasso C, Sharlow M (2002) {{M}ultiple sequence alignment using partial
   order graphs}.
 \newblock Bioinformatics 18: 452--464.
 \bibAnnoteFile{LeeGrassoSharlow2002}
-
-\bibitem{SchwartzMyersPachter2006}
-Schwartz AS, Myers EW, Pachter L (2006) Alignment metric accuracy.
-\newblock {http://arxiv.org/abs/q-bio/0510052}.
-\bibAnnoteFile{SchwartzMyersPachter2006}
 
 \bibitem{ThompsonEtal99}
 Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple

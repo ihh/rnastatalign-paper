@@ -69,7 +69,8 @@
 % 2: threeway.pdf
 % 3: stree-with-structure.pdf
 % 4: stree-mutations-with-structures.pdf
-% 5: simulations.pdf
+% 5: perfect.pdf
+% 6: ama.pdf
 
 % Please keep the abstract between 250 and 300 words
 \newpage
@@ -97,21 +98,18 @@ propagation of structural information from an
 experimentally-characterized sequence to its homologs, and inference
 of the ancestral structure of a set of diverged RNAs.
 
-We implemented these algorithms for a three-taxon phylogeny.  Using
-our implementation on a simple model of pairwise RNA structural
-evolution, we simulated data under the model and tested the dependence
-of alignment inference and ancestral structure reconstruction accuracy on phylogenetic branch length.
-Our results suggest that
-we may be able to accurately reconstruct ancestral structures despite
-sequence and structural divergence if the evolutionary process is
-well-understood.
-We discuss the implications of our results for RNA algorithm design
-and phylogenetic reconstruction of RNA evolutionary history.
+We implemented the above algorithms for a simple model of pairwise RNA structural evolution;
+in particular the algorithms for maximum likelihood (ML) alignment of three known RNA structures an a known phylogeny
+and inference of the common ancestral structure.
+We compared this ML algorithm to a variety of related, but simpler, techniques,
+including ML alignment algorithms for simpler models that omitted various aspects of the full model
+and also a heuristic (sum-over-pairs) posterior-decoding alignment algorithm for one of the simpler models.
 
-The programs described are available
-as part of the \dart\ software package for sequence analysis,
-released under the GNU Public License at
-\darturl.
+Our results suggest that ML algorithms incorporating basepair structure are the most likely to estimate the alignment perfectly.
+However, the heuristic posterior-decoding algorithm scores higher on finer-grained alignment accuracy metrics.
+Since the posterior-decoding heuristic is substantially faster than exact phylogenetic ML,
+this further motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics
+for paleogenetics and other alignment problems.
 
 
 % Please keep the Author Summary between 150 and 200 words
@@ -330,7 +328,7 @@ structures, then we can constrain our algorithms accordingly.
 Similarly, we might consider only ancestral structures which are
 compatible with a given multiple sequence alignment, or a relatively small set of candidate alignments (as in the ORTHEUS program \cite{PatenHolmesBirney2008}). 
 Such constraints are
-commonly used by programs for SCFG-based RNA sequence analysis such as QRNA \cite{RivasEddy2001}, Stemloc \cite{Holmes2005} and CONSAN \cite{DowellEddy2006}.
+commonly used by programs for SCFG-based RNA sequence analysis such as QRNA \cite{RivasEddy2001}, \stemloc\ \cite{Holmes2005} and CONSAN \cite{DowellEddy2006}.
 Alignment and structural constraints can be combined \cite{Holmes2005}.
 
 
@@ -1268,89 +1266,95 @@ sequences have short branch lengths, making the reconstruction problem easy by f
 be essentially-identical to those of one of the extant RNAs.
 
 
-\subsection*{The dependence of reconstruction accuracy on outgroup
-  branch length}
+\subsection*{Comparison of alignment methods}
 
 Guided by our experience with the \emph{nanos} 3' TCE and tRNA, where
 the reconstruction problem was made easy by the presence of a close
-outgroup, we conducted a simulation study to investigate the
-dependence of reconstruction accuracy on outgroup branch length,
-and to investigate the performance of our reconstruction method (when simulating directly from the model)
-compared to simpler reconstruction methods that ignore either structure or phylogeny.
+outgroup, we conducted a simulation study of the dependence of reconstruction accuracy on outgroup branch length,
+with the further goal of comparing the performance of our reconstruction method (when simulating directly from the model)
+to simpler reconstruction methods that ignore either structure or phylogeny.
 (We here use the term ``outgroup'' loosely to denote the
 variable-length branch in our three-taxon study,
 where the other two branches are held at unit length.)
 
+
 We simulated the evolution of RNAs under the TKFST model along
 three-taxon phylogenies (with one internal node), where we kept the branch lengths of two
 sibling species constant and varied the branch length of the
-outgroup.  We chose the parameters of the TKFST model to
-generate ``interesting'' alignments ($\sim 0.3$ substructure indels per
-alignment) and considered only alignments with at least two ancestral
-stems, sequences of length $\in [30, 70]$ bp, loops of length $\in [3,
-10]$ bp and stems of lengths $\in [1, 20]$ bp.
-We then used \indiegram\ to reconstruct maximum likelihood reconstructions of the ancestral structure and the four-way multiple alignment (ancestor + three descendants).
+outgroup between $[0, 2.5]$ at steps of size $0.1$.
+    Parameters used in the simulation were $\lambda_l = 0.025$ and $\mu_l = 0.03$ for
+    loop sequence and $\lambda_l = 0.007$ and $\mu_l = 0.01$ for stem
+    sequence; the probability of a stem insertion was $0.1$.  These
+    yielded a mean loop length of 5 bp and a mean stem length of 2.33 bp,
+    with $\sim 0.3$ substructure indels per alignment.
+    We selected alignments to reconstruct by requiring
+    that there be at least two ancestral stems, loops of length $\in [3,
+    10]$ bp and stems of length $\in [1, 20]$ bp; to reduce the complexity of
+    our algorithms we additionally required that the sequences have
+    lengths $\in [30, 70]$ bp.
 
-The results of our simulations, illustrated in \figref{simulations},
-demonstrate that while the difficulty of alignment inference increases
-in proportion to the outgroup branch length, becoming very challenging
-for long outgroup branch lengths, the same need not be true for
-structural reconstruction accuracy.  As the branch length of the
-outgroup increases, the outgroup's structure becomes increasingly
-decoupled from that of its ancestor, allowing the scoring scheme to
-``ignore'' the information which it contains.  In the trivial case
-where the outgroup branch length is zero (so the ancestor is identical
-to the outgroup), we can perfectly reconstruct the ancestral structure
-(as expected), but we cannot perfectly reconstruct the three-way
-multiple alignment (since there are still two finite-length branches,
-which on average contribute a greater-than-zero rate of
-unreconstructable mutations).
+We then attempted three-way multiple alignment (and, in some cases, reconstruction of the ancestor)
+using a variety of statistical inference algorithms.
+We sought insight as to the relative importance of the following factors in reconstructing ancestral RNA:
+(i) modeling the secondary structure;
+(ii) modeling the phylogenetic topology \& branch lengths;
+(iii) using posterior-decoding algorithms to maximize the expected alignment {\em accuracy},
+rather than picking the single {\em most likely} alignment \cite{Holmes98,SchwartzPachter2007,BradleyPachterHolmes2008}.
 
-These results correspond to a best-case scenario in which we have a
-perfectly-parametrized evolutionary model and exactly-known descendant
-structures.  Recent results demonstrating that inference of sequence
-alignment is robust to mis-parametrized probabilistic models
-\cite{Lunter2007} suggest that the same may be true for probabilistic
-inference of ancestral structures.
-%The effect of imperfect knowledge of the ancestral structures has not been explored.
-% [commented out because the following tests DO address this in a roundabout way; what we mean is that indiegram has not been tested when leaf structures are unknown]
-
-To compare \indiegram\ to simpler reconstruction methods, we also measured the alignment accuracy using various simpler statistical reconstruction techniques.
-We evaluated three maximum likelihood inference algorithms that use simpler gap-aware phylogenetic models
-and one posterior decoding algorithm that uses a non-phylogenetic sum-of-pairs scoring scheme.
-These results are plotted on \figref{simulations} alongside the \indiegram\ accuracies.
-In detail, the reconstruction methods used were
+The alignment programs we used in this benchmark were
+\indiegram\ (exact ML inference of alignment and ancestral structure, given phylogeny, descendant structures and correct model);
+\stemloc\ (a greedy ML heuristic, ignoring phylogeny in favor of a single-linkage clustering of the descendant structures);
+\stemlocama\ (a posterior-decoding heuristic, maximizing the alignment's {\em expected accuracy} rather than its {\em likelihood});
+and
+\handel\ (ML alignment under various indel models that ignore secondary structure completely).
+In detail, the reconstruction methods were
 
 \begin{description}
-\item{TKF91 ML:} with the TKF91 model \cite{ThorneEtal91}, the \handel\ package \cite{HolmesBruno2001,Holmes2003,Holmes2007} was used to align the three extant sequences and reconstruct the ancestor.
+\item{\stemloc:} the \stemloc\ program was used to align the three sequences via single-linkage clustering with a Pair SCFG \cite{Holmes2005}.
+The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
+{\bf This model improves on the previous model (Long Indel) by introducing RNA secondary structure, though it no longer models phylogeny as rigorously as the Long Indel model} (it uses single-linkage clustering instead of a true phylogeny).
+\item{\stemlocama:} the \stemloc\ program was used to align the three sequences in ``sequence annealing'' mode,
+ a posterior decoding method that attempts to optimize AMA, a sum-over-pairs alignment accuracy metric \cite{BradleyPachterHolmes2008}.
+The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
+{\bf This program uses the previous model but instead of maximizing likelihood, it attempts to maximize an alignment accuracy metric.}
+\item{TKF91:} with the TKF91 model \cite{ThorneEtal91}, the \handel\ package \cite{HolmesBruno2001,Holmes2003,Holmes2007} was used to align the three extant sequences and reconstruct the ancestor.
 The correct phylogenetic tree and branch lengths were supplied (as they were for the \indiegram\ benchmark).
 The insertion, deletion and substitution rates for the TKF91 model were set equal to those of the loop submodel of TKFST.
 {\bf This may be understood as a naive reconstruction that completely ignores the stem sub-model of TKFST.}
-\item{Long Indel ML:} with a single-event trajectory approximation to the long indel model \cite{MiklosLunterHolmes2004}, the \handel\ package was used to align the three extant sequences and reconstruct the ancestor.
+\item{Long Indel:} with a single-event trajectory approximation to the long indel model \cite{MiklosLunterHolmes2004}, the \handel\ package was used to align the three extant sequences and reconstruct the ancestor.
 The correct phylogenetic tree and branch lengths were supplied.
 The deletion and substitution rates were set equal to those of the loop submodel of TKFST.
 The mean indel length was set equal to $D_l$, the mean number of bases that are created/removed by an insertion/deletion in the loop submodel of TKFST;
 the mean equilibrium sequence length (and thereby the insertion rate) was equal to $B_l$, the mean number of bases in TKFST at equilibrium
 (\secname{A simple model of RNA structural evolution} has formulae for these quantities in terms of the TKFST rate parameters).
 {\bf This model improves on the previous model (TKF91) by introducing affine gap penalties.}
-\item{Stemloc ML:} the \stemloc\ program was used to align the three sequences via single-linkage clustering with a Pair SCFG \cite{Holmes2005}.
-The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
-{\bf This model improves on the previous model (Long Indel) by introducing RNA secondary structure, though it no longer models phylogeny as rigorously as the Long Indel model.}
-\item{Stemloc AMA:} the \stemloc\ program was used to align the three sequences in ``sequence annealing'' mode,
- a posterior decoding method that attempts to optimize AMA, a sum-over-pairs alignment accuracy metric \cite{BradleyPachterHolmes2008}.
-The structures of the leaf sequences were provided, but not the phylogenetic branch lengths.
-{\bf This program uses the previous model but abandons phylogeny altogether, instead attempting to maximize a non-phylogenetic alignment accuracy metric.}
 \end{description}
 
-We did not measure the accuracy of the reconstructed ancestral structure in these tests (as we did in the \indiegram\ test),
-since \handel\ does not consider structures, whereas \stemloc\ and \stemlocama\ do not provide ancestral reconstructions.
+We focused primarily on alignment accuracy, under the simplifying assumption that this will be a good indicator for
+(and perhaps the primary determinant of) the accuracy of ancestral reconstruction.
 
+We first consider the {\em perfect alignment rate}; that is, the number of times each method gets the alignment exactly correct.
+Theory predicts that ML inference, using the correct model and parameters, should maximize the perfect alignment rate.
+Inspecting \figref{perfect}, we find this to be the case, except when the outgroup is very distant
+and the best perfect alignment rate drops below 0.05 (at which point 125 trials may not be sampling it sufficiently).
+We also note that the ML version of \stemloc\ is near-optimal, and slightly better than the posterior-decoding \stemloc-AMA.
+Finally, we note that the structure-blind models (TKF91 and Long Indel) perform consistently worse than the structure-aware methods,
+with no decisive advantage shown by either TKF91 (linear gap penalty) or Long Indel (affine gap penalty).
 
-{\bf SUMMARY OF THESE RESULTS}
-% TKF is less accurate than indiegram, although for short branch lengths it is almost identical; the TKF and indiegram accuracies diverge at longer branch lengths
-% Long indel?
-% Stemloc?
-% StemlocAMA?
+A subtly different trend is apparent when we look at the accuracy of the returned alignment,
+measured not by the all-or-nothing metric of whether the alignment is {\em perfect},
+but rather by a metric that count the number of correct alignment columns.
+\figref{ama} shows the {\em Alignment Metric Accuracy} (AMA),
+a generalization of the {\em Sum-of Pairs Score} (SPS)
+which measures the proportion of residues which are correctly aligned, averaged over all pairs of sequences \cite{SchwartzMyersPachter2006}.
+Here, we see that \stemlocama---which attempts to find the alignment with maximum expected AMA---edges out both
+\indiegram\ and the ML version of \stemloc.
+The decision-theoretic scoring scheme of \stemlocama\ appears to offset the minor incorrectness of its model.
+
+Again, when looking at the AMA statistics, the most important factor is clearly the incorporation of some form of basepair structure
+into the model: \handel, whether using TKF91 or the Long Indel model, performs much worse than the SCFG-based methods.
+This is to be expected: whenever a basepair-aware method aligns one half of a basepair, it gets the other nucleotide
+correctly aligned for free.
 
 
 
@@ -1509,6 +1513,9 @@ The profile is not linear: the sampled paths instead form a reticulate network, 
 An equivalent of \ortheus\ for RNA reconstruction should be possible,
 representing the intermediate profiles using transducers.
 
+Given the excellent performance of \stemlocama's sequence annealing, particularly when measured using its own scoring metric (AMA),
+such posterior-decoding methods should also be considered for reconstruction.
+
 In summary, the evolutionary models and algorithms we have described form a
 systematic theoretical platform on which we can test different optimization and sampling strategies
 for studying the structural evolution of RNA gene families in detail.
@@ -1625,7 +1632,30 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 % figure produced automatically with simulations/plots.r from simulations/inferred/indiegram.analysis
 \begin{figure}[!ht]
   \centering
-  % \includegraphics[width=5in]{figs_plos/simulations.pdf}
+  % \includegraphics[width=5in]{figs_plos/perfect.pdf}
+  \caption{
+    \textbf{Dependence of perfect alignment rate on outgroup branch
+      length.}
+    We investigated the perfect alignment rate
+    (the number of times that a given alignment program estimates the alignment 100\% correctly, with no errors)
+    as a function of outgroup branch length, simulating the
+    evolution of three structural RNAs under our model.  The two
+    sister species were equidistant from the ancestral sequence, with
+    a branch length of 1, corresponding to one expected
+    substitution per site in loop sequence.  We allowed the outgroup
+    branch length $t$ to vary between $[0, 2.5]$.  We selected 25 equally spaced values of $t$ in this range, spaced $0.1$ apart,
+    and simulated 25 alignments for each value of $t$, using TKFST model parameters described in the text.
+    Since the perfect alignment rate is rather low, we further aggregated the $t$-values for this plot into bins of five;
+    thus, for example, the bin named ``$0 to 0.5$'' includes $t \in \{ 0, 0.1, 0.2, 0.3, 0.4 \}$.
+    The vertical axis counts the number of perfect alignments in each bin, out of a total of 125 trials per bin.
+}
+  \figlabel{perfect}
+\end{figure}
+
+% figure produced automatically with simulations/plots.r from simulations/inferred/indiegram.analysis
+\begin{figure}[!ht]
+  \centering
+  % \includegraphics[width=5in]{figs_plos/ama.pdf}
   \caption{
     \textbf{Dependence of reconstruction accuracy on outgroup branch
       length.}
@@ -1635,27 +1665,13 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
     sister species were equidistant from the ancestral sequence, with
     a branch length of 1, corresponding to one expected
     substitution per site in loop sequence.  We allowed the outgroup
-    branch length to vary between $[0, 2.5]$.  We divided this interval
-    into 25 bins and simulated 25 alignments for each bin.
-    Parameters used were $\lambda_l = 0.025$ and $\mu_l = 0.03$ for
-    loop sequence and $\lambda_l = 0.007$ and $\mu_l = 0.01$ for stem
-    sequence; the probability of a stem insertion was $0.1$.  These
-    yielded a mean loop length of 5 bp and a mean stem length of 2.33 bp,
-    with $\sim 0.3$ substructure indels per alignment.
-    We selected alignments to reconstruct by requiring
-    that there be at least two ancestral stems, loops of length $\in [3,
-    10]$ bp and stems of length $\in [1, 20]$ bp; to reduce the complexity of
-    our algorithms we additionally required that the sequences have
-    lengths $\in [30, 70]$ bp.
-    ``Structural reconstruction accuracy'' is the fraction of
-    base-pairs in the ancestral structure present in the
-    maximum-likelihood reconstruction thereof, estimated by aligning the two structures using \stemloc\ \cite{Holmes2005}.
-    ``Alignment accuracy'' is the Alignment Metric Accuracy (AMA),
-    effectively the probability that any given residue is correctly
+    branch length $t$ to vary between $[0, 2.5]$.  We selected 25 equally spaced values of $t$ in this range, spaced $0.1$ apart,
+    and simulated 25 alignments for each value of $t$, using TKFST model parameters described in the text.
+    The Alignment Metric Accuracy (AMA) is, roughly, the proportion of residues that are correctly
     aligned, averaged over all pairs of sequences
-    (see \cite{SchwartzMyersPachter2006} for a precise definition).
+    (see \cite{SchwartzMyersPachter2006} for a precise definition; we used AMA with Gap Factor 1).
 }
-  \figlabel{simulations}
+  \figlabel{ama}
 \end{figure}
 
 
