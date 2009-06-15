@@ -1335,8 +1335,8 @@ We focused primarily on alignment accuracy, under the simplifying assumption tha
 
 We first consider the {\em perfect alignment rate}; that is, the number of times each method gets the alignment exactly correct.
 Theory predicts that ML inference, using the correct model and parameters, should maximize the perfect alignment rate.
-Inspecting \figref{perfect}, we find this to be the case, except when the outgroup is very distant
-and the best perfect alignment rate drops below 0.05 (at which point 125 trials may not be sampling it sufficiently).
+Inspecting \figref{perfect}, we find this to be the case, except where the outgroup is very distant and the bins are probably undersampled
+(when the perfect alignment rate drops below $\sim 5/125$, 125 trials may be too few).
 We also note that the ML version of \stemloc\ is near-optimal, and slightly better than the posterior-decoding \stemloc-AMA.
 Finally, we note that the structure-blind models (TKF91 and Long Indel) perform consistently worse than the structure-aware methods,
 with no decisive advantage shown by either TKF91 (linear gap penalty) or Long Indel (affine gap penalty).
@@ -1646,7 +1646,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
     branch length $t$ to vary between $[0, 2.5]$.  We selected 25 equally spaced values of $t$ in this range, spaced $0.1$ apart,
     and simulated 25 alignments for each value of $t$, using TKFST model parameters described in the text.
     Since the perfect alignment rate is rather low, we further aggregated the $t$-values for this plot into bins of five;
-    thus, for example, the bin named ``$0 to 0.5$'' includes $t \in \{ 0, 0.1, 0.2, 0.3, 0.4 \}$.
+    thus, for example, the bin named ``$0 to 0.4$'' includes $t \in \{ 0, 0.1, 0.2, 0.3, 0.4 \}$.
     The vertical axis counts the number of perfect alignments in each bin, out of a total of 125 trials per bin.
 }
   \figlabel{perfect}
