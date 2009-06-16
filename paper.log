@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 00:47
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 01:54
 entering extended mode
 **paper
 (./paper.tex
@@ -305,17 +305,17 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ] [2] [3] [4] [5] [6] [7] [8]
 [9]
 
-LaTeX Warning: Reference `fig:parent' on page 10 undefined on input line 495.
+LaTeX Warning: Reference `fig:parent' on page 10 undefined on input line 494.
 
 
-LaTeX Warning: Reference `fig:threeway' on page 10 undefined on input line 495.
+LaTeX Warning: Reference `fig:threeway' on page 10 undefined on input line 494.
 
 
 
-LaTeX Warning: Reference `fig:parent' on page 10 undefined on input line 502.
+LaTeX Warning: Reference `fig:parent' on page 10 undefined on input line 501.
 
 
-LaTeX Warning: Reference `fig:threeway' on page 10 undefined on input line 502.
+LaTeX Warning: Reference `fig:threeway' on page 10 undefined on input line 501.
 
 
 [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24]
@@ -325,37 +325,37 @@ LaTeX Warning: Reference `fig:threeway' on page 10 undefined on input line 502.
 ] [44] [45
 
 ] [46] [47] [48]
-Underfull \hbox (badness 10000) detected at line 1990
+Underfull \hbox (badness 10000) detected at line 1989
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2010
+Underfull \hbox (badness 10000) detected at line 2009
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2053
+Underfull \hbox (badness 10000) detected at line 2052
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2073
+Underfull \hbox (badness 10000) detected at line 2072
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2119
+Underfull \hbox (badness 10000) detected at line 2118
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2139
+Underfull \hbox (badness 10000) detected at line 2138
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2199
+Underfull \hbox (badness 10000) detected at line 2198
 [][]
  []
 
@@ -395,4 +395,4 @@ dist/fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/type1
 fonts/type1/bluesky/cm/cmbx12.pfb></opt/local/share/texmf-dist/fonts/type1/blue
 sky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb
 >
-Output written on paper.pdf (53 pages, 294293 bytes).
+Output written on paper.pdf (53 pages, 294411 bytes).

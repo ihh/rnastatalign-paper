@@ -106,9 +106,10 @@ and also a posterior-decoding alignment algorithm for one of the simpler models.
 In our tests, incorporation of basepair structure was the most important factor for alignment accuracy;
 appropriate use of posterior-decoding was the next most important factor;
 and fine details of the model were least important.
-Since posterior-decoding heuristics can be substantially faster than exact phylogenetic ML,
-this motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics
-for paleogenetics and other alignment problems.
+Since posterior-decoding heuristics can be substantially faster than exact phylogenetic inference,
+this motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics where possible,
+with transducer composition reserved for exact ML and MCMC inference on phylogenies.
+We discuss possible ways to make these phylogenetic inferences tractable.
 
 
 % Please keep the Author Summary between 150 and 200 words
