@@ -103,12 +103,13 @@ in particular the algorithms for maximum likelihood (ML) alignment of three know
 and inference of the common ancestral structure.
 We compared this ML algorithm to a variety of related, but simpler, techniques,
 including ML alignment algorithms for simpler models that omitted various aspects of the full model
-and also a heuristic (sum-over-pairs) posterior-decoding alignment algorithm for one of the simpler models.
+and also a posterior-decoding alignment algorithm for one of the simpler models.
 
-Our results suggest that ML algorithms incorporating basepair structure are the most likely to estimate the alignment perfectly.
-However, the heuristic posterior-decoding algorithm scores higher on finer-grained alignment accuracy metrics.
-Since the posterior-decoding heuristic is substantially faster than exact phylogenetic ML,
-this further motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics
+In our tests, incorporation of basepair structure was the most important factor for alignment accuracy;
+appropriate use of posterior-decoding was the next most important factor;
+and fine details of the model were least important.
+Since posterior-decoding heuristics can be substantially faster than exact phylogenetic ML,
+this motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics
 for paleogenetics and other alignment problems.
 
 
