@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 00:37
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 00:43
 entering extended mode
 **paper
 (./paper.tex
@@ -367,10 +367,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3830 strings out of 94500
- 48514 string characters out of 1174973
- 161016 words of memory out of 1000000
- 6848 multiletter control sequences out of 10000+50000
+ 3831 strings out of 94500
+ 48521 string characters out of 1174973
+ 161029 words of memory out of 1000000
+ 6849 multiletter control sequences out of 10000+50000
  12268 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  36i,33n,32p,1831b,541s stack positions out of 1500i,500n,5000p,200000b,5000s
