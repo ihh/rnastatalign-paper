@@ -935,7 +935,8 @@ and
 
 
 \paragraph{The Outside algorithm.}
-The Outside algorithm is primarily used an an intermediary for posterior decoding on the model.  It is analogous to the Backward algorithm for HMMs.
+The Outside algorithm is primarily used an an intermediary for calculating nucleotide-level posterior probabilities, e.g. for posterior decoding on the model.
+It is analogous to the Backward algorithm for HMMs.
 
 The outside probability $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)}\right)$ for an ensemble state $\bvec{b}$
 is the summed probability of the sequences $X, Y, Z$
@@ -1355,13 +1356,19 @@ These results, compared to the subtly different story told by the perfect alignm
 underscore the point that benchmark results for alignment methods can depend exquisitely on the choice of accuracy metric.
 The superiority of ML methods is only assured in terms of perfect alignment rate, and not necessarily other accuracy metrics.
 
-With the AMA statistic, as with the perfect alignment rate, the most important factor distinguishing the various models
-is clearly the incorporation of some form of basepair structure:
+Taken together, these results show that the most important factor distinguishing the various models
+is the incorporation of some form of basepair structure:
 structure-less \handel\  (regardless of linear {\em vs} affine gap penalty) performs much worse than the structure-aware SCFG methods.
 Intuitively, this is to be expected: whenever a basepair-aware method aligns one half of a basepair, it gets the other nucleotide
 correctly aligned for free.
 
+The second most important, amongst the factors we have considered in this experiment, is use of the correct posterior-decoding algorithm for the objective function at hand
+(c.f. \stemloc\ {\em vs} \stemlocama).
+An obvious corollorary is the importance of choosing an appropriate objective function in the first place
+(c.f. perfect alignment rate {\em vs} AMA).
 
+Lastly, the fine details of the scoring scheme---including branch lengths, substitution scores, gap penalties and so forth---appear to
+be the least important of the factors we considered, yielding observable differences only when all other aspects of the inference procedure were more-or-less equal.
 
 \section*{Discussion}
 
