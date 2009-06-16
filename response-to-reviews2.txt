@@ -449,7 +449,10 @@ revised manuscript.
 > model could readily be designed...") and too little attention is given 
 > to the actual model and problems at hand.
 
-We have reworded this section per our new focus on the simulation results.
+We have reworded this section per our new focus on the simulation
+results, which address exactly the question suggested by the
+reviewer ("does our method do better than some simpler approach of
+addressing the same problem?").
 
 > Table 2: it's unclear why we need separate states L and I_L, or S and 
 > I_S; these nonterminals have identical production rules.

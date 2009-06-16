@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.5.20)  15 JUN 2009 16:57
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.5.20)  15 JUN 2009 17:35
 entering extended mode
 **paper
 (./paper.tex
@@ -310,37 +310,37 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ] [43] [44
 
 ] [45] [46] [47]
-Underfull \hbox (badness 10000) detected at line 1984
+Underfull \hbox (badness 10000) detected at line 1989
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2004
+Underfull \hbox (badness 10000) detected at line 2009
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2047
+Underfull \hbox (badness 10000) detected at line 2052
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2067
+Underfull \hbox (badness 10000) detected at line 2072
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2113
+Underfull \hbox (badness 10000) detected at line 2118
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2133
+Underfull \hbox (badness 10000) detected at line 2138
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2193
+Underfull \hbox (badness 10000) detected at line 2198
 [][]
  []
 
@@ -376,4 +376,4 @@ e1/bluesky/cm/cmmi7.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmr
 7.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></opt/loca
 l/share/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></opt/local/share/texmf-dis
 t/fonts/type1/bluesky/cm/cmsl10.pfb>
-Output written on paper.pdf (52 pages, 291844 bytes).
+Output written on paper.pdf (52 pages, 291743 bytes).

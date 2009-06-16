@@ -1337,23 +1337,28 @@ We first consider the {\em perfect alignment rate}; that is, the number of times
 Theory predicts that ML inference, using the correct model and parameters, should maximize the perfect alignment rate.
 Inspecting \figref{perfect}, we find this to be the case, except where the outgroup is very distant and the bins are probably undersampled
 (when the perfect alignment rate drops below $\sim 5/125$, 125 trials may be too few).
-We also note that the ML version of \stemloc\ is near-optimal, and slightly better than the posterior-decoding \stemloc-AMA.
+We also note that the ML version of \stemloc\ is near-optimal, despite the \stemloc\ pair-SCFG being
+slightly different from the TKFST pair-SCFG in parameterization and structure
+ (e.g. \stemloc's grammar does not allow insertion/deletion of entire substructures).
+The ML version of \stemloc\ is also observed to have a slightly higher perfect alignment rate than the posterior-decoding version (\stemloc-AMA).
 Finally, we note that the structure-blind models (TKF91 and Long Indel) perform consistently worse than the structure-aware methods,
 with no decisive advantage shown by either TKF91 (linear gap penalty) or Long Indel (affine gap penalty).
 
-A subtly different trend is apparent when we look at the accuracy of the returned alignment,
-measured not by the all-or-nothing metric of whether the alignment is {\em perfect},
-but rather by a metric that count the number of correct alignment columns.
-\figref{ama} shows the {\em Alignment Metric Accuracy} (AMA),
-a generalization of the {\em Sum-of Pairs Score} (SPS)
-which measures the proportion of residues which are correctly aligned, averaged over all pairs of sequences \cite{SchwartzMyersPachter2006}.
-Here, we see that \stemlocama---which attempts to find the alignment with maximum expected AMA---edges out both
-\indiegram\ and the ML version of \stemloc.
-The decision-theoretic scoring scheme of \stemlocama\ appears to offset the minor incorrectness of its model.
+A subtly different ranking emerges from consideration of the {\em alignment accuracy}.
+In \figref{ama}, we abandon the all-or-nothing metric of counting only perfect alignments,
+instead using a metric that shows what proportion of the alignment is correct.
+Specifically, we plot the {\em Alignment Metric Accuracy} (AMA) as a function of outgroup branch length.
+AMA measures the proportion of residues which are correctly aligned, averaged over all pairs of sequences \cite{SchwartzMyersPachter2006}.
+\figref{ama} reveals that \stemlocama\ (which attempts to find the alignment with the maximum expected AMA)
+edges out both \indiegram\ and the ML version of \stemloc\ (both of which attempt to find the alignment with the maximum likelihood).
+These results, compared to the subtly different story told by the perfect alignment rate,
+underscore the point that benchmark results for alignment methods can depend exquisitely on the choice of accuracy metric.
+The superiority of ML methods is only assured in terms of perfect alignment rate, and not necessarily other accuracy metrics.
 
-Again, when looking at the AMA statistics, the most important factor is clearly the incorporation of some form of basepair structure
-into the model: \handel, whether using TKF91 or the Long Indel model, performs much worse than the SCFG-based methods.
-This is to be expected: whenever a basepair-aware method aligns one half of a basepair, it gets the other nucleotide
+With the AMA statistic, as with the perfect alignment rate, the most important factor distinguishing the various models
+is clearly the incorporation of some form of basepair structure:
+structure-less \handel\  (regardless of linear {\em vs} affine gap penalty) performs much worse than the structure-aware SCFG methods.
+Intuitively, this is to be expected: whenever a basepair-aware method aligns one half of a basepair, it gets the other nucleotide
 correctly aligned for free.
 
 
