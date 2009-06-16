@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 10:38
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.3.22)  16 JUN 2009 10:43
 entering extended mode
 **paper
 (./paper.tex
@@ -393,4 +393,4 @@ dist/fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/type1
 fonts/type1/bluesky/cm/cmbx12.pfb></opt/local/share/texmf-dist/fonts/type1/blue
 sky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb
 >
-Output written on paper.pdf (52 pages, 294232 bytes).
+Output written on paper.pdf (52 pages, 294264 bytes).
