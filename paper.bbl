@@ -333,6 +333,18 @@ Schwartz AS, Myers EW, Pachter L (2006) Alignment metric accuracy.
 \newblock {http://arxiv.org/abs/q-bio/0510052}.
 \bibAnnoteFile{SchwartzMyersPachter2006}
 
+\bibitem{GardnerEtAl2005}
+Gardner PP, Wilm A, Washietl S (2005) A benchmark of multiple sequence
+  alignment programs upon structural {RNA}s.
+\newblock Nucleic Acids Research 33: 2433-2439.
+\bibAnnoteFile{GardnerEtAl2005}
+
+\bibitem{WilmEtAl2006}
+Wilm A, Mainz I, Steger G (2006) An enhanced {RNA} alignment benchmark for
+  sequence alignment programs.
+\newblock Algorithms for Molecular Biology 1: 19.
+\bibAnnoteFile{WilmEtAl2006}
+
 \bibitem{PaulingZuckerkandl63}
 Pauling L, Zuckerkandl E (1963) Chemical paleogenetics, molecular ``restoration
   studies'' of extinct forms of life.
@@ -621,12 +633,6 @@ Thompson JD, Plewniak F, Poch O (1999) A comprehensive comparison of multiple
   sequence alignment programs.
 \newblock Nucleic Acids Research 27: 2682-2690.
 \bibAnnoteFile{ThompsonEtal99}
-
-\bibitem{GardnerEtAl2005}
-Gardner PP, Wilm A, Washietl S (2005) A benchmark of multiple sequence
-  alignment programs upon structural {RNA}s.
-\newblock Nucleic Acids Research 33: 2433-2439.
-\bibAnnoteFile{GardnerEtAl2005}
 
 \bibitem{TeunissenEtAl2000}
 Teunissen S, Kruithof M, Farris A, Harley J, Venrooij W, et~al. (2000)
