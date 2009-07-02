@@ -491,14 +491,14 @@ A singlet transducer (which emits, but does not absorb, symbols) lies at the roo
 serves as a generative model of the ancestral sequence.
 To represent the evolution of an ancestral sequence into many descendant sequences,
 we place a branch transducer on each branch of the phylogeny.
-Figures \ref{fig:parent} and \ref{fig:threeway} show simple examples
-of building a model to represent such an evolution.
+% Figures \ref{fig:parent} and \ref{fig:threeway} show simple examples
+% of building a model to represent such an evolution.
 
 Throughout this paper we frequently refer to two and
 three-taxon (star) phylogenies.  In all cases, the sequence $W$ is
 assumed to be the (unobserved) ancestral sequence and the sequences
-$X$, $Y$, and $Z$ the (observed) extant sequences (as in Figures
-\ref{fig:parent} and \ref{fig:threeway}).
+$X$, $Y$, and $Z$ the (observed) extant sequences.
+% (as in Figures \ref{fig:parent} and \ref{fig:threeway}).
 
 
 
@@ -1599,10 +1599,10 @@ This model improves on the previous model (TKF91) by introducing affine gap pena
 We measured alignment accuracy, under the simplifying assumption that this correlates well with ancestral reconstruction accuracy.
 
 We first consider the {\em perfect alignment rate}; that is, the number of times each method gets the alignment exactly correct.
-Theory predicts that Maximum Likelihood inference, using the correct model and parameters, should be the algorithm that scores the most perfect estimates.
-Inspecting \figref{perfect}, we find this to be the case, except where the outgroup is very distant and the bins are probably undersampled
-(i.e. the departure from prediction that we observe for low-identity alignments is not statistically significant:
-when the perfect alignment rate drops below $\sim 5/125$, then 125 trials are probably too few).
+Theory predicts that Maximum Likelihood inference, using the correct model and parameters, should be asymptotically optimal (if one only counts perfect guesses).
+Inspecting \figref{perfect}, we find this to be almost the case; the exception is when the outgroup is very distant and the bins may be undersampled
+(the departure from prediction that we observe for low-identity alignments is not statistically significant:
+when the optimal success rate drops below $\sim 5/125$, then 125 trials are probably insufficient to compare two near-optimal methods).
 We also note that the ML version of \stemloc\ is near-optimal, despite the \stemloc\ pair-SCFG being
 slightly different from the TKFST pair-SCFG in parameterization and structure
  (e.g. \stemloc's grammar does not allow insertion/deletion of entire substructures).

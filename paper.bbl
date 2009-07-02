@@ -520,8 +520,8 @@ Edwards AWF, Cavalli-Sforza L (1963) The reconstruction of evolution.
 \bibAnnoteFile{Edwards63}
 
 \bibitem{HendyPenny82}
-D HM, D P (1982) Branch and bound algorithms to determine minimal evolutionary
-  trees.
+Hendy MD, Penny D (1982) Branch and bound algorithms to determine minimal
+  evolutionary trees.
 \newblock Mathematical Biosciences 59: 277-290.
 \bibAnnoteFile{HendyPenny82}
 

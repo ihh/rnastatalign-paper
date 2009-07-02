@@ -10,36 +10,36 @@ Database file #6: ../latex-inputs/url.bib
 Warning--empty booktitle in Sakakibara2003
 You've used 104 entries,
             2441 wiz_defined-function locations,
-            1323 strings with 23764 characters,
-and the built_in function-call counts, 79481 in all, are:
-= -- 7398
+            1323 strings with 23766 characters,
+and the built_in function-call counts, 79535 in all, are:
+= -- 7404
 > -- 1150
 < -- 13
 + -- 572
 - -- 287
-* -- 6714
-:= -- 9525
+* -- 6722
+:= -- 9531
 add.period$ -- 213
 call.type$ -- 104
 change.case$ -- 111
 chr.to.int$ -- 0
 cite$ -- 209
-duplicate$ -- 7963
-empty$ -- 8336
+duplicate$ -- 7969
+empty$ -- 8342
 format.name$ -- 367
-if$ -- 17697
+if$ -- 17709
 int.to.chr$ -- 0
 int.to.str$ -- 104
 missing$ -- 1027
 newline$ -- 536
 num.names$ -- 110
-pop$ -- 1175
+pop$ -- 1173
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
 skip$ -- 663
 stack$ -- 0
-substring$ -- 11287
+substring$ -- 11299
 swap$ -- 2059
 text.length$ -- 12
 text.prefix$ -- 0

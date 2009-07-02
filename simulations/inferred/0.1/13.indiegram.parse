@@ -1,0 +1,115 @@
+;;  X ---------------------------------------------------------------------------------------gaagggguugggcucccuuuuggaaagggggcccaguccaaauuc
+;;  Y aaauuaaggcgcuaggugcaagcacuuagcgccuugaauaauu-----------------------------------------------------------------------------------------
+;;  Z -------------------------------------------ggaagacaacauuucgauuugaaaucgaauuguugucuaaaucc---------------------------------------------
+;; SS <<.<<<<<<<<<<<<<<<<..>>>>>>>>>>>>>>>>....>><<.<<<<<<<<<<<<<<<<...>>>>>>>>>>>>>>>>....>><<..<<<<<<<<<<<<<<<<...>>>>>>>>>>>>>>>>....>>
+
+(start
+ (L_L_L_L
+  (L_L_BiSiL_WL  ;; -> e_e_Si_e L_L_L_WL
+   (e_e_Si_e
+    (e_e_ISi_e
+     (e_e_ISi_e
+      (e_e_Li_e
+       (e_e_ILi_e
+	(e_e_BiSiLi_e  ;; -> e_e_Si_e e_e_Li_e
+	 (e_e_Si_e
+	  (e_e_ISi_e
+	   (e_e_ISi_e
+	    (e_e_ISi_e
+	     (e_e_ISi_e
+	      (e_e_ISi_e
+	       (e_e_ISi_e
+		(e_e_ISi_e
+		 (e_e_ISi_e
+		  (e_e_ISi_e
+		   (e_e_ISi_e
+		    (e_e_ISi_e
+		     (e_e_ISi_e
+		      (e_e_ISi_e
+		       (e_e_ISi_e
+			(e_e_ISi_e
+			 (e_e_ISi_e
+			  (e_e_Li_e
+			   (e_e_ILi_e
+			    (e_e_ILi_e
+			     (end))))))))))))))))))))
+	  e_e_Li_e
+	  (e_e_ILi_e
+	   (e_e_ILi_e
+	    (e_e_ILi_e
+	     (e_e_ILi_e
+	      (end)))))))))))
+    L_L_L_WL
+    (BiSL_BpeL_BpeL_BmSL  ;; -> S_e_e_S L_L_L_L
+     (S_e_e_S
+      (IS_e_e_MS
+       (IS_e_e_MS
+	(L_e_e_L
+	 (IL_e_e_ML
+	  (BiSL_e_e_BmSL  ;; -> S_e_e_S L_e_e_L
+	   (S_e_e_S
+	    (IS_e_e_MS
+	     (IS_e_e_MS
+	      (IS_e_e_MS
+	       (IS_e_e_MS
+		(IS_e_e_MS
+		 (IS_e_e_MS
+		  (IS_e_e_MS
+		   (IS_e_e_MS
+		    (IS_e_e_MS
+		     (IS_e_e_MS
+		      (IS_e_e_MS
+		       (IS_e_e_MS
+			(IS_e_e_MS
+			 (IS_e_e_MS
+			  (IS_e_e_MS
+			   (IS_e_e_MS
+			    (L_e_e_L
+			     (IL_e_e_ML
+			      (IL_e_e_ML
+			       (IL_e_e_ML
+				(end)))))))))))))))))))))
+	    L_e_e_L
+	    (IL_e_e_ML
+	     (IL_e_e_ML
+	      (IL_e_e_ML
+	       (IL_e_e_ML
+		(end)))))))))))
+      L_L_L_L
+      (e_Si_e_e
+       (e_ISi_e_e
+	(e_ISi_e_e
+	 (e_Li_e_e
+	  (e_ILi_e_e
+	   (e_ILi_e_e
+	    (e_BiSiLi_e_e  ;; -> e_Si_e_e e_Li_e_e
+	     (e_Si_e_e
+	      (e_ISi_e_e
+	       (e_ISi_e_e
+		(e_ISi_e_e
+		 (e_ISi_e_e
+		  (e_ISi_e_e
+		   (e_ISi_e_e
+		    (e_ISi_e_e
+		     (e_ISi_e_e
+		      (e_ISi_e_e
+		       (e_ISi_e_e
+			(e_ISi_e_e
+			 (e_ISi_e_e
+			  (e_ISi_e_e
+			   (e_ISi_e_e
+			    (e_ISi_e_e
+			     (e_ISi_e_e
+			      (e_Li_e_e
+			       (e_ILi_e_e
+				(e_ILi_e_e
+				 (e_ILi_e_e
+				  (end)))))))))))))))))))))
+	      e_Li_e_e
+	      (e_ILi_e_e
+	       (e_ILi_e_e
+		(e_ILi_e_e
+		 (e_ILi_e_e
+		  (end)))))))))))))))))))
+
+;; cat inferred/0.1/13.indiegram.stock | lines 13- | perl -ne '$a=$_;while($a=~/([\-\d]+) \(\S+\)/g){$s=$1;$e=undef;open X,$ENV{'DARTDIR'}."/src/indiegram/tkfst.h";while(<X>){if(/(\S+) = $s/){$e=$1}}close X;print defined($e)?"$e\n":"??? $s\n"}' >> inferred/0.1/13.indiegram.parse
