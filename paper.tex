@@ -50,7 +50,286 @@
 
 %% ** EDIT HERE **
 %% PLEASE INCLUDE ALL MACROS BELOW
-\input{defs.tex}
+
+\usepackage{setspace}
+\doublespacing
+
+\input{parsetree.sty}
+
+
+\newcommand\titlestring{Evolutionary triplet models of structured RNA}
+\newcommand\authorstring{
+Robert K. Bradley$^{1}$, 
+Ian Holmes$^{1,2,\ast}$
+\\
+\textbf{1} Biophysics Graduate Group, University of California, Berkeley, CA, USA
+\\
+\textbf{2} Department of Bioengineering, University of California, Berkeley, CA, USA
+\\
+$\ast$ E-mail: indiegram@postbox.biowiki.org
+}
+
+\usepackage{array}
+
+\usepackage[boxed]{algorithm2e}
+\usepackage{mathrsfs}
+
+% Labels & references for sections, figures and tables
+% Commented out \secref definition & replaced \seclabel with a dummy, because PLoS doesn't like numbered section references -- IH, 11/11/08
+% (This edit appears to have been reversed as of 5/29/09 - presumably so that the supplementary information compiles OK using these same definitions - IH, 5/29/09)
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+
+\newcommand{\secname}[1]{``#1''}  % PLoS-style section names
+
+% "Text S1", "Text S2", etc.
+\newcommand{\supptext}[1]{Text S#1}
+
+% "Dataset S1", "Dataset S2", etc.
+\newcommand{\dataset}[1]{Dataset S#1}
+
+\newcommand{\appref}[1]{Appendix~\ref{app:#1}}
+\newcommand{\applabel}[1]{\label{app:#1}}
+
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+
+\newcommand{\tabnum}[1]{\ref{tab:#1}}
+\newcommand{\tabref}[1]{Table~\tabnum{#1}}
+\newcommand{\tablabel}[1]{\label{tab:#1}}
+
+\newcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
+\newcommand{\alglabel}[1]{\label{alg:#1}}
+
+\newcommand{\eqnref}[1]{Equation~\ref{eqn:#1}}
+\newcommand{\eqnlabel}[1]{\label{eqn:#1}}
+
+% Frequently used proper nouns that should have consistent typeface, capitalization, etc.
+\newcommand{\pfold}{PFOLD}
+\newcommand\darturl{{\tt http://biowiki.org/dart}}
+\newcommand\indiegramurl{{\tt http://biowiki.org/IndieGram}}
+\newcommand{\dart}{DART}
+
+\newcommand{\bralibaseII}{BRalibaseII}
+\newcommand{\balibase}{BAliBASE}
+
+\newcommand{\stemloc}{Stemloc}
+\newcommand{\stemlocama}{Stemloc-AMA}
+\newcommand{\xrate}{XRate}
+\newcommand{\evoldoer}{Evoldoer}
+\newcommand{\evolsayer}{{\tt evolsayer.pl}}
+\newcommand{\animateevolsayer}{{\tt animate-evolsayer.pl}}
+\newcommand{\indiegram}{Indiegram}
+\newcommand{\handel}{Handel}
+
+\newcommand{\contrafold}{CONTRAFOLD}
+\newcommand{\consan}{CONSAN}
+\newcommand{\clustalw}{ClustalW}
+\newcommand{\foldalign}{Foldalign}
+\newcommand{\foldalignm}{FoldalignM}
+\newcommand{\mastr}{MASTR}
+\newcommand{\rnasampler}{RNASampler}
+\newcommand{\murlet}{Murlet}
+\newcommand{\ortheus}{Ortheus}
+\newcommand{\rnaalifold}{RNAAlifold}
+\newcommand{\viennarna}{ViennaRNA}
+
+\newcommand{\RFAM}{RFAM}
+
+\newcommand{\denovo}{{\em de novo}}
+
+\newcommand{\nth}{\mathrm{n}^{\mathrm{th}}}
+\newcommand{\mth}{\mathrm{m}^{\mathrm{th}}}
+
+\newcommand{\type}[0]{\operatorname{type}}
+\newcommand{\emit}[0]{\operatorname{emit}}
+\newcommand{\absorb}[0]{\operatorname{absorb}}
+\newcommand{\argmax}[0]{\operatorname{argmax}}
+\newcommand{\argmin}[0]{\operatorname{argmin}}
+\newcommand{\parent}[0]{\operatorname{parent}}
+
+\newcommand{\weight}[0]{\operatorname{Weight}}
+\newcommand{\transweight}[3]{t\left(#2,#3|\theta^{(#1)}\right)}  % {m}{from}{to}
+\newcommand{\emissionweight}[3]{e_{#2}\left(#3|\theta^{(#1)}\right)}  % {m}{emitstate}{emission}
+\newcommand{\totalemissionweight}[2]{\mathbb{e}_{#1}(#2)}
+
+%\newcommand{\cyk}[7]{\gamma_{#1}(#2,#3,#4,#5,#6,#7)}
+\newcommand{\cyk}[7]{\gamma_{#1}\left(#2,#3,#4\right)}
+%\newcommand{\cyk}[7]{\gamma_{#1}(#2,#3,#4)}
+%\newcommand{\inside}[7]{\alpha_{#1}(#2,#3,#4,#5,#6,#7)}
+\newcommand{\inside}[7]{\alpha_{#1}\left(#2,#3,#4\right)}
+%\newcommand{\outside}[7]{\beta_{#1}(#2,#3,#4,#5,#6,#7)}
+\newcommand{\outside}[7]{\beta_{#1}\left(#2,#3\right,#4\right)}
+
+\newcommand{\Tnull}{\mathrm{null}}
+\newcommand{\Tgap}{\mathrm{GAP}}
+
+\newcommand{\statetype}[1]{\mathtt{#1}}
+\newcommand{\state}[3]{{}^{#2}\mathtt{#1}^{#3}}
+% Note that this will only work for left-bifurcations!
+%\newcommand{\bifurc}[3]{{\phantom{]}}^{#2}\mathtt{B[#3\,#1]}}}
+\newcommand{\bifurc}[3]{\mathtt{#1[#2\,#3]}}
+
+% state types for branch transducers
+\newcommand{\Sstart}[0]{\statetype{Start}}
+\newcommand{\Smatch}[0]{\statetype{Match}}
+\newcommand{\Sinsert}[0]{\statetype{Insert}}
+\newcommand{\Swait}[0]{\statetype{Wait}}
+\newcommand{\Send}[0]{\statetype{End}}
+
+% state types for evolutionary model
+\newcommand{\Snull}[0]{\statetype{Null}}
+\newcommand{\Sbifurc}[0]{\statetype{Bifurcation}}
+\newcommand{\Semit}[0]{\statetype{Emit}}
+
+\newcommand{\statevec}[1]{\left(\begin{array}{c}#1_1\\\vdots\\#1_N\end{array}\right)}
+\newcommand{\fourvec}[4]{\left(\begin{array}{c}#1\\#2\\#3\\#4\end{array}\right)}
+\newcommand{\nakedfourvec}[4]{\begin{array}{c}#1\\#2\\#3\\#4\end{array}}
+\newcommand{\threevec}[3]{\left(\begin{array}{c}#1\\#2\\#3\end{array}\right)}
+\newcommand{\nakedthreevec}[3]{\begin{array}{c}#1\\#2\\#3\end{array}}
+\newcommand{\bvec}[1]{\boldsymbol{#1}}
+\newcommand{\activenode}[1]{n(\bvec{#1})}
+
+\newcommand{\foldenv}{\mathscr{F}}
+
+\newcommand{\mDn}[0]{m \vartriangleright n}
+\newcommand{\mNDn}[0]{m \ntriangleright n}
+\newcommand{\mDEn}[0]{m \trianglerighteq n}
+\newcommand{\mNDEn}[0]{m \ntrianglerighteq n}
+
+
+\newcommand{\beqn}{\begin{equation}}
+\newcommand{\eeqn}{\end{equation}}
+
+
+
+
+
+
+
+\newcommand\gnons{{\cal N}}
+\newcommand\gnulls{{\bf N}}
+\newcommand\gbifs{{\bf B}}
+\newcommand\gemits{{\bf E}}
+\newcommand\gterms{\Omega}
+\newcommand\grules{{\bf R}}
+\newcommand\grhs{( \gnons \cup \Omega )^\ast}
+\newcommand\gtrees{{\cal T}}
+
+\newcommand\leftside[1]{{\cal L}(#1)}
+\newcommand\rightside[1]{{\cal R}(#1)}
+\newcommand\allrules[1]{{\cal A}(#1)}
+
+
+
+
+\newcommand\revisionnotes
+{\noindent \hrulefill{} \\ {\bf Revision Notes:}
+\begin{enumerate}
+\item These comments are not a complete summary of the review, just a partial strategy for addressing some of the points.
+The review is the more authoritative guide...
+He is giving us the benefit of the doubt but acceptance is still very much in the balance, I think, so we need to stick at it,
+and take it that extra step beyond minimal compliance with his suggestions.
+%
+\item Obviously we have to do simulation tests and hopefully EvolSayer will be of some use there.
+One thing to be careful of is that there are certain regimes of rate/branch-length parameter space where the ``trivial'' outcomes identified by the reviewer
+(ancestral sequence is always identical to one of the descendants) are the norm.
+Oscar and I have been looking at this quite a bit recently (see also 2003 paper by Mossel).
+The regime we are probably most interested in is where the branch lengths are of comparable length
+and so the two slightly-longer branches can ``out-vote'' the shorter branch under certain conditions.
+This should probably be commented on in the paper: the reviewer says he would be happy with ``a small, noncomprehensive set of anecdotes''
+but if we can rationalize why some parameter settings are more interesting than others, then that's all to the better.
+%
+\item I would actually be very wary of taking that ``small noncomprehensive set of anecdotes'' at face value.
+This is one area where I sense we're being given enough rope to hang ourselves... an unsatisfactory response to the simulation issue will be unequivocal grounds for rejection.
+Obviously there are limits to the number of simulations we can run, but with EvolSayer's output statistics (allowing us to filter out ``interesting'' cases), we can automate it somewhat.
+%
+\item I wrote out the TKF structure tree for the case $a \to b \to c$,
+which can be used to estimate the intermediate sequence $b$
+(e.g. for Redelings-Suchard).
+I think this could be useful in explaining tree transducer composition more concretely, and why is important:
+by inspecting these tables, the reader can see that the structure of this grammar is quite complicated,
+and should then be prepared for the idea that the ``composition algorithm'' is simply generating this table
+(or other tables for other phylogenies).
+The latex for this is in the file ``tkfst.tex'', and is currently include'd at the start of the supplementary information (it should go in the main paper though, I think).
+%
+\item Can we dump out the grammar for the three-branch TKFST and include it in the Supplement?
+(Or the main paper?) I realize it's huge, but this very hugeness does motivate the transducer composition algorithm,
+in the same way that the two-branch model (which is now included in a more human-readable form) does.
+%
+\item If we are moving the description of loopy DP to the main paper, I think it needs to be more precise.
+Currently it just says ``we repeatedly iterate over strongly-connected components of the state sub graph'',
+which falls short of the level of precision/detail with which the other DP algorithms are presented.
+The description should encompass alternate strategies (i.e. orders of visiting the states) that you have considered:
+randomized, Tarjan's algorithm, etc.
+The reader should be left understanding the pros-and-cons of each,
+ e.g. worst-case performance or difficulty of implementation.
+No need to agonize about this, but be helpful to potential future developers.
+  (Example reader: a grad student in our group who might try to implement loopy DP themselves.)
+%
+\item The descriptions of the DP algorithms do not currently include any traceback algorithms (CYK or Inside);
+therefore, we haven't technically described how to do ancestral reconstruction!
+Obviously these algorithms are almost trivial, but they're quite important.
+Implementing stochastic loopy-Inside traceback in tripletscfgdp.\{h,cc\} is a key step in transforming it into a useful tool
+(for example, with this extension, Indiegram would be pretty much ready-to-go for Redelings-Suchard sampling).
+The deterministic CYK traceback algorithm is {\em even more} important to present here, because implementing this algorithm is currently our main result!
+The paper should describe {\em both} these traceback algorithms.
+This shouldn't be that hard to do in a comprehensible, rigorous style
+ (loopy traceback is much simpler than the algorithms for restoring eliminated states to traceback paths, which are painfully described in my 2003 paper).
+%
+\item All algorithms should be described in full, rather than giving recipes for deriving some algorithms from others.
+In particular, the CYK algorithm is currently summarized by statements along the lines of
+``replace sums over paths through the model (or equivalently, parses) with the $\max()$ operation (e.g., in equation X, sum-over-complicated-expression will be replaced with max-over-complicated-expression)''.
+It shouldn't be too hard to write a latex command/macro that can be used (with ``$\sum$'' or ``$\max$'' as an argument) to generate complete versions of {\em both} algorithms.
+%
+\item The paper the reviewer cites as an example of the simplicity of missing data estimation (Rivas and Eddy (2008) PLoS CB 4:e1000172) is an IID-columns model for a multiple alignment.
+When he says that this issue ``may simply go away if you view the problem as a missing data problem'',
+that is precisely what we are talking about when we discuss null cycle elimination.
+I've tried to explain in ``tkfst.tex'' why this is harder than it superficially appears:
+\begin{enumerate}
+\item eliminating missing ``empty'' columns from an IID-columns model (such as in Rivas and Eddy, 2008) is easy.
+\item eliminating missing emissions from an HMM is slightly harder (c.f. ``wing retraction'' algorithm in HMMer source code)
+but general algorithms do exist.
+\item eliminating null states from an SCFG is much harder, due to null bifurcations.
+\end{enumerate}
+%
+\item The reviewer asks for early discussion of constraints in the context of the ``rate-limiting steps of paleogenetics''.
+We should take this opportunity to clarify that our approach is (1) formulate the model,  (2) apply appropriate constraints.
+Our emphasis here is on (1).
+Cite the literature: QRNA represents an alignment constraint on a pair SCFG, Holmes-Rubin 2002 uses fold constraints on pair SCFGs,
+stemloc uses fold+alignment constraints, Ortheus uses an alignment constraint, etc, but none of these things can be done
+(in a probabilistic modeling framework at least) until you can formulate the model.
+For this paper, we chose to condition on structures essentially because they are easy to constrain
+(fold envelopes can be applied independently to each sequence).
+But we could equally easily have conditioned on alignments. Constraints are easy to tweak, once you have a model.
+%
+\item The reviewer also comments on the phylogeny being a given.
+We can note that even though we constrain the phylogeny, more realistic phylogenetic applications are possible.
+Given a structural phylo-alignment (tree+alignment+structure), we can calculate the likelihood; therefore, given two such structural phylo-alignments,
+we can say which one is more probable (describe their relative posterior probabilities, etc.).
+From this it is possible to make a crude MCMC sampler, just by proposing/accepting/rejecting alignment/tree/structure changes.
+An {\em efficient} MCMC sampler needs to be able to make local topology changes and to resample the multiple alignment around a topology change;
+we can do this too, in principle, but it's beyond this paper.
+%
+\item As I understand it, pruning \& peeling are not exactly equivalent as the reviewer claims, {\em except} in the special case of a reversible model.
+Specifically, pruning is a {\em restricted case} of peeling, giving you the posterior probabilities at the root node, but not any other node.
+Of course, if you have a reversible model, you can re-root the tree anywhere, and so the two are equivalent for reversible models only.
+When Felsenstein says the two approaches are the same (on p253 of his book), it is quite a vague statement:
+e.g. later in the same paragraph, he says that both peeling and pruning are variants of Horner's rule, and particular cases of dynamic programming.
+All of this is somewhat academic; basically I'm thinking the pruning/peeling distinction might yet have some pedagogic value, and we might not need to abandon it entirely.
+%
+\item We should address all the reviewer's comments about the figures if possible.
+I have added xfig files ``stree.fig'' and ``stree-mutations.fig'' to the repository; the latter shows an evolutionary trajectory of the TKFST, as requested by the reviewer.
+%
+\item Finally, a very minor/trivial point: would you consider a name-change for IndieGram to something beginning with ``Evol''?
+The EvolDeeds package is EvolDoer (previously released as ``tkfstalign''), EvolSayer and IndieGram.
+I put a few random suggestions for Evol-names at {\bf biowiki.org/EvolDeeds}.
+Don't take this too seriously, of course!
+I'll understand if you want to stick with IndieGram, and this is obviously negligible compared to the other revisions.
+%
+\end{enumerate}
+\hrulefill{}}
+
 %% END MACROS SECTION
 
 \begin{document}
@@ -73,15 +352,15 @@
 % Please keep the abstract between 250 and 300 words
 \newpage
 \section*{Abstract}
-The existence of an all-RNA primordial ribosome was proposed by
-Francis Crick in 1968.  Recently, a domain-level model for the
-original ribosome was proposed by Smith et al.  Given the abundance of
-ribosomal RNA sequence data and the many successful reconstructions of
-ancestral proteins, the reconstruction and synthesis of ancestral
-ribosomes (and other RNAs) is a feasible goal for paleogenetics.  This
-will require new bioinformatics tools and methods, in particular a
-robust theoretical framework for reconstructing histories of
-substitutions, indels and changes in RNA structure.
+% The existence of an all-RNA primordial ribosome was proposed by
+% Francis Crick in 1968.  Recently, a domain-level model for the
+% original ribosome was proposed by Smith et al.  Given the abundance of
+% ribosomal RNA sequence data and the many successful reconstructions of
+% ancestral proteins, the reconstruction and synthesis of ancestral
+% ribosomes (and other RNAs) is a feasible goal for paleogenetics.  This
+% will require new bioinformatics tools and methods, in particular a
+% robust theoretical framework for reconstructing histories of
+% substitutions, indels and changes in RNA structure.
 
 We describe a ``transducer composition'' algorithm for extending
 pairwise probabilistic models of RNA structural evolution to models of
@@ -96,20 +375,25 @@ propagation of structural information from an
 experimentally-characterized sequence to its homologs, and inference
 of the ancestral structure of a set of diverged RNAs.
 
-We implemented the above algorithms for a simple model of pairwise RNA structural evolution;
-in particular the algorithms for maximum likelihood (ML) alignment of three known RNA structures an a known phylogeny
-and inference of the common ancestral structure.
-We compared this ML algorithm to a variety of related, but simpler, techniques,
-including ML alignment algorithms for simpler models that omitted various aspects of the full model
-and also a posterior-decoding alignment algorithm for one of the simpler models.
+We implemented the above algorithms for a simple model of pairwise RNA
+structural evolution; in particular the algorithms for maximum
+likelihood (ML) alignment of three known RNA structures an a known
+phylogeny and inference of the common ancestral structure.  We
+compared this ML algorithm to a variety of related, but simpler,
+techniques, including ML alignment algorithms for simpler models that
+omitted various aspects of the full model and also a
+posterior-decoding alignment algorithm for one of the simpler models.
 
-In our tests, incorporation of basepair structure was the most important factor for accurate inference of alignment;
-appropriate use of posterior-decoding was the next most important factor;
-and fine details of the model were least important.
-Posterior-decoding heuristics can be substantially faster than exact phylogenetic inference,
-so this motivates the use of sum-over-pairs (and approximate sum-over-pairs) heuristics where possible.
-For more exact probabilistic inference, we discuss the use of transducer composition for ML (or MCMC) inference on phylogenies,
-including possible ways to make the core operations tractable.
+In our tests, incorporation of basepair structure was the most
+important factor for accurate inference of alignment; appropriate use
+of posterior-decoding was the next most important factor; and fine
+details of the model were least important.  Posterior-decoding
+heuristics can be substantially faster than exact phylogenetic
+inference, so this motivates the use of sum-over-pairs (and
+approximate sum-over-pairs) heuristics where possible.  For more exact
+probabilistic inference, we discuss the use of transducer composition
+for ML (or MCMC) inference on phylogenies, including possible ways to
+make the core operations tractable.
 
 
 % Please keep the Author Summary between 150 and 200 words
@@ -420,7 +704,7 @@ and ``nonterminals'' (in the grammar representation).
 Likewise, we will refer interchangeably to ``state paths'' (machines) and ``parse trees'' (grammars).
 
 
-\paragraph{Terminology and normalization.}
+\subsubsection*{Terminology and normalization}
 
 Consider the stochastic grammar which generates parse trees from the marginal distribution $P(X)$.
 It is convenient to represent this grammar as a transducer whose input is constrained to be null,
@@ -833,7 +1117,6 @@ interest.  We can use this knowledge as a constraint to reduce the accessible vo
 The Inside, Outside, and CYK+traceback algorithms for a three-taxon star phylogeny
 can be constrained using the ``fold envelope'' concept, which will now be described.
 
-\paragraph{Fold Envelopes.}
 We use the fold envelope concept \cite{HolmesRubin2002a,Holmes2004}
 to constrain the set of structures which our algorithms consider.
 A fold envelope $\foldenv^{(X)}$ for a sequence $X$ is a set of coordinate pairs satisfying
@@ -886,7 +1169,6 @@ Using the fold envelope formalism, the main iteration over cells in the Inside a
 one for each sequence, traversing the fold envelope subsequences in inside$\to$outside order.
 Conversely, the main iteration of the Outside algorithm consists of three nested outside$\to$inside loops.
 
-\paragraph{The Inside algorithm.}
 The Inside algorithm is used to calculate the likelihood of sequences under an ensemble model.  It is analogous to the Forward algorithm for HMMs.
 
 The inside probability $\alpha_{\bvec{a}} \left(n^{(X)}, n^{(Y)}, n^{(Z)}\right)$ is the summed probability of the triplet of subsequences 
@@ -980,8 +1262,6 @@ where $\Sstart$ is the unique start state of the ensemble grammar and $N^{(X)}$ 
 
 Note that we are assuming that the transformations described in \secname{Exact elimination of null cycles in SCFGs} have been performed, such that there are no cycles of $\Snull$ states as well as no empty bifurcations.
 
-
-\paragraph{The CYK algorithm.}
 The CYK algorithm is used to calculate the probability of the
 most-likely state path (or parse) capable of generating the input
 sequences.  It is analogous to the Viterbi algorithm for HMMs.
@@ -1064,9 +1344,6 @@ and
   }
 \end{algorithm}
 
-
-
-\paragraph{The CYK traceback algorithm.}
 The CYK traceback algorithm, in combination with the CYK algorithm, is
 used to find the most-likely state path generating the extant sequences
 (in other words, the maximum-likelihood parse generating the observed data).
@@ -1134,10 +1411,6 @@ It is analogous to the Viterbi traceback algorithm for HMMs.
   }
 \end{algorithm}
 
-
-
-
-\paragraph{The Outside algorithm.}
 The Outside algorithm is primarily used an an intermediary for calculating nucleotide-level posterior probabilities, e.g. for posterior decoding on the model.
 It is analogous to the Backward algorithm for HMMs.
 
@@ -1476,7 +1749,7 @@ transitions).  Note that both before and after the reduction in
 complexity, the total number of states and transitions are less than
 the approximate bounds of $O(a \cdot b \cdot N) = O(7 \cdot 21 \cdot
 3) \Rightarrow 441$ states and $O(a \cdot b^2 \cdot N) = O(7 \cdot
-21^2 \cdot 3) \Rightarrow 9,261$ transitions suggested in \secname{The composition algorithm.}
+21^2 \cdot 3) \Rightarrow 9,261$ transitions suggested in \secname{The composition algorithm}.
  Nonetheless, the extreme complexity of the
 ensemble model, despite the simplicity of the underlying model of RNA
 structure, makes clear the necessity for automated procedures for
