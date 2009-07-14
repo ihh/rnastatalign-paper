@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.10)  14 JUL 2009 09:01
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.10)  14 JUL 2009 09:02
 entering extended mode
 **paper
 (./paper.tex
@@ -218,18 +218,18 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 335.
-LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 225.
+LaTeX Font Info:    ... okay on input line 225.
 
 (/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
 (/opt/local/share/texmf-dist/tex/context/base/supp-mis.tex
@@ -286,17 +286,17 @@ LaTeX Info: Redefining \selectfont on input line 125.
 \RaggedRightParindent=\skip70
 \JustifyingParindent=\skip71
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 343.
+LaTeX Font Info:    Try loading font information for U+msa on input line 233.
 
 (/opt/local/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 343.
+LaTeX Font Info:    Try loading font information for U+msb on input line 233.
 
 (/opt/local/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 343.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 233.
 
 (/opt/local/share/texmf-dist/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -304,37 +304,37 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ] [2] [3] [4] [5] [6] [7] [8]
 [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
-Underfull \hbox (badness 10000) detected at line 1221
+Underfull \hbox (badness 10000) detected at line 1111
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1246
+Underfull \hbox (badness 10000) detected at line 1136
 [][]
  []
 
 [19] [20]
-Underfull \hbox (badness 10000) detected at line 1317
+Underfull \hbox (badness 10000) detected at line 1207
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1345
+Underfull \hbox (badness 10000) detected at line 1235
 [][]
  []
 
 [21]
-Underfull \hbox (badness 10000) detected at line 1412
+Underfull \hbox (badness 10000) detected at line 1302
 [][]
  []
 
 [22] [23]
-Underfull \hbox (badness 10000) detected at line 1469
+Underfull \hbox (badness 10000) detected at line 1359
 [][]
  []
 
 [24]
-Underfull \hbox (badness 10000) detected at line 1501
+Underfull \hbox (badness 10000) detected at line 1391
 [][]
  []
 
@@ -346,10 +346,10 @@ Underfull \hbox (badness 10000) detected at line 1501
 ] [50] [51] [52]
 (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3825 strings out of 94500
- 48467 string characters out of 1174973
- 157848 words of memory out of 1000000
- 6846 multiletter control sequences out of 10000+50000
+ 3824 strings out of 94500
+ 48454 string characters out of 1174973
+ 148789 words of memory out of 1000000
+ 6845 multiletter control sequences out of 10000+50000
  12268 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  36i,33n,32p,1831b,541s stack positions out of 1500i,500n,5000p,200000b,5000s
@@ -374,4 +374,4 @@ b></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></opt/local/shar
 e/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></opt/local/share/texmf-dist/fon
 ts/type1/bluesky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/
 cm/cmsl10.pfb>
-Output written on paper.pdf (52 pages, 293527 bytes).
+Output written on paper.pdf (52 pages, 293529 bytes).

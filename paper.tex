@@ -197,15 +197,8 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 \newcommand{\mDEn}[0]{m \trianglerighteq n}
 \newcommand{\mNDEn}[0]{m \ntrianglerighteq n}
 
-
 \newcommand{\beqn}{\begin{equation}}
 \newcommand{\eeqn}{\end{equation}}
-
-
-
-
-
-
 
 \newcommand\gnons{{\cal N}}
 \newcommand\gnulls{{\bf N}}
@@ -219,116 +212,6 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 \newcommand\leftside[1]{{\cal L}(#1)}
 \newcommand\rightside[1]{{\cal R}(#1)}
 \newcommand\allrules[1]{{\cal A}(#1)}
-
-
-
-
-\newcommand\revisionnotes
-{\noindent \hrulefill{} \\ {\bf Revision Notes:}
-\begin{enumerate}
-\item These comments are not a complete summary of the review, just a partial strategy for addressing some of the points.
-The review is the more authoritative guide...
-He is giving us the benefit of the doubt but acceptance is still very much in the balance, I think, so we need to stick at it,
-and take it that extra step beyond minimal compliance with his suggestions.
-%
-\item Obviously we have to do simulation tests and hopefully EvolSayer will be of some use there.
-One thing to be careful of is that there are certain regimes of rate/branch-length parameter space where the ``trivial'' outcomes identified by the reviewer
-(ancestral sequence is always identical to one of the descendants) are the norm.
-Oscar and I have been looking at this quite a bit recently (see also 2003 paper by Mossel).
-The regime we are probably most interested in is where the branch lengths are of comparable length
-and so the two slightly-longer branches can ``out-vote'' the shorter branch under certain conditions.
-This should probably be commented on in the paper: the reviewer says he would be happy with ``a small, noncomprehensive set of anecdotes''
-but if we can rationalize why some parameter settings are more interesting than others, then that's all to the better.
-%
-\item I would actually be very wary of taking that ``small noncomprehensive set of anecdotes'' at face value.
-This is one area where I sense we're being given enough rope to hang ourselves... an unsatisfactory response to the simulation issue will be unequivocal grounds for rejection.
-Obviously there are limits to the number of simulations we can run, but with EvolSayer's output statistics (allowing us to filter out ``interesting'' cases), we can automate it somewhat.
-%
-\item I wrote out the TKF structure tree for the case $a \to b \to c$,
-which can be used to estimate the intermediate sequence $b$
-(e.g. for Redelings-Suchard).
-I think this could be useful in explaining tree transducer composition more concretely, and why is important:
-by inspecting these tables, the reader can see that the structure of this grammar is quite complicated,
-and should then be prepared for the idea that the ``composition algorithm'' is simply generating this table
-(or other tables for other phylogenies).
-The latex for this is in the file ``tkfst.tex'', and is currently include'd at the start of the supplementary information (it should go in the main paper though, I think).
-%
-\item Can we dump out the grammar for the three-branch TKFST and include it in the Supplement?
-(Or the main paper?) I realize it's huge, but this very hugeness does motivate the transducer composition algorithm,
-in the same way that the two-branch model (which is now included in a more human-readable form) does.
-%
-\item If we are moving the description of loopy DP to the main paper, I think it needs to be more precise.
-Currently it just says ``we repeatedly iterate over strongly-connected components of the state sub graph'',
-which falls short of the level of precision/detail with which the other DP algorithms are presented.
-The description should encompass alternate strategies (i.e. orders of visiting the states) that you have considered:
-randomized, Tarjan's algorithm, etc.
-The reader should be left understanding the pros-and-cons of each,
- e.g. worst-case performance or difficulty of implementation.
-No need to agonize about this, but be helpful to potential future developers.
-  (Example reader: a grad student in our group who might try to implement loopy DP themselves.)
-%
-\item The descriptions of the DP algorithms do not currently include any traceback algorithms (CYK or Inside);
-therefore, we haven't technically described how to do ancestral reconstruction!
-Obviously these algorithms are almost trivial, but they're quite important.
-Implementing stochastic loopy-Inside traceback in tripletscfgdp.\{h,cc\} is a key step in transforming it into a useful tool
-(for example, with this extension, Indiegram would be pretty much ready-to-go for Redelings-Suchard sampling).
-The deterministic CYK traceback algorithm is {\em even more} important to present here, because implementing this algorithm is currently our main result!
-The paper should describe {\em both} these traceback algorithms.
-This shouldn't be that hard to do in a comprehensible, rigorous style
- (loopy traceback is much simpler than the algorithms for restoring eliminated states to traceback paths, which are painfully described in my 2003 paper).
-%
-\item All algorithms should be described in full, rather than giving recipes for deriving some algorithms from others.
-In particular, the CYK algorithm is currently summarized by statements along the lines of
-``replace sums over paths through the model (or equivalently, parses) with the $\max()$ operation (e.g., in equation X, sum-over-complicated-expression will be replaced with max-over-complicated-expression)''.
-It shouldn't be too hard to write a latex command/macro that can be used (with ``$\sum$'' or ``$\max$'' as an argument) to generate complete versions of {\em both} algorithms.
-%
-\item The paper the reviewer cites as an example of the simplicity of missing data estimation (Rivas and Eddy (2008) PLoS CB 4:e1000172) is an IID-columns model for a multiple alignment.
-When he says that this issue ``may simply go away if you view the problem as a missing data problem'',
-that is precisely what we are talking about when we discuss null cycle elimination.
-I've tried to explain in ``tkfst.tex'' why this is harder than it superficially appears:
-\begin{enumerate}
-\item eliminating missing ``empty'' columns from an IID-columns model (such as in Rivas and Eddy, 2008) is easy.
-\item eliminating missing emissions from an HMM is slightly harder (c.f. ``wing retraction'' algorithm in HMMer source code)
-but general algorithms do exist.
-\item eliminating null states from an SCFG is much harder, due to null bifurcations.
-\end{enumerate}
-%
-\item The reviewer asks for early discussion of constraints in the context of the ``rate-limiting steps of paleogenetics''.
-We should take this opportunity to clarify that our approach is (1) formulate the model,  (2) apply appropriate constraints.
-Our emphasis here is on (1).
-Cite the literature: QRNA represents an alignment constraint on a pair SCFG, Holmes-Rubin 2002 uses fold constraints on pair SCFGs,
-stemloc uses fold+alignment constraints, Ortheus uses an alignment constraint, etc, but none of these things can be done
-(in a probabilistic modeling framework at least) until you can formulate the model.
-For this paper, we chose to condition on structures essentially because they are easy to constrain
-(fold envelopes can be applied independently to each sequence).
-But we could equally easily have conditioned on alignments. Constraints are easy to tweak, once you have a model.
-%
-\item The reviewer also comments on the phylogeny being a given.
-We can note that even though we constrain the phylogeny, more realistic phylogenetic applications are possible.
-Given a structural phylo-alignment (tree+alignment+structure), we can calculate the likelihood; therefore, given two such structural phylo-alignments,
-we can say which one is more probable (describe their relative posterior probabilities, etc.).
-From this it is possible to make a crude MCMC sampler, just by proposing/accepting/rejecting alignment/tree/structure changes.
-An {\em efficient} MCMC sampler needs to be able to make local topology changes and to resample the multiple alignment around a topology change;
-we can do this too, in principle, but it's beyond this paper.
-%
-\item As I understand it, pruning \& peeling are not exactly equivalent as the reviewer claims, {\em except} in the special case of a reversible model.
-Specifically, pruning is a {\em restricted case} of peeling, giving you the posterior probabilities at the root node, but not any other node.
-Of course, if you have a reversible model, you can re-root the tree anywhere, and so the two are equivalent for reversible models only.
-When Felsenstein says the two approaches are the same (on p253 of his book), it is quite a vague statement:
-e.g. later in the same paragraph, he says that both peeling and pruning are variants of Horner's rule, and particular cases of dynamic programming.
-All of this is somewhat academic; basically I'm thinking the pruning/peeling distinction might yet have some pedagogic value, and we might not need to abandon it entirely.
-%
-\item We should address all the reviewer's comments about the figures if possible.
-I have added xfig files ``stree.fig'' and ``stree-mutations.fig'' to the repository; the latter shows an evolutionary trajectory of the TKFST, as requested by the reviewer.
-%
-\item Finally, a very minor/trivial point: would you consider a name-change for IndieGram to something beginning with ``Evol''?
-The EvolDeeds package is EvolDoer (previously released as ``tkfstalign''), EvolSayer and IndieGram.
-I put a few random suggestions for Evol-names at {\bf biowiki.org/EvolDeeds}.
-Don't take this too seriously, of course!
-I'll understand if you want to stick with IndieGram, and this is obviously negligible compared to the other revisions.
-%
-\end{enumerate}
-\hrulefill{}}
 
 %% END MACROS SECTION
 
