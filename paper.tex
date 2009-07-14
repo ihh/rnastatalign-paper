@@ -2221,7 +2221,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
   \caption{
     \textbf{State types of the singlet transducer (single-sequence
       SCFG) of the TKF Structure Tree model.}}
-  \begin{tabular}{|l|rrrl|}
+  \begin{tabular}{|l|r|r|r|l|}
     \hline
     State & $\type$ & $\absorb$ & $\emit$ & description \\ \hline
     $L$ & $\Sstart$ & & & Start of a loop \\ \hline
@@ -2242,17 +2242,17 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 \begin{table}[!ht]
   \caption{
     \textbf{Singlet transducer (single-sequence SCFG) of the TKF Structure Tree model.}}
-  \begin{tabular}{|rcl|r||rcl|r|}
+  \begin{tabular}{|l|r||l|r|}
     \hline
-    Source & $\rightarrow$ & Destination & probability & Source & $\rightarrow$ & Destination & probability \\ \hline
-    $L$ & $\rightarrow$ & $u \,\, I_L$ & $\kappa_l \cdot \pi_l(u)$ & $S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\kappa_s \cdot \pi_s(uv)$ \\ \hline
-    & $|$ & $B$ & $\kappa_l \cdot \pi_l(S)$ & & $|$ & $B_e$ & $1-\kappa_s$ \\ \hline
-    & $|$ & $\Send$ & $1-\kappa_l$ & & & & \\ \hline
-    $I_L$ & $\rightarrow$ & $u \, \, I_L$ & $\kappa_l \cdot \pi_l(u)$ & $I_S$ & $\rightarrow$ & $u \,\, I_S \,\, v$ & $\kappa_s \cdot \pi_s(uv)$\\ \hline
-    & $|$ & $B$ & $\kappa_l \cdot \pi_l(S)$ & & $|$ & $B_e$ & $1-\kappa_s$\\ \hline
-    & $|$ & $\Send$ & $1-\kappa_l$ & & & & \\ \hline \hline
-    $B$ & $\rightarrow$ & $(L \,\, S)$ & 1 & & & & \\ \hline
-    $B_e$ & $\rightarrow$ & $(L \,\, \Send)$ & 1 & & & & \\ \hline
+    Source $\rightarrow$ Destination & probability & Source $\rightarrow$ Destination & probability \\ \hline
+    $L \rightarrow u \,\, I_L$ & $\kappa_l \cdot \pi_l(u)$ & $S \rightarrow u \,\, I_S \,\, v$ & $\kappa_s \cdot \pi_s(uv)$ \\ \hline
+    $\phantom{L} \rightarrow B$ & $\kappa_l \cdot \pi_l(S)$ & $\phantom{S} \rightarrow B_e$ & $1-\kappa_s$ \\ \hline
+    $\phantom{L} \rightarrow \Send$ & $1-\kappa_l$ & & \\ \hline
+    $I_L \rightarrow u \, \, I_L$ & $\kappa_l \cdot \pi_l(u)$ & $I_S \rightarrow u \,\, I_S \,\, v$ & $\kappa_s \cdot \pi_s(uv)$\\ \hline
+    $\phantom{I_L} \rightarrow B$ & $\kappa_l \cdot \pi_l(S)$ & $\phantom{I_S} \rightarrow B_e$ & $1-\kappa_s$\\ \hline
+    $\phantom{I_L} \rightarrow \Send$ & $1-\kappa_l$ & & \\ \hline \hline
+    $B \rightarrow (L \,\, S)$ & 1 & & \\ \hline
+    $B_e \rightarrow (L \,\, \Send)$ & 1 & & \\ \hline
   \end{tabular}
   \begin{flushleft}
     The state types for this model are shown in
@@ -2279,7 +2279,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
     \textbf{State types of the branch transducer
       (conditionally-normalized Pair SCFG) of the TKF Structure Tree
       model.}}
-  \begin{tabular}{|l|rrrl|} \hline
+  \begin{tabular}{|l|r|r|r|l|} \hline
     State & $\type$ & $\absorb$ & $\emit$ & description \\ \hline
     $L$ & $\Sstart$ & & & Start of a loop \\ \hline
     $I_L$ & $\Sinsert$ & & $(u,\Tnull)$ & Single-base insertion \\ \hline
@@ -2312,27 +2312,27 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
   \caption{
     \textbf{Branch transducer (conditionally-normalized Pair SCFG) of
       the TKF Structure Tree model.}}
-  \begin{tabular}{|rcl|r||rcl|r|} \hline
-    Source & $\rightarrow$ & Destination & probability & Source & $\rightarrow$ & Destination & probability \\ \hline
-    $L$ & $\rightarrow$ & $w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $S$ & $\rightarrow$ & $w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
-    & $|$ & $B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & & $|$ & $W_S$ & $1-\beta_s(t)$ \\ \hline
-    & $|$ & $W_L$ & $1-\beta_l(t)$ & & & &  \\ \hline
-    $I_L$ & $\rightarrow$ & $w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $I_S$ & $\rightarrow$ & $w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
-    & $|$ & $B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & & $|$ & $W_S$ & $1-\beta_s(t)$ \\ \hline
-    & $|$ & $W_L$ & $1-\beta_l(t)$ & & & & \\ \hline
-    $M_L$ & $\rightarrow$ & $w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $M_S$ & $\rightarrow$ & $w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
-    & $|$ & $B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & & $|$ & $W_S$ & $1-\beta_s(t)$ \\ \hline
-    & $|$ & $W_L$ & $1-\beta_l(t)$ & & & &  \\ \hline
-    $D_L$ & $\rightarrow$ & $w \,\, I_L$ & $\gamma_l(t) \cdot \pi_l(w)$ & $D_S$ & $\rightarrow$ & $w \,\, I_S \,\, x$ & $\gamma_s(t) \cdot \pi_s(wx)$ \\ \hline
-    & $|$ & $B_i$ & $\gamma_l(t) \cdot \pi_l(S)$ & & $|$ & $W_S$ & $1-\gamma_s(t)$ \\ \hline
-    & $|$ & $W_L$ & $1-\gamma_l(t)$ & & & &  \\ \hline
-    $W_L$ & $\rightarrow$ & $w \,\, M_L$ & $\alpha_l(t) \cdot M_l(u \rightarrow w)$ & $W_S$ & $\rightarrow$ & $w \,\, M_S \,\, x$ & $\alpha_s(t) \cdot M_s(uv \rightarrow wx)$ \\ \hline
-    & $|$ & $D_L$ & $1-\alpha_l(t)$ & & $|$ & $D_S$ & $1-\alpha_s(t)$ \\ \hline
-    & $|$ & $B$ & $\alpha_l(t)$ & & $|$ & $B_e$ & $1$ \\ \hline
-    & $|$ & $B_p$ & $1-\alpha_l(t)$ & & & &  \\ \hline
-    & $|$ & $\Send$ & $1$ & & & &  \\ \hline \hline
-    $B$ & $\rightarrow$ & $L \,\, S$ & 1 & $B_p$ & $\rightarrow$ & $L \, \, \Send$ & 1 \\ \hline
-    $B_i$ & $\rightarrow$ & $L_i \,\, S_i$ & 1 & $B_e$ & $\rightarrow$ & $L \, \, \Send$ & 1 \\ \hline \hline
+  \begin{tabular}{|l|r||l|r|} \hline
+    Source $\rightarrow$ Destination & probability & Source $\rightarrow$ Destination & probability \\ \hline
+    $L \rightarrow w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $S \rightarrow w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
+    $\phantom{L} \rightarrow B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & $\phantom{S} \rightarrow W_S$ & $1-\beta_s(t)$ \\ \hline
+    $\phantom{L} \rightarrow W_L$ & $1-\beta_l(t)$ & & \\ \hline
+    $I_L \rightarrow w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $I_S \rightarrow w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
+    $\phantom{I_L} \rightarrow B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & $\phantom{I_S} \rightarrow W_S$ & $1-\beta_s(t)$ \\ \hline
+    $\phantom{I_L} \rightarrow W_L$ & $1-\beta_l(t)$ & & \\ \hline
+    $M_L \rightarrow w \,\, I_L$ & $\beta_l(t) \cdot \pi_l(w)$ & $M_S \rightarrow w \,\, I_S \,\, x$ & $\beta_s(t) \cdot \pi_s(wx)$ \\ \hline
+    $\phantom{M_L} \rightarrow B_i$ & $\beta_l(t) \cdot \pi_l(S)$ & $\phantom{M_S} \rightarrow W_S$ & $1-\beta_s(t)$ \\ \hline
+    $\phantom{M_L} \rightarrow W_L$ & $1-\beta_l(t)$ & & \\ \hline
+    $D_L \rightarrow w \,\, I_L$ & $\gamma_l(t) \cdot \pi_l(w)$ & $D_S \rightarrow w \,\, I_S \,\, x$ & $\gamma_s(t) \cdot \pi_s(wx)$ \\ \hline
+    $\phantom{D_L} \rightarrow B_i$ & $\gamma_l(t) \cdot \pi_l(S)$ & $\phantom{D_S} \rightarrow W_S$ & $1-\gamma_s(t)$ \\ \hline
+    $\phantom{D_L} \rightarrow W_L$ & $1-\gamma_l(t)$ & & \\ \hline
+    $W_L \rightarrow w \,\, M_L$ & $\alpha_l(t) \cdot M_l(u \rightarrow w)$ & $W_S \rightarrow w \,\, M_S \,\, x$ & $\alpha_s(t) \cdot M_s(uv \rightarrow wx)$ \\ \hline
+    $\phantom{W_L} \rightarrow D_L$ & $1-\alpha_l(t)$ & $\phantom{W_S} \rightarrow D_S$ & $1-\alpha_s(t)$ \\ \hline
+    $\phantom{W_L} \rightarrow B$ & $\alpha_l(t)$ & $\phantom{W_S} \rightarrow B_e$ & $1$ \\ \hline
+    $\phantom{W_L} \rightarrow B_p$ & $1-\alpha_l(t)$ & & \\ \hline
+    $\phantom{W_L} \rightarrow \Send$ & $1$ & & \\ \hline \hline
+    $B \rightarrow (L \,\, S)$ & 1 & $B_p \rightarrow (L \, \, \Send)$ & 1 \\ \hline
+    $B_i \rightarrow (L_i \,\, S_i)$ & 1 & $B_e \rightarrow (L \, \, \Send)$ & 1 \\ \hline \hline
   \end{tabular}
   \begin{flushleft}
     The state types for this model are shown in
@@ -2390,7 +2390,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 \begin{table}[ht]
   \caption{
     \textbf{Percentage sensitivity and positive predictive value (Sensitivity / PPV) for pairwise nucleotide-level alignments in the \bralibaseII\ benchmark.}}
-  \begin{tabular}{|r|rrrr|}
+  \begin{tabular}{|r|r|r|r|r|}
     \hline
     & U5                      & g2intron                & rRNA                    & tRNA \\
     \hline
@@ -2416,7 +2416,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 \begin{table}[ht]
   \caption{
     \textbf{Percentage sensitivity and positive predictive value (Sensitivity / PPV) for predicted base-pairs in the \bralibaseII\ benchmark.}}
-  \begin{tabular}{|r|rrrr|}
+  \begin{tabular}{|r|r|r|r|r|}
     \hline
     & U5                      & g2intron                & rRNA                    & tRNA \\
     \hline
@@ -2452,7 +2452,7 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
    \textbf{Estimates of the memory and time required to reconstruct ancestral
      structures of three RNAs from several families of biological interest
      (as reported by \indiegram).}}
- \begin{tabular}{|l|rrr|} \hline
+ \begin{tabular}{|l|r|r|r|} \hline
     Family & Sequence lengths & Memory & Time \\ \hline
     \emph{nanos} 3' TCE & 61-64 nt & 3 Gb & 3 min \\ \hline
     tRNA & 69-73 nt & 11 Gb & 19 min \\ \hline

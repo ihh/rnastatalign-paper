@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.10)  13 JUL 2009 16:32
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2009.2.10)  14 JUL 2009 09:01
 entering extended mode
 **paper
 (./paper.tex
@@ -348,7 +348,7 @@ Underfull \hbox (badness 10000) detected at line 1501
 Here is how much of TeX's memory you used:
  3825 strings out of 94500
  48467 string characters out of 1174973
- 159848 words of memory out of 1000000
+ 157848 words of memory out of 1000000
  6846 multiletter control sequences out of 10000+50000
  12268 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
@@ -374,4 +374,4 @@ b></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></opt/local/shar
 e/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></opt/local/share/texmf-dist/fon
 ts/type1/bluesky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/
 cm/cmsl10.pfb>
-Output written on paper.pdf (52 pages, 292631 bytes).
+Output written on paper.pdf (52 pages, 293527 bytes).
