@@ -239,11 +239,12 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 % Francis Crick in 1968.  Recently, a domain-level model for the
 % original ribosome was proposed by Smith et al.  Given the abundance of
 % ribosomal RNA sequence data and the many successful reconstructions of
-% ancestral proteins, the reconstruction and synthesis of ancestral
-% ribosomes (and other RNAs) is a feasible goal for paleogenetics.  This
-% will require new bioinformatics tools and methods, in particular a
-% robust theoretical framework for reconstructing histories of
-% substitutions, indels and changes in RNA structure.
+% ancestral proteins,
+
+The reconstruction and synthesis of ancestral RNAs is a feasible goal for paleogenetics.
+This will require new bioinformatics methods, including a
+robust statistical framework for reconstructing histories of
+substitutions, indels and structural changes.
 
 We describe a ``transducer composition'' algorithm for extending
 pairwise probabilistic models of RNA structural evolution to models of
@@ -268,12 +269,12 @@ omitted various aspects of the full model and also a
 posterior-decoding alignment algorithm for one of the simpler models.
 
 In our tests, incorporation of basepair structure was the most
-important factor for accurate inference of alignment; appropriate use
-of posterior-decoding was the next most important factor; and fine
+important factor for accurate alignment inference; appropriate use
+of posterior-decoding was next; and fine
 details of the model were least important.  Posterior-decoding
 heuristics can be substantially faster than exact phylogenetic
-inference, so this motivates the use of sum-over-pairs (and
-approximate sum-over-pairs) heuristics where possible.  For more exact
+inference, so this motivates the use of sum-over-pairs heuristics where possible
+(and approximate sum-over-pairs).  For more exact
 probabilistic inference, we discuss the use of transducer composition
 for ML (or MCMC) inference on phylogenies, including possible ways to
 make the core operations tractable.
