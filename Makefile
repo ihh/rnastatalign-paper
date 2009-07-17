@@ -11,7 +11,7 @@ all: $(addsuffix .pdf,$(PRODUCTION)) latex.zip
 
 all-open: $(addsuffix .pdf.open,$(PRODUCTION))
 
-TEXFILES := paper.tex paper.bbl algorithm2e.sty
+TEXFILES := paper.tex paper.bbl
 latex.zip: $(TEXFILES)
 	zip $@ $(TEXFILES)
 
