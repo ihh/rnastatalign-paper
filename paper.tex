@@ -1863,7 +1863,8 @@ The Inside algorithm itself is given in \algref{inside}.
 %           \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
 %             \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
 %               \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
-%                \bifurcProb \leftarrow \max \left( \bifurcProb, \calcLBifurcProb($\bvec{a}; \cdot$) \calcRBifurcProb($\bvec{a}; \cdot$) \right)\;
+%                 $\bifurcProb \leftarrow \max \left( \bifurcProb, \calcLBifurcProb(\bvec{a}; \cdot) \right)$\;
+%                 $\bifurcProb \leftarrow \max \left( \bifurcProb, \calcRBifurcProb(\bvec{a}; \cdot) \right)$\;
 %               }
 %             }
 %           }
@@ -1965,6 +1966,9 @@ The CYK algorithm itself is given in \algref{cyk}.
 %   }
   \caption{\alglabel{cyktraceback}
 {\bf     The constrained CYK traceback algorithm for three sequences $X, Y, Z$.}
+For compactness we show only the ``if'' case for left-bifurcations ($\bvec{a} \to \bvec{c} \bvec{b}$);
+the case for right-bifurcations ($\bvec{a} \to \bvec{b} \bvec{d}$) is identical,
+with $(\bvec{c},\bvec{b})$ respectively replaced by $(\bvec{b},\bvec{d})$.
 The CYK algorithm itself is given in \algref{cyk}.
   }
 \end{figure}

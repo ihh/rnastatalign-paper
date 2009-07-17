@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.5.20)  17 JUL 2009 11:02
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.5.20)  17 JUL 2009 11:12
 entering extended mode
 **paper
 (./paper.tex
@@ -277,7 +277,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 Here is how much of TeX's memory you used:
  2794 strings out of 94500
  35838 string characters out of 1174973
- 115548 words of memory out of 1000000
+ 115918 words of memory out of 1000000
  5827 multiletter control sequences out of 10000+50000
  11363 words of font info for 44 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
@@ -302,4 +302,4 @@ t/fonts/type1/bluesky/cm/cmmi7.pfb></opt/local/share/texmf-dist/fonts/type1/blu
 esky/cm/cmr7.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb
 ></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></opt/local/shar
 e/texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb>
-Output written on paper.pdf (48 pages, 273543 bytes).
+Output written on paper.pdf (48 pages, 273803 bytes).
