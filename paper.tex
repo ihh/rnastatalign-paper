@@ -1863,8 +1863,7 @@ The Inside algorithm itself is given in \algref{inside}.
 %           \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
 %             \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
 %               \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
-%                 \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
-%                 \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
+%                \bifurcProb \leftarrow \max \left( \bifurcProb, \calcLBifurcProb($\bvec{a}; \cdot$) \calcRBifurcProb($\bvec{a}; \cdot$) \right)\;
 %               }
 %             }
 %           }
