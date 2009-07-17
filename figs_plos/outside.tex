@@ -1,0 +1,44 @@
+\documentclass[10pt]{article}
+\input{algdefs.tex}
+\begin{document}
+\begin{algorithm}[!ht]
+  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
+  \SetKwData{bifurcProb}{bifurcProb}
+  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
+  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
+  \SetLine
+  \KwIn{sequences $X, Y, Z$, Inside matrix $\alpha$}
+
+  \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
+    \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
+      \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
+        \BlankLine
+        \ForEach{state $\bvec{b}$}{
+          \BlankLine
+          \bifurcProb $\leftarrow 0$\;
+          \ForEach{$\left( n^{(X)}_O,n^{(X)}_L \right) \in b_{out,L}\left( n^{(X)} \right)$}{
+            \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_L \right) \in b_{out,L}\left( n^{(Y)} \right)$}{
+              \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_L \right) \in b_{out,L}\left( n^{(Z)} \right)$}{
+                \bifurcProb += \calcLBifurcProb($\bvec{b}; \cdot$)\;
+              }
+            }
+          }
+          \ForEach{$\left( n^{(X)}_O,n^{(X)}_R \right) \in b_{out,R}\left( n^{(X)} \right)$}{
+            \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_R \right) \in b_{out,R}\left( n^{(Y)} \right)$}{
+              \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_R \right) \in b_{out,R}\left( n^{(Z)} \right)$}{
+                \bifurcProb += \calcRBifurcProb($\bvec{b}; \cdot$)\;
+              }
+            }
+          }
+          \BlankLine
+          $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \leftarrow$ \calcTransEmitProb$\left( \bvec{b}; n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+          $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ += \bifurcProb\;
+          store $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+        }
+        \BlankLine
+      }
+    }
+  }
+  
+\end{algorithm}
+\end{document}

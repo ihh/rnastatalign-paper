@@ -1,0 +1,20 @@
+\documentclass[10pt]{article}
+\input{algdefs.tex}
+\begin{document}
+\begin{algorithm}[!ht]
+  \SetKwData{emitProb}{emitProb}
+  \SetLine
+  \KwIn{state $\bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate CYK matrix $\gamma$}
+
+  \emitProb $\leftarrow 0$\;
+  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
+    \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{b} \right)\, \gamma_{\bvec{b}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \right)$\;
+  }
+  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
+    \lIf{$c_{in}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{in}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{in}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
+    \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \gamma_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(X)}\right), c_{in}\left(\bvec{b}; n^{(Y)}\right), c_{in}\left(\bvec{b}; n^{(Z)}\right) \right) \right)$\;
+  }
+  \KwRet{\emitProb}\;
+  
+\end{algorithm}
+\end{document}

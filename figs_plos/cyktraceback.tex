@@ -1,0 +1,61 @@
+\documentclass[10pt]{article}
+\input{algdefs.tex}
+\begin{document}
+\begin{algorithm}[!ht]
+
+  \SetKw{Select}{select}
+  \SetKw{Pop}{pop}
+  \SetKw{Push}{push}
+  \SetKw{Goto}{goto}
+  \SetKw{Mainloop}{main loop}
+  \SetKwData{coordinateStack}{coordinateStack}
+  \SetKwFunction{goto}{goto}
+  \SetKwBlock{Begin}{begin main loop:}{end}
+  \SetLine
+  \KwIn{sequences $X, Y, Z$}
+
+  pushdown stack coordinateStack; \tcc*[f]{hold (state, subsequence triplet) pairs} \\
+  $\bvec{a} \leftarrow \Sstart$; \tcc*[f]{current ensemble state} \\
+  $n^{(X)} \leftarrow N^{(X)}$; \tcc*[f]{current $X$ subsequence; $N^{(X)}$ is the outermost subsequence} \\
+  $n^{(Y)} \leftarrow N^{(Y)}$; \tcc*[f]{current $Y$ subsequence; $N^{(Y)}$ is the outermost subsequence} \\
+  $n^{(Z)} \leftarrow N^{(Z)}$; \tcc*[f]{current $Z$ subsequence; $N^{(Z)}$ is the outermost subsequence} \\
+  clear \coordinateStack;\
+
+  \Begin{
+    output current state $\bvec{a}$ and subsequence triplet $\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+    \SetLine
+    \uIf(\tcc*[f]{end of a parse subtree}){$\bvec{a}$ is the $\Send$ state}{
+      \lIf(\tcc*[f]{end of the parse tree}){\coordinateStack is empty}{\Return}
+      \Pop $\left( \bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ from \coordinateStack\;
+      \Goto \Mainloop\;
+    }
+    \uElseIf(\tcc*[f]{bifurcation $\bvec{a} \to \bvec{c} \bvec{b}$}){$\bvec{a}$ is a bifurcation state}{
+      \Select $\left( n^{(X)}_L, n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$,
+      $\left( n^{(Y)}_L, n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$,
+      $\left( n^{(Z)}_L, n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$ \\
+      such that \\
+      $\gamma_{\bvec{a}} \left(n^{(X)}, n^{(Y)}, n^{(Z)} \right) = \gamma_{\bvec{a}} \left(n^{(X)}_L, n^{(Y)}_L, n^{(Z)}_L \right)  \gamma_{\bvec{a}} \left(n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ \;
+      \Push $\left( \bvec{c}, n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ onto \coordinateStack\;
+      $\bvec{a} \leftarrow \bvec{b}$\;
+      $n^{(X)} \leftarrow n^{(X)}_L$\;
+      $n^{(Y)} \leftarrow n^{(Y)}_L$\;
+      $n^{(Z)} \leftarrow n^{(Z)}_L$\;
+      \Goto \Mainloop\;
+    }
+    \Else(\tcc*[f]{$\Semit$ or $\Snull$ state}){
+      $m^{(X)} \leftarrow c_{in}\left(\bvec{b}; n^{(X)}\right)$ \;
+      $m^{(Y)} \leftarrow c_{in}\left(\bvec{b}; n^{(Y)}\right)$ \;
+      $m^{(Z)} \leftarrow c_{in}\left(\bvec{b}; n^{(Z)}\right)$ \;
+      \Select $\bvec{b} \in \left\{ b : \exists \,\bvec{a} \to \bvec{l}\bvec{b}\bvec{r} \right\}$ \\
+      such that \\
+      $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) = P(\bvec{a} \to \bvec{l}\bvec{b}\bvec{r}) \gamma_{\bvec{b}} \left( m^{(X)}, m^{(Y)}, m^{(Z)} \right)$\;
+      $\bvec{a} \leftarrow \bvec{b}$\;
+      $n^{(X)} \leftarrow m^{(X)}$\;
+      $n^{(Y)} \leftarrow m^{(Y)}$\;
+      $n^{(Z)} \leftarrow m^{(Z)}$\;
+      \Goto \Mainloop\;
+    }
+  }
+  
+\end{algorithm}
+\end{document}

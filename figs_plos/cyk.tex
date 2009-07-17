@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\input{algdefs.tex}
+\begin{document}
+\begin{algorithm}[!ht]
+
+  \SetKwData{maxProb}{maxProb}
+  \SetKwData{bifurcProb}{bifurcProb}
+  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
+  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
+  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
+  \SetLine
+  \KwIn{sequences $X, Y, Z$}
+
+  \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
+    \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
+      \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
+        \BlankLine
+        \ForEach{state $\bvec{a}$}{
+          \BlankLine
+          \bifurcProb $\leftarrow 0$\;
+          \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
+            \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
+              \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
+                \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
+                \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
+              }
+            }
+          }
+          \BlankLine
+          $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ \\
+          $\qquad \leftarrow \max \left( \calcTransEmitProb \left( \bvec{a}; n^{(X)}, n^{(Y)}, n^{(Z)} \right), \bifurcProb \right)$ \;
+          store $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+        }
+        \BlankLine
+      }
+    }
+  }
+  \KwRet{$\gamma_{\bvec{a}}\left( n^{(X)}[0,L^{(X)}],n^{(Y)}[0,L^{(Y)}],n^{(Z)}[0,L^{(Z)}] \right)$}\;
+  
+  
+\end{algorithm}
+\end{document}

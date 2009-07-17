@@ -1,0 +1,20 @@
+\documentclass[10pt]{article}
+\input{algdefs.tex}
+\begin{document}
+\begin{algorithm}[!ht]
+  \SetKwData{emitProb}{emitProb}
+  \SetLine
+  \KwIn{state $\bvec{b}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate Outside matrix $\beta$}
+
+  \emitProb $\leftarrow 0$\;
+  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{b}$} {
+    \emitProb += $P \left( \bvec{a} \to \bvec{b} \right)\, \beta_{\bvec{a}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+  }
+  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
+    \lIf{$c_{out}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{out}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{out}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
+    \emitProb += $P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \beta_{\bvec{a}}\left( c_{out}\left(\bvec{b}; n^{(X)}\right), c_{out}\left(\bvec{b}; n^{(Y)}\right), c_{out}\left(\bvec{b}; n^{(Z)}\right) \right)$\;
+  }
+  \KwRet{\emitProb}\;
+  
+\end{algorithm}
+\end{document}

@@ -71,7 +71,8 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 
 \usepackage{array}
 
-\usepackage[boxed]{algorithm2e}
+% Commented out inclusion of algorithm2e environment because these are now separate figures in figs_plos subdir - IH, 7/17/09
+%\usepackage[boxed]{algorithm2e}
 \usepackage{mathrsfs}
 
 % Labels & references for sections, figures and tables
@@ -98,7 +99,10 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 \newcommand{\tabref}[1]{Table~\tabnum{#1}}
 \newcommand{\tablabel}[1]{\label{tab:#1}}
 
-\newcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
+% Changed algorithms to external figures - IH, 7/17/09
+%\newcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
+%\newcommand{\alglabel}[1]{\label{alg:#1}}
+\newcommand{\algref}[1]{Figure~\ref{alg:#1}}
 \newcommand{\alglabel}[1]{\label{alg:#1}}
 
 \newcommand{\eqnref}[1]{Equation~\ref{eqn:#1}}
@@ -227,10 +231,17 @@ $\ast$ E-mail: indiegram@postbox.biowiki.org
 \end{flushleft}
 
 % figures in figs_plos:
-% 1: stree-with-structure.pdf
-% 2: stree-mutations-with-structures.pdf
-% 3: perfect.pdf
-% 4: ama.pdf
+%  1: inside.pdf
+%  2: insidetransemit.pdf
+%  3: cyk.pdf
+%  4: cyktransemit.pdf
+%  5: cyktraceback.pdf
+%  6: outside.pdf
+%  7: outsidetransemit.pdf
+%  8: stree-with-structure.pdf
+%  9: stree-mutations-with-structures.pdf
+% 10: perfect.pdf
+% 11: ama.pdf
 
 % Please keep the abstract between 250 and 300 words
 \newpage
@@ -1062,72 +1073,9 @@ under all paths through the model which are rooted in state $\bvec{a}$.
 $\mathrm{calcTransEmitProb}$, $\mathrm{calcLBifurcProb}$ and $\mathrm{calcRBifurcProb}$
 used in the Inside algorithm are defined below.
 
-\begin{algorithm}[!ht]
-
-  \SetKwData{bifurcProb}{bifurcProb}
-  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
-  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
-  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
-  \SetLine
-  \KwIn{sequences $X, Y, Z$}
-
-  \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
-    \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
-      \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
-        \BlankLine
-        \ForEach{state $\bvec{a}$}{
-          \BlankLine
-          \bifurcProb $\leftarrow 0$\;
-          \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
-            \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
-              \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
-                \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
-                \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
-              }
-            }
-          }
-          \BlankLine
-          $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ $\leftarrow$ \calcTransEmitProb$\left( \bvec{a}; n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-          $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ += \bifurcProb\;
-          store $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-        }
-        \BlankLine
-      }
-    }
-  }
-  \KwRet{$\alpha_{\bvec{a}}\left( n^{(X)}[0,L^{(X)}],n^{(Y)}[0,L^{(Y)}],n^{(Z)}[0,L^{(Z)}] \right)$}\;
-  
-  \caption{\alglabel{inside}
-    The constrained Inside algorithm for three sequences $X, Y, Z$.
-    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Inside fill order
-    with $\Semit$ states first, then $\Snull$ states in reverse topological order.
-  }
-\end{algorithm}
-
 The transition and emission probability $\mathrm{calcTransEmitProb}(\bvec{a}; \cdot)$ can be calculated 
 by iterating over ensemble states $\bvec{b}$ which connect the subsequence triplet $\left(n^{(X)}, n^{(Y)}, n^{(Z)}\right)$ to others in the fold envelopes.
 Pseudocode for the constrained calculation is given in \algref{insidetransemit}.
-
-
-\begin{algorithm}[!ht]
-  \SetKwData{emitProb}{emitProb}
-  \SetLine
-  \KwIn{state $\bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate Inside matrix $\alpha$}
-
-  \emitProb $\leftarrow 0$\;
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
-    \emitProb += $P \left( \bvec{a} \to \bvec{b} \right)\, \alpha_{\bvec{b}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-  }
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
-    \lIf{$c_{in}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{in}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{in}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
-    \emitProb += $P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \alpha_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(X)}\right), c_{in}\left(\bvec{b}; n^{(Y)}\right), c_{in}\left(\bvec{b}; n^{(Z)}\right) \right)$\;
-  }
-  \KwRet{\emitProb}\;
-  \caption{\alglabel{insidetransemit}
-    Subroutine $\mathrm{calcTransEmitProb}()$ for the Inside algorithm.
-    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
-  }
-\end{algorithm}
 
 The left-bifurcation probability for an ensemble state $\bvec{a}$
 bifurcating to two ensemble states,
@@ -1157,48 +1105,6 @@ the probability of the most likely path through the model generating
 the triplet of subsequences $\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$.
 
 
-\begin{algorithm}[!ht]
-
-  \SetKwData{maxProb}{maxProb}
-  \SetKwData{bifurcProb}{bifurcProb}
-  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
-  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
-  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
-  \SetLine
-  \KwIn{sequences $X, Y, Z$}
-
-  \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
-    \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
-      \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
-        \BlankLine
-        \ForEach{state $\bvec{a}$}{
-          \BlankLine
-          \bifurcProb $\leftarrow 0$\;
-          \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
-            \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
-              \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
-                \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
-                \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
-              }
-            }
-          }
-          \BlankLine
-          $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ \\
-          $\qquad \leftarrow \max \left( \calcTransEmitProb \left( \bvec{a}; n^{(X)}, n^{(Y)}, n^{(Z)} \right), \bifurcProb \right)$ \;
-          store $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-        }
-        \BlankLine
-      }
-    }
-  }
-  \KwRet{$\gamma_{\bvec{a}}\left( n^{(X)}[0,L^{(X)}],n^{(Y)}[0,L^{(Y)}],n^{(Z)}[0,L^{(Z)}] \right)$}\;
-  
-  \caption{\alglabel{cyk}
-    The constrained CYK algorithm for three sequences $X, Y, Z$.
-    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Inside fill order
-    with $\Semit$ states first, then $\Snull$ states in reverse topological order.
-  }
-\end{algorithm}
 
 The resulting CYK algorithm is shown in \algref{cyk}.
 The subroutine $\mathrm{calcTransEmitProb}$ is defined in \algref{cyktransemit}.  The subroutines $\mathrm{calcLBifurcProb}$ and $\mathrm{calcRBifurcProb}$
@@ -1208,25 +1114,6 @@ and
 \[ \max_{\bvec{b}|\,\exists\, \bvec{a}\to\bvec{b}\bvec{d}} P (\bvec{a}\to\bvec{b}\,\bvec{d}) \, \gamma_{\bvec{b}}\left( n^{(X)}_L,n^{(Y)}_L,n^{(Z)}_L\right) \, \alpha_{\bvec{d}}\left( n^{(X)}_R,n^{(Y)}_R,n^{(Z)}_R\right) . \]
 
 
-\begin{algorithm}[!ht]
-  \SetKwData{emitProb}{emitProb}
-  \SetLine
-  \KwIn{state $\bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate CYK matrix $\gamma$}
-
-  \emitProb $\leftarrow 0$\;
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
-    \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{b} \right)\, \gamma_{\bvec{b}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \right)$\;
-  }
-  \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
-    \lIf{$c_{in}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{in}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{in}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
-    \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \gamma_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(X)}\right), c_{in}\left(\bvec{b}; n^{(Y)}\right), c_{in}\left(\bvec{b}; n^{(Z)}\right) \right) \right)$\;
-  }
-  \KwRet{\emitProb}\;
-  \caption{\alglabel{cyktransemit}
-    Subroutine $\mathrm{calcTransEmitProb}()$ for the CYK algorithm.
-    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
-  }
-\end{algorithm}
 
 The CYK traceback algorithm, in combination with the CYK algorithm, is
 used to find the most-likely state path generating the extant sequences
@@ -1235,65 +1122,6 @@ It is analogous to the Viterbi traceback algorithm for HMMs.
 \algref{cyktraceback} gives the constrained CYK traceback algorithm.
 
 
-\begin{algorithm}[!ht]
-
-  \SetKw{Select}{select}
-  \SetKw{Pop}{pop}
-  \SetKw{Push}{push}
-  \SetKw{Goto}{goto}
-  \SetKw{Mainloop}{main loop}
-  \SetKwData{coordinateStack}{coordinateStack}
-  \SetKwFunction{goto}{goto}
-  \SetKwBlock{Begin}{begin main loop:}{end}
-  \SetLine
-  \KwIn{sequences $X, Y, Z$}
-
-  pushdown stack coordinateStack; \tcc*[f]{hold (state, subsequence triplet) pairs} \\
-  $\bvec{a} \leftarrow \Sstart$; \tcc*[f]{current ensemble state} \\
-  $n^{(X)} \leftarrow N^{(X)}$; \tcc*[f]{current $X$ subsequence; $N^{(X)}$ is the outermost subsequence} \\
-  $n^{(Y)} \leftarrow N^{(Y)}$; \tcc*[f]{current $Y$ subsequence; $N^{(Y)}$ is the outermost subsequence} \\
-  $n^{(Z)} \leftarrow N^{(Z)}$; \tcc*[f]{current $Z$ subsequence; $N^{(Z)}$ is the outermost subsequence} \\
-  clear \coordinateStack;\
-
-  \Begin{
-    output current state $\bvec{a}$ and subsequence triplet $\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-    \SetLine
-    \uIf(\tcc*[f]{end of a parse subtree}){$\bvec{a}$ is the $\Send$ state}{
-      \lIf(\tcc*[f]{end of the parse tree}){\coordinateStack is empty}{\Return}
-      \Pop $\left( \bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ from \coordinateStack\;
-      \Goto \Mainloop\;
-    }
-    \uElseIf(\tcc*[f]{bifurcation $\bvec{a} \to \bvec{c} \bvec{b}$}){$\bvec{a}$ is a bifurcation state}{
-      \Select $\left( n^{(X)}_L, n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$,
-      $\left( n^{(Y)}_L, n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$,
-      $\left( n^{(Z)}_L, n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$ \\
-      such that \\
-      $\gamma_{\bvec{a}} \left(n^{(X)}, n^{(Y)}, n^{(Z)} \right) = \gamma_{\bvec{a}} \left(n^{(X)}_L, n^{(Y)}_L, n^{(Z)}_L \right)  \gamma_{\bvec{a}} \left(n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ \;
-      \Push $\left( \bvec{c}, n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ onto \coordinateStack\;
-      $\bvec{a} \leftarrow \bvec{b}$\;
-      $n^{(X)} \leftarrow n^{(X)}_L$\;
-      $n^{(Y)} \leftarrow n^{(Y)}_L$\;
-      $n^{(Z)} \leftarrow n^{(Z)}_L$\;
-      \Goto \Mainloop\;
-    }
-    \Else(\tcc*[f]{$\Semit$ or $\Snull$ state}){
-      $m^{(X)} \leftarrow c_{in}\left(\bvec{b}; n^{(X)}\right)$ \;
-      $m^{(Y)} \leftarrow c_{in}\left(\bvec{b}; n^{(Y)}\right)$ \;
-      $m^{(Z)} \leftarrow c_{in}\left(\bvec{b}; n^{(Z)}\right)$ \;
-      \Select $\bvec{b} \in \left\{ b : \exists \,\bvec{a} \to \bvec{l}\bvec{b}\bvec{r} \right\}$ \\
-      such that \\
-      $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) = P(\bvec{a} \to \bvec{l}\bvec{b}\bvec{r}) \gamma_{\bvec{b}} \left( m^{(X)}, m^{(Y)}, m^{(Z)} \right)$\;
-      $\bvec{a} \leftarrow \bvec{b}$\;
-      $n^{(X)} \leftarrow m^{(X)}$\;
-      $n^{(Y)} \leftarrow m^{(Y)}$\;
-      $n^{(Z)} \leftarrow m^{(Z)}$\;
-      \Goto \Mainloop\;
-    }
-  }
-  \caption{\alglabel{cyktraceback}
-    The constrained CYK traceback algorithm for three sequences $X, Y, Z$.
-  }
-\end{algorithm}
 
 The Outside algorithm is primarily used an an intermediary for calculating nucleotide-level posterior probabilities, e.g. for posterior decoding on the model.
 It is analogous to the Backward algorithm for HMMs.
@@ -1307,50 +1135,6 @@ The subroutines $\mathrm{calcTransEmitProb}$, $\mathrm{calcLBifurcProb}$ and $\m
 used in the Outside algorithm are defined below.
 
 
-\begin{algorithm}[!ht]
-  \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
-  \SetKwData{bifurcProb}{bifurcProb}
-  \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
-  \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
-  \SetLine
-  \KwIn{sequences $X, Y, Z$, Inside matrix $\alpha$}
-
-  \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
-    \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
-      \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
-        \BlankLine
-        \ForEach{state $\bvec{b}$}{
-          \BlankLine
-          \bifurcProb $\leftarrow 0$\;
-          \ForEach{$\left( n^{(X)}_O,n^{(X)}_L \right) \in b_{out,L}\left( n^{(X)} \right)$}{
-            \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_L \right) \in b_{out,L}\left( n^{(Y)} \right)$}{
-              \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_L \right) \in b_{out,L}\left( n^{(Z)} \right)$}{
-                \bifurcProb += \calcLBifurcProb($\bvec{b}; \cdot$)\;
-              }
-            }
-          }
-          \ForEach{$\left( n^{(X)}_O,n^{(X)}_R \right) \in b_{out,R}\left( n^{(X)} \right)$}{
-            \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_R \right) \in b_{out,R}\left( n^{(Y)} \right)$}{
-              \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_R \right) \in b_{out,R}\left( n^{(Z)} \right)$}{
-                \bifurcProb += \calcRBifurcProb($\bvec{b}; \cdot$)\;
-              }
-            }
-          }
-          \BlankLine
-          $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \leftarrow$ \calcTransEmitProb$\left( \bvec{b}; n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-          $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ += \bifurcProb\;
-          store $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-        }
-        \BlankLine
-      }
-    }
-  }
-  \caption{\alglabel{outside}
-    The constrained Outside algorithm for three sequences $X, Y, Z$.
-    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Outside fill order
-    with $\Semit$ states first, then $\Snull$ states in topological order.
-  }
-\end{algorithm}
 
 As with the Inside and CYK algorithms, the transition and emission probability $\mathrm{calcTransEmitProb}$ can be calculated efficiently using the subsequence connections defined earlier (\algref{outsidetransemit}).
 The left-bifurcation probability $\mathrm{calcLBifurcProb}\left( \bvec{b}; n^{(X)}_O,n^{(X)}_L,n^{(Y)}_O,n^{(Y)}_L,n^{(Z)}_O,n^{(Z)}_L \right)$ is
@@ -1364,25 +1148,6 @@ The boundary condition is just
 where $N^{(X)}$ is the outermost subsequence for sequence $X$, etc.
 
 
-\begin{algorithm}[!ht]
-  \SetKwData{emitProb}{emitProb}
-  \SetLine
-  \KwIn{state $\bvec{b}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate Outside matrix $\beta$}
-
-  \emitProb $\leftarrow 0$\;
-  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{b}$} {
-    \emitProb += $P \left( \bvec{a} \to \bvec{b} \right)\, \beta_{\bvec{a}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
-  }
-  \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
-    \lIf{$c_{out}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{out}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{out}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
-    \emitProb += $P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \beta_{\bvec{a}}\left( c_{out}\left(\bvec{b}; n^{(X)}\right), c_{out}\left(\bvec{b}; n^{(Y)}\right), c_{out}\left(\bvec{b}; n^{(Z)}\right) \right)$\;
-  }
-  \KwRet{\emitProb}\;
-  \caption{\alglabel{outsidetransemit}
-    Subroutine $\mathrm{calcTransEmitProb}()$ for the Outside algorithm.
-    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
-  }
-\end{algorithm}
 
 
 
@@ -2010,6 +1775,269 @@ We are grateful to Ben Redelings and one anonymous referee for illuminating crit
 
 \clearpage
 \section*{Figure Legends}
+
+% The following one-liner was used to convert all algorithms into standalone tex files for use as figures
+% cat paper.tex | perl -e '@x=<>;$x=join("",@x);$x=~s/\r\n/\n/g;while($x=~/.begin.algorithm.(.*?).caption.*?.alglabel.([^\}]+)/sg){($a,$f)=($1,$2);open F,">figs_plos/$f.tex";print F "\\documentclass[10pt]{article}\n\\input{algdefs.tex}\n\\begin{document}\n\\begin{algorithm}$a\n\\end{algorithm}\n\\end{document}\n";close F}'
+
+\begin{figure}[!ht]
+% 
+%   \SetKwData{bifurcProb}{bifurcProb}
+%   \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
+%   \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
+%   \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
+%   \SetLine
+%   \KwIn{sequences $X, Y, Z$}
+% 
+%   \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
+%     \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
+%       \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
+%         \BlankLine
+%         \ForEach{state $\bvec{a}$}{
+%           \BlankLine
+%           \bifurcProb $\leftarrow 0$\;
+%           \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
+%             \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
+%               \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
+%                 \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
+%                 \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
+%               }
+%             }
+%           }
+%           \BlankLine
+%           $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ $\leftarrow$ \calcTransEmitProb$\left( \bvec{a}; n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%           $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ += \bifurcProb\;
+%           store $\alpha_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%         }
+%         \BlankLine
+%       }
+%     }
+%   }
+%   \KwRet{$\alpha_{\bvec{a}}\left( n^{(X)}[0,L^{(X)}],n^{(Y)}[0,L^{(Y)}],n^{(Z)}[0,L^{(Z)}] \right)$}\;
+  
+  \caption{\alglabel{inside}
+{\bf    The constrained Inside algorithm for three sequences $X, Y, Z$. }
+    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Inside fill order
+    with $\Semit$ states first, then $\Snull$ states in reverse topological order.
+The subroutine $\mathrm{calcTransEmitProb}()$ is given in \algref{insidetransemit}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+%   \SetKwData{emitProb}{emitProb}
+%   \SetLine
+%   \KwIn{state $\bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate Inside matrix $\alpha$}
+% 
+%   \emitProb $\leftarrow 0$\;
+%   \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
+%     \emitProb += $P \left( \bvec{a} \to \bvec{b} \right)\, \alpha_{\bvec{b}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%   }
+%   \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
+%     \lIf{$c_{in}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{in}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{in}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
+%     \emitProb += $P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \alpha_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(X)}\right), c_{in}\left(\bvec{b}; n^{(Y)}\right), c_{in}\left(\bvec{b}; n^{(Z)}\right) \right)$\;
+%   }
+%   \KwRet{\emitProb}\;
+  \caption{\alglabel{insidetransemit}
+{\bf    Subroutine $\mathrm{calcTransEmitProb}()$ for the Inside algorithm. }
+    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
+The Inside algorithm itself is given in \algref{inside}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+% 
+%   \SetKwData{maxProb}{maxProb}
+%   \SetKwData{bifurcProb}{bifurcProb}
+%   \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
+%   \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
+%   \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
+%   \SetLine
+%   \KwIn{sequences $X, Y, Z$}
+% 
+%   \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
+%     \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
+%       \ForEach(\tcc*[f]{inside$\to$outside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
+%         \BlankLine
+%         \ForEach{state $\bvec{a}$}{
+%           \BlankLine
+%           \bifurcProb $\leftarrow 0$\;
+%           \ForEach{$\left( n^{(X)}_L,n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$} {
+%             \ForEach{$\left( n^{(Y)}_L,n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$} {
+%               \ForEach{$\left( n^{(Z)}_L,n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$} {
+%                 \bifurcProb += \calcLBifurcProb($\bvec{a}; \cdot$)\;
+%                 \bifurcProb += \calcRBifurcProb($\bvec{a}; \cdot$)\;
+%               }
+%             }
+%           }
+%           \BlankLine
+%           $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ \\
+%           $\qquad \leftarrow \max \left( \calcTransEmitProb \left( \bvec{a}; n^{(X)}, n^{(Y)}, n^{(Z)} \right), \bifurcProb \right)$ \;
+%           store $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%         }
+%         \BlankLine
+%       }
+%     }
+%   }
+%   \KwRet{$\gamma_{\bvec{a}}\left( n^{(X)}[0,L^{(X)}],n^{(Y)}[0,L^{(Y)}],n^{(Z)}[0,L^{(Z)}] \right)$}\;
+%   
+  \caption{\alglabel{cyk}
+{\bf    The constrained CYK algorithm for three sequences $X, Y, Z$. }
+    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Inside fill order
+    with $\Semit$ states first, then $\Snull$ states in reverse topological order.
+The subroutine $\mathrm{calcTransEmitProb}()$ is given in \algref{cyktransemit}.
+The algorithm to find the Maximum Likelihood parse tree by traceback through the CYK matrix is given in \algref{cyktraceback}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+%   \SetKwData{emitProb}{emitProb}
+%   \SetLine
+%   \KwIn{state $\bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate CYK matrix $\gamma$}
+% 
+%   \emitProb $\leftarrow 0$\;
+%   \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{b}$} {
+%     \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{b} \right)\, \gamma_{\bvec{b}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \right)$\;
+%   }
+%   \ForEach{$\bvec{b} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
+%     \lIf{$c_{in}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{in}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{in}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
+%     \emitProb = $\max \left( \emitProb, P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \gamma_{\bvec{b}}\left( c_{in}\left(\bvec{b}; n^{(X)}\right), c_{in}\left(\bvec{b}; n^{(Y)}\right), c_{in}\left(\bvec{b}; n^{(Z)}\right) \right) \right)$\;
+%   }
+%   \KwRet{\emitProb}\;
+  \caption{\alglabel{cyktransemit}
+{\bf    Subroutine $\mathrm{calcTransEmitProb}()$ for the CYK algorithm. }
+    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
+The CYK algorithm itself is given in \algref{cyk}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+% 
+%   \SetKw{Select}{select}
+%   \SetKw{Pop}{pop}
+%   \SetKw{Push}{push}
+%   \SetKw{Goto}{goto}
+%   \SetKw{Mainloop}{main loop}
+%   \SetKwData{coordinateStack}{coordinateStack}
+%   \SetKwFunction{goto}{goto}
+%   \SetKwBlock{Begin}{begin main loop:}{end}
+%   \SetLine
+%   \KwIn{sequences $X, Y, Z$}
+% 
+%   pushdown stack coordinateStack; \tcc*[f]{hold (state, subsequence triplet) pairs} \\
+%   $\bvec{a} \leftarrow \Sstart$; \tcc*[f]{current ensemble state} \\
+%   $n^{(X)} \leftarrow N^{(X)}$; \tcc*[f]{current $X$ subsequence; $N^{(X)}$ is the outermost subsequence} \\
+%   $n^{(Y)} \leftarrow N^{(Y)}$; \tcc*[f]{current $Y$ subsequence; $N^{(Y)}$ is the outermost subsequence} \\
+%   $n^{(Z)} \leftarrow N^{(Z)}$; \tcc*[f]{current $Z$ subsequence; $N^{(Z)}$ is the outermost subsequence} \\
+%   clear \coordinateStack;\
+% 
+%   \Begin{
+%     output current state $\bvec{a}$ and subsequence triplet $\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%     \SetLine
+%     \uIf(\tcc*[f]{end of a parse subtree}){$\bvec{a}$ is the $\Send$ state}{
+%       \lIf(\tcc*[f]{end of the parse tree}){\coordinateStack is empty}{\Return}
+%       \Pop $\left( \bvec{a}, n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ from \coordinateStack\;
+%       \Goto \Mainloop\;
+%     }
+%     \uElseIf(\tcc*[f]{bifurcation $\bvec{a} \to \bvec{c} \bvec{b}$}){$\bvec{a}$ is a bifurcation state}{
+%       \Select $\left( n^{(X)}_L, n^{(X)}_R \right) \in b_{in}\left( n^{(X)} \right)$,
+%       $\left( n^{(Y)}_L, n^{(Y)}_R \right) \in b_{in}\left( n^{(Y)} \right)$,
+%       $\left( n^{(Z)}_L, n^{(Z)}_R \right) \in b_{in}\left( n^{(Z)} \right)$ \\
+%       such that \\
+%       $\gamma_{\bvec{a}} \left(n^{(X)}, n^{(Y)}, n^{(Z)} \right) = \gamma_{\bvec{a}} \left(n^{(X)}_L, n^{(Y)}_L, n^{(Z)}_L \right)  \gamma_{\bvec{a}} \left(n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ \;
+%       \Push $\left( \bvec{c}, n^{(X)}_R, n^{(Y)}_R, n^{(Z)}_R \right)$ onto \coordinateStack\;
+%       $\bvec{a} \leftarrow \bvec{b}$\;
+%       $n^{(X)} \leftarrow n^{(X)}_L$\;
+%       $n^{(Y)} \leftarrow n^{(Y)}_L$\;
+%       $n^{(Z)} \leftarrow n^{(Z)}_L$\;
+%       \Goto \Mainloop\;
+%     }
+%     \Else(\tcc*[f]{$\Semit$ or $\Snull$ state}){
+%       $m^{(X)} \leftarrow c_{in}\left(\bvec{b}; n^{(X)}\right)$ \;
+%       $m^{(Y)} \leftarrow c_{in}\left(\bvec{b}; n^{(Y)}\right)$ \;
+%       $m^{(Z)} \leftarrow c_{in}\left(\bvec{b}; n^{(Z)}\right)$ \;
+%       \Select $\bvec{b} \in \left\{ b : \exists \,\bvec{a} \to \bvec{l}\bvec{b}\bvec{r} \right\}$ \\
+%       such that \\
+%       $\gamma_{\bvec{a}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) = P(\bvec{a} \to \bvec{l}\bvec{b}\bvec{r}) \gamma_{\bvec{b}} \left( m^{(X)}, m^{(Y)}, m^{(Z)} \right)$\;
+%       $\bvec{a} \leftarrow \bvec{b}$\;
+%       $n^{(X)} \leftarrow m^{(X)}$\;
+%       $n^{(Y)} \leftarrow m^{(Y)}$\;
+%       $n^{(Z)} \leftarrow m^{(Z)}$\;
+%       \Goto \Mainloop\;
+%     }
+%   }
+  \caption{\alglabel{cyktraceback}
+{\bf     The constrained CYK traceback algorithm for three sequences $X, Y, Z$.}
+The CYK algorithm itself is given in \algref{cyk}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+%   \SetKwFunction{calcTransEmitProb}{calcTransEmitProb}
+%   \SetKwData{bifurcProb}{bifurcProb}
+%   \SetKwFunction{calcLBifurcProb}{calcLBifurcProb}
+%   \SetKwFunction{calcRBifurcProb}{calcRBifurcProb}
+%   \SetLine
+%   \KwIn{sequences $X, Y, Z$, Inside matrix $\alpha$}
+% 
+%   \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(X)} \in \foldenv^{(X)}$} {
+%     \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Y)} \in \foldenv^{(Y)}$} {
+%       \ForEach(\tcc*[f]{outside$\to$inside sorted}){$n^{(Z)} \in \foldenv^{(Z)}$} {
+%         \BlankLine
+%         \ForEach{state $\bvec{b}$}{
+%           \BlankLine
+%           \bifurcProb $\leftarrow 0$\;
+%           \ForEach{$\left( n^{(X)}_O,n^{(X)}_L \right) \in b_{out,L}\left( n^{(X)} \right)$}{
+%             \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_L \right) \in b_{out,L}\left( n^{(Y)} \right)$}{
+%               \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_L \right) \in b_{out,L}\left( n^{(Z)} \right)$}{
+%                 \bifurcProb += \calcLBifurcProb($\bvec{b}; \cdot$)\;
+%               }
+%             }
+%           }
+%           \ForEach{$\left( n^{(X)}_O,n^{(X)}_R \right) \in b_{out,R}\left( n^{(X)} \right)$}{
+%             \ForEach{$\left( n^{(Y)}_O,n^{(Y)}_R \right) \in b_{out,R}\left( n^{(Y)} \right)$}{
+%               \ForEach{$\left( n^{(Z)}_O,n^{(Z)}_R \right) \in b_{out,R}\left( n^{(Z)} \right)$}{
+%                 \bifurcProb += \calcRBifurcProb($\bvec{b}; \cdot$)\;
+%               }
+%             }
+%           }
+%           \BlankLine
+%           $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right) \leftarrow$ \calcTransEmitProb$\left( \bvec{b}; n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%           $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$ += \bifurcProb\;
+%           store $\beta_{\bvec{b}} \left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%         }
+%         \BlankLine
+%       }
+%     }
+%   }
+  \caption{\alglabel{outside}
+{\bf    The constrained Outside algorithm for three sequences $X, Y, Z$. }
+    Ensemble states $\bvec{a}$ in the iteration over states are sorted in Outside fill order
+    with $\Semit$ states first, then $\Snull$ states in topological order.
+The subroutine $\mathrm{calcTransEmitProb}()$ is given in \algref{outsidetransemit}.
+  }
+\end{figure}
+
+\begin{figure}[!ht]
+%   \SetKwData{emitProb}{emitProb}
+%   \SetLine
+%   \KwIn{state $\bvec{b}, n^{(X)}, n^{(Y)}, n^{(Z)}$, intermediate Outside matrix $\beta$}
+% 
+%   \emitProb $\leftarrow 0$\;
+%   \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{b}$} {
+%     \emitProb += $P \left( \bvec{a} \to \bvec{b} \right)\, \beta_{\bvec{a}}\left( n^{(X)}, n^{(Y)}, n^{(Z)} \right)$\;
+%   }
+%   \ForEach{$\bvec{a} : \exists \,\bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r}$} {
+%     \lIf{$c_{out}\left(\bvec{b}; n^{(X)}\right) \notin \foldenv^{(X)}$ or $c_{out}\left(\bvec{b}; n^{(Y)}\right) \notin \foldenv^{(Y)}$ or $c_{out}\left(\bvec{b}; n^{(Z)}\right) \notin \foldenv^{(Z)}$}{next\;}
+%     \emitProb += $P \left( \bvec{a} \to \bvec{l}\,\bvec{b}\,\bvec{r} \right)\, \beta_{\bvec{a}}\left( c_{out}\left(\bvec{b}; n^{(X)}\right), c_{out}\left(\bvec{b}; n^{(Y)}\right), c_{out}\left(\bvec{b}; n^{(Z)}\right) \right)$\;
+%   }
+%   \KwRet{\emitProb}\;
+  \caption{\alglabel{outsidetransemit}
+{\bf    Subroutine $\mathrm{calcTransEmitProb}()$ for the Outside algorithm. }
+    $\bvec{a}$ and $\bvec{b}$ are ensemble states; $\bvec{l}$ and $\bvec{r}$ are left and right terminal emissions.
+The Outside algorithm itself is given in \algref{outside}.
+  }
+\end{figure}
+
+
 
 \begin{figure}[!ht]
   \centering
