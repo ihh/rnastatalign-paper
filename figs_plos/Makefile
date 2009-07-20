@@ -10,10 +10,10 @@ all: $(addsuffix .eps,$(TEXFIGS))
 clean: $(addsuffix .clean,$(TEXFIGS))
 
 FIGS := $(addprefix fig,1 2 3 4 5 6 7)
-numbered: $(addsuffix .dvi,$(FIGS)) $(addsuffix .eps,$(FIGS)) $(addsuffix .cmyk.eps,$(FIGS)) $(addsuffix .pdf,$(FIGS)) $(addsuffix .fig-cleanup,$(FIGS))
+numbered: $(addsuffix .eps,$(FIGS)) $(addsuffix .cmyk.eps,$(FIGS)) $(addsuffix .pdf,$(FIGS)) $(addsuffix .fig-cleanup,$(FIGS))
 
 %.clean:
-	rm $*.aux $*.bbl $*.blg $*.log $*.pdf $*.eps $*.cmyk.eps
+	rm $*.aux $*.bbl $*.blg $*.log $*.pdf $*.eps $*.cmyk.eps || eval
 
 %.pdf: %.tex algdefs.tex
 	test -e $*.aux && rm $*.aux || eval
@@ -24,7 +24,7 @@ numbered: $(addsuffix .dvi,$(FIGS)) $(addsuffix .eps,$(FIGS)) $(addsuffix .cmyk.
 	test -e $*.aux && rm $*.aux || eval
 	$(LATEX) $*
 	$(LATEX) $*
-	$(DVIPS) -Tpdf -E -o $@ $*
+	$(DVIPS) -Pcmz -E -o $@ -j0 -G0 $*
 
 %.eps: %.cmyk.eps
 	$(CONVERT) -colorspace RGB $< $@ || eval
@@ -33,7 +33,7 @@ numbered: $(addsuffix .dvi,$(FIGS)) $(addsuffix .eps,$(FIGS)) $(addsuffix .cmyk.
 	open $<
 
 %.fig-cleanup:
-	rm $*.tex $*.aux $*.log
+	rm $*.tex $*.aux $*.log || eval
 
 fig1.%: inside.%
 	cp $< $@
