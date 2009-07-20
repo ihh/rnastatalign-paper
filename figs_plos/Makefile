@@ -33,7 +33,7 @@ numbered: $(addsuffix .eps,$(FIGS)) $(addsuffix .cmyk.eps,$(FIGS)) $(addsuffix .
 	open $<
 
 %.fig-cleanup:
-	rm $*.tex $*.aux $*.log || eval
+	rm $*.aux $*.log || eval
 
 fig1.%: inside.%
 	cp $< $@
